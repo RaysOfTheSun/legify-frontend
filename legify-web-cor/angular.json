@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/apply",
       "sourceRoot": "projects/apply/src",
-      "prefix": "lib",
+      "prefix": "legfiy-cor-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -36,13 +36,16 @@
               "projects/apply/tsconfig.lib.json",
               "projects/apply/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
     }
   },
-  "defaultProject": "apply"
+  "defaultProject": "apply",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  }
 }

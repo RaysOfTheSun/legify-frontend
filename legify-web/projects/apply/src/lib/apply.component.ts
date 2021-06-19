@@ -4,7 +4,7 @@ import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
 @Component({
   selector: 'legify-web-apply',
   templateUrl: './apply.component.html',
-  styles: []
+  styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
   @Input() navItems: ApplyShellSidenavItem[] = [];

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ApplyComponent } from './apply.component';
-import { ApplyShellModule } from '@legify/web-ui-elements';
 import { RouterModule } from '@angular/router';
+import { ApplyShellModule } from '@legify/web-ui-elements';
 
 @NgModule({
   declarations: [ApplyComponent],
-  imports: [ApplyShellModule, RouterModule],
+  imports: [CommonModule, RouterModule, ApplyShellModule],
   exports: [ApplyComponent]
 })
-export class ApplyModule {}
+export class LegifyApplyModule {}
