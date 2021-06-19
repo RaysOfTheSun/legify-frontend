@@ -7,12 +7,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "clean": "rm -rf 'dist/$1' --",
-    "link-local": "cd dist/$1 && sudo npm link --",
+    "link-local": "cd dist/$1 && npm link --",
     "build:apply": "clear && ng build --project=apply && npm run link-local apply",
+    "build:core": "clear && ng build --project=core && npm run link-local core",
     "build:ui-elements": "clear && ng build --project=ui-elements && npm run link-local ui-elements",
     "build-dev:apply": "ng build --project=apply --watch",
-    "build-dev:ui-elements": "ng build --project=ui-elements --watch"
+    "build-dev:ui-elements": "ng build --project=ui-elements --watch",
+    "build:all": "npm run build:core && npm run build:ui-elements && npm run build:apply"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +27,7 @@
     "@angular/platform-browser": "~11.0.5",
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
+    "ngx-avatar": "^4.1.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

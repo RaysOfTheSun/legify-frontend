@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { ApplyShellSidenavItem } from '../../models/apply-shell-nav-item';
+import { ApplyShellSidenavItem } from '@legify/web-core';
 
 @Component({
   selector: 'legify-web-apply-shell-sidenav',

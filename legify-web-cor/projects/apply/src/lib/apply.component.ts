@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
+import { ApplyShellSidenavItem } from '@legify/web-core';
 
 @Component({
   selector: 'lib-apply',
@@ -15,7 +15,42 @@ export class ApplyComponent implements OnInit {
     this.navItems = [
       {
         key: '0',
-        name: 'WAAA',
+        name: 'Personal Information',
+        disabled: false,
+        routerLink: [''],
+        showCompleteIndicator: true
+      },
+      {
+        key: '0',
+        name: 'Terms and Conditions',
+        disabled: false,
+        routerLink: [''],
+        showCompleteIndicator: true
+      },
+      {
+        key: '0',
+        name: 'Disclosure',
+        disabled: false,
+        routerLink: [''],
+        showCompleteIndicator: true
+      },
+      {
+        key: '0',
+        name: 'Supporting Documents',
+        disabled: false,
+        routerLink: [''],
+        showCompleteIndicator: true
+      },
+      {
+        key: '0',
+        name: 'Review and Sign',
+        disabled: false,
+        routerLink: [''],
+        showCompleteIndicator: true
+      },
+      {
+        key: '0',
+        name: 'Submission',
         disabled: false,
         routerLink: [''],
         showCompleteIndicator: true

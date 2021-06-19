@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CoreService } from './core.service';
+import { LegifyApplyService } from './legify-apply.service';
 
-describe('CoreService', () => {
-  let service: CoreService;
+describe('LegifyApplyService', () => {
+  let service: LegifyApplyService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CoreService);
+    service = TestBed.inject(LegifyApplyService);
   });
 
   it('should be created', () => {

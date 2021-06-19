@@ -1,3 +1,6 @@
-<legify-web-apply-shell [navItems]="navItems">
+<legify-web-apply-shell
+  [navItems]="navItems"
+  [person]="getCurrCustomer() | async"
+>
   <router-outlet></router-outlet>
 </legify-web-apply-shell>

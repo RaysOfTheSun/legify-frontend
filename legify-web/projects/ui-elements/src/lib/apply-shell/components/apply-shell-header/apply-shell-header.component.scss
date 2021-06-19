@@ -1,0 +1,21 @@
+@import "../../../styles/mixins";
+
+.apply-shell {
+  &__header {
+    padding: 10px 20px;
+    height: 100%;
+    max-height: 70px;
+    border-bottom: 1.5px solid #fafafa;
+    background-color: #fff;
+
+    &-content {
+      border-right: 1.5px solid #e0d9d9;
+    }
+
+    &-avatar {
+      padding-right: 10px;
+    }
+
+    @include flex-container(center, flex-start, center);
+  }
+}

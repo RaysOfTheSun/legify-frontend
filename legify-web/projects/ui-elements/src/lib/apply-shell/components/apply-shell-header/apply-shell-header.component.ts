@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Person } from '@legify/web-core';
 
 @Component({
   selector: 'legify-web-apply-shell-header',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apply-shell-header.component.scss']
 })
 export class ApplyShellHeaderComponent implements OnInit {
+  @Input() person: Person;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public getPersonInitials(): string {
+    if (!this.person || !this.person.personalInformation) {
+      return '-';
+    }
+
+    return `${this.person.personalInformation.firstName} ${this.person.personalInformation.lastName}`;
   }
-
 }

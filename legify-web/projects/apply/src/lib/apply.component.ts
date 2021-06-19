@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
+import { Observable } from 'rxjs';
+import { Person, ApplyShellSidenavItem } from '@legify/web-core';
+import { LegifyApplyService } from './services/services/legify-apply/legify-apply.service';
 
 @Component({
   selector: 'legify-web-apply',
@@ -7,9 +9,14 @@ import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
+  @Input() customer: Person;
   @Input() navItems: ApplyShellSidenavItem[] = [];
 
-  constructor() {}
+  constructor(protected legifyApplyService: LegifyApplyService) {}
 
   ngOnInit(): void {}
+
+  public getCurrCustomer(): Observable<Person> {
+    return this.legifyApplyService.getCurrCustomer();
+  }
 }
