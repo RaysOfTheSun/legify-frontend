@@ -1,0 +1,49 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "paths": {
+      "core": [
+        "dist/core/core",
+        "dist/core"
+      ],
+      "apply": [
+        "dist/apply/apply",
+        "dist/apply"
+      ],
+      "ui-elements": [
+        "dist/ui-elements/ui-elements",
+        "dist/ui-elements"
+      ],
+      "market-cor": [
+        "dist/market-cor/market-cor",
+        "dist/market-cor"
+      ],
+      "market-usa": [
+        "dist/market-usa/market-usa",
+        "dist/market-usa"
+      ],
+      "apply-cor": [
+        "dist/apply-cor/apply-cor",
+        "dist/apply-cor"
+      ],
+      "apply-usa": [
+        "dist/apply-usa/apply-usa",
+        "dist/apply-usa"
+      ]
+    }
+  }
+}
