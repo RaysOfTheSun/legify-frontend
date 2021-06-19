@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { legifyWebAppInitializer } from './initializers/app-initalizer';
+import { legifyAppInitializer, APPLY_MODULE } from '@legify/web-core';
+import { MARKET_ROUTER_CONFIG_MAP } from './router-configs/market-router-config-map';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,7 +21,12 @@ import { legifyWebAppInitializer } from './initializers/app-initalizer';
     {
       multi: true,
       provide: APP_INITIALIZER,
-      useFactory: legifyWebAppInitializer,
+      useFactory: (router) =>
+        legifyAppInitializer(
+          router,
+          MARKET_ROUTER_CONFIG_MAP,
+          APPLY_MODULE.APPLY
+        ),
       deps: [Router]
     }
   ],

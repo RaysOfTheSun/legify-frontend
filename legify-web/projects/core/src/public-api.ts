@@ -3,3 +3,5 @@
  */
 
 export * from './lib/apply';
+export * from './lib/utilities';
+export * from './lib/constants';
