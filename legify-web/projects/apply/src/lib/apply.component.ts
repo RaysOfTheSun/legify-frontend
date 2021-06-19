@@ -9,7 +9,6 @@ import { LegifyApplyService } from './services/services/legify-apply/legify-appl
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
-  @Input() customer: Person;
   @Input() navItems: ApplyShellSidenavItem[] = [];
 
   constructor(protected legifyApplyService: LegifyApplyService) {}

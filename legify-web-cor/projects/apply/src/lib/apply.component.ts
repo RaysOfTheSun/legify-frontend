@@ -38,8 +38,8 @@ export class ApplyComponent implements OnInit {
         key: '0',
         name: 'Supporting Documents',
         disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
+        routerLink: ['documents'],
+        showCompleteIndicator: false
       },
       {
         key: '0',

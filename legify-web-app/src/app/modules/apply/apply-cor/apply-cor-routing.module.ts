@@ -6,11 +6,18 @@ const routes: Routes = [
   {
     path: '',
     component: ApplyComponent,
-  },
+    children: [
+      {
+        path: 'documents',
+        loadChildren: () =>
+          import('@legify-cor/web-apply').then((m) => m.ApplyDocumentsModule)
+      }
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class ApplyCorRoutingModule {}
