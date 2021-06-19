@@ -6,6 +6,8 @@ import { ApplyShellSidenavComponent } from './components/apply-shell-sidenav/app
 import { RouterModule } from '@angular/router';
 import { ApplyShellSidenavItemComponent } from './components/apply-shell-sidenav-item/apply-shell-sidenav-item.component';
 
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     ApplyShellComponent,
@@ -13,7 +15,7 @@ import { ApplyShellSidenavItemComponent } from './components/apply-shell-sidenav
     ApplyShellSidenavComponent,
     ApplyShellSidenavItemComponent
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, MatIconModule],
   exports: [ApplyShellComponent]
 })
 export class ApplyShellModule {}

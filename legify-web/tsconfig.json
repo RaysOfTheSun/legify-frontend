@@ -12,6 +12,7 @@
     "target": "es2015",
     "module": "es2020",
     "lib": ["es2018", "dom"],
+    "preserveSymlinks": true,
     "paths": {
       "core": ["dist/core/core", "dist/core"],
       "apply": ["dist/apply/apply", "dist/apply"],

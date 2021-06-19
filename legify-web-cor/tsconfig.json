@@ -9,17 +9,12 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
+    "preserveSymlinks": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "apply": [
-        "dist/apply/apply",
-        "dist/apply"
-      ]
+      "apply": ["dist/apply/apply", "dist/apply"]
     }
   }
 }
