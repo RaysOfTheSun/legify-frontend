@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ApplyShellSidenavItem } from '../../models/apply-shell-nav-item';
 
 @Component({
   selector: 'legify-web-apply-shell-sidenav',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./apply-shell-sidenav.component.scss']
 })
 export class ApplyShellSidenavComponent implements OnInit {
+  @Input() navItems: ApplyShellSidenavItem[] = [];
+  @Input() navItemCompleteIndicator: TemplateRef<any>;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

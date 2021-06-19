@@ -1,0 +1,24 @@
+<div class="apply-shell__sidenav-item" [routerLink]="navItem.routerLink">
+  <div class="apply-shell__sidenav-item-content">
+    <p class="apply-shell__sidenav-item-text">{{ navItem.name }}</p>
+  </div>
+  <ng-container
+    [ngTemplateOutlet]="
+      navItemCompleteIndicatorTemplate
+        ? navItemCompleteIndicatorTemplate
+        : completeIndicatorTemplate
+    "
+    [ngTemplateOutletContext]="{ item: navItem }"
+  ></ng-container>
+</div>
+
+<ng-template #completeIndicatorTemplate let-item="item">
+  <div
+    class="apply-shell__sidenav-item-indicator"
+    [ngClass]="{
+      'apply-shell__sidenav-item-indicator--shown': item.showCompleteIndicator
+    }"
+  >
+    <mat-icon>check_circle</mat-icon>
+  </div>
+</ng-template>

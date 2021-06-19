@@ -1,0 +1,28 @@
+@import "../styles/mixins";
+
+.apply-shell {
+  &__content {
+    @include flex-container();
+    flex: 1 1 75%;
+    height: 100%;
+    max-height: calc(100vh - 70px);
+  }
+
+  &__sidenav {
+    flex: 1 1 25%;
+    max-height: calc(100vh - 70px);
+  }
+
+  &__header {
+    height: 100%;
+    max-height: 60px;
+  }
+
+  &__body {
+    width: calc(100vw - 350px);
+    height: calc(100vh - 70px);
+    height: 100%;
+    margin: auto;
+    padding: 40px;
+  }
+}

@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "clean": "rm -rf 'dist/$1' --",
+    "link-local": "cd dist/$1 && sudo npm link --",
+    "build:apply": "clear && ng build --project=apply && npm run link-local apply",
+    "build:ui-elements": "clear && ng build --project=ui-elements && npm run link-local ui-elements",
+    "build-dev:apply": "ng build --project=apply --watch",
+    "build-dev:ui-elements": "ng build --project=ui-elements --watch"
   },
   "private": true,
   "dependencies": {

@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { ApplyShellComponent } from '@legify/web-ui-elements';
+import { Component, Input, OnInit } from '@angular/core';
+import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
 
 @Component({
-  selector: 'lib-apply',
-  template: ` <p>apply works!</p> `,
-  styles: [],
+  selector: 'legify-web-apply',
+  templateUrl: './apply.component.html',
+  styles: []
 })
 export class ApplyComponent implements OnInit {
-  public ref: ApplyShellComponent;
+  @Input() navItems: ApplyShellSidenavItem[] = [];
 
   constructor() {}
 

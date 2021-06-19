@@ -1,1 +1,7 @@
-<p>apply-shell-sidenav works!</p>
+<div class="apply-shell__sidenav">
+  <ng-container *ngFor="let navItem of navItems">
+    <legify-web-apply-shell-sidenav-item
+      [navItem]="navItem"
+    ></legify-web-apply-shell-sidenav-item>
+  </ng-container>
+</div>

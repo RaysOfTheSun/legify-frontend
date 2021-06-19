@@ -1,3 +1,10 @@
 <legify-web-apply-shell-header></legify-web-apply-shell-header>
-<legify-web-apply-shell-sidenav></legify-web-apply-shell-sidenav>
-<p>apply-shell works!</p>
+<div class="apply-shell__content">
+  <legify-web-apply-shell-sidenav
+    class="apply-shell__sidenav"
+    [navItems]="navItems"
+  ></legify-web-apply-shell-sidenav>
+  <div class="apply-shell__body">
+    <ng-content></ng-content>
+  </div>
+</div>

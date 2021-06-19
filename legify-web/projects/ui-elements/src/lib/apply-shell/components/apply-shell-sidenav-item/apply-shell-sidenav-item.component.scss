@@ -1,0 +1,29 @@
+@import "../../../styles/mixins";
+
+.apply-shell__sidenav-item {
+  cursor: pointer;
+
+  @include flex-container(center, space-between);
+
+  padding: 10px 20px;
+  min-width: 100%;
+  max-width: 100%;
+  border-bottom: 1.5px solid #fafafa;
+
+  &-text {
+    white-space: normal;
+  }
+
+  &-content {
+    margin: 8px;
+  }
+
+  &-indicator {
+    opacity: 0;
+
+    &--shown {
+      opacity: 100;
+      color: #43a047;
+    }
+  }
+}
