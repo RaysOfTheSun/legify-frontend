@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/core",
       "sourceRoot": "projects/core/src",
-      "prefix": "lib",
+      "prefix": "legify-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -45,7 +45,7 @@
       "projectType": "library",
       "root": "projects/apply",
       "sourceRoot": "projects/apply/src",
-      "prefix": "lib",
+      "prefix": "legify-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -83,7 +83,7 @@
       "projectType": "library",
       "root": "projects/ui-elements",
       "sourceRoot": "projects/ui-elements/src",
-      "prefix": "lib",
+      "prefix": "legify-web",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
@@ -116,87 +116,12 @@
           }
         }
       }
-    },
-    "apply-cor": {
-      "projectType": "library",
-      "root": "projects/apply-cor",
-      "sourceRoot": "projects/apply-cor/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/apply-cor/tsconfig.lib.json",
-            "project": "projects/apply-cor/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/apply-cor/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/apply-cor/src/test.ts",
-            "tsConfig": "projects/apply-cor/tsconfig.spec.json",
-            "karmaConfig": "projects/apply-cor/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/apply-cor/tsconfig.lib.json",
-              "projects/apply-cor/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
-    "apply-usa": {
-      "projectType": "library",
-      "root": "projects/apply-usa",
-      "sourceRoot": "projects/apply-usa/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "tsConfig": "projects/apply-usa/tsconfig.lib.json",
-            "project": "projects/apply-usa/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/apply-usa/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/apply-usa/src/test.ts",
-            "tsConfig": "projects/apply-usa/tsconfig.spec.json",
-            "karmaConfig": "projects/apply-usa/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/apply-usa/tsconfig.lib.json",
-              "projects/apply-usa/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
-  "defaultProject": "core"
+  "defaultProject": "core",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  }
 }

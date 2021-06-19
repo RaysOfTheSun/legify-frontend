@@ -5,6 +5,6 @@ import { ApplyShellModule } from '@legify/web-ui-elements';
 @NgModule({
   declarations: [ApplyComponent],
   imports: [ApplyShellModule],
-  exports: [ApplyComponent],
+  exports: [ApplyComponent]
 })
 export class ApplyModule {}

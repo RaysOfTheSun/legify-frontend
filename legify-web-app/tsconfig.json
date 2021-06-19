@@ -1,3 +1,4 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -11,11 +12,9 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "es2020",
-    "lib": ["es2018", "dom"],
-    "paths": {
-      "core": ["dist/core/core", "dist/core"],
-      "apply": ["dist/apply/apply", "dist/apply"],
-      "ui-elements": ["dist/ui-elements/ui-elements", "dist/ui-elements"]
-    }
+    "lib": [
+      "es2018",
+      "dom"
+    ]
   }
 }
