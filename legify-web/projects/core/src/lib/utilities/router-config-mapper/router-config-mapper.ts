@@ -5,9 +5,11 @@ import { MarketSessionMapper } from '../market-session-mapper/market-session-map
 export class RouterConfigMapper {
   public static getRouterConfigFromMap(
     marketRouterConfigMap: Map<LEGIFY_MARKET, Routes>,
-    defaultRoute: string
+    defaultRoute: string,
+    marketToRetrieve?: LEGIFY_MARKET
   ): Routes {
-    const currSessionMarket = MarketSessionMapper.getCurrMarket();
+    const currSessionMarket =
+      marketToRetrieve || MarketSessionMapper.getCurrMarket();
     const routerConfigForMarket = marketRouterConfigMap.get(currSessionMarket);
 
     return [
