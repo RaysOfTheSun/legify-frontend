@@ -1,0 +1,7 @@
+<footer class="auth-shell-footer">
+  <ng-container *ngFor="let footerItem of footerItems">
+    <a class="auth-shell-footer__item" [routerLink]="footerItem.routerLink">
+      {{ footerItem.displayText }}
+    </a>
+  </ng-container>
+</footer>

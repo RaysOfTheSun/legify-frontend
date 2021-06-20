@@ -9,8 +9,10 @@
     "lint": "ng lint",
     "clean": "rm -rf 'dist/$1' --",
     "link-local": "cd dist/$1 && npm link --",
+    "build:auth": "clear && ng build --project=auth && npm run link-local auth",
     "build:apply": "clear && ng build --project=apply && npm run link-local apply",
-    "build-dev:apply": "ng build --project=apply --watch"
+    "build-dev:auth": "clear && ng build --project=auth --watch",
+    "build-dev:apply": "clear &&  ng build --project=apply --watch"
   },
   "private": true,
   "dependencies": {

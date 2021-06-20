@@ -1,0 +1,38 @@
+<legify-web-auth-shell [footerItems]="footerItems">
+  <div class="login">
+    <p class="login__header-text">{{ loginGreetingText }}</p>
+    <div class="login__field-container">
+      <form [formGroup]="authFormGroup" class="login__form">
+        <mat-form-field appearance="outline">
+          <mat-label>username</mat-label>
+          <input
+            matInput
+            [placeholder]="usernameFieldPlaceholder"
+            formControlName="username"
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>password</mat-label>
+          <input matInput type="password" formControlName="password" />
+        </mat-form-field>
+      </form>
+      <p
+        class="login__error-text"
+        [ngClass]="{
+          'login__error-text--shown': showError
+        }"
+      >
+        Invalid username or password
+      </p>
+
+      <button
+        mat-flat-button
+        color="primary"
+        class="login__submit-button"
+        (click)="doLogin()"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</legify-web-auth-shell>

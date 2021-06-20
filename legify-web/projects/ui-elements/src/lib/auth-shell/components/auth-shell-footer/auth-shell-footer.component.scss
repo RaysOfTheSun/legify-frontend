@@ -1,0 +1,10 @@
+.auth-shell-footer {
+  border-top: 2px solid #fafafa;
+  padding-top: 10px;
+
+  &__item {
+    font-size: 0.8rem;
+    color: #9e9e9e;
+    text-decoration: none !important;
+  }
+}

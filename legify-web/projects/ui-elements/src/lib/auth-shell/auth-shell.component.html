@@ -1,0 +1,16 @@
+<div class="auth-shell">
+  <div class="auth-shell__banner"></div>
+  <div class="auth-shell__body">
+    <legify-web-auth-shell-header
+      [svgIconName]="svgIcon"
+      class="auth-shell__body-header"
+    ></legify-web-auth-shell-header>
+    <div class="auth-shell__body-content">
+      <ng-content></ng-content>
+    </div>
+    <legify-web-auth-shell-footer
+      class="auth-shell__body-footer"
+      [footerItems]="footerItems"
+    ></legify-web-auth-shell-footer>
+  </div>
+</div>
