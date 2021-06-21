@@ -1,0 +1,19 @@
+{
+  "footerItems": [
+    {
+      "displayText": "Terms and Conitions",
+      "routerLink": ["terms"],
+      "disabled": false
+    },
+    {
+      "displayText": "Support",
+      "routerLink": ["terms"],
+      "disabled": false
+    },
+    {
+      "displayText": "Data Privacy",
+      "routerLink": ["terms"],
+      "disabled": false
+    }
+  ]
+}

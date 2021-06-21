@@ -3,6 +3,10 @@
     {
       "origin": "http://localhost:4200",
       "market": "cor"
+    },
+    {
+      "origin": "http://localhost:4300",
+      "market": "usa"
     }
   ],
   "logoConfigs": [

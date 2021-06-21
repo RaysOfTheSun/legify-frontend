@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:cor": "ng s -o",
+    "start:usa": "ng s -o --port 4300"
   },
   "private": true,
   "dependencies": {

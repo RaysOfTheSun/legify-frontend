@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "preserveSymlinks": true,
             "outputPath": "dist/legify-web-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -34,6 +35,11 @@
               {
                 "glob": "**/*",
                 "input": "./node_modules/@legify-cor/web-auth/assets",
+                "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@legify-usa/web-auth/assets",
                 "output": "/assets/"
               }
             ],
