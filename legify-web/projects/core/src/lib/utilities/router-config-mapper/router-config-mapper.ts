@@ -1,16 +1,15 @@
 import { Routes } from '@angular/router';
 import { LEGIFY_MARKET } from '../../constants/market/legify-market-enum';
-import { MarketSessionMapper } from '../market-session-mapper/market-session-mapper';
 
 export class RouterConfigMapper {
   public static getRouterConfigFromMap(
-    marketRouterConfigMap: Map<LEGIFY_MARKET, Routes>,
     defaultRoute: string,
-    marketToRetrieve?: LEGIFY_MARKET
+    currSessionMarket: LEGIFY_MARKET,
+    marketRouterConfigMap: Map<LEGIFY_MARKET, Routes>
   ): Routes {
-    const currSessionMarket =
-      marketToRetrieve || MarketSessionMapper.getCurrMarket();
-    const routerConfigForMarket = marketRouterConfigMap.get(currSessionMarket);
+    const routerConfigForMarket = marketRouterConfigMap.get(
+      currSessionMarket || LEGIFY_MARKET.COR
+    );
 
     return [
       ...routerConfigForMarket,

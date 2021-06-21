@@ -1,61 +1,62 @@
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { concatMap, map } from 'rxjs/operators';
+import { catchError, concatMap } from 'rxjs/operators';
 import {
-  legifyRouterConfigurer,
-  OriginToMarketMapping
+  LEGIFY_MARKET,
+  LegifyAppConfig,
+  IconRegistryConfigurer,
+  RouterConfigurer,
+  MarketSessionMapper,
+  AUTH_MODULE,
+  DEFAULT_LEGIFY_APP_CONFIG
 } from '@legify/web-core';
 import { MARKET_ROUTER_CONFIG_MAP } from 'src/app/router-configs/market-router-config-map';
-import { LEGIFY_MARKET, LegifyAppConfig } from '@legify/web-core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
 
-// TODO: implement in legify/web-core
 export const legifyWebAppInitializer =
   (
     router: Router,
     httpClient: HttpClient,
-    domSanitizer: DomSanitizer,
-    matIconRegistry: MatIconRegistry
+    matIconRegistry: MatIconRegistry,
+    iconRegistryConfigurer: IconRegistryConfigurer
   ) =>
   () => {
-    const appConfigReq$ = httpClient.get<LegifyAppConfig>(
-      'assets/configs/app-config.json'
-    );
+    const getCurrMarket$ = httpClient
+      .get<LegifyAppConfig>('assets/configs/app-config.json')
+      .pipe(
+        catchError(() => of(DEFAULT_LEGIFY_APP_CONFIG)),
+        concatMap((appConfig) => {
+          return new Observable<LEGIFY_MARKET>((subscriber) => {
+            const currMarket =
+              MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig);
 
-    const registerGlobalCompanyLogo$ = appConfigReq$.pipe(
-      concatMap((appConfig) => {
-        return new Observable<OriginToMarketMapping>((subscriber) => {
-          const currMarketConfig = appConfig.origins.find(
-            (config) => config.origin === window.location.origin
-          );
+            const iconConfigs = appConfig.logoConfigs.find(
+              (logoConfig) => logoConfig.market === currMarket
+            );
 
-          const logoConfigForCurrMarket = appConfig.logoConfigs.find(
-            (logoConfig) => logoConfig.market === currMarketConfig.market
-          );
+            iconRegistryConfigurer.register(
+              matIconRegistry,
+              iconConfigs.logoUrl,
+              'legify-logo'
+            );
 
-          const sanitizedLogoUrl = domSanitizer.bypassSecurityTrustResourceUrl(
-            logoConfigForCurrMarket.logoUrl
-          );
+            subscriber.next(currMarket);
+            subscriber.complete();
+          });
+        })
+      );
 
-          matIconRegistry.addSvgIcon('legify-logo', sanitizedLogoUrl);
-          subscriber.next(currMarketConfig);
-          subscriber.complete();
-        });
-      })
-    );
-
-    const initApp$ = registerGlobalCompanyLogo$.pipe(
-      concatMap((marketConfig) => {
-        return legifyRouterConfigurer(
+    const configureRouter$ = getCurrMarket$.pipe(
+      concatMap((currMarket) =>
+        RouterConfigurer.configure(
           router,
-          MARKET_ROUTER_CONFIG_MAP,
-          'auth/login',
-          marketConfig.market
-        );
-      })
+          currMarket,
+          AUTH_MODULE.LOGIN,
+          MARKET_ROUTER_CONFIG_MAP
+        )
+      )
     );
 
-    return initApp$.toPromise();
+    return configureRouter$.toPromise();
   };
