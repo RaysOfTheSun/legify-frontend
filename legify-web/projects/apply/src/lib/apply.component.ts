@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Person, ApplyShellSidenavItem } from '@legify/web-core';
-import { LegifyApplyService } from './services/services/legify-apply/legify-apply.service';
+import { LegifyApplyService } from './services/legify-apply/legify-apply.service';
 
 @Component({
   selector: 'legify-web-apply',

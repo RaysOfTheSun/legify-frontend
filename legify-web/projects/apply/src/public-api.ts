@@ -2,8 +2,8 @@
  * Public API Surface of apply
  */
 
-export * from './lib/services/services/legify-apply/legify-apply.service';
-
+export * from './lib/models';
+export * from './lib/services';
 export * from './lib/apply.component';
 export * from './lib/legify-apply.module';
 export * from './lib/legify-apply-documents';

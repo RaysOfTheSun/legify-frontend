@@ -1,0 +1,46 @@
+{
+  "navItems": [
+    {
+      "key": "0",
+      "name": "Personal Information",
+      "disabled": false,
+      "routerLink": ["personal-info"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "1",
+      "name": "Terms and Conditions",
+      "disabled": false,
+      "routerLink": ["terms"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "2",
+      "name": "Disclosure",
+      "disabled": false,
+      "routerLink": ["disclosure"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "3",
+      "name": "Supporting Documents",
+      "disabled": false,
+      "routerLink": ["documents"],
+      "showCompleteIndicator": true
+    },
+    {
+      "key": "4",
+      "name": "Review and Sign",
+      "disabled": false,
+      "routerLink": ["documents"],
+      "showCompleteIndicator": true
+    },
+    {
+      "key": "5",
+      "name": "Submission",
+      "disabled": false,
+      "routerLink": ["submission"],
+      "showCompleteIndicator": true
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ApplyShellSidenavItem } from '@legify/web-core';
+import { LegifyApplyService } from '@legify/web-apply';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'lib-apply',
@@ -9,52 +11,11 @@ import { ApplyShellSidenavItem } from '@legify/web-core';
 export class ApplyComponent implements OnInit {
   @Input() navItems: ApplyShellSidenavItem[] = [];
 
-  constructor() {}
+  constructor(protected legifyApplyService: LegifyApplyService) {}
 
-  ngOnInit(): void {
-    this.navItems = [
-      {
-        key: '0',
-        name: 'Personal Information',
-        disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
-      },
-      {
-        key: '0',
-        name: 'Terms and Conditions',
-        disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
-      },
-      {
-        key: '0',
-        name: 'Disclosure',
-        disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
-      },
-      {
-        key: '0',
-        name: 'Supporting Documents',
-        disabled: false,
-        routerLink: ['documents'],
-        showCompleteIndicator: false
-      },
-      {
-        key: '0',
-        name: 'Review and Sign',
-        disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
-      },
-      {
-        key: '0',
-        name: 'Submission',
-        disabled: false,
-        routerLink: [''],
-        showCompleteIndicator: true
-      }
-    ];
+  ngOnInit(): void {}
+
+  public getNavItems(): Observable<ApplyShellSidenavItem[]> {
+    return this.legifyApplyService.getNavItems();
   }
 }

@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Person } from '@legify/web-core';
+import { take } from 'rxjs/operators';
+import { Person, ApplyShellSidenavItem } from '@legify/web-core';
+import { LegifyApplyConfigService } from '../legify-apply-config/legify-apply-config.service';
 
 @Injectable()
 export class LegifyApplyService {
-  constructor() {}
+  constructor(protected legifyApplyConfigService: LegifyApplyConfigService) {
+    this.legifyApplyConfigService.getApplyConfig().pipe(take(1)).subscribe();
+  }
 
   public getCurrCustomer(): Observable<Person> {
     // TODO: implement an app-context service that will hold information
@@ -25,5 +29,9 @@ export class LegifyApplyService {
     };
 
     return of(sampleCustomer);
+  }
+
+  public getNavItems(): Observable<ApplyShellSidenavItem[]> {
+    return this.legifyApplyConfigService.getNavItems() || of([]);
   }
 }

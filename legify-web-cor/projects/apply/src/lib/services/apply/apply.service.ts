@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { LegifyApplyService } from '@legify/web-apply';
 import { Person } from '@legify/web-core';
 import { Observable, of } from 'rxjs';
+import { LegifyApplyConfigService } from '@legify/web-apply';
 
 @Injectable()
 export class ApplyService extends LegifyApplyService {
-  constructor() {
-    super();
+  constructor(protected legifyApplyConfigService: LegifyApplyConfigService) {
+    super(legifyApplyConfigService);
   }
 
   public getCurrCustomer(): Observable<Person> {
