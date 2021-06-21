@@ -10,20 +10,15 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public footerItems: ShellFooterItem[] = [];
-  protected showErrorSubj: BehaviorSubject<boolean>;
+  protected readonly showErrorSubj: BehaviorSubject<boolean> =
+    new BehaviorSubject(false);
 
   constructor(protected legifyLoginService: LegifyLoginService) {}
 
-  ngOnInit(): void {
-    this.showErrorSubj = new BehaviorSubject(false);
-    this.footerItems = [
-      {
-        displayText: 'Terms and Conitions',
-        routerLink: ['terms'],
-        disabled: false
-      }
-    ];
+  ngOnInit(): void {}
+
+  get footerItems$(): Observable<ShellFooterItem[]> {
+    return this.legifyLoginService.getFooterItems();
   }
 
   get showError$(): Observable<boolean> {

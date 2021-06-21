@@ -30,6 +30,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@legify-cor/web-apply/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@legify-cor/web-auth/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
