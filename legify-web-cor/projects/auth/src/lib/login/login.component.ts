@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ShellFooterItem } from '@legify/web-core';
-import { UserLoginCredentials, LegifyLoginService } from '@legify/web-auth';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'lib-login',
@@ -10,33 +6,7 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  protected readonly showErrorSubj: BehaviorSubject<boolean> =
-    new BehaviorSubject(false);
-
-  constructor(protected legifyLoginService: LegifyLoginService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  get footerItems$(): Observable<ShellFooterItem[]> {
-    return this.legifyLoginService.getFooterItems();
-  }
-
-  get showError$(): Observable<boolean> {
-    return this.showErrorSubj.asObservable();
-  }
-
-  public handleValueChanges(isErrorShown: boolean): void {
-    if (isErrorShown) {
-      this.showErrorSubj.next(false);
-    }
-  }
-
-  public handleLogin({ username, password }: UserLoginCredentials): void {
-    this.legifyLoginService
-      .doLogin(username, password)
-      .pipe(take(1))
-      .subscribe((isAuthenticated) => {
-        this.showErrorSubj.next(!isAuthenticated);
-      });
-  }
 }

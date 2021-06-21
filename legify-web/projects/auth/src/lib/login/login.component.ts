@@ -1,15 +1,9 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShellFooterItem } from '@legify/web-core';
-import { Subscription } from 'rxjs';
-import { UserLoginCredentials } from './models/user-login-credentials';
+import { LegifyLoginService } from './services';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { take, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-login',
@@ -17,24 +11,33 @@ import { UserLoginCredentials } from './models/user-login-credentials';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit, OnDestroy {
-  @Input() showError;
   @Input() greetingText = '';
-  @Input() footerItems: ShellFooterItem[] = [];
   @Input() usernameFieldPlaceholder = '';
 
-  @Output() handleLogin: EventEmitter<UserLoginCredentials> =
-    new EventEmitter();
-  @Output() handleValueChanges: EventEmitter<boolean> = new EventEmitter();
-
   public authFormGroup: FormGroup;
+
   protected usernameFieldName = 'username';
   protected passwordFieldName = 'password';
-  protected formFieldValueChangesSub: Subscription;
 
-  constructor(protected formBuilder: FormBuilder) {}
+  protected formFieldValueChangesSub: Subscription;
+  protected readonly showErrorSubj: BehaviorSubject<boolean> =
+    new BehaviorSubject(false);
+
+  constructor(
+    protected formBuilder: FormBuilder,
+    protected legifyLoginService: LegifyLoginService
+  ) {}
 
   get loginGreetingText(): string {
     return this.greetingText || 'Welcome';
+  }
+
+  get footerItems$(): Observable<ShellFooterItem[]> {
+    return this.legifyLoginService.getFooterItems();
+  }
+
+  get showError$(): Observable<boolean> {
+    return this.showErrorSubj.asObservable();
   }
 
   ngOnInit(): void {
@@ -43,11 +46,13 @@ export class LoginComponent implements OnInit, OnDestroy {
       [this.passwordFieldName]: ['', Validators.required]
     });
 
-    this.formFieldValueChangesSub = this.authFormGroup.valueChanges.subscribe(
-      (_) => {
-        this.handleValueChanges.emit(this.showError);
-      }
-    );
+    this.formFieldValueChangesSub = this.authFormGroup.valueChanges
+      .pipe(withLatestFrom(this.showError$))
+      .subscribe((isErrorShown) => {
+        if (isErrorShown) {
+          this.showErrorSubj.next(false);
+        }
+      });
   }
 
   public doLogin(): void {
@@ -55,10 +60,15 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authFormGroup.controls[this.usernameFieldName].value ?? '';
     const password =
       this.authFormGroup.controls[this.passwordFieldName].value ?? '';
-    this.handleLogin.emit({
-      password,
-      username
-    });
+
+    this.legifyLoginService
+      .doLogin(username, password)
+      .pipe(take(1))
+      .subscribe((isAuthenticated) => {
+        if (!isAuthenticated) {
+          this.showErrorSubj.next(true);
+        }
+      });
   }
 
   ngOnDestroy(): void {

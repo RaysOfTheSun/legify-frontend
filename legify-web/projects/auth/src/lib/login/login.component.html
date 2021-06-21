@@ -1,4 +1,4 @@
-<legify-web-auth-shell [footerItems]="footerItems">
+<legify-web-auth-shell [footerItems]="footerItems$ | async">
   <div class="login">
     <p class="login__header-text">{{ loginGreetingText }}</p>
     <div class="login__field-container">
@@ -19,7 +19,7 @@
       <p
         class="login__error-text"
         [ngClass]="{
-          'login__error-text--shown': showError
+          'login__error-text--shown': showError$ | async
         }"
       >
         Invalid username or password
