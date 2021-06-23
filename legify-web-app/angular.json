@@ -18,6 +18,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "preserveSymlinks": true,
+            "sourceMap": true,
             "outputPath": "dist/legify-web-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -59,7 +60,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

@@ -2,18 +2,5 @@
   [navItems]="navItems"
   [person]="getCurrCustomer() | async"
 >
-  <legify-web-task-card-collection
-    [ngStyle]="{ width: '100%' }"
-    [taskCardSource]="getCurrCustomer() | async"
-    [taskCardTemplate]="taskCardTemplate"
-    [taskCardFieldsCollection]="taskCardFields"
-  ></legify-web-task-card-collection>
+  <ng-content></ng-content>
 </legify-web-apply-shell>
-
-<ng-template let-source="source" let-fields="fields" #taskCardTemplate>
-  <legify-web-task-card
-    [person]="source"
-    [fields]="fields"
-    class="legify-task-card-collection__task-card"
-  ></legify-web-task-card>
-</ng-template>
