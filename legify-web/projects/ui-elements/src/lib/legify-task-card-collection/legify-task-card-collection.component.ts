@@ -1,19 +1,27 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
+import { TaskCardConfig } from '@legify/web-core';
 
 @Component({
   selector: 'legify-web-task-card-collection',
   templateUrl: './legify-task-card-collection.component.html',
   styleUrls: ['./legify-task-card-collection.component.scss']
 })
-export class LegifyTaskCardCollectionComponent implements OnInit {
-  // TODO: iplement data source for task cards
-  @Input() taskCardSource: any = [];
+export class LegifyTaskCardCollectionComponent {
+  @Input() dataSource: any[];
+  @Input() taskCardConfigs: TaskCardConfig[];
   @Input() taskCardTemplate: TemplateRef<any>;
-
-  // TODO: create a TaskCardConfig model
-  @Input() taskCardFieldsCollection: any[][] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  public getTaskCardSourceFromDataSource(taskCardIndex: number): any {
+    return this.dataSource[taskCardIndex];
+  }
+
+  public getTaskCardClassFromConfig(taskCardConfig: TaskCardConfig): string {
+    return taskCardConfig.taskCardClass ?? '';
+  }
+
+  public getShowProgressBarFromConfig(taskCardConfig: TaskCardConfig): boolean {
+    return taskCardConfig.showProgressBar ?? true;
+  }
 }
