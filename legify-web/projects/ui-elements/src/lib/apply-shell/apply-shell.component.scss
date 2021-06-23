@@ -19,10 +19,14 @@
   }
 
   &__body {
+    @include flex-container($wrap: wrap);
     width: calc(100vw - 350px);
     height: calc(100vh - 70px);
     height: 100%;
     margin: auto;
     padding: 40px;
+    overflow: scroll;
+    max-height: calc(100vh - 70px);
+    max-width: calc(100vw - 350px);
   }
 }

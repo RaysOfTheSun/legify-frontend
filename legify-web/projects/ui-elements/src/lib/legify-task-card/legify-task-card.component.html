@@ -1,0 +1,29 @@
+<mat-card class="legify-task-card" [ngClass]="[taskCardClass]">
+  <div
+    class="legify-task-card__highlight"
+    [ngStyle]="{ backgroundColor: highlight }"
+  ></div>
+  <mat-card-content class="legify-task-card__body">
+    <h1 class="legify-task-card__header">{{ headerText }}</h1>
+    <div>
+      <div class="legify-task-card__body-row" *ngFor="let field of fields">
+        <p class="legify-task-card__row-header">
+          {{ getRowHeaderFromConfig(field) }}
+        </p>
+        <p class="legify-task-card__row-content">
+          {{ getRowValueFromConfig(field) }}
+        </p>
+      </div>
+    </div>
+    <div class="legify-task-card__footer">
+      <p class="legify-task-card__footer-header">{{ footerHeader }}</p>
+      <mat-progress-bar
+        *ngIf="showProgressBar"
+        class="legify-task-card__progress-bar"
+        mode="determinate"
+        [color]="'primary'"
+        [value]="progressBarValue"
+      ></mat-progress-bar>
+    </div>
+  </mat-card-content>
+</mat-card>
