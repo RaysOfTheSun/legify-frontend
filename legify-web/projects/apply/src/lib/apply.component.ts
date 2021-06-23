@@ -6,7 +6,8 @@ import {
   TaskCardConfig
 } from '@legify/web-core';
 import { LegifyApplyService } from './services/legify-apply/legify-apply.service';
-import { TaskCardField, COLOR } from '@legify/web-ui-elements';
+import { COLOR, LegifyModalShellComponent } from '@legify/web-ui-elements';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'legify-web-apply',
@@ -16,7 +17,20 @@ import { TaskCardField, COLOR } from '@legify/web-ui-elements';
 export class ApplyComponent implements OnInit {
   @Input() navItems: ApplyShellSidenavItem[] = [];
 
-  constructor(protected legifyApplyService: LegifyApplyService) {}
+  constructor(
+    protected legifyApplyService: LegifyApplyService,
+    protected dialog: MatDialog
+  ) {
+    const dialogToOpen = LegifyModalShellComponent;
+    this.dialog.open(dialogToOpen, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+      hasBackdrop: false,
+      panelClass: ['legify-modal']
+    });
+  }
 
   get taskCardCollectionDataSource(): Observable<any[]> {
     return of([

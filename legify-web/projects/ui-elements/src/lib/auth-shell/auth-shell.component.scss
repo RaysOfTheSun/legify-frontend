@@ -1,4 +1,4 @@
-@import "../styles/mixins";
+@import "../../../assets/styles/mixins";
 
 .auth-shell {
   @include flex-container($justify: space-between);
