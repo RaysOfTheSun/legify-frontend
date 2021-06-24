@@ -17,61 +17,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class ApplyComponent implements OnInit {
   @Input() navItems: ApplyShellSidenavItem[] = [];
 
-  constructor(
-    protected legifyApplyService: LegifyApplyService,
-    protected dialog: MatDialog
-  ) {
-    const dialogToOpen = LegifyModalShellComponent;
-    this.dialog.open(dialogToOpen, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      height: '100%',
-      width: '100%',
-      hasBackdrop: false,
-      panelClass: ['legify-modal']
-    });
-  }
+  constructor(protected legifyApplyService: LegifyApplyService) {}
 
-  get taskCardCollectionDataSource(): Observable<any[]> {
-    return of([
-      this.getCurrCustomer(),
-      this.getCurrCustomer(),
-      this.getCurrCustomer()
-    ]);
+  ngOnInit(): void {
+    this.legifyApplyService.listenForApplicationSelection();
   }
-
-  get taskCardRows(): TaskCardConfig[] {
-    return [
-      {
-        headerText: 'Policy Owner',
-        footerHeaderText: 'Progression',
-        highlightColor: COLOR.GREEN,
-        rows: [
-          {
-            rowHeader: 'Name',
-            rowValueSource: 'personalInformation.firstName'
-          }
-        ],
-        showProgressBar: true,
-        taskCardClass: ''
-      },
-      {
-        headerText: 'Primary Insured',
-        footerHeaderText: 'Progression',
-        highlightColor: COLOR.RED,
-        rows: [
-          {
-            rowHeader: 'Name',
-            rowValueSource: 'personalInformation.middleName'
-          }
-        ],
-        showProgressBar: true,
-        taskCardClass: ''
-      }
-    ];
-  }
-
-  ngOnInit(): void {}
 
   public getCurrCustomer(): Observable<Person> {
     return this.legifyApplyService.getCurrCustomer();

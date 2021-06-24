@@ -1,0 +1,45 @@
+{
+  "id": "USA-LEGIFY-APPLICATION-SAMPLE",
+  "name": "USA Application Sample",
+  "owner": {
+    "id": "USA-SAMPLE-OWNER",
+    "personalInformation": {
+      "age": 23,
+      "weight": "55",
+      "height": "123",
+      "gender": "M",
+      "lastName": "Stephens",
+      "firstName": "Ivor",
+      "middleName": "Heath",
+      "dateOfBirth": "2021-06-23T15:50:22.138Z"
+    }
+  },
+  "insured": {
+    "id": "USA-SAMPLE-INSURED",
+    "personalInformation": {
+      "age": 23,
+      "weight": "55",
+      "height": "123",
+      "gender": "M",
+      "lastName": "Stephens",
+      "firstName": "Egbert",
+      "middleName": "Heath",
+      "dateOfBirth": "2021-06-23T15:50:22.138Z"
+    }
+  },
+  "dependents": [
+    {
+      "id": "USA-SAMPLE-DEPENDENT",
+      "personalInformation": {
+        "age": 23,
+        "weight": "55",
+        "height": "123",
+        "gender": "M",
+        "lastName": "Stephens",
+        "firstName": "Mia",
+        "middleName": "Warner",
+        "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      }
+    }
+  ]
+}

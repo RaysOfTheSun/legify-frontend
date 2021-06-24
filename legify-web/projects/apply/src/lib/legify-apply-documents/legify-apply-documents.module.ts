@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { LegifyApplyDocumentsRoutingModule } from './legify-apply-documents-routing.module';
 import { ApplyDocumentsComponent } from './apply-documents.component';
 import {
+  LegifyModalModule,
   LegifyTaskCardModule,
   LegifyTaskCardCollectionModule
 } from '@legify/web-ui-elements';
@@ -14,7 +15,8 @@ import {
     CommonModule,
     LegifyApplyDocumentsRoutingModule,
     LegifyTaskCardModule,
-    LegifyTaskCardCollectionModule
+    LegifyTaskCardCollectionModule,
+    LegifyModalModule
   ]
 })
 export class LegifyApplyDocumentsModule {}

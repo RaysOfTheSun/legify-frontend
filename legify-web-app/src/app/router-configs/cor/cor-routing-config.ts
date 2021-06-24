@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { HasSelectedApplicationGuard } from '@legify/web-core';
 
 export const corRouterConfig: Routes = [
   {
@@ -6,7 +7,9 @@ export const corRouterConfig: Routes = [
     loadChildren: () =>
       import('../../modules/apply/apply-cor/apply-cor.module').then(
         (m) => m.ApplyCorModule
-      )
+      ),
+    canActivate: [HasSelectedApplicationGuard],
+    canActivateChild: [HasSelectedApplicationGuard]
   },
   {
     path: 'auth',

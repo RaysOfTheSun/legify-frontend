@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LegifyLoginService, LegifyLoginConfigService } from '@legify/web-auth';
+import { SystemEventService, SESSION_VARIABLE } from '@legify/web-core';
 import { Observable, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { concatMap } from 'rxjs/operators';
 
 @Injectable()
 export class LoginService extends LegifyLoginService {
@@ -17,12 +18,19 @@ export class LoginService extends LegifyLoginService {
     return of(
       username.endsWith('@legify-cor.com') && password.length !== 0
     ).pipe(
-      tap((isAuthenticated) => {
-        if (!isAuthenticated) {
-          return;
-        }
+      concatMap((isAuthenticated) => {
+        return new Observable<boolean>((subscriber) => {
+          subscriber.next(isAuthenticated);
 
-        this.router.navigate(['apply']);
+          if (isAuthenticated) {
+            sessionStorage.setItem(
+              SESSION_VARIABLE.APPLICATION_ID,
+              'assets/samples/cor-legify-application.json'
+            );
+            subscriber.complete();
+            this.router.navigate(['apply']);
+          }
+        });
       })
     );
   }

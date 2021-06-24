@@ -7,6 +7,7 @@ import { LegifyApplyService } from './services/legify-apply/legify-apply.service
 import { LegifyApplyConfigService } from './services/legify-apply-config/legify-apply-config.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LegifyModalModule } from '@legify/web-ui-elements';
+import { LegifyApplyDataService, LegifyApplyHttpDataService } from './services';
 
 @NgModule({
   declarations: [ApplyComponent],
@@ -18,6 +19,11 @@ import { LegifyModalModule } from '@legify/web-ui-elements';
     LegifyModalModule
   ],
   exports: [ApplyComponent],
-  providers: [LegifyApplyService, LegifyApplyConfigService]
+  providers: [
+    LegifyApplyService,
+    LegifyApplyConfigService,
+    LegifyApplyHttpDataService,
+    LegifyApplyDataService
+  ]
 })
 export class LegifyApplyModule {}

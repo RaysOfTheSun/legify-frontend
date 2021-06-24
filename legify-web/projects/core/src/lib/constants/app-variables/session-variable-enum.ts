@@ -1,3 +1,4 @@
 export enum SESSION_VARIABLE {
-  MARKET = 'market'
+  MARKET = 'market',
+  APPLICATION_ID = 'applicationId'
 }
