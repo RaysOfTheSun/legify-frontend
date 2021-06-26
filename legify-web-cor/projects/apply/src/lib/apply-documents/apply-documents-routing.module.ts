@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ApplyDocumentsComponent } from './apply-documents.component';
+import { ApplyDocumentsComponent } from '@legify/web-apply';
 
 const routes: Routes = [
   {

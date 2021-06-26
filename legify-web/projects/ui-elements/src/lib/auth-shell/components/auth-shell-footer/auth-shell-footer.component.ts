@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ShellFooterItem } from '@legify/web-core';
+import { Component, Input } from '@angular/core';
+import { AuthShellFooterItem } from '../../models';
 
 @Component({
   selector: 'legify-web-auth-shell-footer',
@@ -7,7 +7,7 @@ import { ShellFooterItem } from '@legify/web-core';
   styleUrls: ['./auth-shell-footer.component.scss']
 })
 export class AuthShellFooterComponent {
-  @Input() footerItems: ShellFooterItem[] = [];
+  @Input() footerItems: AuthShellFooterItem[] = [];
 
   constructor() {}
 }

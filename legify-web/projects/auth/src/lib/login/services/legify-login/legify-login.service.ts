@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ShellFooterItem } from '@legify/web-core';
+import { AuthShellFooterItem } from '@legify/web-ui-elements';
 import { Observable, of } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { LegifyLoginConfigService } from '../legify-login-config/legify-login-config.service';
@@ -14,7 +14,7 @@ export class LegifyLoginService {
     return of(username.endsWith('@legify.com') && password.length !== 0);
   }
 
-  public getFooterItems(): Observable<ShellFooterItem[]> {
+  public getFooterItems(): Observable<AuthShellFooterItem[]> {
     return this.legifyLoginConfigService.footerItems$;
   }
 }

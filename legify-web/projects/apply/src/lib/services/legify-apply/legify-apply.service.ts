@@ -1,14 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { concatMap, filter, map } from 'rxjs/operators';
-import {
-  Person,
-  ApplyShellSidenavItem,
-  SystemEventService,
-  ApplicationSelected
-} from '@legify/web-core';
+import { map, take } from 'rxjs/operators';
+import { SESSION_VARIABLE } from '@legify/web-core';
 import { LegifyApplyConfigService } from '../legify-apply-config/legify-apply-config.service';
-import { LegifyApplication } from '../../models';
+import { LegifyApplication, Person } from '../../models';
 import { LegifyApplyHttpDataService } from '../legify-apply-http-data/legify-apply-http-data.service';
 
 @Injectable()
@@ -17,37 +12,27 @@ export class LegifyApplyService {
     new BehaviorSubject(null);
 
   constructor(
-    protected systemEventService: SystemEventService,
-    protected legifyApplyConfigService: LegifyApplyConfigService,
-    protected legifyApplyHttpDataService: LegifyApplyHttpDataService
-  ) {}
+    protected applyConfigService: LegifyApplyConfigService,
+    protected applyHttpDataService: LegifyApplyHttpDataService
+  ) {
+    this.applyHttpDataService.getApplyConfig().pipe(take(1)).subscribe();
+  }
 
   get currApplication$(): Observable<LegifyApplication> {
     return this.currentApplicationSubj.asObservable();
   }
 
   public getApplication(applicationId: string): Observable<LegifyApplication> {
-    return this.legifyApplyHttpDataService.getLegifyApplication(applicationId);
+    return this.applyHttpDataService.getLegifyApplication(applicationId);
   }
 
-  public listenForApplicationSelection(): void {
-    this.systemEventService.events$
-      .pipe(
-        filter((systemEvent) => systemEvent instanceof ApplicationSelected),
-        concatMap((applicationSelectedEvent: ApplicationSelected) =>
-          this.getApplication(applicationSelectedEvent.selectedApplicationId)
-        )
-      )
-      .subscribe((legifyApplication) =>
-        this.currentApplicationSubj.next(legifyApplication)
-      );
+  public getCurrSelectedApplication(): void {
+    this.getApplication(
+      sessionStorage.getItem(SESSION_VARIABLE.APPLICATION_ID)
+    ).subscribe((application) => this.currentApplicationSubj.next(application));
   }
 
   public getCurrCustomer(): Observable<Person> {
     return this.currApplication$.pipe(map((application) => application?.owner));
-  }
-
-  public getNavItems(): Observable<ApplyShellSidenavItem[]> {
-    return this.legifyApplyConfigService.getNavItems() || of([]);
   }
 }

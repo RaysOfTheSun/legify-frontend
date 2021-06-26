@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ShellFooterItem } from '@legify/web-core';
+import { AuthShellFooterItem } from '@legify/web-ui-elements';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { DEFAULT_LEGIFY_LOGIN_CONFIG } from '../../constants/configs/default-login-config';
@@ -21,7 +21,7 @@ export class LegifyLoginConfigService {
     return this.legifyLoginConfigSubj.asObservable();
   }
 
-  get footerItems$(): Observable<ShellFooterItem[]> {
+  get footerItems$(): Observable<AuthShellFooterItem[]> {
     return this.loginConfig$.pipe(
       map((loginConfig) => loginConfig.footerItems)
     );

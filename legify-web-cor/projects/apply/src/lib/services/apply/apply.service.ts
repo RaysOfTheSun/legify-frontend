@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LegifyApplyService } from '@legify/web-apply';
 import {
+  LegifyApplyService,
   LegifyApplyConfigService,
   LegifyApplyHttpDataService
 } from '@legify/web-apply';

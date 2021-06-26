@@ -3,41 +3,56 @@
   "name": "COR Application Sample",
   "owner": {
     "id": "COR-SAMPLE-OWNER",
-    "personalInformation": {
+    "role": "PO",
+    "personalInfo": {
+      "nameInfo": {
+        "last": "Jennings",
+        "first": "William",
+        "middle": "Morris"
+      },
       "age": 23,
-      "weight": "55",
-      "height": "123",
       "gender": "M",
-      "lastName": "Jennings",
-      "firstName": "William",
-      "middleName": "Morris",
+      "physicalInfo": {
+        "weight": "55",
+        "height": "123"
+      },
       "dateOfBirth": "2021-06-23T15:50:22.138Z"
     }
   },
   "insured": {
     "id": "COR-SAMPLE-INSURED",
-    "personalInformation": {
+    "role": "PI",
+    "personalInfo": {
       "age": 23,
-      "weight": "55",
-      "height": "123",
       "gender": "M",
-      "lastName": "Jennings",
-      "firstName": "Honey",
-      "middleName": "Morris",
+      "nameInfo": {
+        "last": "Jennings",
+        "first": "Honey",
+        "middle": "Morris"
+      },
+      "physicalInfo": {
+        "weight": "55",
+        "height": "123"
+      },
       "dateOfBirth": "2021-06-23T15:50:22.138Z"
     }
   },
   "dependents": [
     {
       "id": "COR-SAMPLE-DEPENDENT",
-      "personalInformation": {
+      "role": "OI",
+      "personalInfo": {
         "age": 23,
-        "weight": "55",
-        "height": "123",
         "gender": "M",
-        "lastName": "Jennings",
-        "firstName": "Mia",
-        "middleName": "Warner",
+        "nameInfo": {
+          "last": "Jennings",
+          "first": "Mia",
+          "middle": "Warner"
+        },
+        "physicalInfo": {
+          "weight": "55",
+          "height": "123"
+        },
         "dateOfBirth": "2021-06-23T15:50:22.138Z"
       }
     }

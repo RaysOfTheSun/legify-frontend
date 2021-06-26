@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Person } from '@legify/web-core';
-import { TaskCardField } from './models/task-card-field';
-import { get } from 'lodash';
-import { COLOR } from './constants/color-enum';
+import { get } from 'lodash-es';
+import { TaskCardRow } from './models';
+import { TASK_CARD_HIGHLIGH_COLOR } from './constants';
 
 @Component({
   selector: 'legify-web-task-card',
@@ -12,23 +11,23 @@ import { COLOR } from './constants/color-enum';
 export class LegifyTaskCardComponent implements OnInit {
   @Input() taskCardClass = '';
 
-  @Input() person: Person;
-  @Input() fields: TaskCardField[];
+  @Input() rows: TaskCardRow[];
   @Input() headerText: string;
+  @Input() dataSource: any;
 
   @Input() highlightColor: string;
   @Input() showProgressBar = true;
   @Input() footerHeaderText: string;
   @Input() progressBarValue: string;
 
-  @Output() handleClick: EventEmitter<Person> = new EventEmitter();
+  @Output() handleClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   get highlight(): string {
-    return this.highlightColor || COLOR.ORANGE;
+    return this.highlightColor || TASK_CARD_HIGHLIGH_COLOR.ORANGE;
   }
 
   get footerHeader(): string {
@@ -36,16 +35,16 @@ export class LegifyTaskCardComponent implements OnInit {
   }
 
   public handleClickEvent(): void {
-    this.handleClick.emit(this.person);
+    this.handleClick.emit(this.dataSource);
   }
 
-  public getRowHeaderFromConfig(taskCardConfig: TaskCardField): string {
+  public getRowHeaderFromConfig(taskCardConfig: TaskCardRow): string {
     return taskCardConfig.rowHeader;
   }
 
-  public getRowValueFromConfig(taskCardConfig: TaskCardField): string {
+  public getRowValueFromConfig(taskCardConfig: TaskCardRow): string {
     return taskCardConfig.valueIsStatic
       ? taskCardConfig.rowValueSource
-      : get(this.person, taskCardConfig.rowValueSource, '');
+      : get(this.dataSource, taskCardConfig.rowValueSource, '');
   }
 }

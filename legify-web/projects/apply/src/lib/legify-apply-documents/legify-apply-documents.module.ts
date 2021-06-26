@@ -8,15 +8,23 @@ import {
   LegifyTaskCardModule,
   LegifyTaskCardCollectionModule
 } from '@legify/web-ui-elements';
+import { DocumentUploadModalComponent } from './components/document-upload-modal/document-upload-modal.component';
+import {
+  LegifyApplyDocumentsService,
+  LegifyApplyDocumentsConfigService
+} from './services';
 
 @NgModule({
-  declarations: [ApplyDocumentsComponent],
+  declarations: [ApplyDocumentsComponent, DocumentUploadModalComponent],
   imports: [
     CommonModule,
-    LegifyApplyDocumentsRoutingModule,
+    LegifyModalModule,
+    LegifyModalModule,
     LegifyTaskCardModule,
     LegifyTaskCardCollectionModule,
-    LegifyModalModule
-  ]
+    LegifyApplyDocumentsRoutingModule
+  ],
+  exports: [DocumentUploadModalComponent, ApplyDocumentsComponent],
+  providers: [LegifyApplyDocumentsService, LegifyApplyDocumentsConfigService]
 })
 export class LegifyApplyDocumentsModule {}

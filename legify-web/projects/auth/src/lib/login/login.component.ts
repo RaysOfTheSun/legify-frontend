@@ -1,9 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ShellFooterItem } from '@legify/web-core';
 import { LegifyLoginService } from './services';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { take, withLatestFrom } from 'rxjs/operators';
+import { AuthShellFooterItem } from '@legify/web-ui-elements';
 
 @Component({
   selector: 'legify-web-login',
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.greetingText || 'Welcome';
   }
 
-  get footerItems$(): Observable<ShellFooterItem[]> {
+  get footerItems$(): Observable<AuthShellFooterItem[]> {
     return this.legifyLoginService.getFooterItems();
   }
 

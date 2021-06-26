@@ -1,21 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ApplyShellSidenavItem } from '@legify/web-core';
-import { LegifyApplyService } from '@legify/web-apply';
-import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-apply',
+  selector: 'legify-web-cor-apply',
   templateUrl: './apply.component.html',
   styles: []
 })
 export class ApplyComponent implements OnInit {
-  @Input() navItems: ApplyShellSidenavItem[] = [];
-
-  constructor(protected legifyApplyService: LegifyApplyService) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  public getNavItems(): Observable<ApplyShellSidenavItem[]> {
-    return this.legifyApplyService.getNavItems();
-  }
 }

@@ -7,6 +7,11 @@ import { ApplyModule } from '@legify-cor/web-apply';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, AvatarModule, ApplyCorRoutingModule, ApplyModule]
+  imports: [
+    CommonModule,
+    AvatarModule,
+    ApplyCorRoutingModule,
+    ApplyModule.forFeature()
+  ]
 })
 export class ApplyCorModule {}

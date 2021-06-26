@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ApplyComponent } from './apply.component';
 import {
   LegifyApplyModule,
   LegifyApplyConfigService,
-  LegifyApplyService
+  LegifyApplyService,
+  LegifyApplyDataService
 } from '@legify/web-apply';
 import { RouterModule } from '@angular/router';
 import { ApplyConfigService, ApplyService } from './services';
@@ -12,10 +13,17 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [ApplyComponent],
   imports: [CommonModule, LegifyApplyModule, RouterModule],
-  exports: [ApplyComponent],
-  providers: [
-    { provide: LegifyApplyService, useClass: ApplyService },
-    { provide: LegifyApplyConfigService, useClass: ApplyConfigService }
-  ]
+  exports: [ApplyComponent]
 })
-export class ApplyModule {}
+export class ApplyModule {
+  public static forFeature(): ModuleWithProviders<ApplyModule> {
+    return {
+      ngModule: ApplyModule,
+      providers: [
+        LegifyApplyDataService,
+        { provide: LegifyApplyService, useClass: ApplyService },
+        { provide: LegifyApplyConfigService, useClass: ApplyConfigService }
+      ]
+    };
+  }
+}

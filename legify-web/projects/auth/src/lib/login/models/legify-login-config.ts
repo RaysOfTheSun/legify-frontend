@@ -1,5 +1,5 @@
-import { ShellFooterItem } from '@legify/web-core';
+import { AuthShellFooterItem } from '@legify/web-ui-elements';
 
 export interface LegifyLoginConfig {
-  footerItems: ShellFooterItem[];
+  footerItems: AuthShellFooterItem[];
 }

@@ -1,4 +1,8 @@
-<mat-card class="legify-task-card" [ngClass]="[taskCardClass]">
+<mat-card
+  class="legify-task-card"
+  [ngClass]="[taskCardClass]"
+  (click)="handleClickEvent()"
+>
   <div
     class="legify-task-card__highlight"
     [ngStyle]="{ backgroundColor: highlight }"
@@ -6,12 +10,12 @@
   <mat-card-content class="legify-task-card__body">
     <h1 class="legify-task-card__header">{{ headerText }}</h1>
     <div>
-      <div class="legify-task-card__body-row" *ngFor="let field of fields">
+      <div class="legify-task-card__body-row" *ngFor="let row of rows">
         <p class="legify-task-card__row-header">
-          {{ getRowHeaderFromConfig(field) }}
+          {{ getRowHeaderFromConfig(row) }}
         </p>
         <p class="legify-task-card__row-content">
-          {{ getRowValueFromConfig(field) }}
+          {{ getRowValueFromConfig(row) }}
         </p>
       </div>
     </div>

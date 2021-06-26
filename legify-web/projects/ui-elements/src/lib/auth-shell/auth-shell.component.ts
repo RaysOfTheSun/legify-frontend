@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ShellFooterItem } from '@legify/web-core';
+import { AuthShellFooterItem } from './models';
 
 @Component({
   selector: 'legify-web-auth-shell',
@@ -9,7 +9,7 @@ import { ShellFooterItem } from '@legify/web-core';
 export class AuthShellComponent implements OnInit {
   @Input() svgIconName = '';
   @Input() bannerImgSrc = '';
-  @Input() footerItems: ShellFooterItem[] = [];
+  @Input() footerItems: AuthShellFooterItem[] = [];
 
   constructor() {}
 

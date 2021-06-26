@@ -1,13 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {
-  Person,
   ApplyShellSidenavItem,
-  TaskCardConfig
-} from '@legify/web-core';
-import { LegifyApplyService } from './services/legify-apply/legify-apply.service';
-import { COLOR, LegifyModalShellComponent } from '@legify/web-ui-elements';
-import { MatDialog } from '@angular/material/dialog';
+  ApplyShellConfig
+} from '@legify/web-ui-elements';
+import { Person } from './models';
+import { LegifyApplyConfigService, LegifyApplyService } from './services';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-apply',
@@ -15,15 +14,27 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
-  @Input() navItems: ApplyShellSidenavItem[] = [];
-
-  constructor(protected legifyApplyService: LegifyApplyService) {}
+  constructor(
+    protected applyService: LegifyApplyService,
+    protected applyConfigService: LegifyApplyConfigService
+  ) {}
 
   ngOnInit(): void {
-    this.legifyApplyService.listenForApplicationSelection();
+    this.applyService.getCurrSelectedApplication();
   }
 
-  public getCurrCustomer(): Observable<Person> {
-    return this.legifyApplyService.getCurrCustomer();
+  get shellNavItems$(): Observable<ApplyShellSidenavItem[]> {
+    return this.applyConfigService.navItems$;
+  }
+
+  get shellConfig(): Observable<ApplyShellConfig> {
+    return this.applyService.getCurrCustomer().pipe(
+      map((person) => {
+        return {
+          dataSource: person,
+          avatarNameValuePath: 'personalInfo.nameInfo.first'
+        } as ApplyShellConfig;
+      })
+    );
   }
 }

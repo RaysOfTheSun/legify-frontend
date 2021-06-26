@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Person } from '@legify/web-core';
-import { LegifyApplication } from '../../models';
+import { InsuredPerson, LegifyApplication } from '../../models';
 
 @Injectable()
 export class LegifyApplyDataService {
   constructor() {}
 
-  public getAllPersonsFromApplication(
+  public getAllInsuredPersonsFromApplication(
     application: LegifyApplication
-  ): Person[] {
+  ): InsuredPerson[] {
     return [
       application.owner,
       application.insured,
