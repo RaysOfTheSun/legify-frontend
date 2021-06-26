@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LegifyLoginService, LegifyLoginConfigService } from '@legify/web-auth';
-import { SystemEventService, SESSION_VARIABLE } from '@legify/web-core';
+import { SESSION_VARIABLE } from '@legify/web-core';
 import { Observable, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 

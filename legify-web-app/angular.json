@@ -42,6 +42,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@legify-usa/web-auth/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@legify-usa/web-apply/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [
