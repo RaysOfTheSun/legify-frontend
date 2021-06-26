@@ -1,4 +1,4 @@
-export enum COLOR {
+export enum TASK_CARD_HIGHLIGH_COLOR {
   RED = '#c62828',
   BLUE = '#1565c0',
   CYAN = '#00838f',

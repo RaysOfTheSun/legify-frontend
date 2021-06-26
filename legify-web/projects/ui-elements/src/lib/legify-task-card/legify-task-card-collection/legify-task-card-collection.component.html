@@ -6,6 +6,7 @@
         rows: taskCardConfig.rows,
         source: getTaskCardSourceFromDataSource(i),
         headerText: taskCardConfig.headerText,
+        handleClick: onTaskCardClick,
         taskCardClass: getTaskCardClassFromConfig(taskCardConfig),
         highlightColor: taskCardConfig.highlightColor,
         showProgressBar: getShowProgressBarFromConfig(taskCardConfig),

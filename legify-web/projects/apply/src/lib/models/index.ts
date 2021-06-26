@@ -1,2 +1,4 @@
+export * from './person';
+export * from './application';
 export * from './apply-config';
-export * from './legify-application';
+export * from './insured-person';

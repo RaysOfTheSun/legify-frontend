@@ -1,6 +1,6 @@
 <legify-web-apply-shell
-  [navItems]="navItems"
-  [person]="getCurrCustomer() | async"
+  [config]="shellConfig | async"
+  [navItems]="shellNavItems$ | async"
 >
   <ng-content></ng-content>
 </legify-web-apply-shell>

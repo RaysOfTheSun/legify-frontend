@@ -9,13 +9,7 @@ import { Observable } from 'rxjs';
   styles: []
 })
 export class ApplyComponent implements OnInit {
-  @Input() navItems: ApplyShellSidenavItem[] = [];
-
-  constructor(protected legifyApplyService: LegifyApplyService) {}
+  constructor(protected applyService: LegifyApplyService) {}
 
   ngOnInit(): void {}
-
-  public getNavItems(): Observable<ApplyShellSidenavItem[]> {
-    return this.legifyApplyService.getNavItems();
-  }
 }

@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApplyComponent } from './apply.component';
 import { RouterModule } from '@angular/router';
-import { ApplyShellModule } from '@legify/web-ui-elements';
 import { LegifyApplyService } from './services/legify-apply/legify-apply.service';
 import { LegifyApplyConfigService } from './services/legify-apply-config/legify-apply-config.service';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LegifyModalModule } from '@legify/web-ui-elements';
+import { LegifyModalModule, ApplyShellModule } from '@legify/web-ui-elements';
 import { LegifyApplyDataService, LegifyApplyHttpDataService } from './services';
+import { LegifyApplyPersonMapperService } from './services/legify-apply-person-mapper/legify-apply-person-mapper.service';
 
 @NgModule({
   declarations: [ApplyComponent],
@@ -21,9 +21,10 @@ import { LegifyApplyDataService, LegifyApplyHttpDataService } from './services';
   exports: [ApplyComponent],
   providers: [
     LegifyApplyService,
+    LegifyApplyDataService,
     LegifyApplyConfigService,
     LegifyApplyHttpDataService,
-    LegifyApplyDataService
+    LegifyApplyPersonMapperService
   ]
 })
 export class LegifyApplyModule {}

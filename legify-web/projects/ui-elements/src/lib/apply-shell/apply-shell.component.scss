@@ -19,7 +19,6 @@
   }
 
   &__body {
-    @include flex-container($wrap: wrap);
     width: calc(100vw - 350px);
     height: calc(100vh - 70px);
     height: 100%;
