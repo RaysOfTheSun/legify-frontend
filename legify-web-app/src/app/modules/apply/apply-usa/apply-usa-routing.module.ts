@@ -5,7 +5,14 @@ import { ApplyComponent } from '@legify-usa/web-apply';
 const routes: Routes = [
   {
     path: '',
-    component: ApplyComponent
+    component: ApplyComponent,
+    children: [
+      {
+        path: 'documents',
+        loadChildren: () =>
+          import('@legify-usa/web-apply').then((m) => m.ApplyDocumentsModule)
+      }
+    ]
   }
 ];
 
