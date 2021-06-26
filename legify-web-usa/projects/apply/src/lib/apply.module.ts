@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
   exports: [ApplyComponent]
 })
 export class ApplyModule {
-  public static forFeature(): ModuleWithProviders<ApplyModule> {
+  public static forMaket(): ModuleWithProviders<ApplyModule> {
     return {
       ngModule: ApplyModule,
       providers: [

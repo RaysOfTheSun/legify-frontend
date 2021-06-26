@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
   exports: [ApplyComponent]
 })
 export class ApplyModule {
-  public static forFeature(): ModuleWithProviders<ApplyModule> {
+  public static forMarket(): ModuleWithProviders<ApplyModule> {
     return {
       ngModule: ApplyModule,
       providers: [

@@ -11,7 +11,7 @@ import { ApplyModule } from '@legify-usa/web-apply';
     CommonModule,
     AvatarModule,
     ApplyUsaRoutingModule,
-    ApplyModule.forFeature()
+    ApplyModule.forMaket()
   ]
 })
 export class ApplyUsaModule {}

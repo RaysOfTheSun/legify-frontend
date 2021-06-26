@@ -11,7 +11,7 @@ import { ApplyModule } from '@legify-cor/web-apply';
     CommonModule,
     AvatarModule,
     ApplyCorRoutingModule,
-    ApplyModule.forFeature()
+    ApplyModule.forMarket()
   ]
 })
 export class ApplyCorModule {}
