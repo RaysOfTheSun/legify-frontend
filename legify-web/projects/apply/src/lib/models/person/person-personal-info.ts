@@ -1,4 +1,4 @@
-import { PERSON_GENDER } from '../../constants/person-gener-enum';
+import { PERSON_GENDER } from '../../constants/person-gender-enum';
 import { PersonNameInfo } from './person-name-info';
 import { PersonPhysicalInfo } from './person-physical-info';
 

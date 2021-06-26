@@ -5,7 +5,7 @@ import {
   Output,
   TemplateRef
 } from '@angular/core';
-import { TaskCardConfig } from '@legify/web-core';
+import { TaskCardConfig } from '../models';
 
 @Component({
   selector: 'legify-web-task-card-collection',
