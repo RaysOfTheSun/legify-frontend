@@ -6,7 +6,7 @@ import {
 } from '@legify/web-apply';
 
 @Injectable()
-export class ApplyService extends LegifyApplyService {
+export class CorApplyService extends LegifyApplyService {
   constructor(
     protected legifyApplyConfigService: LegifyApplyConfigService,
     protected legifyApplyHttpDataService: LegifyApplyHttpDataService

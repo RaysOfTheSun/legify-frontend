@@ -3,4 +3,4 @@
  */
 
 export * from './lib/public-api';
-export * from './lib/apply-documents';
+export * from './lib/cor-apply-documents';

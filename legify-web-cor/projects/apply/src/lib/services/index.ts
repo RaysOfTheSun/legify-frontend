@@ -1,2 +1,2 @@
-export * from './apply/apply.service';
-export * from './apply-config/apply-config.service';
+export * from './cor-apply/cor-apply.service';
+export * from './cor-apply-config/cor-apply-config.service';

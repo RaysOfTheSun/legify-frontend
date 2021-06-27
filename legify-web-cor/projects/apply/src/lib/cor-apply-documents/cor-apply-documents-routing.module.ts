@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ApplyDocumentsComponent } from '@legify/web-apply';
+import { CorApplyDocumentsComponent } from './cor-apply-documents.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ApplyDocumentsComponent
+    component: CorApplyDocumentsComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ApplyDocumentsRoutingModule {}
+export class CorApplyDocumentsRoutingModule {}

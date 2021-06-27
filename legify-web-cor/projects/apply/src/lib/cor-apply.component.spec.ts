@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplyDocumentsComponent } from './apply-documents.component';
+import { CorApplyComponent } from './cor-apply.component';
 
-describe('ApplyDocumentsComponent', () => {
-  let component: ApplyDocumentsComponent;
-  let fixture: ComponentFixture<ApplyDocumentsComponent>;
+describe('CorApplyComponent', () => {
+  let component: CorApplyComponent;
+  let fixture: ComponentFixture<CorApplyComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ApplyDocumentsComponent ]
+      declarations: [ CorApplyComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplyDocumentsComponent);
+    fixture = TestBed.createComponent(CorApplyComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

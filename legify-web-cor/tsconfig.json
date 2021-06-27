@@ -15,7 +15,9 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "apply": ["dist/apply/apply", "dist/apply"],
-      "auth": ["dist/auth/auth", "dist/auth"]
+      "auth": ["dist/auth/auth", "dist/auth"],
+      "@cor-apply/*": ["projects/apply/src/lib/*"],
+      "@cor-apply/documents/*": ["./projects/apply/src/lib/apply-documents/*"]
     }
   }
 }

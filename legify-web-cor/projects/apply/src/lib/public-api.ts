@@ -1,4 +1,3 @@
-export * from './apply.component';
-export * from './apply.module';
-
 export * from './services';
+export * from './cor-apply.module';
+export * from './cor-apply.component';
