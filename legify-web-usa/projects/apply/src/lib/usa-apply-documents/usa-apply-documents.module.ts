@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ApplyDocumentsRoutingModule } from './apply-documents-routing.module';
+import { UsaApplyDocumentsRoutingModule } from './usa-apply-documents-routing.module';
+import { UsaApplyDocumentsComponent } from './usa-apply-documents.component';
+
 import { LegifyApplyDocumentsModule } from '@legify/web-apply';
-import { ApplyDocumentsComponent } from './apply-documents.component';
 import { LegifyUsaTaskCardModule } from '@legify-usa/web-ui-elements';
 
 @NgModule({
-  declarations: [ApplyDocumentsComponent],
+  declarations: [UsaApplyDocumentsComponent],
   imports: [
     CommonModule,
     LegifyUsaTaskCardModule,
-    ApplyDocumentsRoutingModule,
+    UsaApplyDocumentsRoutingModule,
     LegifyApplyDocumentsModule
-  ],
-  exports: [ApplyDocumentsComponent]
+  ]
 })
-export class ApplyDocumentsModule {}
+export class UsaApplyDocumentsModule {}

@@ -3,7 +3,6 @@
  */
 
 export * from './lib/services';
-export * from './lib/apply.module';
-export * from './lib/apply.service';
-export * from './lib/apply-documents';
-export * from './lib/apply.component';
+export * from './lib/usa-apply.module';
+export * from './lib/usa-apply.component';
+export * from './lib/usa-apply-documents';

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'legify-web-usa-apply-documents',
-  templateUrl: './apply-documents.component.html',
-  styleUrls: ['./apply-documents.component.scss']
+  templateUrl: './usa-apply-documents.component.html',
+  styles: []
 })
-export class ApplyDocumentsComponent implements OnInit {
+export class UsaApplyDocumentsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
