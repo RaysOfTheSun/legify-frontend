@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 
 @Injectable()
-export class LoginService extends LegifyLoginService {
+export class CorLoginService extends LegifyLoginService {
   constructor(
     protected router: Router,
     protected legifyLoginConfigService: LegifyLoginConfigService
@@ -14,7 +14,7 @@ export class LoginService extends LegifyLoginService {
     super(legifyLoginConfigService);
   }
 
-  doLogin(username: string, password: string): Observable<boolean> {
+  public doLogin(username: string, password: string): Observable<boolean> {
     return of(
       username.endsWith('@legify-cor.com') && password.length !== 0
     ).pipe(
