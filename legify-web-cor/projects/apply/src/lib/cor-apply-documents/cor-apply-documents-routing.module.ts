@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CorApplyDocumentsComponent } from './cor-apply-documents.component';
 
 const routes: Routes = [
   {
-    path: 'login',
-    loadChildren: () =>
-      import('@legify-cor/web-auth').then((m) => m.CorLoginModule)
+    path: '',
+    component: CorApplyDocumentsComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AuthCorRoutingModule {}
+export class CorApplyDocumentsRoutingModule {}

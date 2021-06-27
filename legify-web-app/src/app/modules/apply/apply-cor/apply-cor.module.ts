@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ApplyCorRoutingModule } from './apply-cor-routing.module';
 import { AvatarModule } from 'ngx-avatar';
-import { ApplyModule } from '@legify-cor/web-apply';
+import { CorApplyModule } from '@legify-cor/web-apply';
 
 @NgModule({
   declarations: [],
@@ -11,7 +11,7 @@ import { ApplyModule } from '@legify-cor/web-apply';
     CommonModule,
     AvatarModule,
     ApplyCorRoutingModule,
-    ApplyModule.forMarket()
+    CorApplyModule.forMarket()
   ]
 })
 export class ApplyCorModule {}

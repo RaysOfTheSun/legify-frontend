@@ -2,4 +2,4 @@
  * Public API Surface of auth
  */
 
-export * from './lib/login';
+export * from './lib/cor-login';

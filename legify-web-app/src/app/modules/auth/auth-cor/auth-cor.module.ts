@@ -2,17 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthCorRoutingModule } from './auth-cor-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { CorLoginModule } from '@legify-cor/web-auth';
+
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    AuthCorRoutingModule
-  ]
+  imports: [CommonModule, AuthCorRoutingModule, CorLoginModule.forMarket()]
 })
 export class AuthCorModule {}

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ApplyComponent } from '@legify-cor/web-apply';
+import { CorApplyComponent } from '@legify-cor/web-apply';
 
 const routes: Routes = [
   {
     path: '',
-    component: ApplyComponent,
+    component: CorApplyComponent,
     children: [
       {
         path: 'documents',
         loadChildren: () =>
-          import('@legify-cor/web-apply').then((m) => m.ApplyDocumentsModule)
+          import('@legify-cor/web-apply').then((m) => m.CorApplyDocumentsModule)
       }
     ]
   }
