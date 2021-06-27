@@ -4,13 +4,15 @@ import { CommonModule } from '@angular/common';
 import { ApplyDocumentsRoutingModule } from './apply-documents-routing.module';
 import { LegifyApplyDocumentsModule } from '@legify/web-apply';
 import { ApplyDocumentsComponent } from './apply-documents.component';
+import { LegifyUsaTaskCardModule } from '@legify-usa/web-ui-elements';
 
 @NgModule({
   declarations: [ApplyDocumentsComponent],
   imports: [
     CommonModule,
-    LegifyApplyDocumentsModule,
-    ApplyDocumentsRoutingModule
+    LegifyUsaTaskCardModule,
+    ApplyDocumentsRoutingModule,
+    LegifyApplyDocumentsModule
   ],
   exports: [ApplyDocumentsComponent]
 })

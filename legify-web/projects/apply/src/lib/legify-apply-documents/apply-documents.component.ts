@@ -23,7 +23,9 @@ export class ApplyDocumentsComponent {
     protected applyDocumentsService: LegifyApplyDocumentsService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
     protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
-  ) {}
+  ) {
+    console.log(this.taskCardTemplate);
+  }
 
   get taskCardConfigs$(): Observable<TaskCardConfig[]> {
     this.applyDocumentsService.getTaskCardConfigs().subscribe(console.log);

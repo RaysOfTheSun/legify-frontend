@@ -1,0 +1,80 @@
+@import "~@legify/web-ui-elements/assets/styles/mixins";
+@import "~@legify/web-ui-elements/assets/styles/legify-variables";
+
+.legify-task-card {
+  padding: 0;
+  height: 100%;
+  min-height: 250px;
+  max-width: 300px;
+  max-height: 250px;
+  height: 100%;
+  margin: 10px;
+  user-select: none;
+  cursor: pointer;
+
+  &__header {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #9e9e9e;
+    text-transform: uppercase;
+  }
+
+  &__footer {
+    height: 100%;
+    @include flex-container($direction: column, $justify: space-around);
+  }
+
+  &__highlight {
+    height: 8px;
+    width: 100%;
+  }
+
+  &__body {
+    padding: 20px;
+    min-height: 100%;
+
+    @include flex-container($direction: column);
+  }
+
+  &__body-row {
+    margin: 8px 0;
+  }
+
+  &__row-header {
+    color: #9e9e9e;
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+  }
+
+  &__footer-header {
+    color: #9e9e9e;
+  }
+
+  &__row-content {
+    font-weight: 200;
+    font-size: 1.75rem;
+  }
+
+  &__progress-bar {
+    height: 10px;
+    margin: 5px 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+
+  &__button {
+    width: 100%;
+    pointer-events: none;
+
+    color: $color-red;
+    border-color: $color-red;
+  }
+}
+
+.mat-card > :last-child:not(.mat-card-footer),
+.mat-card-content > :last-child:not(.mat-card-footer) {
+  height: 100%;
+}

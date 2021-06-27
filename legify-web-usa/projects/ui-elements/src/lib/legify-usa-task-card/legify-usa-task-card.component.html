@@ -1,0 +1,39 @@
+<mat-card
+  class="legify-task-card"
+  [ngClass]="[taskCardClass]"
+  (click)="handleClickEvent()"
+>
+  <div
+    class="legify-task-card__highlight"
+    [ngStyle]="{ backgroundColor: highlight }"
+  ></div>
+  <mat-card-content class="legify-task-card__body">
+    <h1 class="legify-task-card__header">{{ headerText }}</h1>
+    <div>
+      <div class="legify-task-card__body-row" *ngFor="let row of rows">
+        <p class="legify-task-card__row-content">
+          {{ getRowValueFromConfig(row) }}
+        </p>
+      </div>
+    </div>
+    <div class="legify-task-card__footer">
+      <div>
+        <p class="legify-task-card__footer-header">{{ footerHeader }}</p>
+        <mat-progress-bar
+          *ngIf="showProgressBar"
+          class="legify-task-card__progress-bar"
+          mode="determinate"
+          [color]="'primary'"
+          [value]="40"
+        ></mat-progress-bar>
+      </div>
+      <button
+        mat-stroked-button
+        class="legify-task-card__button"
+        color="primary"
+      >
+        Edit Information
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

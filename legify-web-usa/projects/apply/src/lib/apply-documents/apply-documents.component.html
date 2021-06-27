@@ -1,1 +1,26 @@
-<legify-web-apply-documents></legify-web-apply-documents>
+<legify-web-apply-documents
+  [taskCardTemplate]="usaTaskCard"
+></legify-web-apply-documents>
+
+<ng-template
+  #usaTaskCard
+  let-rows="rows"
+  let-source="source"
+  let-headerText="headerText"
+  let-handleClick="handleClick"
+  let-taskCardClass="taskCardClass"
+  let-highlightColor="highlightColor"
+  let-showProgressBar="showProgressBar"
+  let-footerHeaderText="footerHeaderText"
+>
+  <legify-usa-web-task-card
+    [rows]="rows"
+    [dataSource]="source"
+    [headerText]="headerText"
+    [highlightColor]="highlightColor"
+    [footerHeaderText]="footerHeaderText"
+    [progressBarValue]="'0'"
+    (handleClick)="handleClick($event)"
+    class="legify-collection-task-card"
+  ></legify-usa-web-task-card>
+</ng-template>

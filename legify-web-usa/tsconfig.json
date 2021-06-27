@@ -12,10 +12,23 @@
     "preserveSymlinks": true,
     "target": "ESNext",
     "module": "ESNext",
-    "lib": ["es2018", "dom"],
+    "lib": [
+      "es2018",
+      "dom"
+    ],
     "paths": {
-      "apply": ["dist/apply/apply", "dist/apply"],
-      "auth": ["dist/auth/auth", "dist/auth"]
+      "apply": [
+        "dist/apply/apply",
+        "dist/apply"
+      ],
+      "auth": [
+        "dist/auth/auth",
+        "dist/auth"
+      ],
+      "ui-elements": [
+        "dist/ui-elements/ui-elements",
+        "dist/ui-elements"
+      ]
     }
   }
 }

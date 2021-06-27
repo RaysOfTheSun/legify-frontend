@@ -10,8 +10,10 @@
     "link-local": "cd dist/$1 && npm link --",
     "build:auth": "clear && ng build --project=auth && npm run link-local auth",
     "build:apply": "clear && ng build --project=apply && npm run link-local apply",
+    "build:ui-elements": "clear && ng build --project=ui-elements && npm run link-local ui-elements",
     "build-dev:auth": "clear && ng build --project=auth --watch",
-    "build-dev:apply": "clear &&  ng build --project=apply --watch"
+    "build-dev:apply": "clear &&  ng build --project=apply --watch",
+    "build-dev:ui-elements": "clear && ng build --project=ui-elements --watch"
   },
   "private": true,
   "dependencies": {
