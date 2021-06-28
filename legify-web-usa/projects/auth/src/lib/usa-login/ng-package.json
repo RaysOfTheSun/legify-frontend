@@ -1,0 +1,9 @@
+{
+  "lib": {
+    "entryFile": "public-api.ts",
+    "umdModuleIds": {
+      "@legify/web-auth": "legifyWebAuth",
+      "@legify/web-core": "legifyWebCore"
+    }
+  }
+}

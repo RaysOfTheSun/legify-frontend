@@ -2,18 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AuthUsaRoutingModule } from './auth-usa-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
+import { UsaLoginModule } from '@legify-usa/web-auth';
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    AuthUsaRoutingModule
-  ]
+  imports: [CommonModule, AuthUsaRoutingModule, UsaLoginModule.forMarket()]
 })
 export class AuthUsaModule {}
