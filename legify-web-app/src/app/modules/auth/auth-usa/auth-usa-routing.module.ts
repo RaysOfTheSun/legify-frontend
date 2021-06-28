@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () =>
-      import('@legify-usa/web-auth').then((m) => m.LoginModule)
+      import('@legify-usa/web-auth').then((m) => m.UsaLoginModule)
   }
 ];
 

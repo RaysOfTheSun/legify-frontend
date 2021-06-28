@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ApplyDocumentsComponent } from './apply-documents.component';
+import { UsaApplyDocumentsComponent } from './usa-apply-documents.component';
 
-describe('ApplyDocumentsComponent', () => {
-  let component: ApplyDocumentsComponent;
-  let fixture: ComponentFixture<ApplyDocumentsComponent>;
+describe('UsaApplyDocumentsComponent', () => {
+  let component: UsaApplyDocumentsComponent;
+  let fixture: ComponentFixture<UsaApplyDocumentsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ApplyDocumentsComponent ]
+      declarations: [ UsaApplyDocumentsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ApplyDocumentsComponent);
+    fixture = TestBed.createComponent(UsaApplyDocumentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 import { SESSION_VARIABLE } from '@legify/web-core';
 
 @Injectable()
-export class LoginService extends LegifyLoginService {
+export class UsaLoginService extends LegifyLoginService {
   constructor(
     protected legifyLoginConfigService: LegifyLoginConfigService,
     protected router: Router
@@ -14,7 +14,7 @@ export class LoginService extends LegifyLoginService {
     super(legifyLoginConfigService);
   }
 
-  doLogin(username: string, password: string): Observable<boolean> {
+  public doLogin(username: string, password: string): Observable<boolean> {
     return of(
       username.endsWith('@legify-us.com') && password.length !== 0
     ).pipe(
