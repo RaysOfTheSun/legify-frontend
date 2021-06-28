@@ -18,5 +18,15 @@
       "market": "usa",
       "logoUrl": "assets/logos/legify-us.svg"
     }
-  ]
+  ],
+  "uiElements": {
+    "taskCardConfigs": {
+      "highlightColorMap": {
+        "PO": "BLUE",
+        "PI": "GREEN",
+        "IO": "BLUE",
+        "OI": "ORANGE"
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Person } from '../models';
 import { TaskCardConfig } from '@legify/web-ui-elements';
@@ -9,6 +9,7 @@ import {
 } from './services';
 import { LegifyApplyPersonMapperService } from '../services';
 import { DocumentUploadModalComponent } from './components';
+import { AppConfigService } from '@legify/web-core';
 
 @Component({
   selector: 'legify-web-apply-documents',
@@ -20,12 +21,11 @@ export class ApplyDocumentsComponent {
 
   constructor(
     protected matDialog: MatDialog,
+    protected appConigService: AppConfigService,
     protected applyDocumentsService: LegifyApplyDocumentsService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
     protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
-  ) {
-    console.log(this.taskCardTemplate);
-  }
+  ) {}
 
   get taskCardConfigs$(): Observable<TaskCardConfig[]> {
     return this.applyDocumentsService.getTaskCardConfigs();
@@ -34,10 +34,7 @@ export class ApplyDocumentsComponent {
   public onTaskCardClick(person: Person): void {
     this.matDialog.open(DocumentUploadModalComponent, {
       data: person,
-      hasBackdrop: false,
-      minHeight: '100vh',
-      minWidth: '100vw',
-      panelClass: ['legify-modal']
+      ...this.appConigService.modalConfigs
     });
   }
 

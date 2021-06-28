@@ -1,6 +1,6 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SystemEventService } from './services';
+import { AppConfigService, SystemEventService } from './services';
 import { HasSelectedApplicationGuard } from './guards';
 
 @NgModule({
@@ -11,7 +11,11 @@ export class SystemModule {
   public static forRoot(): ModuleWithProviders<SystemModule> {
     return {
       ngModule: SystemModule,
-      providers: [SystemEventService, HasSelectedApplicationGuard]
+      providers: [
+        SystemEventService,
+        AppConfigService,
+        HasSelectedApplicationGuard
+      ]
     };
   }
 }

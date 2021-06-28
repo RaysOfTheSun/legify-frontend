@@ -8,7 +8,8 @@ import {
   RouterConfigurer,
   MarketSessionMapper,
   AUTH_MODULE,
-  DEFAULT_LEGIFY_APP_CONFIG
+  DEFAULT_LEGIFY_APP_CONFIG,
+  AppConfigService
 } from '@legify/web-core';
 import { MARKET_ROUTER_CONFIG_MAP } from 'src/app/router-configs/market-router-config-map';
 import { Observable, of } from 'rxjs';
@@ -19,7 +20,8 @@ export const legifyWebAppInitializer =
     router: Router,
     httpClient: HttpClient,
     matIconRegistry: MatIconRegistry,
-    iconRegistryConfigurer: IconRegistryConfigurer
+    iconRegistryConfigurer: IconRegistryConfigurer,
+    appConfigService: AppConfigService
   ) =>
   () => {
     const getCurrMarket$ = httpClient
@@ -28,9 +30,10 @@ export const legifyWebAppInitializer =
         catchError(() => of(DEFAULT_LEGIFY_APP_CONFIG)),
         concatMap((appConfig) => {
           return new Observable<LEGIFY_MARKET>((subscriber) => {
+            appConfigService.updateAppConfig(appConfig);
+
             const currMarket =
               MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig);
-
             const iconConfigs = appConfig.logoConfigs.find(
               (logoConfig) => logoConfig.market === currMarket
             );

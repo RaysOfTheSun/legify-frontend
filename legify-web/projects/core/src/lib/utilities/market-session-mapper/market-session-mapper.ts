@@ -1,7 +1,7 @@
 import { SESSION_VARIABLE } from '../../constants/app-variables/session-variable-enum';
 import { DEFAULT_LEGIFY_APP_CONFIG } from '../../constants/config/default-app-config';
 import { LEGIFY_MARKET } from '../../constants/market/legify-market-enum';
-import { LegifyAppConfig, OriginToMarketMapping } from '../models/app-config';
+import { LegifyAppConfig } from '../models/app-config/app-config';
 
 export class MarketSessionMapper {
   public static getCurrMarketFromSessionStorage(): LEGIFY_MARKET {

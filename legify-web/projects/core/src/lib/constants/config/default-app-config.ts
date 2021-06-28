@@ -13,5 +13,10 @@ export const DEFAULT_LEGIFY_APP_CONFIG: LegifyAppConfig = {
       market: LEGIFY_MARKET.COR,
       logoUrl: 'assets/logos/legify.svg'
     }
-  ]
+  ],
+  uiElements: {
+    taskCardConfigs: {
+      highlightColorMap: {}
+    }
+  }
 };

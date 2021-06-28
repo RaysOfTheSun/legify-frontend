@@ -1,4 +1,4 @@
-export * from './models/app-config';
+export * from './models';
 export * from './router-config-mapper/router-config-mapper';
 export * from './router-configurer/legify-router-configurer';
 export * from './market-session-mapper/market-session-mapper';

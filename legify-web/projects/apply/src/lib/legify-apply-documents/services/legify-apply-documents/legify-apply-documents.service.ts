@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  TaskCardConfig,
-  TASK_CARD_HIGHLIGH_COLOR
-} from '@legify/web-ui-elements';
+import { TaskCardConfig } from '@legify/web-ui-elements';
 import { combineLatest, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Person } from '../../../models';
@@ -12,6 +9,7 @@ import {
   LegifyApplyPersonMapperService
 } from '../../../services';
 import { LegifyApplyDocumentsConfigService } from '../legify-apply-documents-config/legify-apply-documents-config.service';
+import { get } from 'lodash-es';
 
 @Injectable()
 export class LegifyApplyDocumentsService {
@@ -44,7 +42,7 @@ export class LegifyApplyDocumentsService {
           return {
             headerText: this.applyPersonMapperService.getPersonName(person),
             subHeaderText: `Person No.${i}`,
-            highlightColor: TASK_CARD_HIGHLIGH_COLOR.BLUE,
+            highlightColorKey: get(person, 'role'),
             rows: taskCardRowConfigs
           } as TaskCardConfig;
         });

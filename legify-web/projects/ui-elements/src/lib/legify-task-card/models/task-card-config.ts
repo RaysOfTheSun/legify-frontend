@@ -5,7 +5,8 @@ export interface TaskCardConfig {
   headerText: string;
   taskCardClass?: string;
   subHeaderText: string;
-  highlightColor: string;
+  highlightColor?: string;
   showProgressBar?: boolean;
   footerHeaderText?: string;
+  highlightColorKey?: string;
 }

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { get } from 'lodash-es';
 import { TaskCardRow } from './models';
-import { TASK_CARD_HIGHLIGH_COLOR } from './constants';
+import { LegifyTaskCardConfigService } from './services';
+import { AppConfigService } from '@legify/web-core';
 
 @Component({
   selector: 'legify-web-task-card',
@@ -21,18 +22,28 @@ export class LegifyTaskCardComponent implements OnInit {
   @Input() footerHeaderText: string;
   @Input() progressBarValue: string;
 
+  @Input() highlightColorKey?: string;
+
   @Output() handleClick: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(
+    protected appConfigService: AppConfigService,
+    protected taskCardConfigService: LegifyTaskCardConfigService
+  ) {}
 
   ngOnInit(): void {}
 
   get highlight(): string {
-    return this.highlightColor || TASK_CARD_HIGHLIGH_COLOR.ORANGE;
+    return (
+      this.highlightColor ||
+      this.taskCardConfigService.getHighlighColorFromAppConfig(
+        this.highlightColorKey
+      )
+    );
   }
 
   get footerHeader(): string {
-    return this.footerHeaderText || 'Progress';
+    return this.footerHeaderText || 'Completion';
   }
 
   public handleClickEvent(): void {

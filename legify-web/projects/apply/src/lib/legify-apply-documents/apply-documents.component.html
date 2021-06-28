@@ -17,6 +17,7 @@
   let-highlightColor="highlightColor"
   let-showProgressBar="showProgressBar"
   let-footerHeaderText="footerHeaderText"
+  let-highlightColorKey="highlightColorKey"
   #defaultTaskCardTemplate
 >
   <legify-web-task-card
@@ -27,6 +28,7 @@
     [highlightColor]="highlightColor"
     [footerHeaderText]="footerHeaderText"
     [progressBarValue]="'0'"
+    [highlightColorKey]="highlightColorKey"
     (handleClick)="handleClick($event)"
     class="legify-collection-task-card"
   ></legify-web-task-card>

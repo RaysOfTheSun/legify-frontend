@@ -44,12 +44,6 @@
     }
   ],
   "taskCardConfigs": {
-    "highlightColorToPersonTypeMap": {
-      "PO": "BLUE",
-      "PI": "GREEN",
-      "IO": "BLUE",
-      "OI": "ORANGE"
-    },
     "rowConfigs": [
       {
         "forModule": "documents",
