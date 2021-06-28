@@ -10,12 +10,26 @@
   margin: 10px;
   user-select: none;
   cursor: pointer;
+  color: #9e9e9e;
 
   &__header {
-    font-size: 1.5rem;
-    font-weight: 100;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+  }
+
+  &__subheader-text {
+    font-size: 0.95rem;
+    font-weight: 400;
+    margin-bottom: 8px;
     color: #9e9e9e;
+  }
+
+  &__header-text {
+    font-size: 2rem;
+    overflow: hidden;
+    max-width: 100%;
+    font-weight: 100;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   &__footer {

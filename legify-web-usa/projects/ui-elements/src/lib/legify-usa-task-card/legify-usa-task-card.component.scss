@@ -10,13 +10,12 @@
   height: 100%;
   margin: 10px;
   user-select: none;
+  color: #9e9e9e;
   cursor: pointer;
 
-  &__header {
-    font-size: 0.8rem;
-    font-weight: 400;
-    color: #9e9e9e;
-    text-transform: uppercase;
+  &__header-text {
+    font-size: 1.8rem;
+    font-weight: 200;
   }
 
   &__footer {
@@ -36,24 +35,11 @@
     @include flex-container($direction: column);
   }
 
-  &__body-row {
-    margin: 8px 0;
-  }
-
-  &__row-header {
-    color: #9e9e9e;
+  &__subheader-text {
     font-size: 0.8rem;
     font-weight: 300;
     margin-bottom: 5px;
-  }
-
-  &__footer-header {
-    color: #9e9e9e;
-  }
-
-  &__row-content {
-    font-weight: 200;
-    font-size: 1.75rem;
+    text-transform: uppercase;
   }
 
   &__progress-bar {

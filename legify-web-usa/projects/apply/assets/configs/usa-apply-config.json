@@ -53,13 +53,7 @@
     "rowConfigs": [
       {
         "forModule": "documents",
-        "config": [
-          {
-            "rowHeader": "Name",
-            "valueIsStatic": true,
-            "rowValueSource": "{{fullName}}"
-          }
-        ]
+        "config": []
       }
     ]
   }

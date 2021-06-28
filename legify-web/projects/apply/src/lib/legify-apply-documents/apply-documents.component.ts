@@ -28,7 +28,6 @@ export class ApplyDocumentsComponent {
   }
 
   get taskCardConfigs$(): Observable<TaskCardConfig[]> {
-    this.applyDocumentsService.getTaskCardConfigs().subscribe(console.log);
     return this.applyDocumentsService.getTaskCardConfigs();
   }
 

@@ -8,7 +8,10 @@
     [ngStyle]="{ backgroundColor: highlight }"
   ></div>
   <mat-card-content class="legify-task-card__body">
-    <h1 class="legify-task-card__header">{{ headerText }}</h1>
+    <div class="legify-task-card__header">
+      <p class="legify-task-card__subheader-text">{{ subHeaderText }}</p>
+      <h2 class="legify-task-card__header-text">{{ headerText }}</h2>
+    </div>
     <div>
       <div class="legify-task-card__body-row" *ngFor="let row of rows">
         <p class="legify-task-card__row-header">

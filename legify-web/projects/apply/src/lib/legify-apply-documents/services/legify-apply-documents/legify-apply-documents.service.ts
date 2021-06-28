@@ -42,15 +42,10 @@ export class LegifyApplyDocumentsService {
       map(([taskCardRowConfigs, persons]) => {
         return persons.map((person, i) => {
           return {
-            headerText: `Person No.${i}`,
+            headerText: this.applyPersonMapperService.getPersonName(person),
+            subHeaderText: `Person No.${i}`,
             highlightColor: TASK_CARD_HIGHLIGH_COLOR.BLUE,
-            rows: taskCardRowConfigs.map((config) => {
-              return {
-                ...config,
-                rowValueSource:
-                  this.applyPersonMapperService.getPersonName(person)
-              };
-            })
+            rows: taskCardRowConfigs
           } as TaskCardConfig;
         });
       })

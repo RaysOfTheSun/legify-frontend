@@ -8,6 +8,7 @@ export interface OriginToMarketMapping {
 export interface LogoConfig {
   market: LEGIFY_MARKET;
   logoUrl: string;
+  logoClass?: string;
 }
 
 export interface LegifyAppConfig {

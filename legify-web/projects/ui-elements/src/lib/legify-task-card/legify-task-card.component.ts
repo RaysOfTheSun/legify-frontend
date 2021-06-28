@@ -14,6 +14,7 @@ export class LegifyTaskCardComponent implements OnInit {
   @Input() rows: TaskCardRow[];
   @Input() headerText: string;
   @Input() dataSource: any;
+  @Input() subHeaderText: string;
 
   @Input() highlightColor: string;
   @Input() showProgressBar = true;

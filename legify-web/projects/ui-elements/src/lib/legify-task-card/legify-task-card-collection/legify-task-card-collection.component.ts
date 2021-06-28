@@ -20,7 +20,6 @@ export class LegifyTaskCardCollectionComponent {
   @Output() taskCardClickHandler: EventEmitter<any> = new EventEmitter();
 
   constructor() {
-    console.log(this.taskCardConfigs);
     this.onTaskCardClick = this.onTaskCardClick.bind(this);
   }
 
