@@ -2,11 +2,13 @@
   "origins": [
     {
       "origin": "http://localhost:4200",
-      "market": "cor"
+      "market": "cor",
+      "profiles": ["cor"]
     },
     {
       "origin": "http://localhost:4300",
-      "market": "usa"
+      "market": "usa",
+      "profiles": ["cor"]
     }
   ],
   "logoConfigs": [

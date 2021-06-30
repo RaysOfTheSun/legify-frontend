@@ -5,7 +5,8 @@ export const DEFAULT_LEGIFY_APP_CONFIG: LegifyAppConfig = {
   origins: [
     {
       origin: 'http://localhost:4200',
-      market: LEGIFY_MARKET.COR
+      market: LEGIFY_MARKET.COR,
+      profiles: ['cor']
     }
   ],
   logoConfigs: [
