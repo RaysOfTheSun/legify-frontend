@@ -26,7 +26,7 @@ export const legifyWebAppInitializer =
   ) =>
   () => {
     // TODO: implement app-initailizer and updated utilities for retrieving
-    // profile configs in legify-web/core
+    // profile configs in legify/web-core
     const getAppConfig$ = httpClient
       .get<LegifyAppConfig>('assets/configs/app-config.json')
       .pipe(
