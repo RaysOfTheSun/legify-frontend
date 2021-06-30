@@ -3,13 +3,14 @@
 .apply-shell {
   &__content {
     @include flex-container();
-    flex: 1 1 75%;
+    flex: 1 1 70%;
     height: 100%;
     max-height: calc(100vh - 70px);
   }
 
   &__sidenav {
-    flex: 1 1 25%;
+    flex: 1 1 30%;
+    max-width: 400px;
     max-height: calc(100vh - 70px);
   }
 
@@ -19,11 +20,11 @@
   }
 
   &__body {
-    width: calc(100vw - 350px);
+    width: calc(100vw - 400px);
     height: calc(100vh - 70px);
     height: 100%;
     margin: auto;
-    padding: 40px;
+    padding: 60px;
     overflow: scroll;
     max-height: calc(100vh - 70px);
     max-width: calc(100vw - 350px);

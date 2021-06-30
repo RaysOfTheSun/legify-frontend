@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LegifyModalModule, ApplyShellModule } from '@legify/web-ui-elements';
 import { LegifyApplyDataService, LegifyApplyHttpDataService } from './services';
 import { LegifyApplyPersonMapperService } from './services/legify-apply-person-mapper/legify-apply-person-mapper.service';
+import { NftfModule } from '@legify-features/web-nftf';
 
 @NgModule({
   declarations: [ApplyComponent],
@@ -16,7 +17,8 @@ import { LegifyApplyPersonMapperService } from './services/legify-apply-person-m
     RouterModule,
     ApplyShellModule,
     MatDialogModule,
-    LegifyModalModule
+    LegifyModalModule,
+    NftfModule
   ],
   exports: [ApplyComponent],
   providers: [

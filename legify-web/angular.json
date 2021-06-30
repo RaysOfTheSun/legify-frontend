@@ -150,9 +150,7 @@
               "projects/auth/tsconfig.lib.json",
               "projects/auth/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }

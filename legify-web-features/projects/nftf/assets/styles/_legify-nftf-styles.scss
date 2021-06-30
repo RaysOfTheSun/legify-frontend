@@ -1,0 +1,23 @@
+.nftf-info-panel__header {
+  & .mat-content {
+    height: 100%;
+    cursor: default;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &:hover {
+    background: transparent !important;
+  }
+
+  & .mat-expansion-indicator {
+    width: 32px;
+    height: 32px;
+    border: thin solid black;
+    text-align: center;
+    border-radius: 25px;
+    &::after {
+      transform: translateY(50%) rotate(45deg);
+    }
+  }
+}

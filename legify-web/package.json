@@ -16,7 +16,8 @@
     "build-dev:apply": "clear && ng build --project=apply --watch",
     "build-dev:core": "clear && ng build --project=core --watch",
     "build-dev:ui-elements": "clear && ng build --project=ui-elements --watch",
-    "build:all": "npm run build:core && npm run build:ui-elements && npm run build:apply"
+    "build:all": "npm run build:core && npm run build:ui-elements && npm run build:apply",
+    "add:locals": "npm link @legfiy/web-apply"
   },
   "private": true,
   "dependencies": {

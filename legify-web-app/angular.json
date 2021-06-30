@@ -47,6 +47,11 @@
                 "glob": "**/*",
                 "input": "./node_modules/@legify-usa/web-apply/assets",
                 "output": "/assets/"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@legify-features/web-nftf/assets",
+                "output": "/assets/"
               }
             ],
             "styles": [

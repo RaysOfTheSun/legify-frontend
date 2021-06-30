@@ -1,0 +1,19 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "nftf": ["dist/nftf/nftf", "dist/nftf"]
+    }
+  }
+}

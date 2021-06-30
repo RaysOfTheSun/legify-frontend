@@ -1,0 +1,29 @@
+<mat-expansion-panel
+  class="nftf-info-panel"
+  #panel
+  hideToggle
+  (click)="panel.toggle()"
+>
+  <mat-expansion-panel-header
+    class="nftf-info-panel__header"
+    collapsedHeight="*"
+    expandedHeight="*"
+  >
+    <div class="nftf-info-panel__status-description">
+      <mat-icon class="nftf-info-panel__status-icon">highlight_off</mat-icon>
+      <p class="nftf-info-panel__status-description-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ornare
+        magna diam, sit amet maximus libero tristique sed. Nunc elementum a eros
+        nec luctus.
+      </p>
+    </div>
+    <button
+      mat-stroked-button
+      class="nftf-info-panel__button"
+      (click)="$event.stopPropagation()"
+    >
+      Send Link
+    </button>
+  </mat-expansion-panel-header>
+  <p>This is the primary content of the panel.</p>
+</mat-expansion-panel>
