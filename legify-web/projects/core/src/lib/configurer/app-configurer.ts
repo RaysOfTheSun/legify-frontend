@@ -4,6 +4,7 @@ import { RouterConfigurer } from './router-configuer';
 import { AppConfigLoader } from './app-config-loader';
 import { AppLogoConfigurer } from './app-logo-configurer';
 import { concatMap, map } from 'rxjs/operators';
+import { zip } from 'rxjs';
 
 @Injectable()
 export class AppConfigurer {
@@ -25,9 +26,7 @@ export class AppConfigurer {
 
     const configureAppRouter$ = this.routerConfigurer.configure();
 
-    return loadAppConfig$
-      .pipe(concatMap(() => configureLogo$))
-      .pipe(concatMap(() => configureAppRouter$))
+    return zip(loadAppConfig$, configureLogo$, configureAppRouter$)
       .pipe(map(() => true))
       .toPromise();
   }
