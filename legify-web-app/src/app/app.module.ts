@@ -4,38 +4,36 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { Router } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MatIconRegistry } from '@angular/material/icon';
-import { legifyWebAppInitializer } from './modules/core/utilities/app-initializer';
+import { HttpClientModule } from '@angular/common/http';
 import {
-  IconRegistryConfigurer,
   SystemModule,
-  AppConfigService
+  AppConfigurer,
+  appInitializer,
+  APP_CONFIGURER_DEPENDENCIES,
+  MARKET_ROUTER_CONFIG_MAP
 } from '@legify/web-core';
+import { marketRouterConfigMap } from './router-configs/market-router-config-map';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     SystemModule.forRoot()
   ],
   providers: [
-    IconRegistryConfigurer,
+    ...APP_CONFIGURER_DEPENDENCIES,
     {
-      multi: true,
+      provide: MARKET_ROUTER_CONFIG_MAP,
+      useValue: marketRouterConfigMap
+    },
+    {
       provide: APP_INITIALIZER,
-      useFactory: legifyWebAppInitializer,
-      deps: [
-        Router,
-        HttpClient,
-        MatIconRegistry,
-        IconRegistryConfigurer,
-        AppConfigService
-      ]
+      useFactory: appInitializer,
+      deps: [AppConfigurer],
+      multi: true
     }
   ],
   bootstrap: [AppComponent]

@@ -12,7 +12,7 @@ import {
   AppConfigService,
   AppConfigProfile
 } from '@legify/web-core';
-import { MARKET_ROUTER_CONFIG_MAP } from 'src/app/router-configs/market-router-config-map';
+import { marketRouterConfigMap } from 'src/app/router-configs/market-router-config-map';
 import { forkJoin, Observable, of } from 'rxjs';
 import { MatIconRegistry } from '@angular/material/icon';
 
@@ -87,7 +87,7 @@ export const legifyWebAppInitializer =
           router,
           currMarket,
           AUTH_MODULE.LOGIN,
-          MARKET_ROUTER_CONFIG_MAP
+          marketRouterConfigMap
         )
       )
     );

@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { AppConfigService, SystemEventService } from './services';
 import { HasSelectedApplicationGuard } from './guards';
 
+import { MatIconRegistry } from '@angular/material/icon';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [],
   imports: [CommonModule]
@@ -12,8 +15,9 @@ export class SystemModule {
     return {
       ngModule: SystemModule,
       providers: [
-        SystemEventService,
+        MatIconRegistry,
         AppConfigService,
+        SystemEventService,
         HasSelectedApplicationGuard
       ]
     };

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { DEFAULT_LEGIFY_APP_CONFIG, LEGIFY_MARKET } from '../../../constants';
 import { LegifyAppConfig, UiElementsConfigs } from '../../../utilities';
 
 @Injectable()
 export class AppConfigService {
   protected readonly appConfigSubj: BehaviorSubject<LegifyAppConfig> =
-    new BehaviorSubject(null);
+    new BehaviorSubject(DEFAULT_LEGIFY_APP_CONFIG);
+  protected _currMarket: LEGIFY_MARKET = LEGIFY_MARKET.COR;
 
   constructor() {}
 
@@ -18,6 +20,10 @@ export class AppConfigService {
     return this.appConfig.uiElements;
   }
 
+  get currMarket(): LEGIFY_MARKET {
+    return this._currMarket;
+  }
+
   get modalConfigs(): MatDialogConfig {
     return {
       hasBackdrop: false,
@@ -27,7 +33,15 @@ export class AppConfigService {
     };
   }
 
-  public updateAppConfig(appConfig: LegifyAppConfig): void {
+  public setAppConfig(appConfig: LegifyAppConfig): void {
     this.appConfigSubj.next(appConfig);
+  }
+
+  public setCurrMarket(currMarket: LEGIFY_MARKET): void {
+    if (!currMarket) {
+      return;
+    }
+
+    this._currMarket = currMarket;
   }
 }
