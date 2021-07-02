@@ -3,10 +3,11 @@ import { Router, Routes } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LEGIFY_MARKET, MARKET_ROUTER_CONFIG_MAP } from '../constants';
 import { APP_CONFIGURER_SETTINGS } from '../constants/config/app-configurer-settings';
-import { AppConfigService } from '../system';
+import { AppConfigService } from '../app';
+import { Configurer } from '../app/models/configurer/configurer';
 
 @Injectable()
-export class RouterConfigurer {
+export class RouterConfigurer implements Configurer<boolean> {
   constructor(
     protected router: Router,
     protected appConfigService: AppConfigService,
@@ -23,7 +24,6 @@ export class RouterConfigurer {
         this.marketRouterConfigMap
       );
 
-      console.log(this.appConfigService.appConfig);
       this.router.resetConfig(routerConfig);
       subscriber.next(true);
       subscriber.complete();

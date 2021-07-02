@@ -6,10 +6,9 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {
-  SystemModule,
+  CoreModule,
   AppConfigurer,
-  appInitializer,
-  APP_CONFIGURER_DEPENDENCIES,
+  webAppConfigurer,
   MARKET_ROUTER_CONFIG_MAP
 } from '@legify/web-core';
 import { marketRouterConfigMap } from './router-configs/market-router-config-map';
@@ -21,17 +20,16 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    SystemModule.forRoot()
+    CoreModule.forRoot()
   ],
   providers: [
-    ...APP_CONFIGURER_DEPENDENCIES,
     {
       provide: MARKET_ROUTER_CONFIG_MAP,
       useValue: marketRouterConfigMap
     },
     {
       provide: APP_INITIALIZER,
-      useFactory: appInitializer,
+      useFactory: webAppConfigurer,
       deps: [AppConfigurer],
       multi: true
     }

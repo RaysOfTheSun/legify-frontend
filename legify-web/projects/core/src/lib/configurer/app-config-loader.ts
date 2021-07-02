@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { DEFAULT_LEGIFY_APP_CONFIG } from '../constants';
-import { AppConfigService } from '../system';
-import { LegifyAppConfig, MarketSessionMapper } from '../utilities';
+import { AppConfig, AppConfigService } from '../app';
+import { MarketSessionMapper } from '../utilities';
 
 @Injectable()
 export class AppConfigLoader {
@@ -16,7 +16,7 @@ export class AppConfigLoader {
   public getAppConfig(
     appConfigPath: string,
     getProfiles = false
-  ): Observable<LegifyAppConfig> {
+  ): Observable<AppConfig> {
     const getAppConfig$ = getProfiles
       ? this.getAppConfigWithProfiles(appConfigPath)
       : this.getAppConfigWithNoProfiles(appConfigPath);
@@ -32,8 +32,8 @@ export class AppConfigLoader {
 
   protected getAppConfigWithNoProfiles(
     appConfigPath: string
-  ): Observable<LegifyAppConfig> {
-    return this.httpClient.get<LegifyAppConfig>(appConfigPath).pipe(
+  ): Observable<AppConfig> {
+    return this.httpClient.get<AppConfig>(appConfigPath).pipe(
       tap((appConfig) => this.appConfigService.setAppConfig(appConfig)),
       catchError(() => of(DEFAULT_LEGIFY_APP_CONFIG))
     );
@@ -41,7 +41,7 @@ export class AppConfigLoader {
 
   protected getAppConfigWithProfiles(
     appConfigPath: string
-  ): Observable<LegifyAppConfig> {
+  ): Observable<AppConfig> {
     const getAppConfigProfiles$ = this.getAppConfigWithNoProfiles(
       appConfigPath
     ).pipe(

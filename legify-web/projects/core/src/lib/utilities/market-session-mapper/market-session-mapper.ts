@@ -1,7 +1,5 @@
-import { SESSION_VARIABLE } from '../../constants/app-variables/session-variable-enum';
-import { DEFAULT_LEGIFY_APP_CONFIG } from '../../constants/config/default-app-config';
-import { LEGIFY_MARKET } from '../../constants/market/legify-market-enum';
-import { LegifyAppConfig } from '../models/app-config/app-config';
+import { AppConfig } from '../../app';
+import { LEGIFY_MARKET, SESSION_VARIABLE } from '../../constants';
 
 export class MarketSessionMapper {
   public static getCurrMarketFromSessionStorage(): LEGIFY_MARKET {
@@ -20,11 +18,9 @@ export class MarketSessionMapper {
   }
 
   public static getCurrMarketFromAppUrlByConfig(
-    appConfig: LegifyAppConfig
+    appConfig: AppConfig
   ): LEGIFY_MARKET {
-    const configForCurrOrigin = (
-      appConfig || DEFAULT_LEGIFY_APP_CONFIG
-    ).origins.find(
+    const configForCurrOrigin = appConfig.origins.find(
       (originConfig) => originConfig.origin === window.location.origin
     );
 

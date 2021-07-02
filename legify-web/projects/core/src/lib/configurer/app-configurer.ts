@@ -3,31 +3,32 @@ import { APP_CONFIGURER_SETTINGS } from '../constants/config/app-configurer-sett
 import { RouterConfigurer } from './router-configuer';
 import { AppConfigLoader } from './app-config-loader';
 import { AppLogoConfigurer } from './app-logo-configurer';
-import { concatMap, map } from 'rxjs/operators';
-import { zip } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Observable, zip } from 'rxjs';
+import { Configurer } from '../app/models/configurer/configurer';
 
 @Injectable()
-export class AppConfigurer {
+export class AppConfigurer implements Configurer<boolean> {
   constructor(
     protected appConfigLoader: AppConfigLoader,
     protected routerConfigurer: RouterConfigurer,
     protected appLogoConfigurer: AppLogoConfigurer
   ) {}
 
-  public configure(): Promise<boolean> {
+  public configure(): Observable<boolean> {
     const loadAppConfig$ = this.appConfigLoader.getAppConfig(
       APP_CONFIGURER_SETTINGS.APP_CONFIG_PATH,
       APP_CONFIGURER_SETTINGS.LOAD_PROFILES
     );
 
-    const configureLogo$ = this.appLogoConfigurer.configure(
+    const configureAppLogo$ = this.appLogoConfigurer.configure(
       APP_CONFIGURER_SETTINGS.LOGO_NAME
     );
 
     const configureAppRouter$ = this.routerConfigurer.configure();
 
-    return zip(loadAppConfig$, configureLogo$, configureAppRouter$)
-      .pipe(map(() => true))
-      .toPromise();
+    return zip(loadAppConfig$, configureAppLogo$, configureAppRouter$).pipe(
+      map(() => true)
+    );
   }
 }

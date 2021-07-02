@@ -1,7 +1,7 @@
-import { LegifyAppConfig } from '../../utilities';
+import { AppConfig } from '../../app';
 import { LEGIFY_MARKET } from '../market/legify-market-enum';
 
-export const DEFAULT_LEGIFY_APP_CONFIG: LegifyAppConfig = {
+export const DEFAULT_LEGIFY_APP_CONFIG: AppConfig = {
   origins: [
     {
       origin: 'http://localhost:4200',

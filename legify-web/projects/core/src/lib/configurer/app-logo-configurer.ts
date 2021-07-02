@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { AppConfigService } from '../system';
-import { LegifyAppConfig, LogoConfig } from '../utilities';
+import { AppConfig, AppConfigService, AppLogoConfig } from '../app';
+import { Configurer } from '../app/models/configurer/configurer';
 
 @Injectable()
-export class AppLogoConfigurer {
+export class AppLogoConfigurer implements Configurer<boolean> {
   constructor(
     protected domSanitizer: DomSanitizer,
     protected matIconRegistry: MatIconRegistry,
     protected appConfigService: AppConfigService
   ) {}
 
-  protected getLogoConfigs(appConfig: LegifyAppConfig): LogoConfig {
+  protected getLogoConfigs(appConfig: AppConfig): AppLogoConfig {
     const currMarket = this.appConfigService.currMarket;
     return appConfig.logoConfigs.find((config) => config.market === currMarket);
   }
