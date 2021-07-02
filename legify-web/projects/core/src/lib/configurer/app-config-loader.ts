@@ -22,9 +22,6 @@ export class AppConfigLoader {
       : this.getAppConfigWithNoProfiles(appConfigPath);
     return getAppConfig$.pipe(
       tap((appConfig) => {
-        this.appConfigService.setCurrMarket(
-          MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig)
-        );
         this.appConfigService.setAppConfig(appConfig);
       })
     );
@@ -51,26 +48,28 @@ export class AppConfigLoader {
         const configForCurrMarket = appConfig.origins.find(
           (config) => config.market === currMarket
         );
-        const appConfigProfileReqs$ = configForCurrMarket.profiles.map(
-          (profile) =>
-            this.httpClient.get(
-              `assets/configs/markets/${currMarket}/legify-${profile}.json`
+        const appConfigProfileReqs$ = configForCurrMarket.profiles
+          ? configForCurrMarket.profiles.map((profile) =>
+              this.httpClient.get(
+                `assets/configs/markets/${currMarket}/legify-${profile}.json`
+              )
             )
-        );
-        return forkJoin(appConfigProfileReqs$);
+          : [];
+        return configForCurrMarket.profiles
+          ? forkJoin(appConfigProfileReqs$)
+          : of([appConfig]);
       })
     );
 
     return getAppConfigProfiles$.pipe(
       map((profileConfigs) => {
         let appConfigWithProfiles = this.appConfigService.appConfig;
-        profileConfigs.forEach(
-          (profileConfig) =>
-            (appConfigWithProfiles = {
-              ...appConfigWithProfiles,
-              ...profileConfig
-            })
-        );
+        profileConfigs.forEach((profileConfig) => {
+          appConfigWithProfiles = {
+            ...appConfigWithProfiles,
+            ...profileConfig
+          };
+        });
         return appConfigWithProfiles;
       })
     );

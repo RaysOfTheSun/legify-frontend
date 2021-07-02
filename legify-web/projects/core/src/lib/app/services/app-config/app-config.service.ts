@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional, SkipSelf } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { MarketSessionMapper } from '../../../utilities';
 import { BehaviorSubject } from 'rxjs';
 import { DEFAULT_LEGIFY_APP_CONFIG, LEGIFY_MARKET } from '../../../constants';
 import { AppConfig, UiElementsConfig } from '../../models';
@@ -8,7 +9,7 @@ import { AppConfig, UiElementsConfig } from '../../models';
 export class AppConfigService {
   protected readonly appConfigSubj: BehaviorSubject<AppConfig> =
     new BehaviorSubject(DEFAULT_LEGIFY_APP_CONFIG);
-  protected _currMarket: LEGIFY_MARKET = LEGIFY_MARKET.COR;
+  protected currSessionMarket: LEGIFY_MARKET = LEGIFY_MARKET.COR;
 
   constructor() {}
 
@@ -21,7 +22,7 @@ export class AppConfigService {
   }
 
   get currMarket(): LEGIFY_MARKET {
-    return this._currMarket;
+    return this.currSessionMarket;
   }
 
   get modalConfigs(): MatDialogConfig {
@@ -35,13 +36,7 @@ export class AppConfigService {
 
   public setAppConfig(appConfig: AppConfig): void {
     this.appConfigSubj.next(appConfig);
-  }
-
-  public setCurrMarket(currMarket: LEGIFY_MARKET): void {
-    if (!currMarket) {
-      return;
-    }
-
-    this._currMarket = currMarket;
+    this.currSessionMarket =
+      MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig);
   }
 }

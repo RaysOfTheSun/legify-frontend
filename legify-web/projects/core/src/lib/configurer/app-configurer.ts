@@ -3,8 +3,8 @@ import { APP_CONFIGURER_SETTINGS } from '../constants/config/app-configurer-sett
 import { RouterConfigurer } from './router-configuer';
 import { AppConfigLoader } from './app-config-loader';
 import { AppLogoConfigurer } from './app-logo-configurer';
-import { map } from 'rxjs/operators';
-import { Observable, zip } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
+import { forkJoin, Observable } from 'rxjs';
 import { Configurer } from '../app/models/configurer/configurer';
 
 @Injectable()
@@ -27,7 +27,10 @@ export class AppConfigurer implements Configurer<boolean> {
 
     const configureAppRouter$ = this.routerConfigurer.configure();
 
-    return zip(loadAppConfig$, configureAppLogo$, configureAppRouter$).pipe(
+    const configApp$ = [configureAppLogo$, configureAppRouter$];
+
+    return loadAppConfig$.pipe(
+      concatMap(() => forkJoin(configApp$)),
       map(() => true)
     );
   }

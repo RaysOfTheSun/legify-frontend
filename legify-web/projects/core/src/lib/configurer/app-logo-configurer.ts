@@ -19,8 +19,8 @@ export class AppLogoConfigurer implements Configurer<boolean> {
   }
 
   public configure(logoName: string): Observable<boolean> {
-    const appConfig = this.appConfigService.appConfig;
     return new Observable<boolean>((subscriber) => {
+      const appConfig = this.appConfigService.appConfig;
       const logoConfigs = this.getLogoConfigs(appConfig);
 
       const sanitizedUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
