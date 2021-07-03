@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
+import { NftfConfigService } from '../nftf-config/nftf-config.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class NftfService {
-
-  constructor() { }
+  constructor(protected nftfConfigService: NftfConfigService) {}
 }

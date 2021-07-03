@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NftfConfigService } from './services';
 
 @Component({
   selector: 'legify-web-nftf-nftf',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class NftfComponent implements OnInit {
-  constructor() {}
+  constructor(protected nftfConfigService: NftfConfigService) {}
 
   ngOnInit(): void {}
+
+  public isFeatureEnabled(): boolean {
+    return this.nftfConfigService.isFeatureEnabled;
+  }
 }

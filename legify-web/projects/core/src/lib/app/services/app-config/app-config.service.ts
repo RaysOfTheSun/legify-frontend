@@ -2,8 +2,12 @@ import { Injectable, Optional, SkipSelf } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { MarketSessionMapper } from '../../../utilities';
 import { BehaviorSubject } from 'rxjs';
-import { DEFAULT_LEGIFY_APP_CONFIG, LEGIFY_MARKET } from '../../../constants';
-import { AppConfig, UiElementsConfig } from '../../models';
+import {
+  DEFAULT_LEGIFY_APP_CONFIG,
+  LEGIFY_FEATURE,
+  LEGIFY_MARKET
+} from '../../../constants';
+import { AppConfig, FeatureConfig, UiElementsConfig } from '../../models';
 
 @Injectable()
 export class AppConfigService {
@@ -38,5 +42,9 @@ export class AppConfigService {
     this.appConfigSubj.next(appConfig);
     this.currSessionMarket =
       MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig);
+  }
+
+  public getFeatureConfig(feature: LEGIFY_FEATURE): FeatureConfig {
+    return this.appConfig.features[feature];
   }
 }

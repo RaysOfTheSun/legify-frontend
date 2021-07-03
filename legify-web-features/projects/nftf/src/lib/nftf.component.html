@@ -1,1 +1,3 @@
-<legify-web-nftf-status-panel></legify-web-nftf-status-panel>
+<ng-container *ngIf="isFeatureEnabled()">
+  <legify-web-nftf-status-panel></legify-web-nftf-status-panel>
+</ng-container>

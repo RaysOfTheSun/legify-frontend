@@ -4,7 +4,6 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
 import { DEFAULT_LEGIFY_APP_CONFIG } from '../constants';
 import { AppConfig, AppConfigService } from '../app';
-import { MarketSessionMapper } from '../utilities';
 
 @Injectable()
 export class AppConfigLoader {
@@ -21,9 +20,7 @@ export class AppConfigLoader {
       ? this.getAppConfigWithProfiles(appConfigPath)
       : this.getAppConfigWithNoProfiles(appConfigPath);
     return getAppConfig$.pipe(
-      tap((appConfig) => {
-        this.appConfigService.setAppConfig(appConfig);
-      })
+      tap((appConfig) => this.appConfigService.setAppConfig(appConfig))
     );
   }
 
@@ -43,18 +40,16 @@ export class AppConfigLoader {
       appConfigPath
     ).pipe(
       concatMap((appConfig) => {
-        const currMarket =
-          MarketSessionMapper.getCurrMarketFromAppUrlByConfig(appConfig);
+        const currMarket = this.appConfigService.currMarket;
         const configForCurrMarket = appConfig.origins.find(
           (config) => config.market === currMarket
         );
-        const appConfigProfileReqs$ = configForCurrMarket.profiles
-          ? configForCurrMarket.profiles.map((profile) =>
-              this.httpClient.get(
-                `assets/configs/markets/${currMarket}/legify-${profile}.json`
-              )
+        const appConfigProfileReqs$ = (configForCurrMarket.profiles || []).map(
+          (profile) =>
+            this.httpClient.get(
+              `assets/configs/markets/${currMarket}/legify-${profile}.json`
             )
-          : [];
+        );
         return configForCurrMarket.profiles
           ? forkJoin(appConfigProfileReqs$)
           : of([appConfig]);

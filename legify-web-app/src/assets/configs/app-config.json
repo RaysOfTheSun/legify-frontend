@@ -7,8 +7,7 @@
     },
     {
       "origin": "http://localhost:4300",
-      "market": "usa",
-      "profiles": ["cor"]
+      "market": "usa"
     }
   ],
   "logoConfigs": [
@@ -29,6 +28,11 @@
         "IO": "BLUE",
         "OI": "ORANGE"
       }
+    }
+  },
+  "features": {
+    "nftf": {
+      "enabled": false
     }
   }
 }

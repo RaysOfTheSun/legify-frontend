@@ -19,5 +19,10 @@ export const DEFAULT_LEGIFY_APP_CONFIG: AppConfig = {
     taskCardConfigs: {
       highlightColorMap: {}
     }
+  },
+  features: {
+    nftf: {
+      enabled: false
+    }
   }
 };
