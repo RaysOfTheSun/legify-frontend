@@ -34,7 +34,9 @@ export class AppConfigService {
       hasBackdrop: false,
       minHeight: '100vh',
       minWidth: '100vw',
-      panelClass: ['legify-modal']
+      panelClass: ['legify-modal'],
+      autoFocus: false,
+      restoreFocus: false
     };
   }
 

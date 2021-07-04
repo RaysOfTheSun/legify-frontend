@@ -13,10 +13,10 @@
     max-height: 70px;
     text-align: right;
     justify-content: space-between;
+  }
 
-    &--no-content {
-      justify-content: end;
-    }
+  &__header-text {
+    font-weight: 400;
   }
 
   &__close-icon {
@@ -24,17 +24,16 @@
   }
 
   &__body {
-    height: 100%;
+    height: calc(100vh - 70px * 2);
     margin: 0 !important;
     overflow: scroll;
     max-width: 100% !important;
     min-height: calc(100vh - 70px * 2);
-    max-height: calc(1100vh - 70px * 2);
     background-color: #fafafa;
 
     &--no-footer {
       min-height: calc(100vh - 70px);
-      max-height: calc(100vh - 70px);
+      height: calc(100vh - 70px);
     }
   }
 

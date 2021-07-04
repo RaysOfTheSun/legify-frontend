@@ -1,13 +1,9 @@
-<mat-expansion-panel
-  class="nftf-info-panel"
-  #panel
-  hideToggle
-  (click)="panel.toggle()"
->
+<mat-expansion-panel class="nftf-info-panel" #panel hideToggle>
   <mat-expansion-panel-header
     class="nftf-info-panel__header"
     collapsedHeight="*"
     expandedHeight="*"
+    (click)="panel.toggle()"
   >
     <div class="nftf-info-panel__status-description">
       <mat-icon class="nftf-info-panel__status-icon">highlight_off</mat-icon>
@@ -18,12 +14,16 @@
       </p>
     </div>
     <button
-      mat-stroked-button
+      type="button"
       class="nftf-info-panel__button"
-      (click)="$event.stopPropagation()"
+      mat-stroked-button
+      (click)="publishHandleSendLinkClick($event)"
+      onclick="this.blur()"
     >
       Send Link
     </button>
   </mat-expansion-panel-header>
-  <p>This is the primary content of the panel.</p>
+  <ng-template #matExpansionPanelContent>
+    <p>This is the primary content of the panel.</p>
+  </ng-template>
 </mat-expansion-panel>

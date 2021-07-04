@@ -1,0 +1,29 @@
+<ng-container
+  [ngTemplateOutlet]="isSecondary ? secondaryButton : primaryButton"
+  [ngTemplateOutletContext]="{ cssClasses: cssClasses }"
+>
+</ng-container>
+
+<ng-template #primaryButton let-cssClasses="cssClasses">
+  <button
+    [type]="buttonType"
+    [disabled]="disabled"
+    [ngClass]="cssClasses"
+    (click)="publishClickEvent($event)"
+    mat-flat-button
+  >
+    <span>{{ staticText }}</span>
+  </button>
+</ng-template>
+
+<ng-template #secondaryButton let-cssClasses="cssClasses">
+  <button
+    [type]="buttonType"
+    [disabled]="disabled"
+    [ngClass]="cssClasses"
+    (click)="publishClickEvent($event)"
+    mat-flat-button
+  >
+    <span>{{ staticText }}</span>
+  </button>
+</ng-template>

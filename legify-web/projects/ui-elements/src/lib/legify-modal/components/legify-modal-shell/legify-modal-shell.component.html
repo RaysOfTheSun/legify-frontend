@@ -1,5 +1,7 @@
 <div [ngClass]="modalHeaderCssClasses">
-  <ng-container [ngTemplateOutlet]="headerTemplate"></ng-container>
+  <ng-container
+    [ngTemplateOutlet]="headerTemplate ? headerTemplate : defaultHeaderTemplate"
+  ></ng-container>
   <mat-icon matDialogClose class="legify-modal__close-icon">close</mat-icon>
 </div>
 <mat-dialog-content [ngClass]="modalBodyCssClasses">
@@ -8,3 +10,7 @@
 <div class="legify-modal__footer" *ngIf="footerTemplate">
   <ng-container [ngTemplateOutlet]="footerTemplate"></ng-container>
 </div>
+
+<ng-template #defaultHeaderTemplate>
+  <h3 class="legify-modal__header-text">{{ headerText }}</h3>
+</ng-template>

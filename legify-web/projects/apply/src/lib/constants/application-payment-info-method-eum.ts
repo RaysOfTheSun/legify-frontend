@@ -1,0 +1,4 @@
+export enum APPLICATION_PAYMENT_METHOD {
+  CASH = 'CASH',
+  ONLINE = 'ONLINE'
+}

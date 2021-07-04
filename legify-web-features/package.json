@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "link-local": "cd dist/$1 && npm link --",
-    "build:nftf": "ng build --project=nftf && npm run link-local nftf",
-    "build-dev:nftf": "ng build --project=nftf --watch"
+    "build:nftf": "clear && ng build --project=nftf && npm run link-local nftf",
+    "build-dev:nftf": "clear && ng build --project=nftf --watch"
   },
   "private": true,
   "dependencies": {

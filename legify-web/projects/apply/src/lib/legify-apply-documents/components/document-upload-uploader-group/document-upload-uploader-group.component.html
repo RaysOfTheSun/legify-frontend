@@ -1,0 +1,10 @@
+<div class="document-upload-uploader-group">
+  <p class="document-upload-uploader-group__header">
+    {{ documentMeta.documentGroup }}
+  </p>
+  <div class="document-upload-uploader-group__uploaders">
+    <legify-web-document-upload-uploader
+      *ngFor="let placeholder of placeHolders"
+    ></legify-web-document-upload-uploader>
+  </div>
+</div>

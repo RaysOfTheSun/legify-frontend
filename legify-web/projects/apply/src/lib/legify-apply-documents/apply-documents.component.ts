@@ -33,7 +33,11 @@ export class ApplyDocumentsComponent {
 
   public onTaskCardClick(person: Person): void {
     this.matDialog.open(DocumentUploadModalComponent, {
-      data: person,
+      data: {
+        person,
+        requiredDocuments:
+          this.applyDocumentsService.getDocumentRequirementsForPerson(person)
+      },
       ...this.appConigService.modalConfigs
     });
   }

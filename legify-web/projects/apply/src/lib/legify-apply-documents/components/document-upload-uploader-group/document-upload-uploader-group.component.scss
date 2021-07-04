@@ -1,0 +1,15 @@
+.document-upload-uploader-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  &__header {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  &__uploaders {
+    display: flex;
+  }
+}

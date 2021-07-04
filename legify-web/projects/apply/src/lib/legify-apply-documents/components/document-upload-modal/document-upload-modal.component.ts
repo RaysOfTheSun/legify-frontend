@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Person } from '../../../models';
+import { Observable } from 'rxjs';
+import { LegifyDocumentRequirement } from '../../../models';
 import { LegifyApplyPersonMapperService } from '../../../services';
+import { DocumentUploadModalData } from '../../models';
 
 @Component({
   selector: 'legify-web-document-upload-modal',
@@ -10,13 +12,19 @@ import { LegifyApplyPersonMapperService } from '../../../services';
 })
 export class DocumentUploadModalComponent implements OnInit {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public person: Person,
+    @Inject(MAT_DIALOG_DATA) public data: DocumentUploadModalData,
     protected legifyApplyPersonMapper: LegifyApplyPersonMapperService
   ) {}
 
   ngOnInit(): void {}
 
   get modalOwner(): string {
-    return this.legifyApplyPersonMapper.getPersonName(this.person);
+    return `${this.legifyApplyPersonMapper.getPersonName(
+      this.data.person
+    )}'s Documents`;
+  }
+
+  get requiredDocuments(): Observable<LegifyDocumentRequirement[]> {
+    return this.data.requiredDocuments;
   }
 }

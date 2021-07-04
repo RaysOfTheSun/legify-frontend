@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'legify-web-nftf-status-panel',
@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status-panel.component.scss']
 })
 export class StatusPanelComponent implements OnInit {
+  // TODO: implement eApplicationLink status previews
+  @Input() eApplicationLinks: any[];
 
-  constructor() { }
+  @Output() hanldeSendLinkClick: EventEmitter<any[]> = new EventEmitter();
 
-  ngOnInit(): void {
+  constructor() {}
+
+  ngOnInit(): void {}
+
+  public publishHandleSendLinkClick($event: Event): void {
+    $event.stopPropagation();
+    ($event.target as HTMLButtonElement).blur();
+    this.hanldeSendLinkClick.emit(this.eApplicationLinks);
   }
-
 }

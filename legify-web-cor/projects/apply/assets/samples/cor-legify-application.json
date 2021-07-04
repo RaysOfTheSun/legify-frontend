@@ -17,6 +17,11 @@
         "height": "123"
       },
       "dateOfBirth": "2021-06-23T15:50:22.138Z"
+    },
+    "identificationInfo": {
+      "type": "PASSPORT",
+      "issueDate": "2021-07-04T06:33:54.431Z",
+      "expiryDate": "2030-03-19T16:00:00.000Z"
     }
   },
   "insured": {
@@ -35,6 +40,11 @@
         "height": "123"
       },
       "dateOfBirth": "2021-06-23T15:50:22.138Z"
+    },
+    "identificationInfo": {
+      "type": "PASSPORT",
+      "issueDate": "2021-07-04T06:33:54.431Z",
+      "expiryDate": "2030-03-19T16:00:00.000Z"
     }
   },
   "dependents": [
@@ -54,7 +64,16 @@
           "height": "123"
         },
         "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      },
+      "identificationInfo": {
+        "type": "PASSPORT",
+        "issueDate": "2021-07-04T06:33:54.431Z",
+        "expiryDate": "2030-03-19T16:00:00.000Z"
       }
     }
-  ]
+  ],
+  "paymentInfo": {
+    "method": "ONLINE",
+    "transactionId": ""
+  }
 }
