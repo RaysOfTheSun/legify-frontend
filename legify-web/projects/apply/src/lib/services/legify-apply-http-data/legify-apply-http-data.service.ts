@@ -6,16 +6,14 @@ import { ApplyConfig, LegifyApplication } from '../../models';
 import { LegifyApplyConfigService } from '../legify-apply-config/legify-apply-config.service';
 
 @Injectable()
-export class LegifyApplyHttpDataService {
+export class LegifyApplyHttpDataService<A = LegifyApplication> {
   constructor(
     protected httpClient: HttpClient,
     protected applyConfigService: LegifyApplyConfigService
   ) {}
 
-  public getLegifyApplication(
-    applicationId: string
-  ): Observable<LegifyApplication> {
-    return this.httpClient.get<LegifyApplication>(applicationId).pipe(take(1));
+  public getLegifyApplication(applicationId: string): Observable<A> {
+    return this.httpClient.get<A>(applicationId).pipe(take(1));
   }
 
   public getApplyConfig(): Observable<ApplyConfig> {

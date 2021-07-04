@@ -66,6 +66,20 @@
         "maximumUploads": 4,
         "minimumUploads": 2,
         "forRoles": ["IO", "PO"]
+      },
+      {
+        "documentType": "CUSTOMER_SELFIE",
+        "documentGroup": "CUSTOMER_SELFIES",
+        "minimumUploads": 1,
+        "maximumUploads": 1,
+        "forRoles": ["PI"]
+      },
+      {
+        "documentType": "CUSTOMER_SELFIE_WITH_VIDEO",
+        "documentGroup": "CUSTOMER_SELFIES",
+        "minimumUploads": 2,
+        "maximumUploads": 2,
+        "forRoles": ["IO", "PO"]
       }
     ]
   }

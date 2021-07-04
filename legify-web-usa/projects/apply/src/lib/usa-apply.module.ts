@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { UsaApplyComponent } from './usa-apply.component';
 import { LegifyApplyModule } from '@legify/web-apply';
 import { RouterModule } from '@angular/router';
-import { LegifyApplyConfigService } from '@legify/web-apply';
-import { UsaApplyConfigService } from './services';
+import {
+  LegifyApplyConfigService,
+  LegifyApplyService
+} from '@legify/web-apply';
+import { UsaApplyConfigService, UsaApplyService } from './services';
 
 @NgModule({
   declarations: [UsaApplyComponent],
@@ -16,6 +19,7 @@ export class UsaApplyModule {
     return {
       ngModule: UsaApplyModule,
       providers: [
+        { provide: LegifyApplyService, useClass: UsaApplyService },
         {
           provide: LegifyApplyConfigService,
           useClass: UsaApplyConfigService

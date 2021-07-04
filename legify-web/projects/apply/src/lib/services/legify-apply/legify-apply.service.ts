@@ -7,22 +7,24 @@ import { LegifyApplication, Person } from '../../models';
 import { LegifyApplyHttpDataService } from '../legify-apply-http-data/legify-apply-http-data.service';
 
 @Injectable()
-export class LegifyApplyService {
-  protected readonly currentApplicationSubj: BehaviorSubject<LegifyApplication> =
+export class LegifyApplyService<
+  A extends LegifyApplication = LegifyApplication
+> {
+  protected readonly currentApplicationSubj: BehaviorSubject<A> =
     new BehaviorSubject(null);
 
   constructor(
     protected applyConfigService: LegifyApplyConfigService,
-    protected applyHttpDataService: LegifyApplyHttpDataService
+    protected applyHttpDataService: LegifyApplyHttpDataService<A>
   ) {
     this.applyHttpDataService.getApplyConfig().pipe(take(1)).subscribe();
   }
 
-  get currApplication$(): Observable<LegifyApplication> {
+  get currApplication$(): Observable<A> {
     return this.currentApplicationSubj.asObservable();
   }
 
-  public getApplication(applicationId: string): Observable<LegifyApplication> {
+  public getApplication(applicationId: string): Observable<A> {
     return this.applyHttpDataService.getLegifyApplication(applicationId);
   }
 
