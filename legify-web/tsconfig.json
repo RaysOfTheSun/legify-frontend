@@ -36,6 +36,10 @@
       "nftf": [
         "dist/nftf/nftf",
         "dist/nftf"
+      ],
+      "i18n": [
+        "dist/i18n/i18n",
+        "dist/i18n"
       ]
     }
   }

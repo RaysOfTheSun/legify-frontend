@@ -7,9 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import {
   CoreModule,
-  AppConfigurer,
   webAppConfigurer,
-  MARKET_ROUTER_CONFIG_MAP
+  MARKET_ROUTER_CONFIG_MAP,
+  WEB_APP_CONFIGURER_DEPS
 } from '@legify/web-core';
 import { marketRouterConfigMap } from './router-configs/market-router-config-map';
 
@@ -30,7 +30,7 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
     {
       provide: APP_INITIALIZER,
       useFactory: webAppConfigurer,
-      deps: [AppConfigurer],
+      deps: WEB_APP_CONFIGURER_DEPS,
       multi: true
     }
   ],

@@ -12,10 +12,11 @@ import {
   HasSelectedApplicationGuard
 } from './app';
 import { APP_CONFIGURER_DEPENDENCIES } from './configurer';
+import { LegifyI18nModule } from '@legify/web-i18n';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule]
+  imports: [CommonModule, LegifyI18nModule]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() coreModule?: CoreModule) {

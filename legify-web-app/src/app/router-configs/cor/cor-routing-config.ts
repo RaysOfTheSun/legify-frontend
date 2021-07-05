@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 import { HasSelectedApplicationGuard } from '@legify/web-core';
+import { TranslationGuard } from 'src/app/guards/translation.guard';
+import { ApplyTranslationGuard } from 'src/app/modules/apply/guards/apply-translation.guard';
 
 export const corRouterConfig: Routes = [
   {
@@ -16,6 +18,7 @@ export const corRouterConfig: Routes = [
     loadChildren: () =>
       import('../../modules/auth/auth-cor/auth-cor.module').then(
         (m) => m.AuthCorModule
-      )
+      ),
+    canActivate: [ApplyTranslationGuard]
   }
 ];

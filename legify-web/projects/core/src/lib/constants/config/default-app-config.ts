@@ -24,5 +24,9 @@ export const DEFAULT_LEGIFY_APP_CONFIG: AppConfig = {
     nftf: {
       enabled: false
     }
+  },
+  i18nConfig: {
+    configPath: '',
+    useI18n: true
   }
 };
