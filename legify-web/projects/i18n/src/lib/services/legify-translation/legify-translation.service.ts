@@ -17,19 +17,7 @@ export class LegifyTranslationService {
     protected i18nHttpDataService: LegifyI18nHttpDataService,
     protected legifyI18nConfigService: LegifyI18nConfigService,
     protected legifyTranslationDataService: LegifyTranslationDataBuilderService
-  ) {
-    interval(5000)
-      .pipe(
-        tap(() => {
-          const locale: L10nLocale =
-            this.translationService.getLocale().language === 'vi-VN'
-              ? { language: 'en-US' }
-              : { language: 'vi-VN' };
-          this.translationService.setLocale(locale);
-        })
-      )
-      .subscribe();
-  }
+  ) {}
 
   public loadTranslationData(
     pathToTranslationData: string,
