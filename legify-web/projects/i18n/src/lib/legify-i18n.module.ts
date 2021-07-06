@@ -14,6 +14,7 @@ import {
   LegifyTranslationService
 } from './services';
 import { LegifyI18nConfigurer } from './configurer';
+import { LegifyTranslationLoaderGuard } from './guards/legify-translation-loader/legify-translation-loader.guard';
 
 @NgModule({
   declarations: [],
@@ -35,6 +36,7 @@ export class LegifyI18nModule {
         LegifyI18nConfigService,
         LegifyTranslationService,
         LegifyI18nHttpDataService,
+        LegifyTranslationLoaderGuard,
         LegifyTranslationDataBuilderService
       ]
     };

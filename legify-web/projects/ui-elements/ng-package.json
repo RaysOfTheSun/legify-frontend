@@ -5,7 +5,10 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "lodash-es": "lodashEs",
-      "ngx-avatar": "ngxAvatar"
+      "ngx-avatar": "ngxAvatar",
+      "@legify/web-core": "legifyWebCore",
+      "@legify/web-i18n": "legifyWebi18n",
+      "angular-l10n": "angularL10n"
     }
   },
   "assets": ["./assets"]

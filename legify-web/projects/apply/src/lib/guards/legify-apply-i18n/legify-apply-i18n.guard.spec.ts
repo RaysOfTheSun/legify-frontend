@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { TranslationGuard } from './translation.guard';
+import { LegifyApplyI18nGuard } from './legify-apply-i18n.guard';
 
-describe('TranslationGuard', () => {
-  let guard: TranslationGuard;
+describe('LegifyApplyI18nGuard', () => {
+  let guard: LegifyApplyI18nGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(TranslationGuard);
+    guard = TestBed.inject(LegifyApplyI18nGuard);
   });
 
   it('should be created', () => {

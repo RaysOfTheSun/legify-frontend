@@ -2,6 +2,8 @@
  * Public API Surface of i18n
  */
 
+export * from './lib/utils';
+export * from './lib/guards';
 export * from './lib/models';
 export * from './lib/services';
 export * from './lib/configurer';

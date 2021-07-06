@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { L10nLocale, L10nTranslationService } from 'angular-l10n';
-import { forkJoin, interval, Observable, of } from 'rxjs';
+import { AppConfigService } from '@legify/web-core';
+import { forkJoin, interval, Observable } from 'rxjs';
 import { concatMap, tap } from 'rxjs/operators';
 import { LOCALE_LANGUAGE_KEY } from '../../constants';
 import { LegifyTranslationMap } from '../../models/legify-translation-map';
@@ -11,6 +12,7 @@ import { LegifyTranslationDataBuilderService } from '../legify-translation-data-
 @Injectable()
 export class LegifyTranslationService {
   constructor(
+    protected appConfigService: AppConfigService,
     protected translationService: L10nTranslationService,
     protected i18nHttpDataService: LegifyI18nHttpDataService,
     protected legifyI18nConfigService: LegifyI18nConfigService,
@@ -30,10 +32,15 @@ export class LegifyTranslationService {
   }
 
   public loadTranslationData(
-    pathToTranslationData: string
+    pathToTranslationData: string,
+    appendCurrAppMarket = true
   ): Observable<Record<string, string>[]> {
+    const finalPathToTranslation = appendCurrAppMarket
+      ? `${pathToTranslationData}-${this.appConfigService.currMarket.toUpperCase()}`
+      : pathToTranslationData;
+
     return this.i18nHttpDataService
-      .getTranslationData(pathToTranslationData)
+      .getTranslationData(finalPathToTranslation)
       .pipe(
         concatMap((translationMap) =>
           this.registerTranslationData(translationMap)
@@ -72,5 +79,12 @@ export class LegifyTranslationService {
     );
 
     return forkJoin(localRegistrations$);
+  }
+
+  public translate<P = Record<string, string>>(
+    textId: string,
+    translationProps: P
+  ): string {
+    return this.translationService.translate(textId, translationProps);
   }
 }

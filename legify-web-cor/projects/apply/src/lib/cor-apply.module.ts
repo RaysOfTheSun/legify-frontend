@@ -7,7 +7,8 @@ import {
   LegifyApplyModule,
   LegifyApplyConfigService,
   LegifyApplyService,
-  LegifyApplyDataService
+  LegifyApplyDataService,
+  LegifyApplyI18nGuard
 } from '@legify/web-apply';
 import { RouterModule } from '@angular/router';
 import { CorApplyConfigService, CorApplyService } from '../lib/services';

@@ -17,6 +17,7 @@ import {
   WEB_APP_I18N_CONFIGURER_DEPS
 } from '@legify/web-i18n';
 import { marketRouterConfigMap } from './router-configs/market-router-config-map';
+import { LegifyApplyI18nGuard } from '@legify/web-apply';
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,7 +45,8 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
       useFactory: webAppI18nConfigurer,
       deps: WEB_APP_I18N_CONFIGURER_DEPS,
       multi: true
-    }
+    },
+    LegifyApplyI18nGuard
   ],
   bootstrap: [AppComponent]
 })

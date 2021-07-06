@@ -40,6 +40,10 @@
       "i18n": [
         "dist/i18n/i18n",
         "dist/i18n"
+      ],
+      "i18n-elements": [
+        "dist/i18n-elements/i18n-elements",
+        "dist/i18n-elements"
       ]
     }
   }
