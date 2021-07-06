@@ -4,6 +4,7 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot
 } from '@angular/router';
+import { TranslationLoaderData } from '../../models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LegifyTranslationService } from '../../services';
@@ -16,10 +17,14 @@ export class LegifyTranslationLoaderGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     _: RouterStateSnapshot
   ): Observable<boolean> {
-    const pathToTranslationData = route.data.translationDataPath;
+    const translationLoaderData = route.data as TranslationLoaderData;
 
     return this.translationService
-      .loadTranslationData(pathToTranslationData)
+      .loadTranslationData(
+        translationLoaderData.translationDataPath,
+        translationLoaderData?.customMarket,
+        translationLoaderData?.appendCurrMarket
+      )
       .pipe(map((translationData) => !!translationData));
   }
 }

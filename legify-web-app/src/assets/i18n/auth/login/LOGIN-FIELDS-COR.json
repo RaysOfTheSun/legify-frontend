@@ -2,5 +2,17 @@
   "WELCOME_CAPTION": {
     "en": "Welcome",
     "vi": "Whào mừng"
+  },
+  "USERNAME_CAPTION": {
+    "en": "username"
+  },
+  "PASSWORD_CAPTION": {
+    "en": "password"
+  },
+  "LOGIN_CAPTION": {
+    "en": "LOGIN"
+  },
+  "INVALID_CREDENTIALS_CAPTION": {
+    "en": "Invalid username or password"
   }
 }
