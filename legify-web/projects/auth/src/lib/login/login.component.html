@@ -1,10 +1,17 @@
 <legify-web-auth-shell [footerItems]="footerItems$ | async">
   <div class="login">
-    <p class="login__header-text">{{ loginGreetingText }}</p>
+    <legify-web-i18n-translatable-text
+      class="login__header-text"
+      translatableTextId="WELCOME_CAPTION"
+    ></legify-web-i18n-translatable-text>
     <div class="login__field-container">
       <form [formGroup]="authFormGroup" class="login__form">
         <mat-form-field appearance="outline">
-          <mat-label>username</mat-label>
+          <mat-label>
+            <legify-web-i18n-translatable-text
+              translatableTextId="USERNAME_CAPTION"
+            ></legify-web-i18n-translatable-text>
+          </mat-label>
           <input
             matInput
             [placeholder]="usernameFieldPlaceholder"
@@ -12,18 +19,21 @@
           />
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>password</mat-label>
+          <mat-label>
+            <legify-web-i18n-translatable-text
+              translatableTextId="PASSWORD_CAPTION"
+            ></legify-web-i18n-translatable-text
+          ></mat-label>
           <input matInput type="password" formControlName="password" />
         </mat-form-field>
       </form>
-      <p
+      <legify-web-i18n-translatable-text
         class="login__error-text"
         [ngClass]="{
           'login__error-text--shown': showError$ | async
         }"
-      >
-        Invalid username or password
-      </p>
+        translatableTextId="INVALID_CREDENTIALS_CAPTION"
+      ></legify-web-i18n-translatable-text>
 
       <button
         mat-flat-button
@@ -31,7 +41,9 @@
         class="login__submit-button"
         (click)="doLogin()"
       >
-        Login
+        <legify-web-i18n-translatable-text
+          translatableTextId="LOGIN_CAPTION"
+        ></legify-web-i18n-translatable-text>
       </button>
     </div>
   </div>
