@@ -7,12 +7,7 @@ import {
   LEGIFY_FEATURE,
   LEGIFY_MARKET
 } from '../../../constants';
-import {
-  AppConfig,
-  FeatureConfig,
-  LegifyI18nConfig,
-  UiElementsConfig
-} from '../../models';
+import { AppConfig, FeatureConfig, UiElementsConfig } from '../../models';
 
 @Injectable()
 export class AppConfigService {
@@ -43,10 +38,6 @@ export class AppConfigService {
       autoFocus: false,
       restoreFocus: false
     };
-  }
-
-  get i18nConfig(): LegifyI18nConfig {
-    return this.appConfig.i18nConfig;
   }
 
   public setAppConfig(appConfig: AppConfig): void {

@@ -23,7 +23,7 @@ export class ApplyTranslationGuard implements CanActivate {
   // in legify/web-i18n
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     return this.translationService
-      .loadTranslationData('assets/i18n/AUTH_LOGIN_COR.json')
+      .loadTranslationData('AUTH_LOGIN_COR')
       .pipe(map((d) => !!d));
   }
 }

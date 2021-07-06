@@ -1,18 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { forkJoin, interval, Observable, of } from 'rxjs';
-import { catchError, concatMap, tap } from 'rxjs/operators';
+import { concatMap, tap } from 'rxjs/operators';
 import { LOCALE_LANGUAGE_KEY } from '../../constants';
 import { LegifyTranslationMap } from '../../models/legify-translation-map';
 import { LegifyI18nConfigService } from '../legify-i18n-config/legify-i18n-config.service';
+import { LegifyI18nHttpDataService } from '../legify-i18n-http-data/legify-i18n-http-data.service';
 import { LegifyTranslationDataBuilderService } from '../legify-translation-data-builder/legify-translation-data-builder.service';
 
 @Injectable()
 export class LegifyTranslationService {
   constructor(
-    protected httpClient: HttpClient,
     protected translationService: L10nTranslationService,
+    protected i18nHttpDataService: LegifyI18nHttpDataService,
     protected legifyI18nConfigService: LegifyI18nConfigService,
     protected legifyTranslationDataService: LegifyTranslationDataBuilderService
   ) {
@@ -31,14 +31,13 @@ export class LegifyTranslationService {
 
   public loadTranslationData(
     pathToTranslationData: string
-  ): Observable<Record<string, string>> {
-    return this.httpClient
-      .get<LegifyTranslationMap>(pathToTranslationData)
+  ): Observable<Record<string, string>[]> {
+    return this.i18nHttpDataService
+      .getTranslationData(pathToTranslationData)
       .pipe(
-        concatMap((translationData) =>
-          this.registerTranslationData(translationData)
-        ),
-        catchError((_) => of(null))
+        concatMap((translationMap) =>
+          this.registerTranslationData(translationMap)
+        )
       );
   }
 

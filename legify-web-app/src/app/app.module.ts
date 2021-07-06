@@ -11,6 +11,11 @@ import {
   MARKET_ROUTER_CONFIG_MAP,
   WEB_APP_CONFIGURER_DEPS
 } from '@legify/web-core';
+import {
+  LegifyI18nModule,
+  webAppI18nConfigurer,
+  WEB_APP_I18N_CONFIGURER_DEPS
+} from '@legify/web-i18n';
 import { marketRouterConfigMap } from './router-configs/market-router-config-map';
 
 @NgModule({
@@ -20,7 +25,8 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    LegifyI18nModule.forRoot()
   ],
   providers: [
     {
@@ -31,6 +37,12 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
       provide: APP_INITIALIZER,
       useFactory: webAppConfigurer,
       deps: WEB_APP_CONFIGURER_DEPS,
+      multi: true
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: webAppI18nConfigurer,
+      deps: WEB_APP_I18N_CONFIGURER_DEPS,
       multi: true
     }
   ],

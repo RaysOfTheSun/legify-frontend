@@ -14,7 +14,6 @@ export class LegifyI18nConfigService {
   }
 
   get languageKeys(): string[] {
-    console.log(Object.values(LOCALE_LANGUAGE_KEY));
     return Object.values(LOCALE_LANGUAGE_KEY);
   }
 }

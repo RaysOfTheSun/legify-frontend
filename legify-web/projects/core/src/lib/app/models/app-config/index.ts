@@ -1,4 +1,3 @@
-export * from './i18n';
 export * from './app-config';
 export * from './app-logo-config';
 export * from './app-origin-config';
