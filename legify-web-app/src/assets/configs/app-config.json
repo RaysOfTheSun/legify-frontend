@@ -34,5 +34,14 @@
     "nftf": {
       "enabled": false
     }
+  },
+  "i18nConfig": {
+    "useI18n": true,
+    "configPath": "assets/i18n/i18n-config.json"
+  },
+  "schemas": [{ "locale": { "language": "en-US" } }],
+  "localLanguages": {
+    "en": "en-US",
+    "vi": "vi-VN"
   }
 }

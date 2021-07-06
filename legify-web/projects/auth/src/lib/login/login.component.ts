@@ -4,6 +4,7 @@ import { LegifyLoginService } from './services';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { take, withLatestFrom } from 'rxjs/operators';
 import { AuthShellFooterItem } from '@legify/web-ui-elements';
+import { L10nTranslationService } from 'angular-l10n';
 
 @Component({
   selector: 'legify-web-login',
@@ -25,11 +26,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     protected formBuilder: FormBuilder,
+    protected translationService: L10nTranslationService,
     protected legifyLoginService: LegifyLoginService
   ) {}
 
   get loginGreetingText(): string {
-    return this.greetingText || 'Welcome';
+    return (
+      this.greetingText || this.translationService.translate('WELCOME_CAPTION')
+    );
   }
 
   get footerItems$(): Observable<AuthShellFooterItem[]> {

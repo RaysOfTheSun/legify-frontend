@@ -79,7 +79,7 @@ export class LegifyApplyDocumentsService {
         return persons.map((person, i) => {
           return {
             headerText: this.applyPersonMapperService.getPersonName(person),
-            subHeaderText: `Person No.${i}`,
+            subHeaderText: `PERSON_${person.role}`,
             highlightColorKey: get(person, 'role'),
             rows: taskCardRowConfigs
           } as TaskCardConfig;

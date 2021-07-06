@@ -12,6 +12,7 @@ import {
   HasSelectedApplicationGuard
 } from './app';
 import { APP_CONFIGURER_DEPENDENCIES } from './configurer';
+import { APPLY_ROUTING_CONFIG } from './constants';
 
 @NgModule({
   declarations: [],
@@ -31,7 +32,7 @@ export class CoreModule {
         MatIconRegistry,
         AppEventService,
         AppConfigService,
-        HasSelectedApplicationGuard,
+        ...APPLY_ROUTING_CONFIG.guards,
         ...APP_CONFIGURER_DEPENDENCIES
       ]
     };

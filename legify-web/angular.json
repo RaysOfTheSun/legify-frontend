@@ -154,6 +154,82 @@
           }
         }
       }
+    },
+    "i18n": {
+      "projectType": "library",
+      "root": "projects/i18n",
+      "sourceRoot": "projects/i18n/src",
+      "prefix": "legify-web-i18n",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/i18n/tsconfig.lib.json",
+            "project": "projects/i18n/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/i18n/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/i18n/src/test.ts",
+            "tsConfig": "projects/i18n/tsconfig.spec.json",
+            "karmaConfig": "projects/i18n/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/i18n/tsconfig.lib.json",
+              "projects/i18n/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "i18n-elements": {
+      "projectType": "library",
+      "root": "projects/i18n-elements",
+      "sourceRoot": "projects/i18n-elements/src",
+      "prefix": "legify-web-i18n",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/i18n-elements/tsconfig.lib.json",
+            "project": "projects/i18n-elements/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/i18n-elements/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/i18n-elements/src/test.ts",
+            "tsConfig": "projects/i18n-elements/tsconfig.spec.json",
+            "karmaConfig": "projects/i18n-elements/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/i18n-elements/tsconfig.lib.json",
+              "projects/i18n-elements/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "core",

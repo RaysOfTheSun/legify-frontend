@@ -1,4 +1,4 @@
-import { Injectable, Optional, SkipSelf } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { MarketSessionMapper } from '../../../utilities';
 import { BehaviorSubject } from 'rxjs';
