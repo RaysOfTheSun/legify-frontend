@@ -1,0 +1,12 @@
+<div class="document-uploader-preview" (click)="publishPreviewEvent($event)">
+  <div class="document-uploader-preview__delete-container">
+    <button
+      mat-icon-button
+      class="document-uploader-preview__delete-btn"
+      (click)="publishDeleteEvent($event)"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+  <img [src]="src" class="document-uploader-preview__preview--image" />
+</div>

@@ -12,25 +12,30 @@ import {
 import { DocumentUploadModalComponent } from './components/document-upload-modal/document-upload-modal.component';
 import {
   LegifyApplyDocumentsService,
-  LegifyApplyDocumentsConfigService
+  LegifyApplyDocumentsConfigService,
+  LegifyApplyDocumentsDocumentMapperService
 } from './services';
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentUploadUploaderComponent } from './components/document-upload-uploader/document-upload-uploader.component';
 import { DocumentUploadUploaderGroupComponent } from './components/document-upload-uploader-group/document-upload-uploader-group.component';
 import { TranslatableTextModule } from '@legify/web-i18n-elements';
+import { DocumentUploadUploaderPreviewComponent } from './components/document-upload-uploader-preview/document-upload-uploader-preview.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     ApplyDocumentsComponent,
     DocumentUploadModalComponent,
     DocumentUploadUploaderComponent,
-    DocumentUploadUploaderGroupComponent
+    DocumentUploadUploaderGroupComponent,
+    DocumentUploadUploaderPreviewComponent
   ],
   imports: [
     CommonModule,
     MatIconModule,
-    LegifyButtonModule,
+    MatButtonModule,
     LegifyModalModule,
+    LegifyButtonModule,
     LegifyTaskCardModule,
     TranslatableTextModule,
     LegifyTaskCardCollectionModule,
@@ -41,6 +46,10 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
     ApplyDocumentsComponent,
     DocumentUploadUploaderComponent
   ],
-  providers: [LegifyApplyDocumentsService, LegifyApplyDocumentsConfigService]
+  providers: [
+    LegifyApplyDocumentsService,
+    LegifyApplyDocumentsConfigService,
+    LegifyApplyDocumentsDocumentMapperService
+  ]
 })
 export class LegifyApplyDocumentsModule {}

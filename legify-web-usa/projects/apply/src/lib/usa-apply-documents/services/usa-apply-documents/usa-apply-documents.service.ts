@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { UsaLegifyApplication } from '../../../models/application/legify-usa-application';
 import { USA_SUPPORTING_DOC_TYPE_GROUP } from '../../constants';
+import { LegifyApplyDocumentsDocumentMapperService } from '@legify/web-apply';
 
 @Injectable()
 export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
@@ -19,11 +20,13 @@ export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
     protected applyService: LegifyApplyService<UsaLegifyApplication>,
     protected applyDataService: LegifyApplyDataService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
-    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
+    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService,
+    protected applyDocumentsDocumentMapperService: LegifyApplyDocumentsDocumentMapperService
   ) {
     super(
       applyService,
       applyDataService,
+      applyDocumentsDocumentMapperService,
       applyPersonMapperService,
       applyDocumentsConfigService
     );

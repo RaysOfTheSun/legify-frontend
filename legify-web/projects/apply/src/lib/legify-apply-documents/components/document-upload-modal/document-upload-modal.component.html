@@ -1,13 +1,17 @@
 <legify-web-modal-shell
   headerText="MODAL_OWNER"
-  [headerTextTranslationProps]="{ modalOwner: modalOwner }"
+  [headerTextTranslationProps]="{ modalOwner: modalOwnerName }"
 >
   <div class="upload-document-modal">
     <div class="upload-document-modal__reminders"></div>
     <div class="upload-document-modal__uploaders">
       <legify-web-document-upload-uploader-group
         *ngFor="let requiredDoc of requiredDocuments | async"
+        [items]="getDocumentsByDocGroupAndType(modalOwner, requiredDoc) | async"
+        [groupOwner]="modalOwner"
         [documentMeta]="requiredDoc"
+        (handleFileUpload)="handleFileUpload($event)"
+        (handleFileDelete)="handleFileDelete($event)"
       ></legify-web-document-upload-uploader-group>
       <legify-web-button
         staticText="Continue"
