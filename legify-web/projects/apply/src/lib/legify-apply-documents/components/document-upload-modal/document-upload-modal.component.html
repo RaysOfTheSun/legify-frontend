@@ -1,4 +1,7 @@
-<legify-web-modal-shell [headerText]="modalOwner">
+<legify-web-modal-shell
+  headerText="MODAL_OWNER"
+  [headerTextTranslationProps]="{ modalOwner: modalOwner }"
+>
   <div class="upload-document-modal">
     <div class="upload-document-modal__reminders"></div>
     <div class="upload-document-modal__uploaders">

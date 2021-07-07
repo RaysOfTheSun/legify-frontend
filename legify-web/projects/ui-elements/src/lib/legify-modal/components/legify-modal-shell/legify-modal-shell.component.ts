@@ -8,6 +8,7 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 export class LegifyModalShellComponent implements OnInit {
   @Input() headerText: string;
   @Input() headerTemplate: TemplateRef<any>;
+  @Input() headerTextTranslationProps: Record<string, string> = {};
 
   @Input() footerTemplate: TemplateRef<any>;
 

@@ -19,9 +19,7 @@ export class DocumentUploadModalComponent implements OnInit {
   ngOnInit(): void {}
 
   get modalOwner(): string {
-    return `${this.legifyApplyPersonMapper.getPersonName(
-      this.data.person
-    )}'s Documents`;
+    return this.legifyApplyPersonMapper.getPersonName(this.data.person);
   }
 
   get requiredDocuments(): Observable<LegifyDocumentRequirement[]> {

@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UsaApplyComponent } from '@legify-usa/web-apply';
+import {
+  LegifyTranslationLoaderGuard,
+  makeTranslationLoaderData
+} from '@legify/web-i18n';
+import { LEGIFY_MARKET } from '@legify/web-core';
 
 const routes: Routes = [
   {
@@ -12,7 +17,9 @@ const routes: Routes = [
         loadChildren: () =>
           import('@legify-usa/web-apply').then((m) => m.UsaApplyDocumentsModule)
       }
-    ]
+    ],
+    canActivate: [LegifyTranslationLoaderGuard],
+    data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
   }
 ];
 

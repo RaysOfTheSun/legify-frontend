@@ -17,6 +17,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentUploadUploaderComponent } from './components/document-upload-uploader/document-upload-uploader.component';
 import { DocumentUploadUploaderGroupComponent } from './components/document-upload-uploader-group/document-upload-uploader-group.component';
+import { TranslatableTextModule } from '@legify/web-i18n-elements';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { DocumentUploadUploaderGroupComponent } from './components/document-uplo
     LegifyButtonModule,
     LegifyModalModule,
     LegifyTaskCardModule,
+    TranslatableTextModule,
     LegifyTaskCardCollectionModule,
     LegifyApplyDocumentsRoutingModule
   ],

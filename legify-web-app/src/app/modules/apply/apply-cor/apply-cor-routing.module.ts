@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CorApplyComponent } from '@legify-cor/web-apply';
+import {
+  LegifyTranslationLoaderGuard,
+  makeTranslationLoaderData
+} from '@legify/web-i18n';
 
 const routes: Routes = [
   {
@@ -10,7 +14,11 @@ const routes: Routes = [
       {
         path: 'documents',
         loadChildren: () =>
-          import('@legify-cor/web-apply').then((m) => m.CorApplyDocumentsModule)
+          import('@legify-cor/web-apply').then(
+            (m) => m.CorApplyDocumentsModule
+          ),
+        canActivate: [LegifyTranslationLoaderGuard],
+        data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
       }
     ]
   }

@@ -1,0 +1,14 @@
+{
+  "MODAL_OWNER_CAPTION": {
+    "en": "{{modalOwner}}'s Documents"
+  },
+  "RECEIPT_CAPTION": {
+    "en": "Payment Receipt"
+  },
+  "IDENTIFICATION_CAPTION": {
+    "en": "Identification Documents"
+  },
+  "CUSTOMER_SELFIES_CAPTION": {
+    "en": "Customer Selfies"
+  }
+}

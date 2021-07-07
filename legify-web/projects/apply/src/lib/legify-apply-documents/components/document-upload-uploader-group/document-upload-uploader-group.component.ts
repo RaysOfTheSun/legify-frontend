@@ -1,18 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LegifyDocumentRequirement } from '../../../models';
+import { LegifyDocument } from '../../models/legify-document';
 
 @Component({
   selector: 'legify-web-document-upload-uploader-group',
   templateUrl: './document-upload-uploader-group.component.html',
   styleUrls: ['./document-upload-uploader-group.component.scss']
 })
-export class DocumentUploadUploaderGroupComponent implements OnInit {
+export class DocumentUploadUploaderGroupComponent {
   @Input() documentMeta: LegifyDocumentRequirement;
-  public placeHolders = [];
+  @Input() items: LegifyDocument[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.placeHolders = Array(this.documentMeta.maximumUploads).fill(0);
+  get isAtMaximumUploads() {
+    return this.items.length >= this.documentMeta.maximumUploads;
   }
 }

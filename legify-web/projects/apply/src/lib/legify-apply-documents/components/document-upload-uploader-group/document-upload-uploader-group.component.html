@@ -1,10 +1,11 @@
 <div class="document-upload-uploader-group">
-  <p class="document-upload-uploader-group__header">
-    {{ documentMeta.documentGroup }}
-  </p>
+  <legify-web-i18n-translatable-text
+    class="document-upload-uploader-group__header"
+    [translatableTextId]="documentMeta.documentGroup | translatableText"
+  ></legify-web-i18n-translatable-text>
   <div class="document-upload-uploader-group__uploaders">
     <legify-web-document-upload-uploader
-      *ngFor="let placeholder of placeHolders"
+      *ngIf="!isAtMaximumUploads"
     ></legify-web-document-upload-uploader>
   </div>
 </div>

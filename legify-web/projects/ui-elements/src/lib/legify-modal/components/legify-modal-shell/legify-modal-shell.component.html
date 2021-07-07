@@ -12,5 +12,9 @@
 </div>
 
 <ng-template #defaultHeaderTemplate>
-  <h3 class="legify-modal__header-text">{{ headerText }}</h3>
+  <legify-web-i18n-translatable-text
+    class="legify-modal__header-text"
+    [translatableTextId]="headerText | translatableText"
+    [translationProps]="headerTextTranslationProps"
+  ></legify-web-i18n-translatable-text>
 </ng-template>
