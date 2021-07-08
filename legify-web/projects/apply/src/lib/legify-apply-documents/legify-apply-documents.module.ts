@@ -21,6 +21,8 @@ import { DocumentUploadUploaderGroupComponent } from './components/document-uplo
 import { TranslatableTextModule } from '@legify/web-i18n-elements';
 import { DocumentUploadUploaderPreviewComponent } from './components/document-upload-uploader-preview/document-upload-uploader-preview.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DocumentUploadPreviewModalComponent } from './components/document-upload-preview-modal/document-upload-preview-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -28,12 +30,14 @@ import { MatButtonModule } from '@angular/material/button';
     DocumentUploadModalComponent,
     DocumentUploadUploaderComponent,
     DocumentUploadUploaderGroupComponent,
-    DocumentUploadUploaderPreviewComponent
+    DocumentUploadUploaderPreviewComponent,
+    DocumentUploadPreviewModalComponent
   ],
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
     LegifyModalModule,
     LegifyButtonModule,
     LegifyTaskCardModule,

@@ -3,6 +3,7 @@ import { PERSON_ROLE } from '../../constants';
 export interface LegifyDocument {
   file?: string;
   ownerId: string;
+  fileType: string;
   forRole: PERSON_ROLE;
   filename: string;
   readonly?: boolean;

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Person } from '../../../models';
 import { LegifyDocumentRequirement } from '../../../models';
-import { DocumentUploadEvent } from '../../models';
+import { DocumentPreviewEvent, DocumentUploadEvent } from '../../models';
 import { LegifyDocument } from '../../models/legify-document';
 
 @Component({
@@ -23,7 +23,7 @@ export class DocumentUploadUploaderGroupComponent {
 
   @Output() handleFileUpload: EventEmitter<DocumentUploadEvent> =
     new EventEmitter();
-  @Output() handleFilePreview: EventEmitter<LegifyDocument> =
+  @Output() handleFilePreview: EventEmitter<DocumentPreviewEvent> =
     new EventEmitter();
   @Output() handleFileDelete: EventEmitter<LegifyDocument> = new EventEmitter();
 
@@ -32,7 +32,7 @@ export class DocumentUploadUploaderGroupComponent {
 
   constructor() {}
 
-  get isAtMaximumUploads() {
+  get isAtMaximumUploads(): boolean {
     return this.items.length >= this.documentMeta.maximumUploads;
   }
 
@@ -54,6 +54,10 @@ export class DocumentUploadUploaderGroupComponent {
   }
 
   public publishFilePreviewEvent(legifyDocument: LegifyDocument): void {
-    this.handleFilePreview.emit(legifyDocument);
+    this.handleFilePreview.emit({
+      document: legifyDocument,
+      documentOwner: this.groupOwner,
+      documentRequirement: this.documentMeta
+    });
   }
 }
