@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TaskCardConfig } from '@legify/web-ui-elements';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { map, take, withLatestFrom } from 'rxjs/operators';
+import { concatMap, map, take, withLatestFrom } from 'rxjs/operators';
 import {
   LegifyDocumentRequirement,
   LegifyDocumentRequirementConfig,
@@ -16,7 +16,11 @@ import { LegifyApplyDocumentsConfigService } from '../legify-apply-documents-con
 import { get } from 'lodash-es';
 import { APPLICATION_PAYMENT_METHOD } from '../../../constants/application-payment-info-method-eum';
 import { SUPPORTING_DOC_TYPE } from '../../constants';
-import { DocumentUploadEvent, LegifyDocument } from '../../models';
+import {
+  DocumentPreviewActionEvent,
+  DocumentUploadEvent,
+  LegifyDocument
+} from '../../models';
 import { LegifyApplyDocumentsDocumentMapperService } from '../legify-apply-documents-document-mapper/legify-apply-documents-document-mapper.service';
 
 @Injectable()
@@ -108,6 +112,31 @@ export class LegifyApplyDocumentsService {
       .subscribe(([legifyDocument, allDocuments]) => {
         const updatedAllDocuments = [...allDocuments];
         updatedAllDocuments.push(legifyDocument);
+
+        this.allDocumentsSubj.next(updatedAllDocuments);
+      });
+  }
+
+  public reuploadFile(
+    replacementFile: File,
+    documentOwner: Person,
+    documentToReplace: LegifyDocument,
+    documentRequirement: LegifyDocumentRequirement
+  ): void {
+    this.documentMapperService
+      .convertRawFileToLegifyDocument(
+        replacementFile,
+        documentOwner,
+        documentRequirement
+      )
+      .pipe(take(1), withLatestFrom(this.allDocuments$))
+      .subscribe(([legifyDocument, allDocuments]) => {
+        const indexOfDocToReplace = allDocuments.findIndex(
+          (doc) => doc.documentId === documentToReplace.documentId
+        );
+
+        const updatedAllDocuments = [...allDocuments];
+        updatedAllDocuments.splice(indexOfDocToReplace, 1, legifyDocument);
 
         this.allDocumentsSubj.next(updatedAllDocuments);
       });
