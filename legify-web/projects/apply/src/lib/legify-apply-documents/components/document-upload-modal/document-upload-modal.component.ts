@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AppConfigService } from '@legify/web-core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { LegifyDocumentRequirement, Person } from '../../../models';
@@ -10,6 +11,7 @@ import {
   LegifyDocument
 } from '../../models';
 import { LegifyApplyDocumentsService } from '../../services';
+import { DocumentUploadPreviewModalComponent } from '../document-upload-preview-modal/document-upload-preview-modal.component';
 
 @Component({
   selector: 'legify-web-document-upload-modal',
@@ -19,6 +21,8 @@ import { LegifyApplyDocumentsService } from '../../services';
 export class DocumentUploadModalComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DocumentUploadModalData,
+    protected matDialog: MatDialog,
+    protected appConfigService: AppConfigService,
     protected applyDocumentService: LegifyApplyDocumentsService,
     protected legifyApplyPersonMapper: LegifyApplyPersonMapperService
   ) {}
@@ -64,6 +68,9 @@ export class DocumentUploadModalComponent implements OnInit {
   }
 
   public handleFilePreview(legifyDocument: LegifyDocument): void {
-    console.log('Will Preview:', legifyDocument.filename);
+    this.matDialog.open(DocumentUploadPreviewModalComponent, {
+      data: legifyDocument,
+      ...this.appConfigService.modalConfigs
+    });
   }
 }
