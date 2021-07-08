@@ -25,7 +25,7 @@ export class DocumentUploadPreviewModalComponent {
   get srcDocumentDisplayName(): string {
     return this.srcDocument.filename.slice(
       0,
-      this.srcDocument.filename.lastIndexOf('.') - 1
+      this.srcDocument.filename.lastIndexOf('.')
     );
   }
 

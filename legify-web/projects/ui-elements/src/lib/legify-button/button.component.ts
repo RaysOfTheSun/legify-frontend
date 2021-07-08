@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'legify-web-button',
@@ -11,7 +11,8 @@ export class ButtonComponent {
   @Input() staticText = '';
   @Input() buttonType = 'button';
   @Input() isSecondary = false;
-  @Input() handleClick: EventEmitter<any> = new EventEmitter();
+
+  @Output() handleClick: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 

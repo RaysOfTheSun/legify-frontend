@@ -13,15 +13,12 @@
         nec luctus.
       </p>
     </div>
-    <button
-      type="button"
+    <legify-web-button
       class="nftf-info-panel__button"
-      mat-stroked-button
-      (click)="publishHandleSendLinkClick($event)"
-      onclick="this.blur()"
-    >
-      Send Link
-    </button>
+      staticText="Send Link"
+      isSecondary="true"
+      (handleClick)="publishHandleSendLinkClick($event)"
+    ></legify-web-button>
   </mat-expansion-panel-header>
   <ng-template #matExpansionPanelContent>
     <p>This is the primary content of the panel.</p>

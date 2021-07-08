@@ -28,10 +28,10 @@ import { DocumentUploadPreviewModalComponent } from '../document-upload-preview-
   styleUrls: ['./document-upload-modal.component.scss']
 })
 export class DocumentUploadModalComponent implements OnInit {
-  @ViewChild('fileUploader', { static: true })
+  @ViewChild('fileReuploader', { static: true })
   protected fileUploader: ElementRef<HTMLInputElement>;
 
-  protected documentForReuploadSubj: BehaviorSubject<DocumentPreviewActionEvent> =
+  protected readonly documentPreviewActionEventSubj: BehaviorSubject<DocumentPreviewActionEvent> =
     new BehaviorSubject(null);
 
   constructor(
@@ -62,14 +62,12 @@ export class DocumentUploadModalComponent implements OnInit {
   ): Observable<LegifyDocument[]> {
     return this.applyDocumentService.allDocuments$.pipe(
       map((allDocuments) => {
-        const docs = allDocuments.filter(
+        return allDocuments.filter(
           (document) =>
             document.ownerId === groupOwner.id &&
             document.documentGroup === documentGroup &&
             document.documentType === documentType
         );
-
-        return docs;
       })
     );
   }
@@ -86,7 +84,7 @@ export class DocumentUploadModalComponent implements OnInit {
     const fileList = event.target.files as FileList;
     const rawFile = fileList[0];
 
-    this.documentForReuploadSubj
+    this.documentPreviewActionEventSubj
       .pipe(take(1))
       .subscribe(({ document, documentOwner, documentRequirement }) =>
         this.applyDocumentService.reuploadFile(
@@ -116,8 +114,13 @@ export class DocumentUploadModalComponent implements OnInit {
         const { document, userAction, documentOwner, documentRequirement } =
           documentPreviewActionEvent;
 
+        if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.DELETE_DOCUMENT) {
+          this.applyDocumentService.deleteDocument(document);
+          return;
+        }
+
         if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.REUPLOAD_DOCUMENT) {
-          this.documentForReuploadSubj.next({
+          this.documentPreviewActionEventSubj.next({
             document,
             documentOwner,
             documentRequirement,

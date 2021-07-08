@@ -10,5 +10,8 @@
   "PERSON_OI_CAPTION": {
     "en": "Other Insured",
     "vi": "Người được bảo hiểm khác"
+  },
+  "SEND_APP_LINK_CAPTION": {
+    "en": "Send eApplication Link"
   }
 }
