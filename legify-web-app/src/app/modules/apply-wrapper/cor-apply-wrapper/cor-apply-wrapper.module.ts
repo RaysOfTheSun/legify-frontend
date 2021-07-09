@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ApplyCorRoutingModule } from './apply-cor-routing.module';
-import { AvatarModule } from 'ngx-avatar';
+import { CorApplyWrapperRoutingModule } from './cor-apply-wrapper-routing.module';
 import { CorApplyModule } from '@legify-cor/web-apply';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    AvatarModule,
-    ApplyCorRoutingModule,
+    CorApplyWrapperRoutingModule,
     CorApplyModule.forMarket()
   ]
 })
-export class ApplyCorModule {}
+export class CorApplyWrapperModule {}

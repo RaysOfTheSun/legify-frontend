@@ -11,36 +11,15 @@
     "importHelpers": true,
     "target": "ESNext",
     "module": "ESNext",
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "lib": ["es2018", "dom"],
     "preserveSymlinks": true,
     "paths": {
-      "core": [
-        "dist/core/core",
-        "dist/core"
-      ],
-      "apply": [
-        "dist/apply/apply",
-        "dist/apply"
-      ],
-      "ui-elements": [
-        "dist/ui-elements/ui-elements",
-        "dist/ui-elements"
-      ],
-      "auth": [
-        "dist/auth/auth",
-        "dist/auth"
-      ],
-      "nftf": [
-        "dist/nftf/nftf",
-        "dist/nftf"
-      ],
-      "i18n": [
-        "dist/i18n/i18n",
-        "dist/i18n"
-      ],
+      "core": ["dist/core/core", "dist/core"],
+      "apply": ["dist/apply/apply", "dist/apply"],
+      "ui-elements": ["dist/ui-elements/ui-elements", "dist/ui-elements"],
+      "auth": ["dist/auth/auth", "dist/auth"],
+      "nftf": ["dist/nftf/nftf", "dist/nftf"],
+      "i18n": ["dist/i18n/i18n", "dist/i18n"],
       "i18n-elements": [
         "dist/i18n-elements/i18n-elements",
         "dist/i18n-elements"

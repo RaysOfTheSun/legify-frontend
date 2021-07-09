@@ -9,8 +9,8 @@ export const corRouterConfig: Routes = [
   {
     path: 'apply',
     loadChildren: () =>
-      import('../../modules/apply/apply-cor/apply-cor.module').then(
-        (m) => m.ApplyCorModule
+      import('@legify-app/web-apply/cor-apply-wrapper.module').then(
+        (m) => m.CorApplyWrapperModule
       ),
     canActivate: [HasSelectedApplicationGuard, LegifyTranslationLoaderGuard],
     canActivateChild: [HasSelectedApplicationGuard],
@@ -19,8 +19,8 @@ export const corRouterConfig: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('../../modules/auth/auth-cor/auth-cor.module').then(
-        (m) => m.AuthCorModule
+      import('@legify-app/web-auth/cor-auth-wrapper.module').then(
+        (m) => m.CorAuthWrapperModule
       )
   }
 ];

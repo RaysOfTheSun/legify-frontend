@@ -1,25 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UsaApplyComponent } from '@legify-usa/web-apply';
+import { CorApplyComponent } from '@legify-cor/web-apply';
+
 import {
   LegifyTranslationLoaderGuard,
   makeTranslationLoaderData
 } from '@legify/web-i18n';
-import { LEGIFY_MARKET } from '@legify/web-core';
 
 const routes: Routes = [
   {
     path: '',
-    component: UsaApplyComponent,
+    component: CorApplyComponent,
     children: [
       {
         path: 'documents',
         loadChildren: () =>
-          import('@legify-usa/web-apply').then((m) => m.UsaApplyDocumentsModule)
+          import('@legify-cor/web-apply').then(
+            (m) => m.CorApplyDocumentsModule
+          ),
+        canActivate: [LegifyTranslationLoaderGuard],
+        data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
       }
-    ],
-    canActivate: [LegifyTranslationLoaderGuard],
-    data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
+    ]
   }
 ];
 
@@ -27,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ApplyUsaRoutingModule {}
+export class CorApplyWrapperRoutingModule {}

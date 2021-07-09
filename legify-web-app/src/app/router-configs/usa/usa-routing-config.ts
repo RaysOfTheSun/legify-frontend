@@ -10,8 +10,8 @@ export const usaRoutingConfig: Routes = [
   {
     path: 'apply',
     loadChildren: () =>
-      import('../../modules/apply/apply-usa/apply-usa.module').then(
-        (m) => m.ApplyUsaModule
+      import('@legify-app/web-apply/usa-apply-wrapper.module').then(
+        (m) => m.UsaApplyWrapperModule
       ),
     canActivate: [LegifyTranslationLoaderGuard, HasSelectedApplicationGuard],
     canActivateChild: [HasSelectedApplicationGuard],
@@ -24,8 +24,8 @@ export const usaRoutingConfig: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('../../modules/auth/auth-usa/auth-usa.module').then(
-        (m) => m.AuthUsaModule
+      import('@legify-app/web-auth/usa-auth-wrapper.module').then(
+        (m) => m.UsaAuthWrapperModule
       )
   }
 ];

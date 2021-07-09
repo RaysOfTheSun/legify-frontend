@@ -9,7 +9,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:cor": "clear && ng s -o",
-    "start:usa": "clear && ng s -o --port 4300"
+    "start:usa": "clear && ng s -o --port 4300",
+    "add:apply": "npm link @legify/web-apply"
   },
   "private": true,
   "dependencies": {
