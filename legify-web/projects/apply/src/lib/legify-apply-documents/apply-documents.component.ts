@@ -5,11 +5,13 @@ import { TaskCardConfig } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 import {
   LegifyApplyDocumentsService,
-  LegifyApplyDocumentsConfigService
+  LegifyApplyDocumentsConfigService,
+  LegifyApplyDocumentsProgressService
 } from './services';
-import { LegifyApplyPersonMapperService } from '../services';
+import { LegifyApplyPersonMapperService, LegifyApplyService } from '../services';
 import { DocumentUploadModalComponent } from './components';
 import { AppConfigService } from '@legify/web-core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-apply-documents',
@@ -21,10 +23,12 @@ export class ApplyDocumentsComponent {
 
   constructor(
     protected matDialog: MatDialog,
+    protected applyService: LegifyApplyService,
     protected appConigService: AppConfigService,
     protected applyDocumentsService: LegifyApplyDocumentsService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
-    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
+    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService,
+    protected applyDocumentsProgressService: LegifyApplyDocumentsProgressService
   ) {}
 
   get taskCardConfigs$(): Observable<TaskCardConfig[]> {
@@ -35,8 +39,7 @@ export class ApplyDocumentsComponent {
     this.matDialog.open(DocumentUploadModalComponent, {
       data: {
         person,
-        requiredDocuments:
-          this.applyDocumentsService.getDocumentRequirementsForPerson(person)
+        requiredDocuments: this.applyDocumentsService.getDocumentRequirementsForPerson(person)
       },
       ...this.appConigService.modalConfigs
     });
@@ -44,5 +47,11 @@ export class ApplyDocumentsComponent {
 
   public getTaskCardCollectionDataSource(): Observable<Person[]> {
     return this.applyDocumentsService.getAllPersonsThatWillUploadDocuments();
+  }
+
+  public getTaskCardProgressBarValue(person: Person): Observable<number> {
+    return this.applyService.currApplication$.pipe(
+      map((application) => this.applyDocumentsProgressService.getProgressChunk(application, person.id).totalProgress)
+    );
   }
 }

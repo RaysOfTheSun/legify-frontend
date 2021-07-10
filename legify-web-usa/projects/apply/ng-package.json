@@ -5,6 +5,7 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "@legify/web-apply": "legifyWebApply",
+      "@legify/web-core": "legifyWebCore",
       "@legify-usa/web-ui-elements": "legifyUsaWebUiElements"
     }
   },

@@ -1,14 +1,8 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfigService } from '@legify/web-core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { concatMap, map, take } from 'rxjs/operators';
 import { LegifyDocumentRequirement, Person } from '../../../models';
 import { LegifyApplyPersonMapperService } from '../../../services';
 import { DOCUMENT_PREVIEW_MODAL_ACTION } from '../../constants';
@@ -31,8 +25,9 @@ export class DocumentUploadModalComponent implements OnInit {
   @ViewChild('fileReuploader', { static: true })
   protected fileUploader: ElementRef<HTMLInputElement>;
 
-  protected readonly documentPreviewActionEventSubj: BehaviorSubject<DocumentPreviewActionEvent> =
-    new BehaviorSubject(null);
+  protected readonly documentPreviewActionEventSubj: BehaviorSubject<DocumentPreviewActionEvent> = new BehaviorSubject(
+    null
+  );
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: DocumentUploadModalData,
@@ -73,11 +68,13 @@ export class DocumentUploadModalComponent implements OnInit {
   }
 
   public handleFileUpload(uploadEvent: DocumentUploadEvent): void {
-    this.applyDocumentService.uploadFile(uploadEvent);
+    this.applyDocumentService
+      .uploadDocument(uploadEvent.rawFile, uploadEvent.owner, uploadEvent.documentRequirementMeta)
+      .subscribe();
   }
 
   public handleFileDelete(legifyDocument: LegifyDocument): void {
-    this.applyDocumentService.deleteDocument(legifyDocument);
+    this.applyDocumentService.deleteDocument(legifyDocument, this.modalOwner).pipe(take(1)).subscribe();
   }
 
   public handleFileReupload(event: any): void {
@@ -85,15 +82,13 @@ export class DocumentUploadModalComponent implements OnInit {
     const rawFile = fileList[0];
 
     this.documentPreviewActionEventSubj
-      .pipe(take(1))
-      .subscribe(({ document, documentOwner, documentRequirement }) =>
-        this.applyDocumentService.reuploadFile(
-          rawFile,
-          documentOwner,
-          document,
-          documentRequirement
+      .pipe(
+        take(1),
+        concatMap(({ document, documentOwner, documentRequirement }) =>
+          this.applyDocumentService.reuploadDocument(rawFile, documentOwner, document, documentRequirement)
         )
-      );
+      )
+      .subscribe();
   }
 
   public handleFilePreview(documentPreviewEvent: DocumentPreviewEvent): void {
@@ -105,31 +100,28 @@ export class DocumentUploadModalComponent implements OnInit {
       .afterClosed()
       .pipe(take(1));
 
-    previewModalClosure$.subscribe(
-      (documentPreviewActionEvent: DocumentPreviewActionEvent) => {
-        if (!documentPreviewActionEvent) {
-          return;
-        }
-
-        const { document, userAction, documentOwner, documentRequirement } =
-          documentPreviewActionEvent;
-
-        if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.DELETE_DOCUMENT) {
-          this.applyDocumentService.deleteDocument(document);
-          return;
-        }
-
-        if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.REUPLOAD_DOCUMENT) {
-          this.documentPreviewActionEventSubj.next({
-            document,
-            documentOwner,
-            documentRequirement,
-            userAction
-          });
-          this.fileUploader.nativeElement.click();
-          return;
-        }
+    previewModalClosure$.subscribe((documentPreviewActionEvent: DocumentPreviewActionEvent) => {
+      if (!documentPreviewActionEvent) {
+        return;
       }
-    );
+
+      const { document, userAction, documentOwner, documentRequirement } = documentPreviewActionEvent;
+
+      if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.DELETE_DOCUMENT) {
+        this.applyDocumentService.deleteDocument(document, this.modalOwner).pipe(take(1)).subscribe();
+        return;
+      }
+
+      if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.REUPLOAD_DOCUMENT) {
+        this.documentPreviewActionEventSubj.next({
+          document,
+          documentOwner,
+          documentRequirement,
+          userAction
+        });
+        this.fileUploader.nativeElement.click();
+        return;
+      }
+    });
   }
 }

@@ -13,7 +13,9 @@ import { DocumentUploadModalComponent } from './components/document-upload-modal
 import {
   LegifyApplyDocumentsService,
   LegifyApplyDocumentsConfigService,
-  LegifyApplyDocumentsDocumentMapperService
+  LegifyApplyDocumentsDocumentMapperService,
+  LegifyApplyDocumentsProgressService,
+  LegifyApplyDocumentsDataService
 } from './services';
 import { MatIconModule } from '@angular/material/icon';
 import { DocumentUploadUploaderComponent } from './components/document-upload-uploader/document-upload-uploader.component';
@@ -45,14 +47,12 @@ import { MatDialogModule } from '@angular/material/dialog';
     LegifyTaskCardCollectionModule,
     LegifyApplyDocumentsRoutingModule
   ],
-  exports: [
-    DocumentUploadModalComponent,
-    ApplyDocumentsComponent,
-    DocumentUploadUploaderComponent
-  ],
+  exports: [DocumentUploadModalComponent, ApplyDocumentsComponent, DocumentUploadUploaderComponent],
   providers: [
     LegifyApplyDocumentsService,
+    LegifyApplyDocumentsDataService,
     LegifyApplyDocumentsConfigService,
+    LegifyApplyDocumentsProgressService,
     LegifyApplyDocumentsDocumentMapperService
   ]
 })

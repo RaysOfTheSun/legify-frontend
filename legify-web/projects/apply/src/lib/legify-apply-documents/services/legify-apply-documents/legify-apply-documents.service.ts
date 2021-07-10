@@ -1,38 +1,30 @@
 import { Injectable } from '@angular/core';
 import { TaskCardConfig } from '@legify/web-ui-elements';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { concatMap, map, take, withLatestFrom } from 'rxjs/operators';
-import {
-  LegifyDocumentRequirement,
-  LegifyDocumentRequirementConfig,
-  Person
-} from '../../../models';
-import {
-  LegifyApplyService,
-  LegifyApplyDataService,
-  LegifyApplyPersonMapperService
-} from '../../../services';
+import { BehaviorSubject, combineLatest, concat, Observable, pipe, zip } from 'rxjs';
+import { concatMap, map, take, tap, withLatestFrom } from 'rxjs/operators';
+import { LegifyApplication, LegifyDocumentRequirement, LegifyDocumentRequirementConfig, Person } from '../../../models';
+import { LegifyApplyService, LegifyApplyDataService, LegifyApplyPersonMapperService } from '../../../services';
 import { LegifyApplyDocumentsConfigService } from '../legify-apply-documents-config/legify-apply-documents-config.service';
 import { get } from 'lodash-es';
 import { APPLICATION_PAYMENT_METHOD } from '../../../constants/application-payment-info-method-eum';
 import { SUPPORTING_DOC_TYPE } from '../../constants';
-import {
-  DocumentPreviewActionEvent,
-  DocumentUploadEvent,
-  LegifyDocument
-} from '../../models';
+import { DocumentUploadEvent, LegifyDocument } from '../../models';
 import { LegifyApplyDocumentsDocumentMapperService } from '../legify-apply-documents-document-mapper/legify-apply-documents-document-mapper.service';
+import { LegifyApplyDocumentsProgressService } from '../legify-apply-documents-progress/legify-apply-documents-progress.service';
+import { LegifyApplyDocumentsDataService } from '../legify-apply-documents-data/legify-apply-documents-data.service';
+import { ApplicationProgress } from '../../../models/application/application-progress/application-progress';
 
 @Injectable()
 export class LegifyApplyDocumentsService {
-  protected readonly allDocumentsSubj: BehaviorSubject<LegifyDocument[]> =
-    new BehaviorSubject([]);
+  protected readonly allDocumentsSubj: BehaviorSubject<LegifyDocument[]> = new BehaviorSubject([]);
 
   constructor(
     protected applyService: LegifyApplyService,
     protected applyDataService: LegifyApplyDataService,
     protected documentMapperService: LegifyApplyDocumentsDocumentMapperService,
+    protected documentsProgressService: LegifyApplyDocumentsProgressService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
+    protected applyDocumentsDataService: LegifyApplyDocumentsDataService,
     protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
   ) {}
 
@@ -40,29 +32,54 @@ export class LegifyApplyDocumentsService {
     return this.allDocumentsSubj.asObservable();
   }
 
-  public getAllPersonsThatWillUploadDocuments(): Observable<Person[]> {
-    return this.applyService.currApplication$.pipe(
-      map((application) => {
-        return application
-          ? this.applyDataService.getAllInsuredPersonsFromApplication(
-              application
-            )
-          : [];
+  protected updateOverallModuleProgress(documentOwner: Person): Observable<ApplicationProgress[]> {
+    return this.allDocuments$.pipe(
+      withLatestFrom(
+        this.applyService.currApplication$,
+        this.getDocumentRequirementsForPerson(documentOwner),
+        this.getAllPersonsThatWillUploadDocuments()
+      ),
+      map(([allDocuments, currApplication, allDocumentRequirements, allPersonsThatWillUpload]) => {
+        const allDocumentsForPerson = this.applyDocumentsDataService.getDocumentsByOnwerId(
+          documentOwner.id,
+          allDocuments
+        );
+
+        const progressForOwner = this.documentsProgressService.calculateProgressForPerson(
+          allDocumentsForPerson,
+          allDocumentRequirements
+        );
+
+        const updatedProgressInfo = this.documentsProgressService.updateModuleProgressAndChunks(
+          currApplication,
+          documentOwner.id,
+          progressForOwner,
+          allPersonsThatWillUpload.length
+        );
+
+        this.applyService.updateCurrApplicationProgressInfo(updatedProgressInfo);
+
+        return updatedProgressInfo;
       })
     );
   }
 
-  public getDocumentRequirementsForPerson(
-    person: Person
-  ): Observable<LegifyDocumentRequirement[]> {
+  public getAllPersonsThatWillUploadDocuments(): Observable<Person[]> {
+    return this.applyService.currApplication$.pipe(
+      map((application) => {
+        return application ? this.applyDataService.getAllInsuredPersonsFromApplication(application) : [];
+      })
+    );
+  }
+
+  public getDocumentRequirementsForPerson(person: Person): Observable<LegifyDocumentRequirement[]> {
     return this.applyDocumentsConfigService.requiredDocuments$.pipe(
       withLatestFrom(this.applyService.currApplication$),
       map(([requiredDocs, currApplication]) => {
         const requiredDocsForPerson: LegifyDocumentRequirementConfig[] = [];
 
         const paymentDocReqType =
-          currApplication.paymentInfo.method ===
-          APPLICATION_PAYMENT_METHOD.ONLINE
+          currApplication.paymentInfo.method === APPLICATION_PAYMENT_METHOD.ONLINE
             ? SUPPORTING_DOC_TYPE.PAYMENT_RECEIPT
             : SUPPORTING_DOC_TYPE.BANKSLIP;
 
@@ -70,15 +87,11 @@ export class LegifyApplyDocumentsService {
           (reqDoc) => reqDoc.documentType === person.identificationInfo.type
         );
 
-        const paymentInfoDocReq = requiredDocs.find(
-          (reqDoc) => reqDoc.documentType === paymentDocReqType
-        );
+        const paymentInfoDocReq = requiredDocs.find((reqDoc) => reqDoc.documentType === paymentDocReqType);
 
         requiredDocsForPerson.push(identificationDocReq, paymentInfoDocReq);
 
-        return requiredDocsForPerson.filter((typeConfig) =>
-          typeConfig.forRoles.includes(person.role)
-        );
+        return requiredDocsForPerson.filter((typeConfig) => typeConfig.forRoles.includes(person.role));
       })
     );
   }
@@ -101,59 +114,69 @@ export class LegifyApplyDocumentsService {
     );
   }
 
-  public uploadFile({
-    owner,
-    rawFile,
-    documentRequirementMeta
-  }: DocumentUploadEvent): void {
-    this.documentMapperService
-      .convertRawFileToLegifyDocument(rawFile, owner, documentRequirementMeta)
-      .pipe(take(1), withLatestFrom(this.allDocuments$))
-      .subscribe(([legifyDocument, allDocuments]) => {
-        const updatedAllDocuments = [...allDocuments];
-        updatedAllDocuments.push(legifyDocument);
+  public uploadDocument(
+    rawFile: File,
+    documentOwner: Person,
+    documentRequirement: LegifyDocumentRequirement,
+    deferUpdate = false
+  ): Observable<LegifyDocument> {
+    const uploadDocumentAndSave$ = this.documentMapperService
+      .convertRawFileToLegifyDocument(rawFile, documentOwner, documentRequirement)
+      .pipe(
+        withLatestFrom(this.allDocuments$),
+        tap(([legifyDocument, allDocuments]) => {
+          if (deferUpdate) {
+            return;
+          }
 
-        this.allDocumentsSubj.next(updatedAllDocuments);
-      });
+          const updatedAllFiles = [...allDocuments];
+          updatedAllFiles.push(legifyDocument);
+          this.allDocumentsSubj.next(updatedAllFiles);
+        }),
+        map(([legfiyDocument, _]) => legfiyDocument)
+      );
+
+    const updateModuleProgress$ = this.updateOverallModuleProgress(documentOwner);
+
+    return uploadDocumentAndSave$.pipe(
+      concatMap((legifyDocument) => updateModuleProgress$.pipe(map(() => legifyDocument)))
+    );
   }
 
-  public reuploadFile(
-    replacementFile: File,
+  public reuploadDocument(
+    rawFile: File,
     documentOwner: Person,
     documentToReplace: LegifyDocument,
     documentRequirement: LegifyDocumentRequirement
-  ): void {
-    this.documentMapperService
-      .convertRawFileToLegifyDocument(
-        replacementFile,
-        documentOwner,
-        documentRequirement
-      )
-      .pipe(take(1), withLatestFrom(this.allDocuments$))
-      .subscribe(([legifyDocument, allDocuments]) => {
-        const indexOfDocToReplace = allDocuments.findIndex(
-          (doc) => doc.documentId === documentToReplace.documentId
-        );
+  ): Observable<LegifyDocument> {
+    return this.uploadDocument(rawFile, documentOwner, documentRequirement, true).pipe(
+      take(1),
+      withLatestFrom(this.allDocuments$),
+      tap(([legifyDocument, allDocuments]) => {
+        const indexOfDocToReplace = allDocuments.findIndex((doc) => doc.documentId === documentToReplace.documentId);
 
         const updatedAllDocuments = [...allDocuments];
         updatedAllDocuments.splice(indexOfDocToReplace, 1, legifyDocument);
 
         this.allDocumentsSubj.next(updatedAllDocuments);
-      });
+      }),
+      map(([legifyDocument, _]) => {
+        return legifyDocument;
+      })
+    );
   }
 
-  public deleteDocument(legifyDocument: LegifyDocument): void {
-    this.allDocuments$
-      .pipe(
-        map((allDocuments) =>
-          allDocuments.filter(
-            (document) => document.documentId !== legifyDocument.documentId
-          )
-        ),
-        take(1)
-      )
-      .subscribe((updatedDocList) =>
-        this.allDocumentsSubj.next(updatedDocList)
-      );
+  public deleteDocument(legifyDocument: LegifyDocument, documentOwner: Person): Observable<LegifyDocument> {
+    const deleteDocument$ = this.allDocuments$.pipe(
+      map((allDocuments) => allDocuments.filter((document) => document.documentId !== legifyDocument.documentId)),
+      tap((updatedAllDocuments) => this.allDocumentsSubj.next(updatedAllDocuments))
+    );
+
+    const updateProgress$ = this.updateOverallModuleProgress(documentOwner);
+
+    return deleteDocument$.pipe(
+      concatMap(() => updateProgress$),
+      map(() => legifyDocument)
+    );
   }
 }

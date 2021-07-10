@@ -5,13 +5,11 @@ import { SESSION_VARIABLE } from '@legify/web-core';
 import { LegifyApplyConfigService } from '../legify-apply-config/legify-apply-config.service';
 import { LegifyApplication, Person } from '../../models';
 import { LegifyApplyHttpDataService } from '../legify-apply-http-data/legify-apply-http-data.service';
+import { ApplicationProgress } from '../../models/application/application-progress/application-progress';
 
 @Injectable()
-export class LegifyApplyService<
-  A extends LegifyApplication = LegifyApplication
-> {
-  protected readonly currentApplicationSubj: BehaviorSubject<A> =
-    new BehaviorSubject(null);
+export class LegifyApplyService<A extends LegifyApplication = LegifyApplication> {
+  protected readonly currentApplicationSubj: BehaviorSubject<A> = new BehaviorSubject(null);
 
   constructor(
     protected applyConfigService: LegifyApplyConfigService,
@@ -29,12 +27,19 @@ export class LegifyApplyService<
   }
 
   public getCurrSelectedApplication(): void {
-    this.getApplication(
-      sessionStorage.getItem(SESSION_VARIABLE.APPLICATION_ID)
-    ).subscribe((application) => this.currentApplicationSubj.next(application));
+    this.getApplication(sessionStorage.getItem(SESSION_VARIABLE.APPLICATION_ID)).subscribe((application) =>
+      this.currentApplicationSubj.next(application)
+    );
   }
 
   public getCurrCustomer(): Observable<Person> {
     return this.currApplication$.pipe(map((application) => application?.owner));
+  }
+
+  public updateCurrApplicationProgressInfo(updatedProgressInfo: ApplicationProgress[]): void {
+    this.currApplication$.pipe(take(1)).subscribe((currApplication) => {
+      currApplication.progressInfo = updatedProgressInfo;
+      this.currentApplicationSubj.next(currApplication);
+    });
   }
 }

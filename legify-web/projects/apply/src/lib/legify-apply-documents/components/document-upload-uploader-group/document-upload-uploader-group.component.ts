@@ -1,11 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Person } from '../../../models';
 import { LegifyDocumentRequirement } from '../../../models';
 import { DocumentPreviewEvent, DocumentUploadEvent } from '../../models';
@@ -21,10 +14,8 @@ export class DocumentUploadUploaderGroupComponent {
   @Input() groupOwner: Person;
   @Input() documentMeta: LegifyDocumentRequirement;
 
-  @Output() handleFileUpload: EventEmitter<DocumentUploadEvent> =
-    new EventEmitter();
-  @Output() handleFilePreview: EventEmitter<DocumentPreviewEvent> =
-    new EventEmitter();
+  @Output() handleFileUpload: EventEmitter<DocumentUploadEvent> = new EventEmitter();
+  @Output() handleFilePreview: EventEmitter<DocumentPreviewEvent> = new EventEmitter();
   @Output() handleFileDelete: EventEmitter<LegifyDocument> = new EventEmitter();
 
   @ViewChild('fileUploader', { static: true })

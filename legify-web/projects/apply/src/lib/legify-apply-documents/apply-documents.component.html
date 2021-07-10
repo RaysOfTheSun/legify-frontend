@@ -1,7 +1,5 @@
 <legify-web-task-card-collection
-  [taskCardTemplate]="
-    taskCardTemplate ? taskCardTemplate : defaultTaskCardTemplate
-  "
+  [taskCardTemplate]="taskCardTemplate ? taskCardTemplate : defaultTaskCardTemplate"
   [dataSource]="getTaskCardCollectionDataSource() | async"
   [taskCardConfigs]="taskCardConfigs$ | async"
   (taskCardClickHandler)="onTaskCardClick($event)"
@@ -27,7 +25,7 @@
     [subHeaderText]="subHeaderText"
     [highlightColor]="highlightColor"
     [footerHeaderText]="footerHeaderText"
-    [progressBarValue]="'0'"
+    [progressBarValue]="getTaskCardProgressBarValue(source) | async"
     [highlightColorKey]="highlightColorKey"
     (handleClick)="handleClick($event)"
     class="legify-collection-task-card"

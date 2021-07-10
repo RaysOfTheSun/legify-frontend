@@ -75,5 +75,6 @@
   "paymentInfo": {
     "method": "ONLINE",
     "transactionId": ""
-  }
+  },
+  "progressInfo": []
 }

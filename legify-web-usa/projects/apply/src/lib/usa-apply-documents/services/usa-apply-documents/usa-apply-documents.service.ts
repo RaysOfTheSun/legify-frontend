@@ -6,7 +6,9 @@ import {
   LegifyDocumentRequirement,
   LegifyApplyDocumentsService,
   LegifyApplyPersonMapperService,
-  LegifyApplyDocumentsConfigService
+  LegifyApplyDocumentsDataService,
+  LegifyApplyDocumentsConfigService,
+  LegifyApplyDocumentsProgressService
 } from '@legify/web-apply';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
@@ -19,15 +21,19 @@ export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
   constructor(
     protected applyService: LegifyApplyService<UsaLegifyApplication>,
     protected applyDataService: LegifyApplyDataService,
+    protected documentMapperService: LegifyApplyDocumentsDocumentMapperService,
+    protected documentsProgressService: LegifyApplyDocumentsProgressService,
     protected applyPersonMapperService: LegifyApplyPersonMapperService,
-    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService,
-    protected applyDocumentsDocumentMapperService: LegifyApplyDocumentsDocumentMapperService
+    protected applyDocumentsDataService: LegifyApplyDocumentsDataService,
+    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
   ) {
     super(
       applyService,
       applyDataService,
-      applyDocumentsDocumentMapperService,
+      documentMapperService,
+      documentsProgressService,
       applyPersonMapperService,
+      applyDocumentsDataService,
       applyDocumentsConfigService
     );
   }

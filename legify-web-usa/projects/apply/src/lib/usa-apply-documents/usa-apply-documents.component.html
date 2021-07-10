@@ -22,7 +22,7 @@
     [subHeaderText]="subHeaderText"
     [highlightColor]="highlightColor"
     [footerHeaderText]="footerHeaderText"
-    [progressBarValue]="'0'"
+    [progressBarValue]="getTaskCardProgressBarValue(source) | async"
     [highlightColorKey]="highlightColorKey"
     (handleClick)="handleClick($event)"
     class="legify-collection-task-card"
