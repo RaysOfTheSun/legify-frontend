@@ -13,5 +13,8 @@
   },
   "SEND_APP_LINK_CAPTION": {
     "en": "Send eApplication Link"
+  },
+  "DOCUMENTS_CAPTION": {
+    "en": "Supporting Documents"
   }
 }

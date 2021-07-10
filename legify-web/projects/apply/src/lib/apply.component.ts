@@ -1,12 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ApplyShellSidenavItem,
-  ApplyShellConfig
-} from '@legify/web-ui-elements';
+import { ApplyShellSidenavItem, ApplyShellConfig } from '@legify/web-ui-elements';
 import { Person } from './models';
 import { LegifyApplyConfigService, LegifyApplyService } from './services';
-import { map } from 'rxjs/operators';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-apply',
@@ -14,10 +11,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
-  constructor(
-    protected applyService: LegifyApplyService,
-    protected applyConfigService: LegifyApplyConfigService
-  ) {}
+  constructor(protected applyService: LegifyApplyService, protected applyConfigService: LegifyApplyConfigService) {}
 
   ngOnInit(): void {
     this.applyService.getCurrSelectedApplication();
@@ -29,9 +23,11 @@ export class ApplyComponent implements OnInit {
 
   get shellConfig(): Observable<ApplyShellConfig> {
     return this.applyService.getCurrCustomer().pipe(
-      map((person) => {
+      withLatestFrom(this.applyService.currApplication$),
+      map(([person, currApplication]) => {
         return {
           dataSource: person,
+          currApplicationName: currApplication?.name || '',
           avatarNameValuePath: 'personalInfo.nameInfo.first'
         } as ApplyShellConfig;
       })

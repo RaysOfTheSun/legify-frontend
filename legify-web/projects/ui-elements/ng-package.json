@@ -8,7 +8,8 @@
       "ngx-avatar": "ngxAvatar",
       "@legify/web-core": "legifyWebCore",
       "@legify/web-i18n": "legifyWebi18n",
-      "angular-l10n": "angularL10n"
+      "angular-l10n": "angularL10n",
+      "@legify/web-i18n-elements": "legifyWeb18nElements"
     }
   },
   "assets": ["./assets"]

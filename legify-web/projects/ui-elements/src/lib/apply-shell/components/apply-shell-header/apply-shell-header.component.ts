@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ApplyShellHeaderComponent implements OnInit {
   @Input() currPersonName: string;
+  @Input() breadCurmbItems: string[];
 
   constructor() {}
 

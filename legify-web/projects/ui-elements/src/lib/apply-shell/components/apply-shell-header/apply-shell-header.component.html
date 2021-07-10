@@ -1,5 +1,15 @@
 <div class="apply-shell__header">
+  <button disableRipple type="button" class="apply-shell__header-menu-trigger">
+    <mat-icon class="apply-shell__header-menu-trigger-icon">menu_icon</mat-icon>
+  </button>
   <div class="apply-shell__header-content apply-shell__header-avatar">
     <ngx-avatar [name]="personName" [size]="40"></ngx-avatar>
+  </div>
+  <div class="apply-shell__breadcrumbs">
+    <legify-web-apply-shell-header-breadcrumb-item
+      *ngFor="let breadCrumbItem of breadCurmbItems; let isLast = last"
+      [text]="breadCrumbItem"
+      [isLast]="isLast"
+    ></legify-web-apply-shell-header-breadcrumb-item>
   </div>
 </div>

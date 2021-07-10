@@ -9,20 +9,26 @@ import { ApplyShellSidenavItemComponent } from './components/apply-shell-sidenav
 import { AvatarModule } from 'ngx-avatar';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { ApplyShellHeaderBreadcrumbItemComponent } from './components/apply-shell-header-breadcrumb-item/apply-shell-header-breadcrumb-item.component';
+import { TranslatableTextModule } from '@legify/web-i18n-elements';
 
 @NgModule({
   declarations: [
     ApplyShellComponent,
     ApplyShellHeaderComponent,
     ApplyShellSidenavComponent,
-    ApplyShellSidenavItemComponent
+    ApplyShellSidenavItemComponent,
+    ApplyShellHeaderBreadcrumbItemComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatIconModule,
     AvatarModule,
-    HttpClientModule
+    MatButtonModule,
+    HttpClientModule,
+    TranslatableTextModule
   ],
   exports: [ApplyShellComponent]
 })
