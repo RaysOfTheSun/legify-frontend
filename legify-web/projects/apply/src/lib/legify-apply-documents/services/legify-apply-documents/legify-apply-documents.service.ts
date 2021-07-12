@@ -13,6 +13,7 @@ import { LegifyApplyDocumentsDocumentMapperService } from '../legify-apply-docum
 import { LegifyApplyDocumentsProgressService } from '../legify-apply-documents-progress/legify-apply-documents-progress.service';
 import { LegifyApplyDocumentsDataService } from '../legify-apply-documents-data/legify-apply-documents-data.service';
 import { ApplicationProgress } from '../../../models/application/application-progress/application-progress';
+import { Customer } from '../../../models/customer/customer';
 
 @Injectable()
 export class LegifyApplyDocumentsService {
@@ -32,12 +33,12 @@ export class LegifyApplyDocumentsService {
     return this.allDocumentsSubj.asObservable();
   }
 
-  protected updateOverallModuleProgress(documentOwner: Person): Observable<ApplicationProgress[]> {
+  protected updateOverallModuleProgress(documentOwner: Customer): Observable<ApplicationProgress[]> {
     return this.allDocuments$.pipe(
       withLatestFrom(
         this.applyService.currApplication$,
-        this.getDocumentRequirementsForPerson(documentOwner),
-        this.getAllPersonsThatWillUploadDocuments()
+        this.getDocumentRequirementsForCustomer(documentOwner),
+        this.getAllCustomersThatWillUploadDocuments()
       ),
       map(([allDocuments, currApplication, allDocumentRequirements, allPersonsThatWillUpload]) => {
         const allDocumentsForPerson = this.applyDocumentsDataService.getDocumentsByOnwerId(
@@ -64,7 +65,7 @@ export class LegifyApplyDocumentsService {
     );
   }
 
-  public getAllPersonsThatWillUploadDocuments(): Observable<Person[]> {
+  public getAllCustomersThatWillUploadDocuments(): Observable<Customer[]> {
     return this.applyService.currApplication$.pipe(
       map((application) => {
         return application ? this.applyDataService.getAllInsuredPersonsFromApplication(application) : [];
@@ -72,11 +73,11 @@ export class LegifyApplyDocumentsService {
     );
   }
 
-  public getDocumentRequirementsForPerson(person: Person): Observable<LegifyDocumentRequirement[]> {
+  public getDocumentRequirementsForCustomer(customer: Customer): Observable<LegifyDocumentRequirement[]> {
     return this.applyDocumentsConfigService.requiredDocuments$.pipe(
       withLatestFrom(this.applyService.currApplication$),
       map(([requiredDocs, currApplication]) => {
-        const requiredDocsForPerson: LegifyDocumentRequirementConfig[] = [];
+        const requiredDocsForCustomer: LegifyDocumentRequirementConfig[] = [];
 
         const paymentDocReqType =
           currApplication.paymentInfo.method === APPLICATION_PAYMENT_METHOD.ONLINE
@@ -84,14 +85,14 @@ export class LegifyApplyDocumentsService {
             : SUPPORTING_DOC_TYPE.BANKSLIP;
 
         const identificationDocReq = requiredDocs.find(
-          (reqDoc) => reqDoc.documentType === person.identificationInfo.type
+          (reqDoc) => reqDoc.documentType === customer.identificationInfo.type
         );
 
         const paymentInfoDocReq = requiredDocs.find((reqDoc) => reqDoc.documentType === paymentDocReqType);
 
-        requiredDocsForPerson.push(identificationDocReq, paymentInfoDocReq);
+        requiredDocsForCustomer.push(identificationDocReq, paymentInfoDocReq);
 
-        return requiredDocsForPerson.filter((typeConfig) => typeConfig.forRoles.includes(person.role));
+        return requiredDocsForCustomer.filter((typeConfig) => typeConfig.forRoles.includes(customer.role));
       })
     );
   }
@@ -99,14 +100,14 @@ export class LegifyApplyDocumentsService {
   public getTaskCardConfigs(): Observable<TaskCardConfig[]> {
     return combineLatest([
       this.applyDocumentsConfigService.taskCardRowConfigs,
-      this.getAllPersonsThatWillUploadDocuments()
+      this.getAllCustomersThatWillUploadDocuments()
     ]).pipe(
       map(([taskCardRowConfigs, persons]) => {
-        return persons.map((person, i) => {
+        return persons.map((customer, i) => {
           return {
-            headerText: this.applyPersonMapperService.getPersonName(person),
-            subHeaderText: `PERSON_${person.role}`,
-            highlightColorKey: get(person, 'role'),
+            headerText: this.applyPersonMapperService.getPersonName(customer),
+            subHeaderText: `PERSON_${customer.role}`,
+            highlightColorKey: get(customer, 'role'),
             rows: taskCardRowConfigs
           } as TaskCardConfig;
         });
@@ -116,7 +117,7 @@ export class LegifyApplyDocumentsService {
 
   public uploadDocument(
     rawFile: File,
-    documentOwner: Person,
+    documentOwner: Customer,
     documentRequirement: LegifyDocumentRequirement,
     deferUpdate = false
   ): Observable<LegifyDocument> {
@@ -145,7 +146,7 @@ export class LegifyApplyDocumentsService {
 
   public reuploadDocument(
     rawFile: File,
-    documentOwner: Person,
+    documentOwner: Customer,
     documentToReplace: LegifyDocument,
     documentRequirement: LegifyDocumentRequirement
   ): Observable<LegifyDocument> {
@@ -166,7 +167,7 @@ export class LegifyApplyDocumentsService {
     );
   }
 
-  public deleteDocument(legifyDocument: LegifyDocument, documentOwner: Person): Observable<LegifyDocument> {
+  public deleteDocument(legifyDocument: LegifyDocument, documentOwner: Customer): Observable<LegifyDocument> {
     const deleteDocument$ = this.allDocuments$.pipe(
       map((allDocuments) => allDocuments.filter((document) => document.documentId !== legifyDocument.documentId)),
       tap((updatedAllDocuments) => this.allDocumentsSubj.next(updatedAllDocuments))

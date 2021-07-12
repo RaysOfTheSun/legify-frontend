@@ -1,8 +1,9 @@
-import { LegifyDocumentRequirement, Person } from '../../models';
+import { LegifyDocumentRequirement } from '../../models';
+import { Customer } from '../../models/customer/customer';
 import { LegifyDocument } from './legify-document';
 
 export interface DocumentPreviewEvent {
   document: LegifyDocument;
-  documentOwner: Person;
+  documentOwner: Customer;
   documentRequirement: LegifyDocumentRequirement;
 }

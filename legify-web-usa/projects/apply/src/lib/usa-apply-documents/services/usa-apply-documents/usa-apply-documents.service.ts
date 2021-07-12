@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  Person,
+  Customer,
   LegifyApplyService,
   LegifyApplyDataService,
   LegifyDocumentRequirement,
@@ -39,9 +39,9 @@ export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
   }
 
   public getDocumentRequirementsForPerson(
-    person: Person
+    customer: Customer
   ): Observable<LegifyDocumentRequirement[]> {
-    return super.getDocumentRequirementsForPerson(person).pipe(
+    return super.getDocumentRequirementsForCustomer(customer).pipe(
       withLatestFrom(
         this.applyService.currApplication$,
         this.applyDocumentsConfigService.requiredDocuments$
@@ -57,7 +57,7 @@ export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
           (config) =>
             config.documentGroup ===
               USA_SUPPORTING_DOC_TYPE_GROUP.CUSTOMER_SELFIES &&
-            config.forRoles.includes(person.role)
+            config.forRoles.includes(customer.role)
         );
 
         requiredDocs.push(...customerSelfieReqs);

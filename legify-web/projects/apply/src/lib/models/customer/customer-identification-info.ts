@@ -1,4 +1,4 @@
-export interface PersonIdentificationInfo {
+export interface CustomerIdentificationInfo {
   type: string;
   issueDate: string;
   expiryDate: string;

@@ -1,6 +1,6 @@
 import { Component, Input, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Person } from '../models';
+import { Customer } from '../models';
 import { TaskCardConfig } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 import {
@@ -35,23 +35,23 @@ export class ApplyDocumentsComponent {
     return this.applyDocumentsService.getTaskCardConfigs();
   }
 
-  public onTaskCardClick(person: Person): void {
+  public onTaskCardClick(customer: Customer): void {
     this.matDialog.open(DocumentUploadModalComponent, {
       data: {
-        person,
-        requiredDocuments: this.applyDocumentsService.getDocumentRequirementsForPerson(person)
+        customer,
+        requiredDocuments: this.applyDocumentsService.getDocumentRequirementsForCustomer(customer)
       },
       ...this.appConigService.modalConfigs
     });
   }
 
-  public getTaskCardCollectionDataSource(): Observable<Person[]> {
-    return this.applyDocumentsService.getAllPersonsThatWillUploadDocuments();
+  public getTaskCardCollectionDataSource(): Observable<Customer[]> {
+    return this.applyDocumentsService.getAllCustomersThatWillUploadDocuments();
   }
 
-  public getTaskCardProgressBarValue(person: Person): Observable<number> {
+  public getTaskCardProgressBarValue(customer: Customer): Observable<number> {
     return this.applyService.currApplication$.pipe(
-      map((application) => this.applyDocumentsProgressService.getProgressChunk(application, person.id).totalProgress)
+      map((application) => this.applyDocumentsProgressService.getProgressChunk(application, customer.id).totalProgress)
     );
   }
 }

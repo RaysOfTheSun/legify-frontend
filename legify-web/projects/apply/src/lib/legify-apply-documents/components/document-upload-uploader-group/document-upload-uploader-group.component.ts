@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Person } from '../../../models';
 import { LegifyDocumentRequirement } from '../../../models';
+import { Customer } from '../../../models/customer/customer';
 import { DocumentPreviewEvent, DocumentUploadEvent } from '../../models';
 import { LegifyDocument } from '../../models/legify-document';
 
@@ -11,7 +12,7 @@ import { LegifyDocument } from '../../models/legify-document';
 })
 export class DocumentUploadUploaderGroupComponent {
   @Input() items: LegifyDocument[] = [];
-  @Input() groupOwner: Person;
+  @Input() groupOwner: Customer;
   @Input() documentMeta: LegifyDocumentRequirement;
 
   @Output() handleFileUpload: EventEmitter<DocumentUploadEvent> = new EventEmitter();

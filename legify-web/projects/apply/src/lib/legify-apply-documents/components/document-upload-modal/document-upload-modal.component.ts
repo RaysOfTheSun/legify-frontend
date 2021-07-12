@@ -4,6 +4,7 @@ import { AppConfigService } from '@legify/web-core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { concatMap, map, take } from 'rxjs/operators';
 import { LegifyDocumentRequirement, Person } from '../../../models';
+import { Customer } from '../../../models/customer/customer';
 import { LegifyApplyPersonMapperService } from '../../../services';
 import { DOCUMENT_PREVIEW_MODAL_ACTION } from '../../constants';
 import {
@@ -39,12 +40,12 @@ export class DocumentUploadModalComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  get modalOwner(): Person {
-    return this.data.person;
+  get modalOwner(): Customer {
+    return this.data.customer;
   }
 
   get modalOwnerName(): string {
-    return this.legifyApplyPersonMapper.getPersonName(this.data.person);
+    return this.legifyApplyPersonMapper.getPersonName(this.data.customer);
   }
 
   get requiredDocuments(): Observable<LegifyDocumentRequirement[]> {

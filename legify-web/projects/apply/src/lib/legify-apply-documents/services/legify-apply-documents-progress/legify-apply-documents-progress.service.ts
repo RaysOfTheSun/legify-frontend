@@ -22,17 +22,17 @@ export class LegifyApplyDocumentsProgressService extends LegifyApplyProgressServ
   }
 
   public calculateProgressForPerson(
-    allDocumentsForPerson: LegifyDocument[],
-    requiredDocsForPerson: LegifyDocumentRequirement[]
+    allDocumentsForCustomer: LegifyDocument[],
+    requiredDocsForCustomer: LegifyDocumentRequirement[]
   ): number {
-    const reqCompletionStatus = requiredDocsForPerson.map((docRequirement) => {
-      const uploadedDocCount = allDocumentsForPerson.filter(
+    const reqCompletionStatus = requiredDocsForCustomer.map((docRequirement) => {
+      const uploadedDocCount = allDocumentsForCustomer.filter(
         (doc) => doc.documentGroup === docRequirement.documentGroup
       ).length;
 
       return uploadedDocCount >= docRequirement.minimumUploads;
     });
 
-    return (reqCompletionStatus.filter((status) => status).length / requiredDocsForPerson.length) * 100;
+    return (reqCompletionStatus.filter((status) => status).length / requiredDocsForCustomer.length) * 100;
   }
 }
