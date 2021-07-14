@@ -9,7 +9,6 @@ import {
   LegifyLoginService,
   LegifyLoginConfigService
 } from '@legify/web-auth';
-import { MarketModule } from '@legify/web-core';
 import { CorLoginConfigService, CorLoginService } from './services';
 
 @NgModule({
