@@ -11,7 +11,7 @@ import {
 import { LegifyApplyPersonMapperService, LegifyApplyService } from '../services';
 import { DocumentUploadModalComponent } from './components';
 import { AppConfigService } from '@legify/web-core';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-apply-documents',
@@ -31,8 +31,8 @@ export class ApplyDocumentsComponent {
     protected applyDocumentsProgressService: LegifyApplyDocumentsProgressService
   ) {}
 
-  get taskCardConfigs$(): Observable<TaskCardConfig[]> {
-    return this.applyDocumentsService.getTaskCardConfigs();
+  get taskCardConfigs$(): Observable<TaskCardConfig> {
+    return this.applyDocumentsConfigService.taskCardConfigs;
   }
 
   public onTaskCardClick(customer: Customer): void {

@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  TemplateRef
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { TaskCardConfig } from '../models';
 
 @Component({
@@ -14,13 +8,17 @@ import { TaskCardConfig } from '../models';
 })
 export class LegifyTaskCardCollectionComponent {
   @Input() dataSource: any[];
-  @Input() taskCardConfigs: TaskCardConfig[];
+  @Input() taskCardConfig: TaskCardConfig;
   @Input() taskCardTemplate: TemplateRef<any>;
 
   @Output() taskCardClickHandler: EventEmitter<any> = new EventEmitter();
 
   constructor() {
     this.onTaskCardClick = this.onTaskCardClick.bind(this);
+  }
+
+  get hasConfig(): boolean {
+    return !!this.taskCardConfig;
   }
 
   public getTaskCardSourceFromDataSource(taskCardIndex: number): any {

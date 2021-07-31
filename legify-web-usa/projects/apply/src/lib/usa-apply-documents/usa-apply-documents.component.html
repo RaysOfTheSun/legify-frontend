@@ -4,26 +4,14 @@
 
 <ng-template
   #usaTaskCard
-  let-rows="rows"
+  let-config="config"
   let-source="source"
-  let-headerText="headerText"
   let-handleClick="handleClick"
-  let-subHeaderText="subHeaderText"
-  let-taskCardClass="taskCardClass"
-  let-highlightColor="highlightColor"
-  let-showProgressBar="showProgressBar"
-  let-footerHeaderText="footerHeaderText"
-  let-highlightColorKey="highlightColorKey"
 >
   <legify-usa-web-task-card
-    [rows]="rows"
+    [config]="config"
     [dataSource]="source"
-    [headerText]="headerText"
-    [subHeaderText]="subHeaderText"
-    [highlightColor]="highlightColor"
-    [footerHeaderText]="footerHeaderText"
     [progressBarValue]="getTaskCardProgressBarValue(source) | async"
-    [highlightColorKey]="highlightColorKey"
     (handleClick)="handleClick($event)"
     class="legify-collection-task-card"
   ></legify-usa-web-task-card>

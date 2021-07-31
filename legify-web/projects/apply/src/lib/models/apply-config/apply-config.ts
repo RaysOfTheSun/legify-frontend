@@ -5,5 +5,5 @@ import { ApplySupportingDocsConfig } from './module-configs/apply-documents/appl
 export interface ApplyConfig {
   navItems: ApplyShellSidenavItem[];
   documents: ApplySupportingDocsConfig;
-  taskCardConfigs: ApplyTaskCardConfigs;
+  taskCardConfigs: ApplyTaskCardConfigs[];
 }

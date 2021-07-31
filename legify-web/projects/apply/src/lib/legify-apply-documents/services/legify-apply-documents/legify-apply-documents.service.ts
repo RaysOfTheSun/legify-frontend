@@ -97,24 +97,6 @@ export class LegifyApplyDocumentsService {
     );
   }
 
-  public getTaskCardConfigs(): Observable<TaskCardConfig[]> {
-    return combineLatest([
-      this.applyDocumentsConfigService.taskCardRowConfigs,
-      this.getAllCustomersThatWillUploadDocuments()
-    ]).pipe(
-      map(([taskCardRowConfigs, persons]) => {
-        return persons.map((customer, i) => {
-          return {
-            headerText: this.applyPersonMapperService.getPersonName(customer),
-            subHeaderText: `PERSON_${customer.role}`,
-            highlightColorKey: get(customer, 'role'),
-            rows: taskCardRowConfigs
-          } as TaskCardConfig;
-        });
-      })
-    );
-  }
-
   public uploadDocument(
     rawFile: File,
     documentOwner: Customer,

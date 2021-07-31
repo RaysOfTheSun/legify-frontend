@@ -1,12 +1,5 @@
-<mat-card
-  class="legify-task-card"
-  [ngClass]="[taskCardClass]"
-  (click)="handleClickEvent()"
->
-  <div
-    class="legify-task-card__highlight"
-    [ngStyle]="{ backgroundColor: highlight }"
-  ></div>
+<mat-card class="legify-task-card" [ngClass]="[taskCardClass]" (click)="handleClickEvent()">
+  <div class="legify-task-card__highlight" [ngStyle]="{ backgroundColor: highlight }"></div>
   <mat-card-content class="legify-task-card__body">
     <div class="legify-task-card__header">
       <legify-web-i18n-translatable-text
@@ -28,7 +21,7 @@
     <div class="legify-task-card__footer">
       <p class="legify-task-card__footer-header">{{ footerHeader }}</p>
       <mat-progress-bar
-        *ngIf="showProgressBar"
+        *ngIf="hasProgressbar"
         class="legify-task-card__progress-bar"
         mode="determinate"
         [color]="'primary'"

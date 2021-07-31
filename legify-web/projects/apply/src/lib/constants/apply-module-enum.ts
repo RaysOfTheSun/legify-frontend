@@ -1,3 +1,4 @@
 export enum APPLY_MODULE {
-  DOCUMENTS = 'documents'
+  DOCUMENTS = 'documents',
+  PERSONAL_INFO = 'personal_info'
 }

@@ -1,12 +1,12 @@
+import { TaskCardDisplayValue } from './task-card-display-value';
 import { TaskCardRow } from './task-card-row';
 
 export interface TaskCardConfig {
   rows: TaskCardRow[];
-  headerText: string;
+  footerText: TaskCardDisplayValue;
+  headerText: TaskCardDisplayValue;
   taskCardClass?: string;
-  subHeaderText: string;
-  highlightColor?: string;
+  subHeaderText: TaskCardDisplayValue;
   showProgressBar?: boolean;
-  footerHeaderText?: string;
-  highlightColorKey?: string;
+  highlightColorKey?: TaskCardDisplayValue;
 }

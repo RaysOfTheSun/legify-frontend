@@ -43,14 +43,82 @@
       "showCompleteIndicator": true
     }
   ],
-  "taskCardConfigs": {
-    "rowConfigs": [
-      {
-        "forModule": "documents",
-        "config": []
+  "taskCardConfigs": [
+    {
+      "forModule": "personal_information",
+      "config": {
+        "rows": [
+          {
+            "header": {
+              "template": "Name",
+              "templateIsValue": true
+            },
+            "value": {
+              "sources": [
+                "personalInfo.nameInfo.first",
+                "personalInfo.nameInfo.last"
+              ],
+              "template": "{0} {1}"
+            }
+          },
+          {
+            "header": {
+              "template": "Age",
+              "templateIsValue": true
+            },
+            "value": {
+              "sources": ["personalInfo.age"],
+              "template": "{0}"
+            }
+          }
+        ],
+        "headerText": {
+          "sources": [
+            "personalInfo.nameInfo.first",
+            "personalInfo.nameInfo.last"
+          ],
+          "template": "{0} {1}"
+        },
+        "subHeaderText": {
+          "sources": ["role"],
+          "template": "PERSON_{0}"
+        },
+        "footerHeaderText": {
+          "template": "Completion",
+          "templateIsValue": true
+        },
+        "highlightColorKey": {
+          "sources": ["role"],
+          "template": "{0}"
+        }
       }
-    ]
-  },
+    },
+    {
+      "forModule": "documents",
+      "config": {
+        "headerText": {
+          "sources": [
+            "personalInfo.nameInfo.first",
+            "personalInfo.nameInfo.last"
+          ],
+          "template": "{0} {1}"
+        },
+        "subHeaderText": {
+          "sources": ["role"],
+          "template": "PERSON_{0}"
+        },
+        "highlightColorKey": {
+          "sources": ["role"],
+          "template": "{0}"
+        },
+        "footerText": {
+          "template": "Completion",
+          "templateIsValue": true
+        },
+        "rows": []
+      }
+    }
+  ],
   "documents": {
     "requiredDocs": [
       {

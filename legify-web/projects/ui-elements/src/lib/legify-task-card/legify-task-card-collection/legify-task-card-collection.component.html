@@ -1,18 +1,11 @@
-<div class="legify-task-card-collection" *ngIf="taskCardTemplate">
-  <ng-container *ngFor="let taskCardConfig of taskCardConfigs; let i = index">
+<div class="legify-task-card-collection" *ngIf="taskCardTemplate && hasConfig">
+  <ng-container *ngFor="let source of dataSource; let i = index">
     <ng-container
       [ngTemplateOutlet]="taskCardTemplate"
       [ngTemplateOutletContext]="{
-        rows: taskCardConfig.rows,
-        source: getTaskCardSourceFromDataSource(i),
-        headerText: taskCardConfig.headerText,
-        handleClick: onTaskCardClick,
-        subHeaderText: taskCardConfig.subHeaderText,
-        taskCardClass: getTaskCardClassFromConfig(taskCardConfig),
-        highlightColor: taskCardConfig.highlightColor,
-        showProgressBar: getShowProgressBarFromConfig(taskCardConfig),
-        footerHeaderText: taskCardConfig.footerHeaderText,
-        highlightColorKey: taskCardConfig.highlightColorKey
+        config: taskCardConfig,
+        source: source,
+        handleClick: onTaskCardClick
       }"
     ></ng-container>
   </ng-container>

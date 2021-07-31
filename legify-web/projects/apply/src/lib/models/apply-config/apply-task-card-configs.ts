@@ -1,5 +1,6 @@
-import { TaskCardRowConfigs } from './task-card-row-configs';
+import { TaskCardConfig } from '@legify/web-ui-elements';
 
 export interface ApplyTaskCardConfigs {
-  rowConfigs: TaskCardRowConfigs[];
+  forModule: string;
+  config: TaskCardConfig;
 }

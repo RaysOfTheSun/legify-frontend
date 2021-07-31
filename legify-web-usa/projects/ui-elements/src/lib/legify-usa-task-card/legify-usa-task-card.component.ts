@@ -3,7 +3,6 @@ import {
   LegifyTaskCardComponent,
   LegifyTaskCardConfigService
 } from '@legify/web-ui-elements';
-import { AppConfigService } from '@legify/web-core';
 
 @Component({
   selector: 'legify-usa-web-task-card',
@@ -11,10 +10,7 @@ import { AppConfigService } from '@legify/web-core';
   styleUrls: ['./legify-usa-task-card.component.scss']
 })
 export class LegifyUsaTaskCardComponent extends LegifyTaskCardComponent {
-  constructor(
-    protected appConfigService: AppConfigService,
-    protected taskCardConfigService: LegifyTaskCardConfigService
-  ) {
-    super(appConfigService, taskCardConfigService);
+  constructor(protected taskCardConfigService: LegifyTaskCardConfigService) {
+    super(taskCardConfigService);
   }
 }

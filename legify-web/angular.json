@@ -32,10 +32,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/core/tsconfig.lib.json",
-              "projects/core/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/core/tsconfig.lib.json", "projects/core/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -70,10 +67,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/apply/tsconfig.lib.json",
-              "projects/apply/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/apply/tsconfig.lib.json", "projects/apply/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -108,10 +102,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/ui-elements/tsconfig.lib.json",
-              "projects/ui-elements/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/ui-elements/tsconfig.lib.json", "projects/ui-elements/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -146,10 +137,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/auth/tsconfig.lib.json",
-              "projects/auth/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/auth/tsconfig.lib.json", "projects/auth/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -184,10 +172,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/i18n/tsconfig.lib.json",
-              "projects/i18n/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/i18n/tsconfig.lib.json", "projects/i18n/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }
@@ -222,10 +207,7 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "projects/i18n-elements/tsconfig.lib.json",
-              "projects/i18n-elements/tsconfig.spec.json"
-            ],
+            "tsConfig": ["projects/i18n-elements/tsconfig.lib.json", "projects/i18n-elements/tsconfig.spec.json"],
             "exclude": ["**/node_modules/**"]
           }
         }

@@ -1,5 +1,6 @@
+import { TaskCardDisplayValue } from './task-card-display-value';
+
 export interface TaskCardRow {
-  rowHeader: string;
-  rowValueSource: string;
-  valueIsStatic?: boolean;
+  value: TaskCardDisplayValue;
+  header: TaskCardDisplayValue;
 }

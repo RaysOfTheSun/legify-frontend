@@ -19,7 +19,7 @@
       <div>
         <p class="legify-task-card__footer-header">{{ footerHeader }}</p>
         <mat-progress-bar
-          *ngIf="showProgressBar"
+          *ngIf="hasProgressbar"
           class="legify-task-card__progress-bar"
           mode="determinate"
           [color]="'primary'"
