@@ -14,7 +14,7 @@ import { CorApplyConfigService, CorApplyService } from '../lib/services';
 @NgModule({
   declarations: [CorApplyComponent],
   imports: [CommonModule, ApplyModule, RouterModule],
-  exports: [CorApplyComponent]
+  exports: []
 })
 export class CorApplyModule {
   public static forMarket(): ModuleWithProviders<CorApplyModule> {

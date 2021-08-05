@@ -7,7 +7,6 @@ import { ApplyDocumentsModule } from '@legify/web-apply';
 
 @NgModule({
   declarations: [CorApplyDocumentsComponent],
-  imports: [CommonModule, CorApplyDocumentsRoutingModule, ApplyDocumentsModule],
-  exports: [CorApplyDocumentsComponent]
+  imports: [CommonModule, ApplyDocumentsModule, CorApplyDocumentsRoutingModule]
 })
 export class CorApplyDocumentsModule {}
