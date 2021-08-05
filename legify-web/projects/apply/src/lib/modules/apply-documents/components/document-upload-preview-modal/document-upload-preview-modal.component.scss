@@ -1,0 +1,23 @@
+@import "~@legify/web-ui-elements/assets/styles/mixins";
+
+.document-upload-preview-modal {
+  height: 100%;
+  @include flex-container($align: center, $justify: center);
+  &__preview {
+    &--image {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+    }
+  }
+
+  &__footer {
+    @include flex-container($justify: flex-end);
+  }
+
+  &__footer-button {
+    flex: 1;
+    margin: 0 10px;
+    max-width: 120px;
+  }
+}

@@ -1,0 +1,24 @@
+<div class="document-upload-uploader-group">
+  <legify-web-i18n-translatable-text
+    class="document-upload-uploader-group__header"
+    [translatableTextId]="documentMeta.documentGroup | translatableText"
+  ></legify-web-i18n-translatable-text>
+  <div class="document-upload-uploader-group__uploaders">
+    <legify-web-document-upload-uploader-preview
+      *ngFor="let item of items"
+      [documentSrc]="item"
+      (handleDelete)="publishDeleteEvent($event)"
+      (handlePreview)="publishFilePreviewEvent($event)"
+    ></legify-web-document-upload-uploader-preview>
+    <legify-web-document-upload-uploader
+      (handleClick)="handleFileUploaderClick()"
+      *ngIf="!isAtMaximumUploads"
+    ></legify-web-document-upload-uploader>
+  </div>
+  <input
+    type="file"
+    hidden
+    #fileUploader
+    (change)="publishFileUpload($event)"
+  />
+</div>
