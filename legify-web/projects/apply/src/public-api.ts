@@ -3,7 +3,7 @@
  */
 
 export * from './lib/models';
+export * from './lib/modules';
 export * from './lib/services';
+export * from './lib/apply.module';
 export * from './lib/apply.component';
-export * from './lib/legify-apply.module';
-export * from './lib/legify-apply-documents';

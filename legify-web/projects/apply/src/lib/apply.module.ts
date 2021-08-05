@@ -13,4 +13,4 @@ import { ApplyHttpDataService, ApplyService } from './services';
   exports: [ApplyComponent],
   providers: [ApplyService, ApplyHttpDataService]
 })
-export class LegifyApplyModule {}
+export class ApplyModule {}

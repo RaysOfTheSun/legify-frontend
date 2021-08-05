@@ -16,7 +16,7 @@ import {
   ApplyDocumentsDataService,
   ApplyDocumentsProgessService,
   ApplyDocumentsService
-} from './services/iindex';
+} from './services';
 import {
   LegifyModalModule,
   LegifyButtonModule,

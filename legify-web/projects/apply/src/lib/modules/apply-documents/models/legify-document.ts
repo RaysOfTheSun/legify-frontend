@@ -1,4 +1,4 @@
-import { PERSON_ROLE } from '../../constants';
+import { PERSON_ROLE } from '../../../constants';
 
 export interface LegifyDocument {
   file?: string;

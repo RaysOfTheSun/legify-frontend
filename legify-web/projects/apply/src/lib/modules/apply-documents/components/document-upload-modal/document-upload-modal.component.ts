@@ -1,7 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppConfigService } from '@legify/web-core';
-import { LegifyApplyDocumentsService, Customer, LegifyDocumentRequirement, Person } from 'dist/apply/public-api';
 import { ConsumerDataService } from '../../../../services';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { concatMap, map, take } from 'rxjs/operators';
@@ -11,9 +10,12 @@ import {
   DocumentPreviewEvent,
   DocumentUploadEvent,
   DocumentUploadModalData,
-  LegifyDocument
+  LegifyDocument,
+  LegifyDocumentRequirement
 } from '../../models';
 import { DocumentUploadPreviewModalComponent } from '../document-upload-preview-modal/document-upload-preview-modal.component';
+import { ApplyDocumentsService } from '../../services/index';
+import { Customer, Person } from '../../../../models';
 
 @Component({
   selector: 'legify-web-document-upload-modal',
@@ -33,7 +35,7 @@ export class DocumentUploadModalComponent implements OnInit {
     protected matDialog: MatDialog,
     protected appConfigService: AppConfigService,
     protected consumerDataService: ConsumerDataService,
-    protected applyDocumentService: LegifyApplyDocumentsService
+    protected applyDocumentService: ApplyDocumentsService
   ) {}
 
   ngOnInit(): void {}

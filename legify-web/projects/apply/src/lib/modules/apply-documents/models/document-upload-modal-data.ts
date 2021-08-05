@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { LegifyDocumentRequirement, Person } from '../../models';
-import { Customer } from '../../models/customer/customer';
+import { Customer } from '../../../models';
+import { LegifyDocumentRequirement } from './legify-document-requirement';
 
 export interface DocumentUploadModalData {
   customer: Customer;

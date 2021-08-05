@@ -1,4 +1,4 @@
-import { Person } from '../../models';
+import { Person } from '../../../models';
 import { LegifyDocument } from './legify-document';
 
 export interface DocumentDeleteEvent {

@@ -1,8 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { Person } from '../../../models';
-import { LegifyDocumentRequirement } from '../../../models';
-import { Customer } from '../../../models/customer/customer';
-import { DocumentPreviewEvent, DocumentUploadEvent } from '../../models';
+import { Customer } from '../../../../models/customer/customer';
+import { DocumentPreviewEvent, DocumentUploadEvent, LegifyDocumentRequirement } from '../../models';
 import { LegifyDocument } from '../../models/legify-document';
 
 @Component({

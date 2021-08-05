@@ -1,1 +1,16 @@
-<p>apply-documents works!</p>
+<legify-web-task-card-collection
+  [taskCardTemplate]="taskCardTemplate ? taskCardTemplate : defaultTaskCardTemplate"
+  [dataSource]="getTaskCardCollectionDataSource() | async"
+  [taskCardConfig]="taskCardConfigs$ | async"
+  (taskCardClickHandler)="onTaskCardClick($event)"
+></legify-web-task-card-collection>
+
+<ng-template let-config="config" let-source="source" let-handleClick="handleClick" #defaultTaskCardTemplate>
+  <legify-web-task-card
+    [config]="config"
+    [dataSource]="source"
+    [progressBarValue]="getTaskCardProgressBarValue(source) | async"
+    (handleClick)="handleClick($event)"
+    class="legify-collection-task-card"
+  ></legify-web-task-card>
+</ng-template>
