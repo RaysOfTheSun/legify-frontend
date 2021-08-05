@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {
-  LegifyApplyService,
-  LegifyApplyConfigService,
-  LegifyApplyHttpDataService
+  ApplyService,
+  ApplyConfigService,
+  ApplyHttpDataService
 } from '@legify/web-apply';
 
 @Injectable()
-export class CorApplyService extends LegifyApplyService {
+export class CorApplyService extends ApplyService {
   constructor(
-    protected legifyApplyConfigService: LegifyApplyConfigService,
-    protected legifyApplyHttpDataService: LegifyApplyHttpDataService
+    protected ApplyConfigService: ApplyConfigService,
+    protected ApplyHttpDataService: ApplyHttpDataService
   ) {
-    super(legifyApplyConfigService, legifyApplyHttpDataService);
+    super(ApplyConfigService, ApplyHttpDataService);
   }
 }

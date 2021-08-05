@@ -1,44 +1,43 @@
 import { Injectable } from '@angular/core';
 import {
   Customer,
-  LegifyApplyService,
-  LegifyApplyDataService,
+  ApplyService,
+  ApplyHttpDataService,
   LegifyDocumentRequirement,
-  LegifyApplyDocumentsService,
-  LegifyApplyPersonMapperService,
-  LegifyApplyDocumentsDataService,
-  LegifyApplyDocumentsConfigService,
-  LegifyApplyDocumentsProgressService
+  ApplyDocumentsService,
+  ConsumerDataService,
+  ApplyDocumentsDataService,
+  ApplyDocumentsConfigService,
+  ApplyDocumentsCreatorService,
+  ApplyDocumentsProgessService
 } from '@legify/web-apply';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { UsaLegifyApplication } from '../../../models/application/legify-usa-application';
 import { USA_SUPPORTING_DOC_TYPE_GROUP } from '../../constants';
-import { LegifyApplyDocumentsDocumentMapperService } from '@legify/web-apply';
 
 @Injectable()
-export class UsaApplyDocumentsService extends LegifyApplyDocumentsService {
+export class UsaApplyDocumentsService extends ApplyDocumentsService {
   constructor(
-    protected applyService: LegifyApplyService<UsaLegifyApplication>,
-    protected applyDataService: LegifyApplyDataService,
-    protected documentMapperService: LegifyApplyDocumentsDocumentMapperService,
-    protected documentsProgressService: LegifyApplyDocumentsProgressService,
-    protected applyPersonMapperService: LegifyApplyPersonMapperService,
-    protected applyDocumentsDataService: LegifyApplyDocumentsDataService,
-    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
+    protected applyService: ApplyService<UsaLegifyApplication>,
+    protected applyDataService: ApplyHttpDataService,
+    protected applyDocumentsCreatorService: ApplyDocumentsCreatorService,
+    protected documentsProgressService: ApplyDocumentsProgessService,
+    protected consumerDataService: ConsumerDataService,
+    protected applyDocumentsDataService: ApplyDocumentsDataService,
+    protected applyDocumentsConfigService: ApplyDocumentsConfigService
   ) {
     super(
       applyService,
-      applyDataService,
-      documentMapperService,
+      consumerDataService,
+      applyDocumentsCreatorService,
       documentsProgressService,
-      applyPersonMapperService,
       applyDocumentsDataService,
       applyDocumentsConfigService
     );
   }
 
-  public getDocumentRequirementsForPerson(
+  public getDocumentRequirementsForCustomer(
     customer: Customer
   ): Observable<LegifyDocumentRequirement[]> {
     return super.getDocumentRequirementsForCustomer(customer).pipe(

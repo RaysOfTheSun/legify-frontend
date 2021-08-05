@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import {
   ApplyDocumentsComponent,
-  LegifyApplyService,
-  LegifyApplyDocumentsService,
-  LegifyApplyPersonMapperService,
-  LegifyApplyDocumentsConfigService,
-  LegifyApplyDocumentsProgressService
+  ApplyService,
+  ConsumerDataService,
+  ApplyDocumentsService,
+  ApplyDocumentsConfigService,
+  ApplyDocumentsProgessService
 } from '@legify/web-apply';
 import { AppConfigService } from '@legify/web-core';
 
@@ -18,19 +18,18 @@ import { AppConfigService } from '@legify/web-core';
 export class UsaApplyDocumentsComponent extends ApplyDocumentsComponent {
   constructor(
     protected matDialog: MatDialog,
-    protected applyService: LegifyApplyService,
+    protected applyService: ApplyService,
     protected appConfigService: AppConfigService,
-    protected applyDocumentsService: LegifyApplyDocumentsService,
-    protected applyPersonMapperService: LegifyApplyPersonMapperService,
-    protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService,
-    protected applyDocumentsProgressService: LegifyApplyDocumentsProgressService
+    protected applyDocumentsService: ApplyDocumentsService,
+    protected consumerDataService: ConsumerDataService,
+    protected applyDocumentsConfigService: ApplyDocumentsConfigService,
+    protected applyDocumentsProgressService: ApplyDocumentsProgessService
   ) {
     super(
       matDialog,
       applyService,
       appConfigService,
       applyDocumentsService,
-      applyPersonMapperService,
       applyDocumentsConfigService,
       applyDocumentsProgressService
     );

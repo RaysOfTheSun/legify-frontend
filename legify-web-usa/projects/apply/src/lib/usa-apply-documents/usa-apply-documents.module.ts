@@ -4,10 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UsaApplyDocumentsRoutingModule } from './usa-apply-documents-routing.module';
 import { UsaApplyDocumentsComponent } from './usa-apply-documents.component';
 
-import {
-  LegifyApplyDocumentsModule,
-  LegifyApplyDocumentsService
-} from '@legify/web-apply';
+import { ApplyDocumentsModule, ApplyDocumentsService } from '@legify/web-apply';
 import { LegifyUsaTaskCardModule } from '@legify-usa/web-ui-elements';
 import { UsaApplyDocumentsService } from './services/usa-apply-documents/usa-apply-documents.service';
 
@@ -17,10 +14,10 @@ import { UsaApplyDocumentsService } from './services/usa-apply-documents/usa-app
     CommonModule,
     LegifyUsaTaskCardModule,
     UsaApplyDocumentsRoutingModule,
-    LegifyApplyDocumentsModule
+    ApplyDocumentsModule
   ],
   providers: [
-    { provide: LegifyApplyDocumentsService, useClass: UsaApplyDocumentsService }
+    { provide: ApplyDocumentsService, useClass: UsaApplyDocumentsService }
   ]
 })
 export class UsaApplyDocumentsModule {}
