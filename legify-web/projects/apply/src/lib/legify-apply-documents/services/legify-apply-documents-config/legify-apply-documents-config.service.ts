@@ -3,13 +3,13 @@ import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { TaskCardConfig } from '@legify/web-ui-elements';
 import { APPLY_MODULE } from '../../../constants';
-import { LegifyApplyConfigService } from '../../../services';
 import { ApplySupportingDocsConfig } from '../../../models/apply-config/module-configs/apply-documents/apply-supporting-docs-config';
 import { LegifyDocumentRequirementConfig } from '../../../models';
+import { ApplyConfigService } from '../../../services';
 
 @Injectable()
 export class LegifyApplyDocumentsConfigService {
-  constructor(protected applyConfigService: LegifyApplyConfigService) {}
+  constructor(protected applyConfigService: ApplyConfigService) {}
 
   get taskCardConfigs(): Observable<TaskCardConfig> {
     return this.applyConfigService.getTaskCardConfigsForModule(APPLY_MODULE.DOCUMENTS);

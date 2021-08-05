@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { LegifyApplication } from '../../models';
 import { ApplicationProgress } from '../../models/application/application-progress/application-progress';
 import { ApplicationProgressChunk } from '../../models/application/application-progress/application-progress-chunk';
-
 @Injectable()
-export abstract class LegifyApplyProgressService {
+export abstract class ApplyProgressService {
   public abstract getModuleProgress(application: LegifyApplication): ApplicationProgress;
 
   public calculateTotalModuleProgress(progressInfo: ApplicationProgress, totalNumberOfChunks: number): number {

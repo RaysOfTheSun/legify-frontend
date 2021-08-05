@@ -3,11 +3,11 @@ import { TaskCardRow } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APPLY_MODULE } from '../../../constants';
-import { LegifyApplyConfigService } from '../../../services';
+import { ApplyConfigService } from '../../../services';
 
 @Injectable()
 export class ApplyPersonalInformationService {
-  constructor(protected applyConfigService: LegifyApplyConfigService) {}
+  constructor(protected applyConfigService: ApplyConfigService) {}
 
   get taskCardConfigs$(): Observable<TaskCardRow[]> {
     return this.applyConfigService

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { concatMap, map, take } from 'rxjs/operators';
 import { LegifyDocumentRequirement, Person } from '../../../models';
 import { Customer } from '../../../models/customer/customer';
-import { LegifyApplyPersonMapperService } from '../../../services';
+import { ConsumerDataService } from '../../../services';
 import { DOCUMENT_PREVIEW_MODAL_ACTION } from '../../constants';
 import {
   DocumentPreviewActionEvent,
@@ -34,8 +34,8 @@ export class DocumentUploadModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DocumentUploadModalData,
     protected matDialog: MatDialog,
     protected appConfigService: AppConfigService,
-    protected applyDocumentService: LegifyApplyDocumentsService,
-    protected legifyApplyPersonMapper: LegifyApplyPersonMapperService
+    protected consumerDataService: ConsumerDataService,
+    protected applyDocumentService: LegifyApplyDocumentsService
   ) {}
 
   ngOnInit(): void {}
@@ -45,7 +45,7 @@ export class DocumentUploadModalComponent implements OnInit {
   }
 
   get modalOwnerName(): string {
-    return this.legifyApplyPersonMapper.getPersonName(this.data.customer);
+    return this.consumerDataService.getConsumerName(this.data.customer);
   }
 
   get requiredDocuments(): Observable<LegifyDocumentRequirement[]> {

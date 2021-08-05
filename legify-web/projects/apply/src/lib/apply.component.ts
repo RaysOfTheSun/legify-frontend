@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplyShellSidenavItem, ApplyShellConfig } from '@legify/web-ui-elements';
-import { Person } from './models';
-import { LegifyApplyConfigService, LegifyApplyService } from './services';
+import { ApplyConfigService, ApplyService } from './services';
 import { map, withLatestFrom } from 'rxjs/operators';
 
 @Component({
@@ -11,7 +10,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
-  constructor(protected applyService: LegifyApplyService, protected applyConfigService: LegifyApplyConfigService) {}
+  constructor(protected applyService: ApplyService, protected applyConfigService: ApplyConfigService) {}
 
   ngOnInit(): void {
     this.applyService.getCurrSelectedApplication();

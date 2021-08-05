@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { SESSION_VARIABLE } from '@legify/web-core';
-import { LegifyApplyConfigService } from '../legify-apply-config/legify-apply-config.service';
 import { LegifyApplication, Person } from '../../models';
-import { LegifyApplyHttpDataService } from '../legify-apply-http-data/legify-apply-http-data.service';
 import { ApplicationProgress } from '../../models/application/application-progress/application-progress';
+import { ApplyConfigService } from '../apply-config/apply-config.service';
+import { ApplyHttpDataService } from '../apply-http-data/apply-http-data.service';
 
 @Injectable()
-export class LegifyApplyService<A extends LegifyApplication = LegifyApplication> {
+export class ApplyService<A extends LegifyApplication = LegifyApplication> {
   protected readonly currentApplicationSubj: BehaviorSubject<A> = new BehaviorSubject(null);
 
-  constructor(
-    protected applyConfigService: LegifyApplyConfigService,
-    protected applyHttpDataService: LegifyApplyHttpDataService<A>
-  ) {
+  constructor(protected applyConfigService: ApplyConfigService, protected applyHttpDataService: ApplyHttpDataService) {
     this.applyHttpDataService.getApplyConfig().pipe(take(1)).subscribe();
   }
 

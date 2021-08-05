@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { APPLY_MODULE } from '../../../constants';
 import { LegifyApplication, LegifyDocumentRequirement } from '../../../models';
 import { ApplicationProgress } from '../../../models/application/application-progress/application-progress';
-import { LegifyApplyProgressService } from '../../../services';
+import { ApplyProgressService } from '../../../services';
 import { LegifyDocument } from '../../models';
 
 @Injectable()
-export class LegifyApplyDocumentsProgressService extends LegifyApplyProgressService {
+export class LegifyApplyDocumentsProgressService extends ApplyProgressService {
   constructor() {
     super();
   }

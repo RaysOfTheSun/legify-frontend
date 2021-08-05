@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { DEFAULT_LEGIFY_APPLY_CONFIG } from '../../constants/configs/default-apply-config';
 import { ApplyTaskCardConfigs, ApplyConfig } from '../../models';
 import { ApplyShellSidenavItem, TaskCardConfig } from '@legify/web-ui-elements';
 import { APPLY_MODULE } from '../../constants';
 
 @Injectable()
-export class LegifyApplyConfigService {
+export class ApplyConfigService {
   protected readonly applyConfigSubj: BehaviorSubject<ApplyConfig> = new BehaviorSubject(DEFAULT_LEGIFY_APPLY_CONFIG);
 
   constructor() {}

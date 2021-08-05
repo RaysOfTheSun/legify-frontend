@@ -1,30 +1,28 @@
 import { Injectable } from '@angular/core';
-import { TaskCardConfig } from '@legify/web-ui-elements';
-import { BehaviorSubject, combineLatest, concat, Observable, pipe, zip } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { concatMap, map, take, tap, withLatestFrom } from 'rxjs/operators';
-import { LegifyApplication, LegifyDocumentRequirement, LegifyDocumentRequirementConfig, Person } from '../../../models';
-import { LegifyApplyService, LegifyApplyDataService, LegifyApplyPersonMapperService } from '../../../services';
+import { LegifyDocumentRequirement, LegifyDocumentRequirementConfig } from '../../../models';
+import { ApplyService } from '../../../services';
 import { LegifyApplyDocumentsConfigService } from '../legify-apply-documents-config/legify-apply-documents-config.service';
-import { get } from 'lodash-es';
 import { APPLICATION_PAYMENT_METHOD } from '../../../constants/application-payment-info-method-eum';
 import { SUPPORTING_DOC_TYPE } from '../../constants';
-import { DocumentUploadEvent, LegifyDocument } from '../../models';
+import { LegifyDocument } from '../../models';
 import { LegifyApplyDocumentsDocumentMapperService } from '../legify-apply-documents-document-mapper/legify-apply-documents-document-mapper.service';
 import { LegifyApplyDocumentsProgressService } from '../legify-apply-documents-progress/legify-apply-documents-progress.service';
 import { LegifyApplyDocumentsDataService } from '../legify-apply-documents-data/legify-apply-documents-data.service';
 import { ApplicationProgress } from '../../../models/application/application-progress/application-progress';
 import { Customer } from '../../../models/customer/customer';
+import { ConsumerDataService } from '../../../services/consumer-data/consumer-data.service';
 
 @Injectable()
 export class LegifyApplyDocumentsService {
   protected readonly allDocumentsSubj: BehaviorSubject<LegifyDocument[]> = new BehaviorSubject([]);
 
   constructor(
-    protected applyService: LegifyApplyService,
-    protected applyDataService: LegifyApplyDataService,
+    protected applyService: ApplyService,
+    protected consumerDataService: ConsumerDataService,
     protected documentMapperService: LegifyApplyDocumentsDocumentMapperService,
     protected documentsProgressService: LegifyApplyDocumentsProgressService,
-    protected applyPersonMapperService: LegifyApplyPersonMapperService,
     protected applyDocumentsDataService: LegifyApplyDocumentsDataService,
     protected applyDocumentsConfigService: LegifyApplyDocumentsConfigService
   ) {}
@@ -68,7 +66,7 @@ export class LegifyApplyDocumentsService {
   public getAllCustomersThatWillUploadDocuments(): Observable<Customer[]> {
     return this.applyService.currApplication$.pipe(
       map((application) => {
-        return application ? this.applyDataService.getAllInsuredPersonsFromApplication(application) : [];
+        return application ? this.consumerDataService.getAllInsuredPersonsFromApplication(application) : [];
       })
     );
   }
