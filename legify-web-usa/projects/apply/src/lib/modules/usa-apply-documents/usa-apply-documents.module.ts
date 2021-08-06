@@ -6,7 +6,7 @@ import { UsaApplyDocumentsComponent } from './usa-apply-documents.component';
 
 import { ApplyDocumentsModule, ApplyDocumentsService } from '@legify/web-apply';
 import { LegifyUsaTaskCardModule } from '@legify-usa/web-ui-elements';
-import { UsaApplyDocumentsService } from './services/usa-apply-documents/usa-apply-documents.service';
+import { UsaApplyDocumentsService } from './services';
 
 @NgModule({
   declarations: [UsaApplyDocumentsComponent],

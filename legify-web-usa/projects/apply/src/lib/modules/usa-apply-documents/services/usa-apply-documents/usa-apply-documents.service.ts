@@ -13,7 +13,7 @@ import {
 } from '@legify/web-apply';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
-import { UsaLegifyApplication } from '../../../models/application/legify-usa-application';
+import { UsaLegifyApplication } from '../../../../models';
 import { USA_SUPPORTING_DOC_TYPE_GROUP } from '../../constants';
 
 @Injectable()
