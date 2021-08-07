@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { LegifyApplyConfigService } from '@legify/web-apply';
+import { ApplyConfigService } from '@legify/web-apply';
 
 @Injectable()
-export class UsaApplyConfigService extends LegifyApplyConfigService {
+export class UsaApplyConfigService extends ApplyConfigService {
   constructor() {
     super();
   }

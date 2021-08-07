@@ -44,5 +44,10 @@
   "localLanguages": {
     "en": "en-US",
     "vi": "vi-VN"
+  },
+  "modules": {
+    "apply": {
+      "configUri": ""
+    }
   }
 }

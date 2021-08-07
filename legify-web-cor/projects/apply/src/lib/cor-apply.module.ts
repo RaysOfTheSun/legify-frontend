@@ -4,27 +4,25 @@ import { CorApplyComponent } from './cor-apply.component';
 
 import { ModuleWithProviders } from '@angular/core';
 import {
-  LegifyApplyModule,
-  LegifyApplyConfigService,
-  LegifyApplyService,
-  LegifyApplyDataService
+  ApplyModule,
+  ApplyConfigService,
+  ApplyService
 } from '@legify/web-apply';
 import { RouterModule } from '@angular/router';
 import { CorApplyConfigService, CorApplyService } from '../lib/services';
 
 @NgModule({
   declarations: [CorApplyComponent],
-  imports: [CommonModule, LegifyApplyModule, RouterModule],
-  exports: [CorApplyComponent]
+  imports: [CommonModule, ApplyModule, RouterModule],
+  exports: []
 })
 export class CorApplyModule {
   public static forMarket(): ModuleWithProviders<CorApplyModule> {
     return {
       ngModule: CorApplyModule,
       providers: [
-        LegifyApplyDataService,
-        { provide: LegifyApplyService, useClass: CorApplyService },
-        { provide: LegifyApplyConfigService, useClass: CorApplyConfigService }
+        { provide: ApplyService, useClass: CorApplyService },
+        { provide: ApplyConfigService, useClass: CorApplyConfigService }
       ]
     };
   }

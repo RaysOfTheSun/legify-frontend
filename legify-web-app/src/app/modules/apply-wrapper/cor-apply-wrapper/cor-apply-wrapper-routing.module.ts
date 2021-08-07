@@ -20,6 +20,11 @@ const routes: Routes = [
           ),
         canActivate: [LegifyTranslationLoaderGuard],
         data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
+      },
+      {
+        path: 'basic-info',
+        loadChildren: () =>
+          import('@legify-cor/web-apply').then((m) => m.CorApplyBasicInfoModule)
       }
     ]
   }

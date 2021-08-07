@@ -1,4 +1,4 @@
-export interface LegifyDocumentRequirement {
+export interface LegifyDocumentConfig {
   documentType: string;
   documentGroup: string;
   minimumUploads: number;

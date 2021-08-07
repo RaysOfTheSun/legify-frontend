@@ -2,9 +2,9 @@
   "navItems": [
     {
       "key": "0",
-      "name": "Personal Information",
+      "name": "Basic Info",
       "disabled": false,
-      "routerLink": ["personal-info"],
+      "routerLink": ["basic-info"],
       "showCompleteIndicator": false
     },
     {
