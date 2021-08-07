@@ -38,7 +38,6 @@ export class LegifyTaskCardComponent implements OnInit {
   }
 
   get hasProgressbar(): boolean {
-    console.log(this.config.showProgressBar);
     return this.config.showProgressBar ?? true;
   }
 

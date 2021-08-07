@@ -136,5 +136,34 @@
         "forRoles": ["IO", "PO"]
       }
     ]
+  },
+  "basicInfo": {
+    "forms": [
+      {
+        "forRoles": [],
+        "sections": {
+          "name": "",
+          "icon": "",
+          "label": "",
+          "title": "",
+          "controls": [
+            {
+              "type": "radio",
+              "label": "question",
+              "radios": [
+                {
+                  "label": "yes",
+                  "value": "yes"
+                },
+                {
+                  "label": "no",
+                  "value": "no"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 }
