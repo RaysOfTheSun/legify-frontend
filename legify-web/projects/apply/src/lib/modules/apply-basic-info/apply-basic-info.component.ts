@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LegifyRadioControlGroup, LegifyFormControlType } from '@legify/web-ui-elements';
+import { LegifyFormControlGroupConfig, LEGIFY_FORM_CONTROL_TYPE } from '@legify/web-ui-elements';
 
 @Component({
   selector: 'legify-web-apply-basic-info',
@@ -7,43 +7,68 @@ import { LegifyRadioControlGroup, LegifyFormControlType } from '@legify/web-ui-e
   styleUrls: ['./apply-basic-info.component.scss']
 })
 export class ApplyBasicInfoComponent implements OnInit {
-  controls: LegifyRadioControlGroup[];
+  controls: LegifyFormControlGroupConfig[];
 
   constructor() {}
 
   ngOnInit(): void {
     this.controls = [
       {
-        type: LegifyFormControlType.RADIO_GROUP,
-        label: 'Question 1',
-        name: 'sample',
-        radios: [
+        icon: '',
+        title: '',
+        name: 'group1',
+        controls: [
           {
-            type: LegifyFormControlType.RADIO,
-            value: 'value 1',
-            label: 'Option 1'
-          },
-          {
-            type: LegifyFormControlType.RADIO,
-            value: 'value 2',
-            label: 'Option 2'
+            name: 'question1',
+            type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
+            label: 'question 1',
+            children: [
+              {
+                value: 'yes',
+                label: 'yes'
+              },
+              {
+                value: 'no',
+                label: 'no'
+              }
+            ]
           }
         ]
       },
       {
-        type: LegifyFormControlType.RADIO_GROUP,
-        label: 'Question 2',
-        name: 'sample2',
-        radios: [
+        icon: '',
+        title: '',
+        name: 'group2',
+        controls: [
           {
-            type: LegifyFormControlType.RADIO,
-            value: 'value 1',
-            label: 'Option 1'
+            name: 'question1',
+            type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
+            label: 'g2 - question 1',
+            children: [
+              {
+                value: 'yes',
+                label: 'yes'
+              },
+              {
+                value: 'no',
+                label: 'no'
+              }
+            ]
           },
           {
-            type: LegifyFormControlType.RADIO,
-            value: 'value 2',
-            label: 'Option 2'
+            name: 'question2',
+            type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
+            label: 'g2 - question 2',
+            children: [
+              {
+                value: 'yes',
+                label: 'yes'
+              },
+              {
+                value: 'no',
+                label: 'no'
+              }
+            ]
           }
         ]
       }

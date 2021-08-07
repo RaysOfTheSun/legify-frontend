@@ -1,0 +1,8 @@
+<ng-container [ngTemplateOutlet]="controlTemplate" [ngTemplateOutletContext]="{ config: config }"></ng-container>
+
+<ng-template let-config="config" #radio_group>
+  <legify-web-radio-button-group-form-control
+    [config]="config"
+    [control]="formControl"
+  ></legify-web-radio-button-group-form-control>
+</ng-template>
