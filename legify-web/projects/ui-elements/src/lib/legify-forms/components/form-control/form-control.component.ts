@@ -1,6 +1,5 @@
-import { Component, forwardRef, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
-import { get } from 'lodash-es';
+import { Component, Input, OnDestroy, OnInit, Optional, Self, TemplateRef, ViewChild } from '@angular/core';
+import { FormControl, NgControl } from '@angular/forms';
 import { LegifyFormControl } from '../../classes';
 import { LEGIFY_FORM_CONTROL_TYPE } from '../../constants';
 import { LegifyFormControlConfig } from '../../models';
@@ -9,14 +8,7 @@ import { RadioButtonGroupFormControlComponent } from '../radio-button-group-form
 @Component({
   selector: 'legify-web-form-control',
   templateUrl: './form-control.component.html',
-  styleUrls: ['./form-control.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormControlComponent),
-      multi: true
-    }
-  ]
+  styleUrls: ['./form-control.component.scss']
 })
 export class FormControlComponent extends LegifyFormControl implements OnInit, OnDestroy {
   @Input() config: LegifyFormControlConfig;
@@ -30,8 +22,8 @@ export class FormControlComponent extends LegifyFormControl implements OnInit, O
 
   protected templateMap: Map<LEGIFY_FORM_CONTROL_TYPE, TemplateRef<any>> = new Map();
 
-  constructor() {
-    super();
+  constructor(@Optional() @Self() public ngControl: NgControl) {
+    super(ngControl);
   }
 
   get controlTemplate(): TemplateRef<any> {

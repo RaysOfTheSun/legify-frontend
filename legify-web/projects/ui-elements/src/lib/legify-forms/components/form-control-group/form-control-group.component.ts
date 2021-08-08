@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { get } from 'lodash-es';
 import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from '../../models';
 
@@ -15,7 +15,15 @@ export class FormControlGroupComponent implements OnInit {
 
   constructor() {}
 
-  get controls(): LegifyFormControlConfig[] {
+  get groupIcon(): string {
+    return this.config.icon || '';
+  }
+
+  get groupTitle(): string {
+    return this.config.title;
+  }
+
+  get controlSets(): LegifyFormControlConfig[][] {
     return this.config.controls;
   }
 
@@ -25,10 +33,6 @@ export class FormControlGroupComponent implements OnInit {
 
   public getControlNameFromConfig(controlConfig: LegifyFormControlConfig): string {
     return controlConfig.name;
-  }
-
-  public getDefaultValueForControl(controlConfig: LegifyFormControlConfig): any {
-    return get(this.dataSource, controlConfig.dataBinding);
   }
 
   ngOnInit(): void {}

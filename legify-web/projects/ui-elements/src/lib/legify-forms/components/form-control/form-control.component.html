@@ -1,4 +1,6 @@
-<ng-container [ngTemplateOutlet]="controlTemplate" [ngTemplateOutletContext]="{ config: config }"></ng-container>
+<div class="form-control">
+  <ng-container [ngTemplateOutlet]="controlTemplate" [ngTemplateOutletContext]="{ config: config }"></ng-container>
+</div>
 
 <ng-template let-config="config" #radio_group>
   <legify-web-radio-button-group-form-control
@@ -9,6 +11,7 @@
 
 <ng-template let-config="config" #textbox>
   <mat-form-field>
+    <mat-label>{{ config.label }}</mat-label>
     <input [type]="config.inputType" [formControl]="formControl" matInput />
   </mat-form-field>
 </ng-template>

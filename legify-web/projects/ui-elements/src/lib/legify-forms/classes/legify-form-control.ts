@@ -1,4 +1,5 @@
-import { ControlValueAccessor, FormControl } from '@angular/forms';
+import { Optional, Self } from '@angular/core';
+import { AbstractControl, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 export class LegifyFormControl<V = any> implements ControlValueAccessor {
@@ -8,8 +9,12 @@ export class LegifyFormControl<V = any> implements ControlValueAccessor {
 
   protected handleOnTouched: () => void;
 
-  get formControl(): FormControl {
-    return this.control;
+  constructor(@Optional() @Self() public ngControl: NgControl) {
+    this.ngControl.valueAccessor = this;
+  }
+
+  get formControl(): AbstractControl {
+    return this.ngControl.control;
   }
 
   writeValue(value: any): void {

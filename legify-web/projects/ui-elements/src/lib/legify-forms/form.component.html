@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="groups && groups.length !== 0">
   <legify-web-form-control-group
     *ngFor="let section of sections"
     [group]="group"
