@@ -159,7 +159,8 @@
                   "label": "no",
                   "value": "no"
                 }
-              ]
+              ],
+              "dataBinding": ""
             }
           ]
         }

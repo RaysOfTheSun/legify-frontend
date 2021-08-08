@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LegifyFormControlGroupConfig, LEGIFY_FORM_CONTROL_TYPE } from '@legify/web-ui-elements';
+import { Observable } from 'rxjs';
+import { LegifyApplication, Person } from '../../models';
+import { ApplyService } from '../../services';
 
 @Component({
   selector: 'legify-web-apply-basic-info',
@@ -9,7 +12,7 @@ import { LegifyFormControlGroupConfig, LEGIFY_FORM_CONTROL_TYPE } from '@legify/
 export class ApplyBasicInfoComponent implements OnInit {
   controls: LegifyFormControlGroupConfig[];
 
-  constructor() {}
+  constructor(protected applyService: ApplyService) {}
 
   ngOnInit(): void {
     this.controls = [
@@ -71,7 +74,54 @@ export class ApplyBasicInfoComponent implements OnInit {
             ]
           }
         ]
+      },
+      {
+        name: 'nameInfo',
+        icon: '',
+        title: '',
+        controls: [
+          {
+            type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
+            inputType: 'text',
+            name: 'first',
+            label: '',
+            dataBinding: 'personalInfo.nameInfo.first'
+          },
+          {
+            type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
+            inputType: 'text',
+            name: 'middle',
+            label: '',
+            dataBinding: 'personalInfo.nameInfo.middle'
+          },
+          {
+            type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
+            inputType: 'text',
+            name: 'last',
+            label: '',
+            dataBinding: 'personalInfo.nameInfo.last'
+          },
+          {
+            name: 'alternateName',
+            type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
+            label: 'Is this an alternate name?',
+            children: [
+              {
+                value: 'yes',
+                label: 'yes'
+              },
+              {
+                value: 'no',
+                label: 'no'
+              }
+            ]
+          }
+        ]
       }
     ];
+  }
+
+  get formDataSource(): Observable<Person> {
+    return this.applyService.getCurrCustomer();
   }
 }

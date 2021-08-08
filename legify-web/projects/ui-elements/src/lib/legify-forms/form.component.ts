@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from './models';
+import { get } from 'lodash-es';
+import { LegifyFormControlGroupConfig } from './models';
 
 @Component({
   selector: 'legify-web-form',
@@ -10,6 +11,7 @@ import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from './models'
 export class FormComponent implements OnInit {
   @Input() group: FormGroup;
   @Input() groups: LegifyFormControlGroupConfig[];
+  @Input() dataSource: any;
 
   constructor() {}
 
@@ -19,7 +21,7 @@ export class FormComponent implements OnInit {
 
   protected getFormControlConfigsForGroup(formControlGroup: LegifyFormControlGroupConfig): Record<string, FormControl> {
     return formControlGroup.controls.reduce((acc, controlConfig) => {
-      acc[controlConfig.name] = new FormControl();
+      acc[controlConfig.name] = new FormControl(get(this.dataSource, controlConfig.dataBinding));
       return acc;
     }, {});
   }

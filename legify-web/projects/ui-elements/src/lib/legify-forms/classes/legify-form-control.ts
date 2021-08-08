@@ -13,7 +13,7 @@ export class LegifyFormControl<V = any> implements ControlValueAccessor {
   }
 
   writeValue(value: any): void {
-    this.control.setValue(value ?? this.defaultValue);
+    this.control.setValue(value);
   }
 
   registerOnChange(onChangeHanlder: any): void {

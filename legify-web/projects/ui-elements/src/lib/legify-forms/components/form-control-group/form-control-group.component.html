@@ -1,9 +1,10 @@
 <ng-container [formGroup]="group">
-  <div [formGroupName]="configs.name">
+  <div [formGroupName]="groupName">
     <legify-web-form-control
-      *ngFor="let controlConfig of controls"
-      [config]="controlConfig"
-      [formControlName]="controlConfig.name"
+      *ngFor="let control of controls"
+      [config]="control"
+      [dataSource]="dataSource"
+      [formControlName]="getControlNameFromConfig(control)"
     ></legify-web-form-control>
   </div>
 </ng-container>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { get } from 'lodash-es';
 import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from '../../models';
 
 @Component({
@@ -8,14 +9,26 @@ import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from '../../mod
   styleUrls: ['./form-control-group.component.scss']
 })
 export class FormControlGroupComponent implements OnInit {
-  @Input() configs: LegifyFormControlGroupConfig;
-
   @Input() group: FormGroup;
+  @Input() config: LegifyFormControlGroupConfig;
+  @Input() dataSource: any;
 
-  constructor(protected fb: FormBuilder) {}
+  constructor() {}
 
   get controls(): LegifyFormControlConfig[] {
-    return this.configs.controls;
+    return this.config.controls;
+  }
+
+  get groupName(): string {
+    return this.config.name;
+  }
+
+  public getControlNameFromConfig(controlConfig: LegifyFormControlConfig): string {
+    return controlConfig.name;
+  }
+
+  public getDefaultValueForControl(controlConfig: LegifyFormControlConfig): any {
+    return get(this.dataSource, controlConfig.dataBinding);
   }
 
   ngOnInit(): void {}

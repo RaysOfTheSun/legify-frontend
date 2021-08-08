@@ -1,5 +1,6 @@
 import { Component, forwardRef, Input, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { get } from 'lodash-es';
 import { LegifyFormControl } from '../../classes';
 import { LEGIFY_FORM_CONTROL_TYPE } from '../../constants';
 import { LegifyFormControlConfig } from '../../models';
@@ -19,15 +20,18 @@ import { RadioButtonGroupFormControlComponent } from '../radio-button-group-form
 })
 export class FormControlComponent extends LegifyFormControl implements OnInit, OnDestroy {
   @Input() config: LegifyFormControlConfig;
+  @Input() dataSource: any;
 
   @ViewChild('radio_group', { static: true })
   protected radioButtonGroupTemplate: TemplateRef<RadioButtonGroupFormControlComponent>;
+
+  @ViewChild('textbox', { static: true })
+  protected textboxTemplate: TemplateRef<HTMLInputElement>;
 
   protected templateMap: Map<LEGIFY_FORM_CONTROL_TYPE, TemplateRef<any>> = new Map();
 
   constructor() {
     super();
-    this.defaultValue = null;
   }
 
   get controlTemplate(): TemplateRef<any> {
@@ -35,6 +39,7 @@ export class FormControlComponent extends LegifyFormControl implements OnInit, O
   }
 
   ngOnInit(): void {
+    this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.TEXTBOX, this.textboxTemplate);
     this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP, this.radioButtonGroupTemplate);
   }
 

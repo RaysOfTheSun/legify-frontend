@@ -6,3 +6,9 @@
     [control]="formControl"
   ></legify-web-radio-button-group-form-control>
 </ng-template>
+
+<ng-template let-config="config" #textbox>
+  <mat-form-field>
+    <input [type]="config.inputType" [formControl]="formControl" matInput />
+  </mat-form-field>
+</ng-template>

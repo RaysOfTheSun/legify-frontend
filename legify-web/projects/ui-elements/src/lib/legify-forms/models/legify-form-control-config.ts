@@ -7,4 +7,5 @@ export interface LegifyFormControlConfig {
   value?: any;
   children?: Partial<LegifyFormControlConfig>[];
   inputType?: string;
+  dataBinding?: string;
 }
