@@ -10,4 +10,5 @@ export interface LegifyFormControlConfig {
   inputType?: string;
   validators?: LEGIFY_FORM_CONTROL_VALIDATOR_TYPE[];
   dataBinding?: string;
+  showChildrenIfValueEqualTo?: string;
 }

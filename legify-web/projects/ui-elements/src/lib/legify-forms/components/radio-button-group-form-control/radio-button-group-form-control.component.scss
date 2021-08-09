@@ -1,0 +1,22 @@
+.radio-button-group {
+  &__label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  &__group {
+    display: flex;
+
+    &--vertical {
+      flex-direction: column;
+    }
+  }
+
+  &__radio {
+    margin-right: 10px;
+
+    &--vertical {
+      margin: 10px 0;
+    }
+  }
+}

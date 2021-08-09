@@ -30,6 +30,10 @@ export class FormControlComponent extends LegifyFormControl implements OnInit, O
     return this.templateMap.get(this.config.type);
   }
 
+  get appearance(): string {
+    return this.formControl.disabled ? 'none' : '';
+  }
+
   ngOnInit(): void {
     this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.TEXTBOX, this.textboxTemplate);
     this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP, this.radioButtonGroupTemplate);

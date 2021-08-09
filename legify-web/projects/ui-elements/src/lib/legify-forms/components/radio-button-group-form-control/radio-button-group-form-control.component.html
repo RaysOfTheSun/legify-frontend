@@ -1,9 +1,11 @@
 <div class="radio-button-group">
-  {{ label }}
+  <label class="radio-button-group__label">
+    {{ label }}
+  </label>
   <div>
-    <mat-radio-group [formControl]="control">
-      <mat-radio-button *ngFor="let child of children" [value]="child.value">
-        {{ child.label }}
+    <mat-radio-group [formControl]="control" [ngClass]="groupCssClasses">
+      <mat-radio-button [ngClass]="radioButtonCssClasses" *ngFor="let radio of radios" [value]="radio.value">
+        {{ radio.label }}
       </mat-radio-button>
     </mat-radio-group>
   </div>

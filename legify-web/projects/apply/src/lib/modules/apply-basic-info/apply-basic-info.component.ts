@@ -30,7 +30,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               name: 'question1',
               type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
               label: 'question 1',
-              children: [
+              radios: [
                 {
                   value: 'yes',
                   label: 'yes'
@@ -54,7 +54,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               name: 'question1',
               type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
               label: 'g2 - question 1',
-              children: [
+              radios: [
                 {
                   value: 'yes',
                   label: 'yes'
@@ -71,14 +71,19 @@ export class ApplyBasicInfoComponent implements OnInit {
               name: 'question2',
               type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
               label: 'g2 - question 2',
-              children: [
+              isVertical: true,
+              radios: [
                 {
-                  value: 'yes',
-                  label: 'yes'
+                  value: 'Option 1',
+                  label: 'Option1'
                 },
                 {
-                  value: 'no',
-                  label: 'no'
+                  value: 'Option 2',
+                  label: 'Option2'
+                },
+                {
+                  value: 'Option3',
+                  label: 'Option 3'
                 }
               ]
             }
@@ -95,7 +100,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
               inputType: 'text',
               name: 'first',
-              label: '',
+              label: 'First',
               dataBinding: 'personalInfo.nameInfo.first',
               validators: [LEGIFY_FORM_CONTROL_VALIDATOR_TYPE.REQUIRED]
             },
@@ -103,7 +108,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
               inputType: 'text',
               name: 'middle',
-              label: '',
+              label: 'Middle',
               dataBinding: 'personalInfo.nameInfo.middle',
               validators: [LEGIFY_FORM_CONTROL_VALIDATOR_TYPE.REQUIRED]
             },
@@ -111,7 +116,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               type: LEGIFY_FORM_CONTROL_TYPE.TEXTBOX,
               inputType: 'text',
               name: 'last',
-              label: '',
+              label: 'Last',
               dataBinding: 'personalInfo.nameInfo.last',
               disabled: true,
               validators: [LEGIFY_FORM_CONTROL_VALIDATOR_TYPE.REQUIRED]
@@ -122,7 +127,7 @@ export class ApplyBasicInfoComponent implements OnInit {
               name: 'alternateName',
               type: LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP,
               label: 'Is this an alternate name?',
-              children: [
+              radios: [
                 {
                   value: 'yes',
                   label: 'yes'
