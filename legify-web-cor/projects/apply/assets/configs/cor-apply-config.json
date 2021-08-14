@@ -140,30 +140,639 @@
   "basicInfo": {
     "forms": [
       {
-        "forRoles": [],
-        "sections": {
-          "name": "",
-          "icon": "",
-          "label": "",
-          "title": "",
-          "controls": [
-            {
-              "type": "radio",
-              "label": "question",
-              "children": [
-                {
-                  "label": "yes",
-                  "value": "yes"
-                },
-                {
-                  "label": "no",
-                  "value": "no"
-                }
-              ],
-              "dataBinding": ""
-            }
-          ]
-        }
+        "forRoles": ["IO"],
+        "sections": [
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          },
+          {
+            "name": "nameInfo",
+            "icon": "perm_identity",
+            "title": "Personal Information",
+            "controls": [
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 1
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "first",
+                "label": "First",
+                "dataBinding": "personalInfo.nameInfo.first",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "middle",
+                "label": "Middle",
+                "dataBinding": "personalInfo.nameInfo.middle",
+                "validators": ["required"],
+                "row": 2
+              },
+              {
+                "type": "textbox",
+                "inputType": "text",
+                "name": "last",
+                "label": "Last",
+                "dataBinding": "personalInfo.nameInfo.last",
+                "disabled": true,
+                "validators": ["required"],
+                "row": 3
+              }
+            ]
+          }
+        ]
       }
     ]
   }

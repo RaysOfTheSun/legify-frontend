@@ -1,5 +1,3 @@
-<legify-web-form
-  *ngIf="formDataSource | async"
-  [groups]="controls"
-  [dataSource]="formDataSource | async"
-></legify-web-form>
+<ng-container *ngIf="controls | async as groups">
+  <legify-web-form *ngIf="formDataSource | async as source" [groups]="groups" [dataSource]="source"></legify-web-form>
+</ng-container>

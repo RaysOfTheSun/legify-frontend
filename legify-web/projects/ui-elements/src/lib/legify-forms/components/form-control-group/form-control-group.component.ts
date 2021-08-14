@@ -13,27 +13,19 @@ export class FormControlGroupComponent implements OnInit {
   @Input() config: LegifyFormControlGroupConfig;
   @Input() dataSource: any;
 
+  public uniqueRows: number[] = [];
+
   constructor() {}
 
-  get groupIcon(): string {
-    return this.config.icon || '';
+  protected getUniqueRows(): number[] {
+    return [...new Set(this.config.controls.map((control) => control.row))];
   }
 
-  get groupTitle(): string {
-    return this.config.title;
+  public getControlsForRow(rowNumber: number): LegifyFormControlConfig[] {
+    return this.config.controls.filter((control) => control.row === rowNumber);
   }
 
-  get controlSets(): LegifyFormControlConfig[][] {
-    return this.config.controls;
+  ngOnInit(): void {
+    this.uniqueRows = this.getUniqueRows();
   }
-
-  get groupName(): string {
-    return this.config.name;
-  }
-
-  public getControlNameFromConfig(controlConfig: LegifyFormControlConfig): string {
-    return controlConfig.name;
-  }
-
-  ngOnInit(): void {}
 }

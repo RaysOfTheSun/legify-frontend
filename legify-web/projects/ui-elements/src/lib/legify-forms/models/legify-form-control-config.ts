@@ -1,6 +1,7 @@
 import { LEGIFY_FORM_CONTROL_TYPE, LEGIFY_FORM_CONTROL_VALIDATOR_TYPE } from '../constants';
 
 export interface LegifyFormControlConfig {
+  row?: number;
   type: LEGIFY_FORM_CONTROL_TYPE;
   name?: string;
   label: string;

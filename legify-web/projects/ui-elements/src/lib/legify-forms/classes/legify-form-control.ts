@@ -2,12 +2,11 @@ import { Optional, Self } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-export class LegifyFormControl<V = any> implements ControlValueAccessor {
-  protected control: FormControl = new FormControl();
-  protected defaultValue: V;
-  protected valueChangesSub: Subscription;
-
+export class LegifyFormControl implements ControlValueAccessor {
+  protected handleChange: (value: any) => void;
   protected handleOnTouched: () => void;
+
+  protected controlValue: any;
 
   constructor(@Optional() @Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
@@ -17,29 +16,24 @@ export class LegifyFormControl<V = any> implements ControlValueAccessor {
     return this.ngControl.control;
   }
 
+  get value(): any {
+    return this.controlValue;
+  }
+
+  set value(newValue: any) {
+    this.controlValue = newValue;
+    this.handleChange(this.controlValue);
+  }
+
   writeValue(value: any): void {
-    this.control.setValue(value);
+    this.controlValue = value;
   }
 
   registerOnChange(onChangeHanlder: any): void {
-    this.valueChangesSub = this.control.valueChanges.subscribe(onChangeHanlder);
+    this.handleChange = onChangeHanlder;
   }
+
   registerOnTouched(onTouchedHandler: any): void {
     this.handleOnTouched = onTouchedHandler;
-  }
-
-  setDisabledState?(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.control.disable();
-      return;
-    }
-
-    this.control.enable();
-  }
-
-  destoryLegifyFormControl(): void {
-    if (this.valueChangesSub) {
-      this.valueChangesSub.unsubscribe();
-    }
   }
 }

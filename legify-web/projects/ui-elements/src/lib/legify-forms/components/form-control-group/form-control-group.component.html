@@ -1,16 +1,17 @@
 <div [formGroup]="group" class="form-group">
   <div class="form-group__header">
-    <mat-icon *ngIf="groupIcon" class="form-group__header-icon" [inline]="true"> {{ groupIcon }} </mat-icon>
-    <span class="form-group__header-title">{{ groupTitle }}</span>
+    <mat-icon *ngIf="config.icon" class="form-group__header-icon" [inline]="true"> {{ groupIcon }} </mat-icon>
+    <span class="form-group__header-title">{{ config.title }}</span>
   </div>
-  <div [formGroupName]="groupName" class="form-group__form">
-    <div class="form-group__form-row" *ngFor="let controlSet of controlSets">
-      <legify-web-form-control
-        *ngFor="let control of controlSet"
-        [config]="control"
-        [dataSource]="dataSource"
-        [formControlName]="getControlNameFromConfig(control)"
-      ></legify-web-form-control>
+  <div [formGroupName]="config.name" class="form-group__form">
+    <div class="form-group__form-row" *ngFor="let row of uniqueRows">
+      <ng-container *ngFor="let control of getControlsForRow(row)">
+        <legify-web-form-control
+          [config]="control"
+          [dataSource]="dataSource"
+          [formControlName]="control.name"
+        ></legify-web-form-control>
+      </ng-container>
     </div>
   </div>
 </div>

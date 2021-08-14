@@ -5,5 +5,5 @@ export interface LegifyFormControlGroupConfig {
   name: string;
   icon: string;
   title: string;
-  controls: (LegifyFormControlConfig & LegifyRadioGroupFormControlConfig)[][];
+  controls: (LegifyFormControlConfig & LegifyRadioGroupFormControlConfig)[];
 }

@@ -1,6 +1,8 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AfterViewChecked, ChangeDetectorRef, Component, DoCheck, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { get } from 'lodash-es';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import { LEGIFY_FORM_CONTROL_VALIDATOR_MAP } from './constants/legify-form-control-validator-map';
 import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from './models';
 
@@ -9,46 +11,41 @@ import { LegifyFormControlConfig, LegifyFormControlGroupConfig } from './models'
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, AfterViewChecked {
-  @Input() group: FormGroup;
+export class FormComponent implements OnInit, DoCheck, AfterViewChecked {
+  @Input() group: BehaviorSubject<FormGroup> = new BehaviorSubject(null);
   @Input() groups: LegifyFormControlGroupConfig[];
   @Input() dataSource: any;
 
-  constructor(protected chnageDetectorRef: ChangeDetectorRef) {}
+  constructor(protected chnageDetectorRef: ChangeDetectorRef, protected formBuilder: FormBuilder) {}
 
   get sections(): LegifyFormControlGroupConfig[] {
     return this.groups;
   }
 
-  protected getFormControlConfigsForGroup(formControlGroup: LegifyFormControlGroupConfig): Record<string, FormControl> {
-    const flattenedControlArr = formControlGroup.controls.reduce((acc, currArr) => acc.concat(...currArr), []);
-
-    return flattenedControlArr.reduce((acc, controlConfig) => {
-      acc[controlConfig.name.trim()] = new FormControl(
-        { value: get(this.dataSource, controlConfig.dataBinding), disabled: !!controlConfig.disabled },
-        this.getValidatorsForControlByConfig(controlConfig)
-      );
-      return acc;
+  protected makeFormGroupWithGroupConfig(groupConfig: LegifyFormControlConfig[]): Record<string, FormControl> {
+    return groupConfig.reduce((allControls, currControl) => {
+      allControls[currControl.name] = this.formBuilder.control(get(this.dataSource, currControl.dataBinding));
+      return allControls;
     }, {});
   }
 
-  protected getValidatorsForControlByConfig(controlConfig: LegifyFormControlConfig): any[] {
-    return controlConfig.validators
-      ? controlConfig.validators.map((validatorType) => LEGIFY_FORM_CONTROL_VALIDATOR_MAP.get(validatorType))
-      : [];
+  protected makeFormGroup(): FormGroup {
+    return this.groups.reduce((allGroups, currGroup) => {
+      allGroups.addControl(currGroup.name, new FormGroup(this.makeFormGroupWithGroupConfig(currGroup.controls)));
+      return allGroups;
+    }, new FormGroup({}));
   }
 
-  get formControlConfigs(): Record<string, FormControl> {
-    return this.groups.reduce((acc, group) => {
-      acc[group.name.trim()] = new FormGroup(this.getFormControlConfigsForGroup(group));
-      return acc;
-    }, {});
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    this.group = new FormGroup(this.formControlConfigs);
-    console.log(this.group);
-    this.group.valueChanges.subscribe(console.log);
+  ngDoCheck() {
+    // this.group.next(this.makeFormGroup());
+    const createForm$ = new Observable<FormGroup>((subscriber) => {
+      const formGroup = this.makeFormGroup();
+      subscriber.next(formGroup);
+      subscriber.complete();
+    }).pipe(tap((formGroup) => this.group.next(formGroup)));
+    createForm$.pipe(take(1)).subscribe();
   }
 
   ngAfterViewChecked(): void {

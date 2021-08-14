@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { DEFAULT_LEGIFY_APPLY_CONFIG } from '../../constants/configs/default-apply-config';
 import { ApplyTaskCardConfigs, ApplyConfig } from '../../models';
 import { ApplyShellSidenavItem, TaskCardConfig } from '@legify/web-ui-elements';
 import { APPLY_MODULE } from '../../constants';
+import { ApplyBasicInfoConfig } from '../../models/apply-config/module-configs/apply-basic-info';
 
 @Injectable()
 export class ApplyConfigService {
@@ -35,6 +36,13 @@ export class ApplyConfigService {
   public getTaskCardConfigsForModule(module: APPLY_MODULE): Observable<TaskCardConfig> {
     return this.taskCardConfigs$.pipe(
       map((configs) => (configs || []).find((config) => config.forModule === module)?.config)
+    );
+  }
+
+  public getBasicInfoConfig(): Observable<ApplyBasicInfoConfig> {
+    return this.applyConfig$.pipe(
+      map((config) => config?.basicInfo),
+      tap(console.log)
     );
   }
 

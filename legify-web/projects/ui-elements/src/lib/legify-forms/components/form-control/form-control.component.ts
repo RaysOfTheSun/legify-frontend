@@ -10,9 +10,11 @@ import { RadioButtonGroupFormControlComponent } from '../radio-button-group-form
   templateUrl: './form-control.component.html',
   styleUrls: ['./form-control.component.scss']
 })
-export class FormControlComponent extends LegifyFormControl implements OnInit, OnDestroy {
+export class FormControlComponent extends LegifyFormControl implements OnInit {
   @Input() config: LegifyFormControlConfig;
   @Input() dataSource: any;
+
+  public controlTemplate: TemplateRef<any>;
 
   @ViewChild('radio_group', { static: true })
   protected radioButtonGroupTemplate: TemplateRef<RadioButtonGroupFormControlComponent>;
@@ -20,14 +22,10 @@ export class FormControlComponent extends LegifyFormControl implements OnInit, O
   @ViewChild('textbox', { static: true })
   protected textboxTemplate: TemplateRef<HTMLInputElement>;
 
-  protected templateMap: Map<LEGIFY_FORM_CONTROL_TYPE, TemplateRef<any>> = new Map();
+  protected templateMap: Record<LEGIFY_FORM_CONTROL_TYPE, TemplateRef<any>> = {} as any;
 
   constructor(@Optional() @Self() public ngControl: NgControl) {
     super(ngControl);
-  }
-
-  get controlTemplate(): TemplateRef<any> {
-    return this.templateMap.get(this.config.type);
   }
 
   get appearance(): string {
@@ -35,11 +33,9 @@ export class FormControlComponent extends LegifyFormControl implements OnInit, O
   }
 
   ngOnInit(): void {
-    this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.TEXTBOX, this.textboxTemplate);
-    this.templateMap.set(LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP, this.radioButtonGroupTemplate);
-  }
+    this.templateMap[LEGIFY_FORM_CONTROL_TYPE.TEXTBOX] = this.textboxTemplate;
+    this.templateMap[LEGIFY_FORM_CONTROL_TYPE.RADIO_GROUP] = this.radioButtonGroupTemplate;
 
-  ngOnDestroy(): void {
-    this.destoryLegifyFormControl();
+    this.controlTemplate = this.templateMap[this.config.type];
   }
 }
