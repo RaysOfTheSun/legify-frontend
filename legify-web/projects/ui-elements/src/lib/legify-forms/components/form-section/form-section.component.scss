@@ -1,0 +1,35 @@
+.control {
+  flex: 100%;
+}
+
+.form-group {
+  display: flex;
+  margin: 50px 0;
+  flex-direction: column;
+
+  &__form-row {
+    flex: 100%;
+    display: flex;
+  }
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__header {
+    flex: 1;
+    display: flex;
+  }
+
+  &__header-icon {
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+  }
+
+  &__header-title {
+    font-size: 2rem;
+    align-self: flex-end;
+  }
+}

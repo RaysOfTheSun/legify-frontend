@@ -1,0 +1,16 @@
+<ng-container [formGroup]="parentFormGroup">
+  <div formGroupName="nameInfo">
+    <mat-form-field>
+      <input matInput formControlName="first" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="middle" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="last" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="fullName" />
+    </mat-form-field>
+  </div>
+</ng-container>
