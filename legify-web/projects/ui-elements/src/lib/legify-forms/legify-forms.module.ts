@@ -18,6 +18,6 @@ import { LegifyFormGroupModule } from './modules';
     ReactiveFormsModule,
     LegifyFormGroupModule
   ],
-  exports: [FormSectionComponent, FormComponent, LegifyFormGroupModule]
+  exports: [FormSectionComponent, FormComponent, LegifyFormGroupModule, MatIconModule]
 })
 export class LegifyFormsModule {}

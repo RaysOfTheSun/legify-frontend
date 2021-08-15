@@ -1,16 +1,14 @@
 <ng-container [formGroup]="parentFormGroup">
-  <div formGroupName="nameInfo">
-    <mat-form-field>
-      <input matInput formControlName="first" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput formControlName="middle" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput formControlName="last" />
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput formControlName="fullName" />
-    </mat-form-field>
+  <div class="legify-form-group legify-container legify-container--full-width" formGroupName="nameInfo">
+    <div class="legify-form-group__row">
+      <mat-form-field class="legify-form-group__field">
+        <mat-label>first</mat-label>
+        <input matInput formControlName="givenName" />
+      </mat-form-field>
+      <mat-form-field class="legify-form-group__field">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="surname" />
+      </mat-form-field>
+    </div>
   </div>
 </ng-container>

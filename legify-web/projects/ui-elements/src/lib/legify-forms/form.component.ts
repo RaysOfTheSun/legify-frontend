@@ -13,15 +13,17 @@ export class FormComponent implements OnInit {
 
   public formGroup: FormGroup;
 
-  public countDownTimer$;
-
   constructor(protected formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
       nameInfo: this.formBuilder.group({
-        first: ['', [Validators.required]],
-        middle: ['', [Validators.required]],
-        last: ['', [Validators.required]],
-        fullName: ['', []]
+        title: ['Mister'],
+        surname: ['Rayos del Sol', []],
+        givenName: ['Carl Ivan', []]
+      }),
+      generalInfo: this.formBuilder.group({
+        age: [22],
+        gender: ['Male'],
+        dateOfBirth: ['05/20/1999']
       })
     });
 

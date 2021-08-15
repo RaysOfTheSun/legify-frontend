@@ -1,11 +1,6 @@
-.control {
-  flex: 100%;
-}
-
 .form-group {
   display: flex;
   margin: 50px 0;
-  flex-direction: column;
 
   &__form-row {
     flex: 100%;
@@ -13,13 +8,16 @@
   }
 
   &__form {
+    flex: 1;
     display: flex;
     flex-wrap: wrap;
+    margin-left: 120px;
   }
 
   &__header {
-    flex: 1;
     display: flex;
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   &__header-icon {
@@ -30,6 +28,9 @@
 
   &__header-title {
     font-size: 2rem;
-    align-self: flex-end;
+    max-width: 75%;
+    line-height: 1.2;
+    font-weight: 100;
+    margin-top: 10px;
   }
 }

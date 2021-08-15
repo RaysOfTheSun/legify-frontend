@@ -4,28 +4,30 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 import {
   NameInfoFormGroupComponent,
-  GeneralInfoFormGroupComponent,
   IdentificationInfoFormGroupComponent,
   HabitsInfoFormGroupComponent,
   FormGroupComponent
 } from './components';
+import { BirthInfoFormGroupComponent } from './components/birth-info-form-group/birth-info-form-group.component';
 
 @NgModule({
   declarations: [
     NameInfoFormGroupComponent,
-    GeneralInfoFormGroupComponent,
     IdentificationInfoFormGroupComponent,
     HabitsInfoFormGroupComponent,
-    FormGroupComponent
+    FormGroupComponent,
+    BirthInfoFormGroupComponent
   ],
-  imports: [CommonModule, MatInputModule, MatFormFieldModule, MatIconModule, ReactiveFormsModule],
+  imports: [CommonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatCheckboxModule, ReactiveFormsModule],
   exports: [
     NameInfoFormGroupComponent,
-    GeneralInfoFormGroupComponent,
     IdentificationInfoFormGroupComponent,
-    HabitsInfoFormGroupComponent
+    HabitsInfoFormGroupComponent,
+    BirthInfoFormGroupComponent
   ]
 })
 export class LegifyFormGroupModule {}

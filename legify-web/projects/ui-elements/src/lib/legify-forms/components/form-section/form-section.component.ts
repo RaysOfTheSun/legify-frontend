@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentInit, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'legify-web-form-section',
   templateUrl: './form-section.component.html',
   styleUrls: ['./form-section.component.scss']
 })
-export class FormSectionComponent implements OnInit {
+export class FormSectionComponent implements AfterContentInit, OnInit {
+  @Output() handleLoad: EventEmitter<boolean> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  ngAfterContentInit(): void {
+    this.handleLoad.emit(true);
   }
-
 }
