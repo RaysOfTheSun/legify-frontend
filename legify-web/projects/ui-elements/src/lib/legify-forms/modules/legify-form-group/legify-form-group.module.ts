@@ -13,6 +13,7 @@ import {
   FormGroupComponent
 } from './components';
 import { BirthInfoFormGroupComponent } from './components/birth-info-form-group/birth-info-form-group.component';
+import { FormGroupSectionComponent } from './components/form-group-section/form-group-section.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { BirthInfoFormGroupComponent } from './components/birth-info-form-group/
     IdentificationInfoFormGroupComponent,
     HabitsInfoFormGroupComponent,
     FormGroupComponent,
-    BirthInfoFormGroupComponent
+    BirthInfoFormGroupComponent,
+    FormGroupSectionComponent
   ],
   imports: [CommonModule, MatInputModule, MatFormFieldModule, MatIconModule, MatCheckboxModule, ReactiveFormsModule],
   exports: [

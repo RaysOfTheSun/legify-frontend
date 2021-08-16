@@ -19,8 +19,8 @@ export class ComponentLoaderService {
         setTimeout(() => {
           const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componenType);
           const componentRef = containerRef.createComponent(componentFactory);
-          Object.keys(componentPropMapping).forEach((prop) =>
-            set(componentRef.instance, prop, componentPropMapping[prop])
+          Object.keys(componentPropMapping).forEach(
+            (prop) => (componentRef.instance[prop] = componentPropMapping[prop])
           );
 
           const progress = ((componentTypeIndex + 1) / components.length) * 100;

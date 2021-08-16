@@ -1,8 +1,8 @@
-<div class="lazy-renderer-loader" *ngIf="isStillRendering$ | async">
+<div class="lazy-renderer__loader" *ngIf="isStillRendering$ | async">
   <mat-progress-bar mode="determinate" [value]="componentRenderingProgress$ | async"></mat-progress-bar>
   <span><h3>Preparing Form</h3></span>
 </div>
 
-<div [ngClass]="{ hidden: isStillRendering$ | async }">
+<div class="lazy-renderer__content" [ngClass]="{ 'lazy-renderer__content--hidden': isStillRendering$ | async }">
   <ng-template #contentContainer></ng-template>
 </div>

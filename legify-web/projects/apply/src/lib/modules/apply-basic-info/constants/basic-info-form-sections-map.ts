@@ -1,19 +1,18 @@
-import { PersonalInfoFormGroupComponent } from '../components';
+import { PersonalInfoFormGroupSectionComponent } from '../components';
 
 export const BASIC_INFO_FORM_SECTIONS_MAP = new Map([
   [
     'IO',
     [
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent,
-      PersonalInfoFormGroupComponent
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent,
+      PersonalInfoFormGroupSectionComponent
     ]
   ]
 ]);

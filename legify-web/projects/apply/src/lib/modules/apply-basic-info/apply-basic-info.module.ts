@@ -15,13 +15,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
 import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/basic-info-form-sections-map';
+import { PersonalInfoFormGroupSectionComponent } from './components/personal-info-form-group-section/personal-info-form-group-section.component';
 
 @NgModule({
   declarations: [
     ApplyBasicInfoComponent,
     PersonBasicInfoModalComponent,
     PersonalInfoFormGroupComponent,
-    IsnuredBasicInfoFormComponent
+    IsnuredBasicInfoFormComponent,
+    PersonalInfoFormGroupSectionComponent
   ],
   imports: [
     CommonModule,
