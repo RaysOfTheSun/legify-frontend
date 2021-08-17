@@ -1,16 +1,7 @@
-import {
-  ModuleWithProviders,
-  NgModule,
-  Optional,
-  SkipSelf
-} from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconRegistry } from '@angular/material/icon';
-import {
-  AppConfigService,
-  AppEventService,
-  HasSelectedApplicationGuard
-} from './app';
+import { AppConfigService, AppEventService, HasSelectedApplicationGuard } from './app';
 import { APP_CONFIGURER_DEPENDENCIES } from './configurer';
 import { APPLY_ROUTING_CONFIG } from './constants';
 

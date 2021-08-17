@@ -10,6 +10,7 @@ import { ApplyHttpDataService } from '../apply-http-data/apply-http-data.service
 @Injectable()
 export class ApplyService<A extends LegifyApplication = LegifyApplication> {
   protected readonly currentApplicationSubj: BehaviorSubject<A> = new BehaviorSubject(null);
+  public isLoaded = new BehaviorSubject<boolean>(false);
 
   constructor(protected applyConfigService: ApplyConfigService, protected applyHttpDataService: ApplyHttpDataService) {
     this.applyHttpDataService.getApplyConfig().pipe(take(1)).subscribe();

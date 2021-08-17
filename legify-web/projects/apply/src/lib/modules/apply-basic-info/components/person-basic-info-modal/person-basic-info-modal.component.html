@@ -1,0 +1,8 @@
+<legify-web-modal-shell class="person-basic-info-modal">
+  <legify-web-lazy-renderer
+    *ngIf="componentPropertyMapping$ | async as componentPropertyMapping"
+    [components]="formSections"
+    [loadingText]="'Loading Form'"
+    [componentPropertyValueMap]="componentPropertyMapping"
+  ></legify-web-lazy-renderer>
+</legify-web-modal-shell>

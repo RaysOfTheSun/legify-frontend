@@ -1,0 +1,16 @@
+@import "../../../assets/styles/mixins";
+
+.lazy-renderer {
+  &__loader {
+    width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #fafafa;
+    @include flex-container(center, center, column);
+  }
+
+  &__content {
+    &--hidden {
+      display: none;
+    }
+  }
+}

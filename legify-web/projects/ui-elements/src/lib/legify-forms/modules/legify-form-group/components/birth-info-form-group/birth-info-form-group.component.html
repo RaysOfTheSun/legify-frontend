@@ -1,0 +1,16 @@
+<ng-container [formGroup]="parentFormGroup">
+  <div formGroupName="birthInfo" class="legify-form-group__row">
+    <mat-form-field class="legify-form-group__field">
+      <mat-label>Gender</mat-label>
+      <input matInput formControlName="gender" />
+    </mat-form-field>
+    <mat-form-field class="legify-form-group__field">
+      <mat-label>Date of Birth</mat-label>
+      <input matInput formControlName="dateOfBirth" type="date" />
+    </mat-form-field>
+    <mat-form-field class="legify-form-group__field">
+      <mat-label>Age</mat-label>
+      <input matInput formControlName="age" />
+    </mat-form-field>
+  </div>
+</ng-container>

@@ -1,0 +1,32 @@
+.legify-form-group {
+  .mat-checkbox .mat-checkbox-frame {
+    border: 1px solid black;
+    border-radius: 0;
+    transform: scale(1.5);
+  }
+
+  .mat-checkbox-checked .mat-checkbox-background {
+    border-radius: 0;
+    transform: scale(1.5);
+  }
+
+  &__section {
+    width: 100%;
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+    margin: 20px 0;
+  }
+
+  &__field {
+    width: 100%;
+    margin-right: 10px;
+  }
+
+  &__row-header {
+    margin: 30px 0;
+    display: block;
+  }
+}

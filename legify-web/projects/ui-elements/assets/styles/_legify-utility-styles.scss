@@ -1,0 +1,11 @@
+.legify-container {
+  width: 100%;
+
+  &--full-width {
+    max-width: 100%;
+  }
+
+  &--half-width {
+    max-width: 50%;
+  }
+}
