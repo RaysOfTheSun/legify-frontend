@@ -14,11 +14,9 @@ export const FORM_DATA = new InjectionToken('form');
 })
 export class LazyRendererComponent implements OnInit {
   @Input() components: Type<any>[];
-  @Input() showProgress: boolean;
+  @Input() loadingText: string;
+  @Input() showRenderingProgress: boolean;
   @Input() componentPropertyValueMap: Record<string, any>;
-
-  // TODO: transfer to form lazy renderer
-  @Input() form: FormGroup;
 
   @ViewChild('contentContainer', { read: ViewContainerRef, static: true })
   protected contentContainerRef: ViewContainerRef;
@@ -27,12 +25,8 @@ export class LazyRendererComponent implements OnInit {
   constructor(protected componentLoaderService: ComponentLoaderService) {}
 
   ngOnInit(): void {
-    const componentPropMapping = {
-      parentFormGroup: this.form
-    };
-
     this.componentLoaderService
-      .addComponentsToContainer(this.components, this.contentContainerRef, componentPropMapping)
+      .addComponentsToContainer(this.components, this.contentContainerRef, this.componentPropertyValueMap)
       .subscribe((renderingProgress) => this.renderingProgressSubj.next(renderingProgress));
   }
 

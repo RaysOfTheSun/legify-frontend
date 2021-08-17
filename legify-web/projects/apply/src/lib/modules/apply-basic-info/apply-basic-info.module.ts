@@ -6,25 +6,18 @@ import { ApplyBasicInfoComponent } from './apply-basic-info.component';
 import { LegifyFormsModule, LegifyModalModule, LegifyLazyRendererModule } from '@legify/web-ui-elements';
 import { PersonBasicInfoModalComponent } from './components/person-basic-info-modal/person-basic-info-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { PersonalInfoFormGroupComponent } from './components/personal-info-form-group/personal-info-form-group.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { IsnuredBasicInfoFormComponent } from './components/isnured-basic-info-form/isnured-basic-info-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
-import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/basic-info-form-sections-map';
+import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/form-section-maps/basic-info-form-sections-map';
 import { PersonalInfoFormGroupSectionComponent } from './components/personal-info-form-group-section/personal-info-form-group-section.component';
+import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 
 @NgModule({
-  declarations: [
-    ApplyBasicInfoComponent,
-    PersonBasicInfoModalComponent,
-    PersonalInfoFormGroupComponent,
-    IsnuredBasicInfoFormComponent,
-    PersonalInfoFormGroupSectionComponent
-  ],
+  declarations: [ApplyBasicInfoComponent, PersonBasicInfoModalComponent, PersonalInfoFormGroupSectionComponent],
   imports: [
     CommonModule,
     ApplyBasicInfoRoutingModule,
@@ -42,7 +35,9 @@ import { PersonalInfoFormGroupSectionComponent } from './components/personal-inf
     {
       provide: BASIC_INFO_FORM_SECTIONS,
       useValue: BASIC_INFO_FORM_SECTIONS_MAP
-    }
+    },
+    ApplyBasicInfoService,
+    ApplyBasicInfoConfigService
   ]
 })
 export class ApplyBasicInfoModule {}

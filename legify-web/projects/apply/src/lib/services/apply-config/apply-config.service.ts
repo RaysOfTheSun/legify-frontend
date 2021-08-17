@@ -5,6 +5,7 @@ import { DEFAULT_LEGIFY_APPLY_CONFIG } from '../../constants/configs/default-app
 import { ApplyTaskCardConfigs, ApplyConfig } from '../../models';
 import { ApplyShellSidenavItem, TaskCardConfig } from '@legify/web-ui-elements';
 import { APPLY_MODULE } from '../../constants';
+import { ApplyBasicInfoConfig } from '../../models/apply-config/module-configs/apply-basic-info';
 
 @Injectable()
 export class ApplyConfigService {
@@ -26,6 +27,10 @@ export class ApplyConfigService {
 
   get taskCardConfigs$(): Observable<ApplyTaskCardConfigs[]> {
     return this.applyConfig$.pipe(map((applyConfig) => applyConfig?.taskCardConfigs));
+  }
+
+  get basicInfoConfig$(): Observable<ApplyBasicInfoConfig> {
+    return this.applyConfig$.pipe(map((config) => config?.basicInfo));
   }
 
   public updateApplyConfig(applyConfig: ApplyConfig): void {

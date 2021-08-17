@@ -136,5 +136,17 @@
         "forRoles": ["IO", "PO"]
       }
     ]
+  },
+  "basicInfo": {
+    "formGroupMappings": [
+      {
+        "forField": ["nameInfo", "first"],
+        "dataPath": "personalInfo.nameInfo.first"
+      },
+      {
+        "forField": ["nameInfo", "last"],
+        "dataPath": "personalInfo.nameInfo.last"
+      }
+    ]
   }
 }
