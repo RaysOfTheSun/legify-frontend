@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Person } from '../../../../models';
-import { LegifyDocument, LegifyDocumentRequirement } from '../../models';
+import { Person, RequiredDocument } from '../../../../models';
+import { LegifyDocument } from '../../models';
 
 @Injectable()
 export class ApplyDocumentsCreatorService {
@@ -11,7 +11,7 @@ export class ApplyDocumentsCreatorService {
   public convertRawFileToLegifyDocument(
     rawFile: File,
     documentOwner: Person,
-    documentRequirementMeta: LegifyDocumentRequirement
+    documentRequirementMeta: RequiredDocument
   ): Observable<LegifyDocument> {
     return this.convertBlobToBase64String(rawFile).pipe(
       map((base64) => ({

@@ -1,8 +1,7 @@
-import { Customer } from '../../../models';
-import { LegifyDocumentRequirement } from './legify-document-requirement';
+import { Customer, RequiredDocument } from '../../../models';
 
 export interface DocumentUploadEvent {
   owner: Customer;
   rawFile: File;
-  documentRequirementMeta: LegifyDocumentRequirement;
+  documentRequirementMeta: RequiredDocument;
 }

@@ -1,11 +1,7 @@
-import { ApplyTaskCardConfigs } from './apply-task-card-configs';
 import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
-import { ApplySupportingDocsConfig } from './module-configs/apply-documents/apply-supporting-docs-config';
-import { ApplyBasicInfoConfig } from './module-configs/apply-basic-info';
+import { ApplyModuleConfigMapping } from './apply-module-config-mapping';
 
 export interface ApplyConfig {
+  modules: ApplyModuleConfigMapping[];
   navItems: ApplyShellSidenavItem[];
-  basicInfo: ApplyBasicInfoConfig;
-  documents: ApplySupportingDocsConfig;
-  taskCardConfigs: ApplyTaskCardConfigs[];
 }

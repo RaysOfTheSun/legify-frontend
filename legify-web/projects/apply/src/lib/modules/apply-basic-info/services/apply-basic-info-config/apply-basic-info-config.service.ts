@@ -1,28 +1,28 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplyConfigService } from '../../../../services';
-import { ApplyBasicInfoConfig } from '../../../../models';
-import { map } from 'rxjs/operators';
-import { APPLY_MODULE, PERSON_ROLE } from '../../../../constants';
+import { ApplyModule, ConsumerRole } from '../../../../constants';
 import { TaskCardConfig, FormGroupComponent } from '@legify/web-ui-elements';
-import { BASIC_INFO_FORM_SECTIONS } from '../../constants/injection-tokens';
+import { BASIC_INFO_FORM_SECTIONS } from '../../constants';
+import { map } from 'rxjs/operators';
+import { ApplyBasicInfoModuleConfig } from '../../../../models';
 
 @Injectable()
 export class ApplyBasicInfoConfigService {
   constructor(
     protected applyConfigService: ApplyConfigService,
-    @Inject(BASIC_INFO_FORM_SECTIONS) protected basicInfoFormSectionMap: Map<PERSON_ROLE, FormGroupComponent[]>
+    @Inject(BASIC_INFO_FORM_SECTIONS) protected basicInfoFormSectionMap: Map<ConsumerRole, FormGroupComponent[]>
   ) {}
 
-  get moduleConfig$(): Observable<ApplyBasicInfoConfig> {
-    return this.applyConfigService.applyConfig$.pipe(map((applyConfig) => applyConfig.basicInfo));
+  get moduleConfig$(): Observable<ApplyBasicInfoModuleConfig> {
+    return this.applyConfigService.getConfigForModule<ApplyBasicInfoModuleConfig>(ApplyModule.BASIC_INFO);
   }
 
   get taskCardConfigs$(): Observable<TaskCardConfig> {
-    return this.applyConfigService.getTaskCardConfigsForModule(APPLY_MODULE.PERSONAL_INFO);
+    return this.moduleConfig$.pipe(map((config) => config.taskCardLayout));
   }
 
-  public getBasicInfoFormSectionsForRole(role: PERSON_ROLE): FormGroupComponent[] {
+  public getBasicInfoFormSectionsForRole(role: ConsumerRole): FormGroupComponent[] {
     return this.basicInfoFormSectionMap.get(role);
   }
 }

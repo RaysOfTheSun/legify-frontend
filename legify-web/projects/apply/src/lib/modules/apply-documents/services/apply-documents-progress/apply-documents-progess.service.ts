@@ -1,20 +1,16 @@
 import { Injectable } from '@angular/core';
-import { APPLY_MODULE } from '../../../../constants';
-import { LegifyApplication } from '../../../../models';
-import { ApplicationProgress } from '../../../../models/application/application-progress/application-progress';
+import { ApplyModule } from '../../../../constants';
+import { LegifyApplication, RequiredDocument } from '../../../../models';
+import { ApplicationProgress } from '../../../../models';
 import { ApplyProgressService } from '../../../../services';
-import { LegifyDocument, LegifyDocumentRequirement } from '../../models';
+import { LegifyDocument } from '../../models';
 
 @Injectable()
 export class ApplyDocumentsProgessService extends ApplyProgressService {
-  constructor() {
-    super();
-  }
-
   public getModuleProgress(application: LegifyApplication): ApplicationProgress {
     return (
-      application.progressInfo.find((progressInfo) => progressInfo.forModule === APPLY_MODULE.DOCUMENTS) || {
-        forModule: APPLY_MODULE.DOCUMENTS,
+      application.progressInfo.find((progressInfo) => progressInfo.forModule === ApplyModule.DOCUMENTS) || {
+        forModule: ApplyModule.DOCUMENTS,
         chunks: [],
         totalProgress: 0
       }
@@ -23,7 +19,7 @@ export class ApplyDocumentsProgessService extends ApplyProgressService {
 
   public calculateProgressForPerson(
     allDocumentsForCustomer: LegifyDocument[],
-    requiredDocsForCustomer: LegifyDocumentRequirement[]
+    requiredDocsForCustomer: RequiredDocument[]
   ): number {
     const reqCompletionStatus = requiredDocsForCustomer.map((docRequirement) => {
       const uploadedDocCount = allDocumentsForCustomer.filter(

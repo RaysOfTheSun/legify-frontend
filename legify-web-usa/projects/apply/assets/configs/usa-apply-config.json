@@ -43,88 +43,63 @@
       "showCompleteIndicator": true
     }
   ],
-  "taskCardConfigs": [
-    {
-      "forModule": "personal_info",
-      "config": {
-        "rows": [],
-        "headerText": {
-          "sources": [
-            "personalInfo.nameInfo.first",
-            "personalInfo.nameInfo.last"
-          ],
-          "template": "{0} {1}"
-        },
-        "subHeaderText": {
-          "sources": ["role"],
-          "template": "PERSON_{0}"
-        },
-        "footerHeaderText": {
-          "template": "Completion",
-          "templateIsValue": true
-        },
-        "highlightColorKey": {
-          "sources": ["role"],
-          "template": "{0}"
-        }
-      }
-    },
+  "modules": [
     {
       "forModule": "documents",
       "config": {
-        "headerText": {
-          "sources": [
-            "personalInfo.nameInfo.first",
-            "personalInfo.nameInfo.last"
-          ],
-          "template": "{0} {1}"
-        },
-        "subHeaderText": {
-          "sources": ["role"],
-          "template": "PERSON_{0}"
-        },
-        "highlightColorKey": {
-          "sources": ["role"],
-          "template": "{0}"
-        },
-        "footerText": {
-          "template": "Completion",
-          "templateIsValue": true
-        },
-        "rows": []
+        "requiredDocuments": [
+          {
+            "documentType": "PASSPORT",
+            "documentGroup": "IDENTIFICATION",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO", "PI", "OI"]
+          },
+          {
+            "documentType": "PAYMENT_RECEIPT",
+            "documentGroup": "RECEIPT",
+            "maximumUploads": 4,
+            "minimumUploads": 2,
+            "forRoles": ["IO", "PO"]
+          },
+          {
+            "documentType": "CUSTOMER_SELFIE",
+            "documentGroup": "CUSTOMER_SELFIES",
+            "minimumUploads": 1,
+            "maximumUploads": 1,
+            "forRoles": ["PI"]
+          },
+          {
+            "documentType": "CUSTOMER_SELFIE_WITH_VIDEO",
+            "documentGroup": "CUSTOMER_SELFIES",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO"]
+          }
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
       }
     }
-  ],
-  "documents": {
-    "requiredDocs": [
-      {
-        "documentType": "PASSPORT",
-        "documentGroup": "IDENTIFICATION",
-        "minimumUploads": 2,
-        "maximumUploads": 2,
-        "forRoles": ["IO", "PO", "PI", "OI"]
-      },
-      {
-        "documentType": "PAYMENT_RECEIPT",
-        "documentGroup": "RECEIPT",
-        "maximumUploads": 4,
-        "minimumUploads": 2,
-        "forRoles": ["IO", "PO"]
-      },
-      {
-        "documentType": "CUSTOMER_SELFIE",
-        "documentGroup": "CUSTOMER_SELFIES",
-        "minimumUploads": 1,
-        "maximumUploads": 1,
-        "forRoles": ["PI"]
-      },
-      {
-        "documentType": "CUSTOMER_SELFIE_WITH_VIDEO",
-        "documentGroup": "CUSTOMER_SELFIES",
-        "minimumUploads": 2,
-        "maximumUploads": 2,
-        "forRoles": ["IO", "PO"]
-      }
-    ]
-  }
+  ]
 }

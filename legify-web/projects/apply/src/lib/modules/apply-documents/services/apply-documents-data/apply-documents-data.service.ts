@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { LegifyDocument, LegifyDocumentRequirement } from '../../models';
+import { RequiredDocument } from '../../../../models';
+import { LegifyDocument } from '../../models';
 
 @Injectable()
 export class ApplyDocumentsDataService {
@@ -11,7 +12,7 @@ export class ApplyDocumentsDataService {
 
   public getDocumentsByRequirementAndOwnerId(
     ownerId: string,
-    docRequirement: LegifyDocumentRequirement,
+    docRequirement: RequiredDocument,
     allDocuments: LegifyDocument[]
   ): LegifyDocument[] {
     return allDocuments.filter(

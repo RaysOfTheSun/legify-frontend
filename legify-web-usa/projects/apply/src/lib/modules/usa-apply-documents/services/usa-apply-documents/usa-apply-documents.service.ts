@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   Customer,
   ApplyService,
+  RequiredDocument,
   ApplyHttpDataService,
-  LegifyDocumentRequirement,
   ApplyDocumentsService,
   ConsumerDataService,
   ApplyDocumentsDataService,
@@ -39,7 +39,7 @@ export class UsaApplyDocumentsService extends ApplyDocumentsService {
 
   public getDocumentRequirementsForCustomer(
     customer: Customer
-  ): Observable<LegifyDocumentRequirement[]> {
+  ): Observable<RequiredDocument[]> {
     return super.getDocumentRequirementsForCustomer(customer).pipe(
       withLatestFrom(
         this.applyService.currApplication$,

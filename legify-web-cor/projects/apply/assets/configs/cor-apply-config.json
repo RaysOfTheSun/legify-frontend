@@ -137,16 +137,64 @@
       }
     ]
   },
-  "basicInfo": {
-    "formGroupMappings": [
-      {
-        "forField": ["nameInfo", "first"],
-        "dataPath": "personalInfo.nameInfo.first"
-      },
-      {
-        "forField": ["nameInfo", "last"],
-        "dataPath": "personalInfo.nameInfo.last"
+  "modules": [
+    {
+      "forModule": "documents",
+      "config": {
+        "requiredDocuments": [
+          {
+            "documentType": "PASSPORT",
+            "documentGroup": "IDENTIFICATION",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO", "PI", "OI"]
+          },
+          {
+            "documentType": "PAYMENT_RECEIPT",
+            "documentGroup": "RECEIPT",
+            "maximumUploads": 4,
+            "minimumUploads": 2,
+            "forRoles": ["IO", "PO"]
+          }
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
       }
-    ]
-  }
+    },
+    {
+      "forModule": "basic-info",
+      "config": {
+        "formFieldToDataSourceMaps": [
+          {
+            "forField": ["nameInfo", "first"],
+            "dataPath": "personalInfo.nameInfo.first"
+          },
+          {
+            "forField": ["nameInfo", "last"],
+            "dataPath": "personalInfo.nameInfo.last"
+          }
+        ]
+      }
+    }
+  ]
 }

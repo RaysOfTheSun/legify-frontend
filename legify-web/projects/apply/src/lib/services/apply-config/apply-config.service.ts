@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { DEFAULT_LEGIFY_APPLY_CONFIG } from '../../constants/configs/default-apply-config';
-import { ApplyTaskCardConfigs, ApplyConfig } from '../../models';
-import { ApplyShellSidenavItem, TaskCardConfig } from '@legify/web-ui-elements';
-import { APPLY_MODULE } from '../../constants';
-import { ApplyBasicInfoConfig } from '../../models/apply-config/module-configs/apply-basic-info';
+import { ApplyConfig, ApplyModuleConfig } from '../../models';
+import { ApplyShellSidenavItem } from '@legify/web-ui-elements';
+import { ApplyModule } from '../../constants';
 
 @Injectable()
 export class ApplyConfigService {
-  protected readonly applyConfigSubj: BehaviorSubject<ApplyConfig> = new BehaviorSubject(DEFAULT_LEGIFY_APPLY_CONFIG);
-
-  constructor() {}
+  protected readonly applyConfigSubj: BehaviorSubject<ApplyConfig> = new BehaviorSubject(null);
 
   get applyConfigUrl(): string {
     return '';
@@ -25,21 +21,16 @@ export class ApplyConfigService {
     return this.applyConfigSubj.asObservable();
   }
 
-  get taskCardConfigs$(): Observable<ApplyTaskCardConfigs[]> {
-    return this.applyConfig$.pipe(map((applyConfig) => applyConfig?.taskCardConfigs));
-  }
-
-  get basicInfoConfig$(): Observable<ApplyBasicInfoConfig> {
-    return this.applyConfig$.pipe(map((config) => config?.basicInfo));
-  }
-
   public updateApplyConfig(applyConfig: ApplyConfig): void {
     this.applyConfigSubj.next(applyConfig);
   }
 
-  public getTaskCardConfigsForModule(module: APPLY_MODULE): Observable<TaskCardConfig> {
-    return this.taskCardConfigs$.pipe(
-      map((configs) => (configs || []).find((config) => config.forModule === module)?.config)
+  public getConfigForModule<C extends ApplyModuleConfig = ApplyModuleConfig>(moduleName: ApplyModule): Observable<C> {
+    return this.applyConfig$.pipe(
+      map((applyConfig) => {
+        const moduleConfig = (applyConfig?.modules || []).find((config) => config.forModule === moduleName);
+        return moduleConfig?.config;
+      })
     );
   }
 

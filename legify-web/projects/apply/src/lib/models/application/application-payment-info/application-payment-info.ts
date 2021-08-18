@@ -1,6 +1,6 @@
-import { APPLICATION_PAYMENT_METHOD } from '../../../constants/application-payment-info-method-eum';
+import { PaymentMethod } from '../../../constants/application/payment-method-enum';
 
 export interface ApplicationPaymentInfo {
-  method: APPLICATION_PAYMENT_METHOD;
+  method: PaymentMethod;
   transactionId: string;
 }

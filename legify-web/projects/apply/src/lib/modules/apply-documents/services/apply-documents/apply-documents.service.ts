@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { withLatestFrom, map, tap, concatMap, take } from 'rxjs/operators';
-import { LegifyDocument, LegifyDocumentRequirement } from '../../models';
+import { withLatestFrom, map, tap, concatMap, first } from 'rxjs/operators';
+import { LegifyDocument } from '../../models';
 import { ApplyService, ConsumerDataService } from '../../../../services';
 import { SUPPORTING_DOC_TYPE } from '../../constants';
 import { ApplyDocumentsConfigService } from '../apply-documents-config/apply-documents-config.service';
 import { ApplyDocumentsCreatorService } from '../apply-documents-creator/apply-documents-creator.service';
 import { ApplyDocumentsDataService } from '../apply-documents-data/apply-documents-data.service';
 import { ApplyDocumentsProgessService } from '../apply-documents-progress/apply-documents-progess.service';
-import { Customer, ApplicationProgress, LegifyDocumentRequirementConfig } from '../../../../models';
-import { APPLICATION_PAYMENT_METHOD } from '../../../../constants/application-payment-info-method-eum';
+import { Customer, ApplicationProgress, RequiredDocument } from '../../../../models';
+import { PaymentMethod } from '../../../../constants';
 
 @Injectable()
 export class ApplyDocumentsService {
@@ -68,14 +68,14 @@ export class ApplyDocumentsService {
     );
   }
 
-  public getDocumentRequirementsForCustomer(customer: Customer): Observable<LegifyDocumentRequirement[]> {
+  public getDocumentRequirementsForCustomer(customer: Customer): Observable<RequiredDocument[]> {
     return this.applyDocumentsConfigService.requiredDocuments$.pipe(
       withLatestFrom(this.applyService.currApplication$),
       map(([requiredDocs, currApplication]) => {
-        const requiredDocsForCustomer: LegifyDocumentRequirementConfig[] = [];
+        const requiredDocsForCustomer: RequiredDocument[] = [];
 
         const paymentDocReqType =
-          currApplication.paymentInfo.method === APPLICATION_PAYMENT_METHOD.ONLINE
+          currApplication.paymentInfo.method === PaymentMethod.ONLINE
             ? SUPPORTING_DOC_TYPE.PAYMENT_RECEIPT
             : SUPPORTING_DOC_TYPE.BANKSLIP;
 
@@ -95,7 +95,7 @@ export class ApplyDocumentsService {
   public uploadDocument(
     rawFile: File,
     documentOwner: Customer,
-    documentRequirement: LegifyDocumentRequirement,
+    documentRequirement: RequiredDocument,
     deferUpdate = false
   ): Observable<LegifyDocument> {
     const uploadDocumentAndSave$ = this.documentCreatorService
@@ -125,10 +125,10 @@ export class ApplyDocumentsService {
     rawFile: File,
     documentOwner: Customer,
     documentToReplace: LegifyDocument,
-    documentRequirement: LegifyDocumentRequirement
+    documentRequirement: RequiredDocument
   ): Observable<LegifyDocument> {
     return this.uploadDocument(rawFile, documentOwner, documentRequirement, true).pipe(
-      take(1),
+      first(),
       withLatestFrom(this.allDocuments$),
       tap(([legifyDocument, allDocuments]) => {
         const indexOfDocToReplace = allDocuments.findIndex((doc) => doc.documentId === documentToReplace.documentId);

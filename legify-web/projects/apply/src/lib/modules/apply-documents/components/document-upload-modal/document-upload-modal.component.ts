@@ -10,12 +10,11 @@ import {
   DocumentPreviewEvent,
   DocumentUploadEvent,
   DocumentUploadModalData,
-  LegifyDocument,
-  LegifyDocumentRequirement
+  LegifyDocument
 } from '../../models';
 import { DocumentUploadPreviewModalComponent } from '../document-upload-preview-modal/document-upload-preview-modal.component';
 import { ApplyDocumentsService } from '../../services/index';
-import { Customer, Person } from '../../../../models';
+import { Customer, Person, RequiredDocument } from '../../../../models';
 
 @Component({
   selector: 'legify-web-document-upload-modal',
@@ -48,13 +47,13 @@ export class DocumentUploadModalComponent implements OnInit {
     return this.consumerDataService.getConsumerName(this.data.customer);
   }
 
-  get requiredDocuments(): Observable<LegifyDocumentRequirement[]> {
+  get requiredDocuments(): Observable<RequiredDocument[]> {
     return this.data.requiredDocuments;
   }
 
   public getDocumentsByDocGroupAndType(
     groupOwner: Person,
-    { documentGroup, documentType }: LegifyDocumentRequirement
+    { documentGroup, documentType }: RequiredDocument
   ): Observable<LegifyDocument[]> {
     return this.applyDocumentService.allDocuments$.pipe(
       map((allDocuments) => {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { get } from 'lodash-es';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, withLatestFrom } from 'rxjs/operators';
-import { Customer } from '../../../../models';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Customer, Person } from '../../../../models';
 import { ApplyBasicInfoConfigService } from '../apply-basic-info-config/apply-basic-info-config.service';
 
 @Injectable()
@@ -29,17 +29,21 @@ export class ApplyBasicInfoService {
     return formGroup;
   }
 
-  public getBasicInfoFormFormGroup(formGroupDataSource: Customer): Observable<FormGroup> {
+  public getBasicInfoFormFormGroup(formGroupDataSource: Person): Observable<Record<string, FormGroup>> {
     return this.applyBasicInfoConfigService.moduleConfig$.pipe(
       map((moduleConfig) => {
+        if (!moduleConfig) {
+          return { parentFormGroup: null };
+        }
+
         const formGroup = this.createBasicInfoFormGroup();
-        moduleConfig.formGroupMappings.forEach((formGroupMapping) =>
+        moduleConfig.formFieldToDataSourceMaps.forEach((formGroupMapping) =>
           formGroup
             .get(formGroupMapping.forField)
             .setValue(get(formGroupDataSource, formGroupMapping.dataPath, formGroupMapping.defaultValue))
         );
 
-        return formGroup;
+        return { parentFormGroup: formGroup };
       })
     );
   }

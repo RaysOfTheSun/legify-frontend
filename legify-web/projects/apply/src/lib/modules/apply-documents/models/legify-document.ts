@@ -1,10 +1,10 @@
-import { PERSON_ROLE } from '../../../constants';
+import { ConsumerRole } from '../../../constants';
 
 export interface LegifyDocument {
   file?: string;
   ownerId: string;
   fileType: string;
-  forRole: PERSON_ROLE;
+  forRole: ConsumerRole;
   filename: string;
   readonly?: boolean;
   documentId: string;

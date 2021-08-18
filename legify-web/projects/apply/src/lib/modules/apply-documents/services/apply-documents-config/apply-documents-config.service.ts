@@ -2,24 +2,23 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { TaskCardConfig } from '@legify/web-ui-elements';
-import { APPLY_MODULE } from '../../../../constants';
-import { ApplySupportingDocsConfig } from '../../../../models/apply-config/module-configs/apply-documents/apply-supporting-docs-config';
-import { LegifyDocumentRequirementConfig } from '../../../../models';
+import { ApplyModule } from '../../../../constants';
 import { ApplyConfigService } from '../../../../services';
+import { ApplyDocumentsModuleConfig, RequiredDocument } from '../../../../models';
 
 @Injectable()
 export class ApplyDocumentsConfigService {
   constructor(protected applyConfigService: ApplyConfigService) {}
 
+  get moduleConfig$(): Observable<ApplyDocumentsModuleConfig> {
+    return this.applyConfigService.getConfigForModule<ApplyDocumentsModuleConfig>(ApplyModule.DOCUMENTS);
+  }
+
   get taskCardConfigs(): Observable<TaskCardConfig> {
-    return this.applyConfigService.getTaskCardConfigsForModule(APPLY_MODULE.DOCUMENTS);
+    return this.moduleConfig$.pipe(map((moduleConfig) => moduleConfig && moduleConfig.taskCardLayout));
   }
 
-  get moduleConfig$(): Observable<ApplySupportingDocsConfig> {
-    return this.applyConfigService.applyConfig$.pipe(map((applyConfig) => applyConfig.documents));
-  }
-
-  get requiredDocuments$(): Observable<LegifyDocumentRequirementConfig[]> {
-    return this.moduleConfig$.pipe(map((moduleConfig) => moduleConfig.requiredDocs));
+  get requiredDocuments$(): Observable<RequiredDocument[]> {
+    return this.moduleConfig$.pipe(map((moduleConfig) => moduleConfig && moduleConfig.requiredDocuments));
   }
 }
