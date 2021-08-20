@@ -15,6 +15,7 @@ import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
 import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/form-section-maps/basic-info-form-sections-map';
 import { PersonalInfoFormGroupSectionComponent } from './components/personal-info-form-group-section/personal-info-form-group-section.component';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
+import { LegifyTaskCardCollectionModule, LegifyTaskCardModule } from '@legify/web-ui-elements';
 
 @NgModule({
   declarations: [ApplyBasicInfoComponent, PersonBasicInfoModalComponent, PersonalInfoFormGroupSectionComponent],
@@ -29,7 +30,9 @@ import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
     MatCheckboxModule,
     MatInputModule,
     MatProgressBarModule,
-    LegifyLazyRendererModule
+    LegifyLazyRendererModule,
+    LegifyTaskCardModule,
+    LegifyTaskCardCollectionModule
   ],
   providers: [
     {

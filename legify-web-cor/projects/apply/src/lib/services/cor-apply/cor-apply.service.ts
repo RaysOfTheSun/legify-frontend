@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   ApplyService,
   ApplyConfigService,
@@ -8,9 +9,10 @@ import {
 @Injectable()
 export class CorApplyService extends ApplyService {
   constructor(
+    protected router: Router,
     protected ApplyConfigService: ApplyConfigService,
     protected ApplyHttpDataService: ApplyHttpDataService
   ) {
-    super(ApplyConfigService, ApplyHttpDataService);
+    super(router, ApplyConfigService, ApplyHttpDataService);
   }
 }

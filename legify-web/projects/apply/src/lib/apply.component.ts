@@ -16,6 +16,10 @@ export class ApplyComponent implements OnInit {
     this.applyService.getCurrSelectedApplication();
   }
 
+  get showNftfBanner(): boolean {
+    return this.applyService.isNftfEnabledForCurrModule();
+  }
+
   get shellNavItems$(): Observable<ApplyShellSidenavItem[]> {
     return this.applyConfigService.navItems$;
   }

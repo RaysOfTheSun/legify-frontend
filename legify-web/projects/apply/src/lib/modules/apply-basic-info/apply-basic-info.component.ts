@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from '@legify/web-core';
+import { TaskCardConfig } from '@legify/web-ui-elements';
+import { Person } from '../../models';
+import { Observable } from 'rxjs';
 import { first } from 'rxjs/operators';
 import { ConsumerRole } from '../../constants';
 import { ApplyService } from '../../services';
@@ -14,6 +17,8 @@ import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
   styleUrls: ['./apply-basic-info.component.scss']
 })
 export class ApplyBasicInfoComponent implements OnInit {
+  @Input() taskCardTemplate: TemplateRef<any>;
+
   constructor(
     protected matDialog: MatDialog,
     protected applyService: ApplyService,
@@ -22,26 +27,24 @@ export class ApplyBasicInfoComponent implements OnInit {
     protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
   ) {}
 
-  ngOnInit(): void {}
-
-  public handleClick(): void {
-    this.applyService
-      .getCurrCustomer()
-      .pipe(first())
-      .subscribe((customer) => {
-        this.matDialog.open<PersonBasicInfoModalComponent, PersonBasicInfoFormModalData>(
-          PersonBasicInfoModalComponent,
-          {
-            data: {
-              customer,
-              sections: this.applyBasicInfoConfigService.getBasicInfoFormSectionsForRole(
-                ConsumerRole.OWNER_AND_INSUDRED
-              ),
-              componentPropertyMapping: this.applyBasicInfoService.getBasicInfoFormFormGroup(customer)
-            },
-            ...this.appConfigService.modalConfigs
-          }
-        );
-      });
+  get taskCardConfigs$(): Observable<TaskCardConfig> {
+    return this.applyBasicInfoConfigService.taskCardConfigs$;
   }
+
+  public getTaskCardCollectionDataSource(): Observable<Person[]> {
+    return this.applyBasicInfoService.getPersonsThatNeedBasicInfo();
+  }
+
+  public handleTaskCardClick(consumer: Person): void {
+    this.matDialog.open<PersonBasicInfoModalComponent, PersonBasicInfoFormModalData>(PersonBasicInfoModalComponent, {
+      data: {
+        customer: consumer,
+        sections: this.applyBasicInfoConfigService.getBasicInfoFormSectionsForRole(ConsumerRole.OWNER_AND_INSUDRED),
+        componentPropertyMapping: this.applyBasicInfoService.getBasicInfoFormFormGroup(consumer)
+      },
+      ...this.appConfigService.modalConfigs
+    });
+  }
+
+  ngOnInit(): void {}
 }

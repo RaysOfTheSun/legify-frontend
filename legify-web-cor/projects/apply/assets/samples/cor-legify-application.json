@@ -7,16 +7,19 @@
     "personalInfo": {
       "nameInfo": {
         "last": "Jennings",
+        "title": "mr",
         "first": "William",
         "middle": "Morris"
       },
-      "age": 23,
-      "gender": "M",
       "physicalInfo": {
         "weight": "55",
         "height": "123"
       },
-      "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      "birthInfo": {
+        "age": 23,
+        "gender": "MALE",
+        "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      }
     },
     "identificationInfo": {
       "type": "PASSPORT",
@@ -28,18 +31,21 @@
     "id": "COR-SAMPLE-INSURED",
     "role": "PI",
     "personalInfo": {
-      "age": 32,
-      "gender": "M",
       "nameInfo": {
         "last": "Jennings",
         "first": "Honey",
+        "title": "ms",
         "middle": "Morris"
       },
       "physicalInfo": {
         "weight": "55",
         "height": "123"
       },
-      "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      "birthInfo": {
+        "age": 23,
+        "gender": "FEMALE",
+        "dateOfBirth": "2021-06-23T15:50:22.138Z"
+      }
     },
     "identificationInfo": {
       "type": "PASSPORT",
@@ -52,18 +58,21 @@
       "id": "COR-SAMPLE-DEPENDENT",
       "role": "OI",
       "personalInfo": {
-        "age": 23,
-        "gender": "M",
         "nameInfo": {
           "last": "Jennings",
           "first": "Mia",
+          "title": "ms",
           "middle": "Warner"
         },
         "physicalInfo": {
           "weight": "55",
           "height": "123"
         },
-        "dateOfBirth": "2021-06-23T15:50:22.138Z"
+        "birthInfo": {
+          "age": 23,
+          "gender": "FEMALE",
+          "dateOfBirth": "2021-06-23T15:50:22.138Z"
+        }
       },
       "identificationInfo": {
         "type": "PASSPORT",

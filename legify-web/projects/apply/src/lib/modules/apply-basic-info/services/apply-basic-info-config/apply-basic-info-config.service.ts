@@ -19,7 +19,7 @@ export class ApplyBasicInfoConfigService {
   }
 
   get taskCardConfigs$(): Observable<TaskCardConfig> {
-    return this.moduleConfig$.pipe(map((config) => config.taskCardLayout));
+    return this.moduleConfig$.pipe(map((config) => config?.taskCardLayout));
   }
 
   public getBasicInfoFormSectionsForRole(role: ConsumerRole): FormGroupComponent[] {

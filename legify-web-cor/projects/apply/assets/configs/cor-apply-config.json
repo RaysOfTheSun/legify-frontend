@@ -43,100 +43,6 @@
       "showCompleteIndicator": true
     }
   ],
-  "taskCardConfigs": [
-    {
-      "forModule": "personal_information",
-      "config": {
-        "rows": [
-          {
-            "header": {
-              "template": "Name",
-              "templateIsValue": true
-            },
-            "value": {
-              "sources": [
-                "personalInfo.nameInfo.first",
-                "personalInfo.nameInfo.last"
-              ],
-              "template": "{0} {1}"
-            }
-          },
-          {
-            "header": {
-              "template": "Age",
-              "templateIsValue": true
-            },
-            "value": {
-              "sources": ["personalInfo.age"],
-              "template": "{0}"
-            }
-          }
-        ],
-        "headerText": {
-          "sources": [
-            "personalInfo.nameInfo.first",
-            "personalInfo.nameInfo.last"
-          ],
-          "template": "{0} {1}"
-        },
-        "subHeaderText": {
-          "sources": ["role"],
-          "template": "PERSON_{0}"
-        },
-        "footerHeaderText": {
-          "template": "Completion",
-          "templateIsValue": true
-        },
-        "highlightColorKey": {
-          "sources": ["role"],
-          "template": "{0}"
-        }
-      }
-    },
-    {
-      "forModule": "documents",
-      "config": {
-        "headerText": {
-          "sources": [
-            "personalInfo.nameInfo.first",
-            "personalInfo.nameInfo.last"
-          ],
-          "template": "{0} {1}"
-        },
-        "subHeaderText": {
-          "sources": ["role"],
-          "template": "PERSON_{0}"
-        },
-        "highlightColorKey": {
-          "sources": ["role"],
-          "template": "{0}"
-        },
-        "footerText": {
-          "template": "Completion",
-          "templateIsValue": true
-        },
-        "rows": []
-      }
-    }
-  ],
-  "documents": {
-    "requiredDocs": [
-      {
-        "documentType": "PASSPORT",
-        "documentGroup": "IDENTIFICATION",
-        "minimumUploads": 2,
-        "maximumUploads": 2,
-        "forRoles": ["IO", "PO", "PI", "OI"]
-      },
-      {
-        "documentType": "PAYMENT_RECEIPT",
-        "documentGroup": "RECEIPT",
-        "maximumUploads": 4,
-        "minimumUploads": 2,
-        "forRoles": ["IO", "PO"]
-      }
-    ]
-  },
   "modules": [
     {
       "forModule": "documents",
@@ -193,7 +99,29 @@
             "forField": ["nameInfo", "last"],
             "dataPath": "personalInfo.nameInfo.last"
           }
-        ]
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
       }
     }
   ]

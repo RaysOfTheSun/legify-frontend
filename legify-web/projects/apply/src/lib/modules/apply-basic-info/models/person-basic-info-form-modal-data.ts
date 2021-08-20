@@ -1,4 +1,4 @@
-import { Person } from '@legify/web-apply';
+import { Person } from '../../../models';
 import { Observable } from 'rxjs';
 import { FormComponentPropertyMap } from './form-component-property-map';
 

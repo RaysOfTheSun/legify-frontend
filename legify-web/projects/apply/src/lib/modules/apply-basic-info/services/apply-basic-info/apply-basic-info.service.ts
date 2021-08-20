@@ -4,11 +4,17 @@ import { get } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Customer, Person } from '../../../../models';
+import { ConsumerDataService, ApplyService } from '../../../../services';
 import { ApplyBasicInfoConfigService } from '../apply-basic-info-config/apply-basic-info-config.service';
 
 @Injectable()
 export class ApplyBasicInfoService {
-  constructor(protected formBuilder: FormBuilder, protected applyBasicInfoConfigService: ApplyBasicInfoConfigService) {}
+  constructor(
+    protected formBuilder: FormBuilder,
+    protected applyService: ApplyService,
+    protected consumerDataService: ConsumerDataService,
+    protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
+  ) {}
 
   protected createBasicInfoFormGroup(): FormGroup {
     const formGroup = this.formBuilder.group({
@@ -45,6 +51,14 @@ export class ApplyBasicInfoService {
 
         return { parentFormGroup: formGroup };
       })
+    );
+  }
+
+  public getPersonsThatNeedBasicInfo(): Observable<Customer[]> {
+    return this.applyService.currApplication$.pipe(
+      map((currApplication) =>
+        currApplication ? this.consumerDataService.getAllInsuredPersonsFromApplication(currApplication) : []
+      )
     );
   }
 }
