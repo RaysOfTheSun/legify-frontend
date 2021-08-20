@@ -3,7 +3,7 @@ import { Customer } from '../../../models/customer/customer';
 import { LegifyDocument } from './legify-document';
 
 export interface DocumentPreviewEvent {
-  document: LegifyDocument;
+  legifyFile: LegifyDocument;
   documentOwner: Customer;
-  documentRequirement: RequiredDocument;
+  requiredDocument: RequiredDocument;
 }

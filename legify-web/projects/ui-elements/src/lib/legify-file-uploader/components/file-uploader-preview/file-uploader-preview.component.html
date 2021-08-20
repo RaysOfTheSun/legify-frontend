@@ -1,0 +1,8 @@
+<div class="file-uploader-preview" (click)="publishPreviewEvent($event)">
+  <div class="file-uploader-preview__delete-container">
+    <button mat-icon-button class="file-uploader-preview__delete-btn" (click)="publishDeleteEvent($event)">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+  <img [src]="src" class="file-uploader-preview__preview--image" />
+</div>

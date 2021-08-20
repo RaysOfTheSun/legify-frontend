@@ -4,6 +4,7 @@ import { DOCUMENT_PREVIEW_MODAL_ACTION } from '../../constants';
 import {
   DocumentPreviewActionEvent,
   DocumentPreviewEvent,
+  DocumentsUploaderGroupChange,
   LegifyDocument
 } from '../../models';
 
@@ -15,18 +16,15 @@ import {
 export class DocumentUploadPreviewModalComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    protected documentPreviewEvent: DocumentPreviewEvent
+    protected documentPreviewEvent: DocumentsUploaderGroupChange
   ) {}
 
-  get srcDocument(): LegifyDocument {
-    return this.documentPreviewEvent.document;
+  get srcDocument(): any {
+    return this.documentPreviewEvent.legifyFile;
   }
 
   get srcDocumentDisplayName(): string {
-    return this.srcDocument.filename.slice(
-      0,
-      this.srcDocument.filename.lastIndexOf('.')
-    );
+    return this.srcDocument.filename.slice(0, this.srcDocument.filename.lastIndexOf('.'));
   }
 
   get dialogReuploadActionResult(): DocumentPreviewActionEvent {

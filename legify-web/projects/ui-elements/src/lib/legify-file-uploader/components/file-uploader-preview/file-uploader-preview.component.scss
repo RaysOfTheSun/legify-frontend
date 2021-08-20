@@ -1,6 +1,6 @@
-@import "~@legify/web-ui-elements/assets/styles/mixins";
+@import "../../../../../assets/styles/mixins";
 
-.document-uploader-preview {
+.file-uploader-preview {
   width: 128px;
   height: 96px;
   cursor: pointer;
@@ -12,7 +12,7 @@
   @include flex-container;
 
   &:hover {
-    .document-uploader-preview__delete-container {
+    .file-uploader-preview__delete-container {
       opacity: 1;
     }
   }

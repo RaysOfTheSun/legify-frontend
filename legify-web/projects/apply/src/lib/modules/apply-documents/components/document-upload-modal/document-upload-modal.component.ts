@@ -7,13 +7,13 @@ import { concatMap, map, take } from 'rxjs/operators';
 import { DOCUMENT_PREVIEW_MODAL_ACTION } from '../../constants';
 import {
   DocumentPreviewActionEvent,
-  DocumentPreviewEvent,
-  DocumentUploadEvent,
+  DocumentsUploaderGroupChange,
+  DocumentsUploaderGroupInfo,
   DocumentUploadModalData,
   LegifyDocument
 } from '../../models';
 import { DocumentUploadPreviewModalComponent } from '../document-upload-preview-modal/document-upload-preview-modal.component';
-import { ApplyDocumentsService } from '../../services/index';
+import { ApplyDocumentsService } from '../../services';
 import { Customer, Person, RequiredDocument } from '../../../../models';
 
 @Component({
@@ -51,6 +51,17 @@ export class DocumentUploadModalComponent implements OnInit {
     return this.data.requiredDocuments;
   }
 
+  public getGroupInfo(requiredDocument: RequiredDocument): DocumentsUploaderGroupInfo {
+    return {
+      documentOwner: this.modalOwner,
+      groupHeaderText: requiredDocument.documentGroup,
+      maximumUploads: requiredDocument.maximumUploads,
+      minimumUploads: requiredDocument.minimumUploads,
+      requiredDocument,
+      groupSubHeaderText: ''
+    };
+  }
+
   public getDocumentsByDocGroupAndType(
     groupOwner: Person,
     { documentGroup, documentType }: RequiredDocument
@@ -67,9 +78,9 @@ export class DocumentUploadModalComponent implements OnInit {
     );
   }
 
-  public handleFileUpload(uploadEvent: DocumentUploadEvent): void {
+  public handleFileUpload(uploadEvent: DocumentsUploaderGroupChange): void {
     this.applyDocumentService
-      .uploadDocument(uploadEvent.rawFile, uploadEvent.owner, uploadEvent.documentRequirementMeta)
+      .uploadDocument(uploadEvent.rawFile, uploadEvent.documentOwner, uploadEvent.requiredDocument)
       .subscribe();
   }
 
@@ -84,17 +95,17 @@ export class DocumentUploadModalComponent implements OnInit {
     this.documentPreviewActionEventSubj
       .pipe(
         take(1),
-        concatMap(({ document, documentOwner, documentRequirement }) =>
+        concatMap(({ legifyFile: document, documentOwner, requiredDocument: documentRequirement }) =>
           this.applyDocumentService.reuploadDocument(rawFile, documentOwner, document, documentRequirement)
         )
       )
       .subscribe();
   }
 
-  public handleFilePreview(documentPreviewEvent: DocumentPreviewEvent): void {
+  public handleFilePreview(documentsUploaderGroupChange: DocumentsUploaderGroupChange): void {
     const previewModalClosure$ = this.matDialog
       .open(DocumentUploadPreviewModalComponent, {
-        data: documentPreviewEvent,
+        data: documentsUploaderGroupChange,
         ...this.appConfigService.modalConfigs
       })
       .afterClosed()
@@ -105,18 +116,18 @@ export class DocumentUploadModalComponent implements OnInit {
         return;
       }
 
-      const { document, userAction, documentOwner, documentRequirement } = documentPreviewActionEvent;
+      const { legifyFile, userAction, documentOwner, requiredDocument } = documentPreviewActionEvent;
 
       if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.DELETE_DOCUMENT) {
-        this.applyDocumentService.deleteDocument(document, this.modalOwner).pipe(take(1)).subscribe();
+        this.applyDocumentService.deleteDocument(legifyFile, this.modalOwner).pipe(take(1)).subscribe();
         return;
       }
 
       if (userAction === DOCUMENT_PREVIEW_MODAL_ACTION.REUPLOAD_DOCUMENT) {
         this.documentPreviewActionEventSubj.next({
-          document,
+          legifyFile,
           documentOwner,
-          documentRequirement,
+          requiredDocument,
           userAction
         });
         this.fileUploader.nativeElement.click();

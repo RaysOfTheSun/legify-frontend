@@ -1,7 +1,7 @@
-@import "~@legify/web-ui-elements/assets/styles/mixins";
-@import "~@legify/web-ui-elements/assets/styles/legify-variables";
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/legify-variables";
 
-.document-uploader {
+.file-uploader {
   width: 128px;
   height: 96px;
   cursor: pointer;
