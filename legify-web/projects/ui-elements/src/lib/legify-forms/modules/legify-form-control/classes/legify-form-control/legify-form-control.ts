@@ -7,7 +7,11 @@ export class LegifyFormControl implements ControlValueAccessor {
   protected onTouchedHandler: () => void;
 
   constructor(@Optional() @Self() protected ngControl: NgControl) {
-    // this.ngControl.valueAccessor = this;
+    if (!this.ngControl) {
+      return;
+    }
+
+    this.ngControl.valueAccessor = this;
   }
 
   get formControl(): AbstractControl {

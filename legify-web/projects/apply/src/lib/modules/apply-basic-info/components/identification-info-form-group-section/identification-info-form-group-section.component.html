@@ -1,0 +1,17 @@
+<legify-web-form-group-section headerIcon="recent_actors" title="Identifty Document" [noMargins]="true">
+  <ng-template legifyWebFormGroupForm>
+    <legify-web-identification-info-form-group
+      labelText="ID Type"
+      [parentFormGroup]="parentFormGroup"
+      [identificationTypes]="identificationTyepes"
+      class="legify-container legify-container--full-width"
+    ></legify-web-identification-info-form-group>
+  </ng-template>
+</legify-web-form-group-section>
+<legify-web-form-group-section [noMargins]="true">
+  <ng-template legifyWebFormGroupForm>
+    <div class="legify-form-group__row">
+      <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
+    </div>
+  </ng-template>
+</legify-web-form-group-section>

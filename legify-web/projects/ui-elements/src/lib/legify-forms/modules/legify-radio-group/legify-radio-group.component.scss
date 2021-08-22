@@ -1,0 +1,13 @@
+@import "../../../../../assets/styles/mixins";
+
+.legify-radio-group {
+  @include flex-container($direction: column);
+
+  &__label {
+    margin-bottom: 10px;
+  }
+
+  &__radio {
+    margin-right: 10px;
+  }
+}

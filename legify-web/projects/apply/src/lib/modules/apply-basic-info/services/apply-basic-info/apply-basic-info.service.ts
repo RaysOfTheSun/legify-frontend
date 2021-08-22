@@ -29,6 +29,9 @@ export class ApplyBasicInfoService {
         age: [22],
         gender: ['Male'],
         dateOfBirth: []
+      }),
+      identificationInfo: this.formBuilder.group({
+        type: ['id']
       })
     });
 

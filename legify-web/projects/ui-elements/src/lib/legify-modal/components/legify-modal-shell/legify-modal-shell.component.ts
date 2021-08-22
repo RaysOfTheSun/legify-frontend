@@ -7,6 +7,7 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 })
 export class LegifyModalShellComponent implements OnInit {
   @Input() headerText: string;
+  @Input() noPaddings: boolean;
   @Input() headerTemplate: TemplateRef<any>;
   @Input() headerTextTranslationProps: Record<string, string> = {};
 
@@ -23,8 +24,16 @@ export class LegifyModalShellComponent implements OnInit {
   }
 
   get modalBodyCssClasses(): string[] {
-    return !!this.footerTemplate
+    const initialModalBodyClasess = !!this.footerTemplate
       ? ['legify-modal__body']
       : ['legify-modal__body', 'legify-modal__body--no-footer'];
+
+    if (!this.noPaddings) {
+      return initialModalBodyClasess;
+    }
+
+    initialModalBodyClasess.push('legify-modal__body--no-padding');
+
+    return initialModalBodyClasess;
   }
 }

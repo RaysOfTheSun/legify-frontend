@@ -15,10 +15,21 @@ import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
 import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/form-section-maps/basic-info-form-sections-map';
 import { PersonalInfoFormGroupSectionComponent } from './components/personal-info-form-group-section/personal-info-form-group-section.component';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
-import { LegifyTaskCardCollectionModule, LegifyTaskCardModule } from '@legify/web-ui-elements';
+import {
+  LegifyTaskCardCollectionModule,
+  LegifyTaskCardModule,
+  LegifyFileUploaderModule,
+  LegifyFormGroupModule
+} from '@legify/web-ui-elements';
+import { IdentificationInfoFormGroupSectionComponent } from './components/identification-info-form-group-section/identification-info-form-group-section.component';
 
 @NgModule({
-  declarations: [ApplyBasicInfoComponent, PersonBasicInfoModalComponent, PersonalInfoFormGroupSectionComponent],
+  declarations: [
+    ApplyBasicInfoComponent,
+    PersonBasicInfoModalComponent,
+    PersonalInfoFormGroupSectionComponent,
+    IdentificationInfoFormGroupSectionComponent
+  ],
   imports: [
     CommonModule,
     ApplyBasicInfoRoutingModule,
@@ -32,7 +43,8 @@ import { LegifyTaskCardCollectionModule, LegifyTaskCardModule } from '@legify/we
     MatProgressBarModule,
     LegifyLazyRendererModule,
     LegifyTaskCardModule,
-    LegifyTaskCardCollectionModule
+    LegifyTaskCardCollectionModule,
+    LegifyFileUploaderModule
   ],
   providers: [
     {

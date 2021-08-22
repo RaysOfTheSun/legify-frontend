@@ -7,6 +7,7 @@ import { LegifyFormFieldConfig } from '../../models';
 })
 export class FormGroupComponent implements OnInit {
   @Input() fields: LegifyFormFieldConfig[];
+  @Input() labelText: string;
   @Input() parentFormGroup: FormGroup;
 
   constructor() {}
