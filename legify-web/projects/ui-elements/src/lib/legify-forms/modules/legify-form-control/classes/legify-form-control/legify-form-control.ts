@@ -1,10 +1,12 @@
 import { Optional, Self } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NgControl } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
 export class LegifyFormControl implements ControlValueAccessor {
   protected controlValue: any;
   protected onChangeHandler: (newValue: any) => void;
   protected onTouchedHandler: () => void;
+
+  public formControl: FormControl;
 
   constructor(@Optional() @Self() protected ngControl: NgControl) {
     if (!this.ngControl) {
@@ -12,10 +14,7 @@ export class LegifyFormControl implements ControlValueAccessor {
     }
 
     this.ngControl.valueAccessor = this;
-  }
-
-  get formControl(): AbstractControl {
-    return this.ngControl.control;
+    this.formControl = this.ngControl.control as FormControl;
   }
 
   setValue(newValue: any): void {

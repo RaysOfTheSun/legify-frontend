@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { ApplyBasicInfoRoutingModule } from './apply-basic-info-routing.module';
 import { ApplyBasicInfoComponent } from './apply-basic-info.component';
-import { LegifyFormsModule, LegifyModalModule, LegifyLazyRendererModule } from '@legify/web-ui-elements';
+import { LegifyModalModule, LegifyLazyRendererModule } from '@legify/web-ui-elements';
 import { PersonBasicInfoModalComponent } from './components/person-basic-info-modal/person-basic-info-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +18,8 @@ import {
   LegifyTaskCardCollectionModule,
   LegifyTaskCardModule,
   LegifyFileUploaderModule,
-  LegifyFormGroupModule
+  LegifyFieldGroupModule,
+  LegifyFormSectionModule
 } from '@legify/web-ui-elements';
 import { IdentificationInfoFormGroupSectionComponent } from './components/identification-info-form-group-section/identification-info-form-group-section.component';
 
@@ -33,8 +33,6 @@ import { IdentificationInfoFormGroupSectionComponent } from './components/identi
   imports: [
     CommonModule,
     ApplyBasicInfoRoutingModule,
-    MatFormFieldModule,
-    LegifyFormsModule,
     ReactiveFormsModule,
     LegifyModalModule,
     MatSelectModule,
@@ -44,7 +42,9 @@ import { IdentificationInfoFormGroupSectionComponent } from './components/identi
     LegifyLazyRendererModule,
     LegifyTaskCardModule,
     LegifyTaskCardCollectionModule,
-    LegifyFileUploaderModule
+    LegifyFileUploaderModule,
+    LegifyFieldGroupModule,
+    LegifyFormSectionModule
   ],
   providers: [
     {

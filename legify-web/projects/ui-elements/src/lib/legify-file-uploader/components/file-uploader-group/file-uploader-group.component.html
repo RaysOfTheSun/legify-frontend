@@ -1,6 +1,9 @@
 <div class="file-uploader-group">
   <legify-web-i18n-translatable-text
     class="file-uploader-group__header"
+    [ngClass]="{
+      'text--bold': groupInfo.isGroupHeaderTextBold
+    }"
     [translatableTextId]="groupInfo.groupHeaderText | translatableText"
   ></legify-web-i18n-translatable-text>
   <legify-web-i18n-translatable-text

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { get } from 'lodash-es';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,22 +18,28 @@ export class ApplyBasicInfoService {
 
   protected createBasicInfoFormGroup(): FormGroup {
     const formGroup = this.formBuilder.group({
-      nameInfo: this.formBuilder.group({
-        title: ['mr'],
-        first: ['', []],
-        last: ['', []],
-        hasAlternateName: [true],
-        relationshipToInsured: ['spouse']
-      }),
-      birthInfo: this.formBuilder.group({
-        age: [22],
-        gender: ['Male'],
-        dateOfBirth: []
+      personalInfo: this.formBuilder.group({
+        nameInfo: this.formBuilder.group({
+          title: ['mr'],
+          first: ['', [Validators.required]],
+          last: ['', []],
+          hasAlternateName: [true],
+          relationshipToInsured: ['spouse']
+        }),
+        birthInfo: this.formBuilder.group({
+          age: [22],
+          gender: ['Male'],
+          dateOfBirth: []
+        })
       }),
       identificationInfo: this.formBuilder.group({
-        type: ['id']
+        type: ['id'],
+        number: ['', [Validators.required]],
+        issueDate: ['', [Validators.required]]
       })
     });
+
+    formGroup.valueChanges.subscribe(console.log);
 
     return formGroup;
   }

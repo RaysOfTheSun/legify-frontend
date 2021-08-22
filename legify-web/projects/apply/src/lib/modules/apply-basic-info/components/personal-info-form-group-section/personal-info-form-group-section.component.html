@@ -1,105 +1,18 @@
-<legify-web-form-group-section headerIcon="perm_identity" title="Personal Information">
-  <ng-template legifyWebFormGroupForm [formGroup]="parentFormGroup">
-    <div class="legify-form-group legify-container legify-container--full-width" formGroupName="nameInfo">
-      <div class="legify-form-group__row">
-        <mat-form-field class="legify-form-group__field legify-container--half-width">
-          <mat-label>Title</mat-label>
-          <mat-select formControlName="title">
-            <mat-option value="ms">Miss</mat-option>
-            <mat-option value="mrs">Missis</mat-option>
-            <mat-option value="mr">Mister</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <span class="legify-form-group__row-header">
-        <h3>Name as per id</h3>
-      </span>
-      <div class="legify-form-group__row">
-        <legify-web-name-info-form-group
-          [parentFormGroup]="parentFormGroup"
-          class="legify-container legify-container--full-width"
-        ></legify-web-name-info-form-group>
-      </div>
-      <mat-checkbox formControlName="hasAlternateName">Add another name</mat-checkbox>
-      <legify-web-name-info-form-group
-        *ngIf="hasAlternateName"
-        [parentFormGroup]="parentFormGroup"
-        class="legify-container legify-container--full-width"
-      ></legify-web-name-info-form-group>
-      <div class="legify-form-group__row">
-        <legify-web-birth-info-form-group
-          [parentFormGroup]="parentFormGroup"
-          class="legify-container legify-container--full-width"
-        ></legify-web-birth-info-form-group>
-      </div>
-      <div class="legify-form-group__row">
-        <mat-form-field class="legify-form-group__field legify-container--half-width">
-          <mat-label>Relationship to Insured</mat-label>
-          <mat-select formControlName="relationshipToInsured">
-            <mat-option value="spouse">Spouse</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <legify-web-name-info-form-group
-        [parentFormGroup]="parentFormGroup"
-        class="legify-container legify-container--full-width"
-      ></legify-web-name-info-form-group>
-    </div>
+<legify-web-form-section
+  headerText="Personal Information"
+  headerIcon="perm_identity"
+  [formGroup]="controlContainer.control"
+>
+  <ng-template form-section-content formGroupName="personalInfo">
+    <legify-web-input-field-group
+      class="legify-container legify-container--full-width"
+      [fields]="nameInfoFields"
+      formGroupName="nameInfo"
+    ></legify-web-input-field-group>
+    <legify-web-input-field-group
+      class="legify-container legify-container--full-width"
+      [fields]="birthInfoFields"
+      formGroupName="birthInfo"
+    ></legify-web-input-field-group>
   </ng-template>
-</legify-web-form-group-section>
-
-<!-- <ng-container [ngTemplateOutlet]="hideSectionWrapper ? form : formSection"></ng-container> -->
-
-<ng-template #formSection>
-  <legify-web-form-section headerIcon="perm_identity" title="Personal Information">
-    <ng-container [ngTemplateOutlet]="form"></ng-container>
-  </legify-web-form-section>
-</ng-template>
-
-<ng-template #form [formGroup]="parentFormGroup">
-  <div class="legify-form-group legify-container legify-container--full-width" formGroupName="nameInfo">
-    <div class="legify-form-group__row">
-      <mat-form-field class="legify-form-group__field legify-container--half-width">
-        <mat-label>Title</mat-label>
-        <mat-select formControlName="title">
-          <mat-option value="ms">Miss</mat-option>
-          <mat-option value="mrs">Missis</mat-option>
-          <mat-option value="mr">Mister</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <span class="legify-form-group__row-header">
-      <h3>Name as per id</h3>
-    </span>
-    <div class="legify-form-group__row">
-      <legify-web-name-info-form-group
-        [parentFormGroup]="parentFormGroup"
-        class="legify-container legify-container--full-width"
-      ></legify-web-name-info-form-group>
-    </div>
-    <mat-checkbox formControlName="hasAlternateName">Add another name</mat-checkbox>
-    <legify-web-name-info-form-group
-      *ngIf="hasAlternateName"
-      [parentFormGroup]="parentFormGroup"
-      class="legify-container legify-container--full-width"
-    ></legify-web-name-info-form-group>
-    <div class="legify-form-group__row">
-      <legify-web-birth-info-form-group
-        [parentFormGroup]="parentFormGroup"
-        class="legify-container legify-container--full-width"
-      ></legify-web-birth-info-form-group>
-    </div>
-    <div class="legify-form-group__row">
-      <mat-form-field class="legify-form-group__field legify-container--half-width">
-        <mat-label>Relationship to Insured</mat-label>
-        <mat-select formControlName="relationshipToInsured">
-          <mat-option value="spouse">Spouse</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <legify-web-name-info-form-group
-      [parentFormGroup]="parentFormGroup"
-      class="legify-container legify-container--full-width"
-    ></legify-web-name-info-form-group>
-  </div>
-</ng-template>
+</legify-web-form-section>

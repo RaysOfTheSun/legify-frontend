@@ -1,0 +1,23 @@
+<ng-container [ngTemplateOutlet]="hideHeader ? noHeader : hasHeader"></ng-container>
+
+<ng-template #hasHeader>
+  <div
+    class="legify-form-section"
+    [ngStyle]="{ backgroundColor: contentBackgroundColor }"
+    [ngClass]="{ 'legify-form-section--no-margins': removeMargins }"
+  >
+    <div class="legify-form-section__header">
+      <mat-icon class="legify-form-section__header-icon"> {{ headerIcon }} </mat-icon>
+      <span class="legify-form-section__header-text"> {{ headerText }} </span>
+    </div>
+    <div class="legify-form-section__content">
+      <ng-container [ngTemplateOutlet]="sectionContent"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noHeader>
+  <ng-container [ngTemplateOutlet]="sectionContent"></ng-container>
+</ng-template>
+
+<ng-content></ng-content>

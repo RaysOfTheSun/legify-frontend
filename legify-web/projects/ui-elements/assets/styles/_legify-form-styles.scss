@@ -26,6 +26,10 @@
     &--labeled {
       flex-direction: column;
     }
+
+    &--minimal-margins {
+      margin: 10px 0;
+    }
   }
 
   &__field {

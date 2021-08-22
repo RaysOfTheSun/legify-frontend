@@ -19,5 +19,11 @@
   },
   "BASIC-INFO_CAPTION": {
     "en": "Basic Info"
+  },
+  "COPY_OF_PASSPORT_CAPTION": {
+    "en": "Copy of Passport"
+  },
+  "PASSPORT_CAPTION": {
+    "en": "Passport"
   }
 }

@@ -92,11 +92,11 @@
       "config": {
         "formFieldToDataSourceMaps": [
           {
-            "forField": ["nameInfo", "first"],
+            "forField": ["personalInfo", "nameInfo", "first"],
             "dataPath": "personalInfo.nameInfo.first"
           },
           {
-            "forField": ["nameInfo", "last"],
+            "forField": ["personalInfo", "nameInfo", "last"],
             "dataPath": "personalInfo.nameInfo.last"
           }
         ],

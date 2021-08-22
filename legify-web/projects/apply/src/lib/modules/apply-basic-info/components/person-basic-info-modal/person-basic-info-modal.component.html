@@ -3,6 +3,7 @@
     *ngIf="componentPropertyMapping$ | async as componentPropertyMapping"
     [components]="formSections"
     [loadingText]="'Loading Form'"
+    [formGroup]="componentPropertyMapping.parentFormGroup"
     [componentPropertyValueMap]="componentPropertyMapping"
   ></legify-web-lazy-renderer>
 </legify-web-modal-shell>

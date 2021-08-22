@@ -1,0 +1,36 @@
+.legify-form-section {
+  display: flex;
+  margin: 50px 0;
+  padding: 0 40px;
+
+  &--no-margins {
+    margin: 0;
+  }
+
+  &__content {
+    flex: 0 1 60%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__header {
+    flex: 0 1 30%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  &__header-icon {
+    width: 4rem;
+    height: 4rem;
+    font-size: 4rem;
+  }
+
+  &__header-text {
+    font-size: 2rem;
+    max-width: 75%;
+    line-height: 1.2;
+    font-weight: 100;
+    margin-top: 10px;
+  }
+}

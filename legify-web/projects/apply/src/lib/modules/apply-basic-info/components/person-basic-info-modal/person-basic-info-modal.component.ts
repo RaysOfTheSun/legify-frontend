@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroupComponent } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 import { FormComponentPropertyMap, PersonBasicInfoFormModalData } from '../../models';
 
@@ -10,7 +9,7 @@ import { FormComponentPropertyMap, PersonBasicInfoFormModalData } from '../../mo
   styleUrls: ['./person-basic-info-modal.component.scss']
 })
 export class PersonBasicInfoModalComponent implements OnInit {
-  public formSections: FormGroupComponent[];
+  public formSections: any[];
   public componentPropertyMapping$: Observable<FormComponentPropertyMap>;
 
   constructor(@Inject(MAT_DIALOG_DATA) protected data: PersonBasicInfoFormModalData) {

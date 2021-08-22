@@ -1,17 +1,27 @@
-<legify-web-form-group-section headerIcon="recent_actors" title="Identifty Document" [noMargins]="true">
-  <ng-template legifyWebFormGroupForm>
-    <legify-web-identification-info-form-group
-      labelText="ID Type"
-      [parentFormGroup]="parentFormGroup"
-      [identificationTypes]="identificationTyepes"
+<legify-web-form-section
+  headerIcon="recent_actors"
+  headerText="Identity Document"
+  removeMargins="true"
+  [formGroup]="controlContainer.control"
+>
+  <ng-template form-section-content>
+    <legify-web-radio-field-group
       class="legify-container legify-container--full-width"
-    ></legify-web-identification-info-form-group>
+      [fields]="radios"
+      formGroupName="identificationInfo"
+    ></legify-web-radio-field-group>
+    <legify-web-input-field-group
+      class="legify-container legify-container--full-width"
+      [fields]="inputs"
+      minimalMargins="true"
+      formGroupName="identificationInfo"
+    ></legify-web-input-field-group>
   </ng-template>
-</legify-web-form-group-section>
-<legify-web-form-group-section [noMargins]="true">
-  <ng-template legifyWebFormGroupForm>
+</legify-web-form-section>
+<legify-web-form-section removeMargins="true" contentBackgroundColor="#fff">
+  <ng-template form-section-content>
     <div class="legify-form-group__row">
       <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
     </div>
   </ng-template>
-</legify-web-form-group-section>
+</legify-web-form-section>

@@ -1,0 +1,15 @@
+<div class="legify-form-group" [formGroup]="controlContainer.control">
+  <div
+    class="legify-form-group__row"
+    [ngClass]="{
+      'legify-form-group__row--minimal-margins': minimalMargins
+    }"
+  >
+    <mat-form-field class="legify-form-group__field" *ngFor="let field of fields">
+      <mat-label *ngIf="field.label">
+        <span> {{ field.label }}* </span>
+      </mat-label>
+      <input matInput [formControlName]="field.name" [type]="field.type || 'text'" />
+    </mat-form-field>
+  </div>
+</div>
