@@ -7,12 +7,12 @@
   <ng-template form-section-content>
     <legify-web-radio-field-group
       class="legify-container legify-container--full-width"
-      [fields]="radios"
+      [fields]="fields.idTypeFields"
       formGroupName="identificationInfo"
     ></legify-web-radio-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="inputs"
+      [fields]="fields.idInformationFields"
       minimalMargins="true"
       formGroupName="identificationInfo"
     ></legify-web-input-field-group>
@@ -22,6 +22,16 @@
   <ng-template form-section-content>
     <div class="legify-form-group__row">
       <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
+    </div>
+  </ng-template>
+</legify-web-form-section>
+<legify-web-form-section>
+  <ng-template form-section-content>
+    <div>
+      <span>Tips for uploading</span>
+      <ul>
+        <li>Each document file size can be up to 5MB each</li>
+      </ul>
     </div>
   </ng-template>
 </legify-web-form-section>

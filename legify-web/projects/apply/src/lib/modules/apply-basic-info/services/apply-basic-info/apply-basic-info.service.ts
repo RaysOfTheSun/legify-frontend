@@ -26,6 +26,10 @@ export class ApplyBasicInfoService {
           hasAlternateName: [true],
           relationshipToInsured: ['spouse']
         }),
+        parentNameInfo: this.formBuilder.group({
+          first: [],
+          last: []
+        }),
         birthInfo: this.formBuilder.group({
           age: [22],
           gender: ['Male'],

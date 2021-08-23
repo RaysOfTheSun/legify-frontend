@@ -11,8 +11,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
-import { BASIC_INFO_FORM_SECTIONS_MAP } from './constants/form-section-maps/basic-info-form-sections-map';
-import { PersonalInfoFormGroupSectionComponent } from './components/personal-info-form-group-section/personal-info-form-group-section.component';
+import { BASIC_INFO_FORM_SECTIONS_MAP } from './configs/form-section-maps/basic-info-form-sections-map';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 import {
   LegifyTaskCardCollectionModule,
@@ -21,14 +20,21 @@ import {
   LegifyFieldGroupModule,
   LegifyFormSectionModule
 } from '@legify/web-ui-elements';
-import { IdentificationInfoFormGroupSectionComponent } from './components/identification-info-form-group-section/identification-info-form-group-section.component';
+import { IdentificationInfoSubformComponent } from './components/identification-info-subform/identification-info-subform.component';
+import { PersonalInfoSubformComponent } from './components/personal-info-subform/personal-info-subform.component';
+import {
+  IDENTIFICATION_INFO_SUBFORM_CONFIG,
+  PERSONAL_INFO_SUBFORM_CONFIG
+} from './constants/injection-tokens/subform-config';
+import { personalInfoSubFormFields, identificationInfoSubFormConfig } from './configs/sub-form-configs';
+import { TranslatableTextModule } from '@legify/web-i18n-elements';
 
 @NgModule({
   declarations: [
     ApplyBasicInfoComponent,
     PersonBasicInfoModalComponent,
-    PersonalInfoFormGroupSectionComponent,
-    IdentificationInfoFormGroupSectionComponent
+    IdentificationInfoSubformComponent,
+    PersonalInfoSubformComponent
   ],
   imports: [
     CommonModule,
@@ -44,12 +50,21 @@ import { IdentificationInfoFormGroupSectionComponent } from './components/identi
     LegifyTaskCardCollectionModule,
     LegifyFileUploaderModule,
     LegifyFieldGroupModule,
-    LegifyFormSectionModule
+    LegifyFormSectionModule,
+    TranslatableTextModule
   ],
   providers: [
     {
       provide: BASIC_INFO_FORM_SECTIONS,
       useValue: BASIC_INFO_FORM_SECTIONS_MAP
+    },
+    {
+      provide: PERSONAL_INFO_SUBFORM_CONFIG,
+      useValue: personalInfoSubFormFields
+    },
+    {
+      provide: IDENTIFICATION_INFO_SUBFORM_CONFIG,
+      useValue: identificationInfoSubFormConfig
     },
     ApplyBasicInfoService,
     ApplyBasicInfoConfigService

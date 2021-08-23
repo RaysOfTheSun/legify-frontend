@@ -6,13 +6,18 @@
   <ng-template form-section-content formGroupName="personalInfo">
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="nameInfoFields"
+      [fields]="fields.nameInfoFields"
       formGroupName="nameInfo"
     ></legify-web-input-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="birthInfoFields"
+      [fields]="fields.birthInfoFields"
       formGroupName="birthInfo"
+    ></legify-web-input-field-group>
+    <legify-web-input-field-group
+      class="legify-container legify-container--full-width"
+      [fields]="fields.parentNameInfoFields"
+      formGroupName="parentNameInfo"
     ></legify-web-input-field-group>
   </ng-template>
 </legify-web-form-section>
