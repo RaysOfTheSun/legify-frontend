@@ -37,7 +37,7 @@ export class ApplyBasicInfoService {
         })
       }),
       identificationInfo: this.formBuilder.group({
-        type: ['id'],
+        type: ['passport'],
         number: ['', [Validators.required]],
         issueDate: ['', [Validators.required]]
       })

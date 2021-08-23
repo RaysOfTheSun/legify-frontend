@@ -1,0 +1,11 @@
+<div class="legify-form-group" [formGroup]="controlContainer.control">
+  <div class="legify-form-group__row">
+    <legify-web-select
+      class="legify-form-group__field"
+      *ngFor="let field of fields"
+      [options]="field.options"
+      [groupLabel]="field.label"
+      [formControlName]="field.name"
+    ></legify-web-select>
+  </div>
+</div>

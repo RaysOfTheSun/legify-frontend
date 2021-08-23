@@ -6,10 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RadioFieldGroupComponent } from './components/radio-field-group/radio-field-group.component';
 import { LegifyFormControlModule } from '../legify-form-control';
+import { SelectFieldGroupComponent } from './components/select-field-group/select-field-group.component';
 
 @NgModule({
-  declarations: [FieldGroupComponent, InputFieldGroupComponent, RadioFieldGroupComponent],
+  declarations: [FieldGroupComponent, InputFieldGroupComponent, RadioFieldGroupComponent, SelectFieldGroupComponent],
   imports: [CommonModule, MatInputModule, LegifyFormControlModule, ReactiveFormsModule],
-  exports: [InputFieldGroupComponent, RadioFieldGroupComponent]
+  exports: [InputFieldGroupComponent, RadioFieldGroupComponent, SelectFieldGroupComponent]
 })
 export class LegifyFieldGroupModule {}

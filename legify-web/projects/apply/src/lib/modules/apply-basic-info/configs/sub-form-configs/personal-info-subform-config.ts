@@ -37,5 +37,25 @@ export const personalInfoSubFormFields: PersonalInfoSubFormConfig = {
       label: "Father's surname",
       name: 'last'
     }
+  ],
+  titleFields: [
+    {
+      label: 'title',
+      name: 'title',
+      options: [
+        {
+          label: 'Mister',
+          value: 'mr'
+        },
+        {
+          value: 'ms',
+          label: 'Miss'
+        },
+        {
+          value: 'mrs',
+          label: 'Missis'
+        }
+      ]
+    }
   ]
 };

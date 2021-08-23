@@ -18,7 +18,8 @@ import {
   LegifyTaskCardModule,
   LegifyFileUploaderModule,
   LegifyFieldGroupModule,
-  LegifyFormSectionModule
+  LegifyFormSectionModule,
+  LegifyFormControlModule
 } from '@legify/web-ui-elements';
 import { IdentificationInfoSubformComponent } from './components/identification-info-subform/identification-info-subform.component';
 import { PersonalInfoSubformComponent } from './components/personal-info-subform/personal-info-subform.component';
@@ -51,7 +52,8 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
     LegifyFileUploaderModule,
     LegifyFieldGroupModule,
     LegifyFormSectionModule,
-    TranslatableTextModule
+    TranslatableTextModule,
+    LegifyFormControlModule
   ],
   providers: [
     {

@@ -4,6 +4,16 @@
   [formGroup]="controlContainer.control"
 >
   <ng-template form-section-content formGroupName="personalInfo">
+    <legify-web-select-field-group
+      class="legify-container legify-container--half-width"
+      [fields]="fields.titleFields"
+      formGroupName="nameInfo"
+    ></legify-web-select-field-group>
+    <div class="legify-form-group__row">
+      <span>
+        <h3>Name as per ID</h3>
+      </span>
+    </div>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
       [fields]="fields.nameInfoFields"
