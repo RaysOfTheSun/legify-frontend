@@ -24,18 +24,25 @@ import {
 import { IdentificationInfoSubformComponent } from './components/identification-info-subform/identification-info-subform.component';
 import { PersonalInfoSubformComponent } from './components/personal-info-subform/personal-info-subform.component';
 import {
+  CONTACT_INFO_SUBFORM_CONFIG,
   IDENTIFICATION_INFO_SUBFORM_CONFIG,
   PERSONAL_INFO_SUBFORM_CONFIG
 } from './constants/injection-tokens/subform-config';
-import { personalInfoSubFormFields, identificationInfoSubFormConfig } from './configs/sub-form-configs';
+import {
+  personalInfoSubFormFields,
+  identificationInfoSubFormConfig,
+  contactInfoSubformConfig
+} from './configs/sub-form-configs';
 import { TranslatableTextModule } from '@legify/web-i18n-elements';
+import { ContactInfoSubformComponent } from './components/contact-info-subform/contact-info-subform.component';
 
 @NgModule({
   declarations: [
     ApplyBasicInfoComponent,
     PersonBasicInfoModalComponent,
     IdentificationInfoSubformComponent,
-    PersonalInfoSubformComponent
+    PersonalInfoSubformComponent,
+    ContactInfoSubformComponent
   ],
   imports: [
     CommonModule,
@@ -67,6 +74,10 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
     {
       provide: IDENTIFICATION_INFO_SUBFORM_CONFIG,
       useValue: identificationInfoSubFormConfig
+    },
+    {
+      provide: CONTACT_INFO_SUBFORM_CONFIG,
+      useValue: contactInfoSubformConfig
     },
     ApplyBasicInfoService,
     ApplyBasicInfoConfigService

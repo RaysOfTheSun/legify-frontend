@@ -17,5 +17,12 @@ export class PersonalInfoSubformComponent extends SubformComponent implements On
     super(controlContainer);
   }
 
+  get hasAlternateName(): boolean {
+    return (
+      this.controlContainer.control &&
+      this.controlContainer.control.get(['personalInfo', 'alternateNameInfo', 'hasAlternateName']).value
+    );
+  }
+
   ngOnInit(): void {}
 }

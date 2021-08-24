@@ -19,11 +19,25 @@
       [fields]="fields.nameInfoFields"
       formGroupName="nameInfo"
     ></legify-web-input-field-group>
+    <span formGroupName="alternateNameInfo">
+      <mat-checkbox formControlName="hasAlternateName"> Add alternate name </mat-checkbox>
+    </span>
+    <legify-web-input-field-group
+      *ngIf="hasAlternateName"
+      class="legify-container legify-container--full-width"
+      [fields]="fields.nameInfoFields"
+      formGroupName="alternateNameInfo"
+    ></legify-web-input-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
       [fields]="fields.birthInfoFields"
       formGroupName="birthInfo"
     ></legify-web-input-field-group>
+    <legify-web-select-field-group
+      class="legify-container legify-container--half-width"
+      [fields]="fields.relationshipFields"
+      formGroupName="miscInfo"
+    ></legify-web-select-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
       [fields]="fields.parentNameInfoFields"

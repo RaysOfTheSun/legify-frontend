@@ -57,5 +57,21 @@ export const personalInfoSubFormFields: PersonalInfoSubFormConfig = {
         }
       ]
     }
+  ],
+  relationshipFields: [
+    {
+      label: 'Relationship to insured',
+      name: 'relationshipToInsured',
+      options: [
+        {
+          label: 'Spouse',
+          value: 'spouse'
+        },
+        {
+          label: 'Parent',
+          value: 'parent'
+        }
+      ]
+    }
   ]
 };

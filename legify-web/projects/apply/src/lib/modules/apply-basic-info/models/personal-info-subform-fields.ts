@@ -4,5 +4,6 @@ export interface PersonalInfoSubFormConfig {
   titleFields: SelectableField[];
   nameInfoFields: InputField[];
   birthInfoFields: InputField[];
+  relationshipFields: SelectableField[];
   parentNameInfoFields: InputField[];
 }

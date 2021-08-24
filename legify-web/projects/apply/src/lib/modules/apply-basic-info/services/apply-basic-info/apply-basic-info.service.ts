@@ -21,25 +21,48 @@ export class ApplyBasicInfoService {
       personalInfo: this.formBuilder.group({
         nameInfo: this.formBuilder.group({
           title: ['mr'],
-          first: ['', [Validators.required]],
-          last: ['', []],
-          hasAlternateName: [true],
-          relationshipToInsured: ['spouse']
+          first: [{ value: '', disabled: true }, [Validators.required]],
+          last: [{ value: '', disabled: true }, []]
         }),
         parentNameInfo: this.formBuilder.group({
           first: [],
           last: []
         }),
+        alternateNameInfo: this.formBuilder.group({
+          hasAlternateName: [true],
+          last: ['', []],
+          first: ['', [Validators.required]]
+        }),
         birthInfo: this.formBuilder.group({
-          age: [22],
-          gender: ['Male'],
-          dateOfBirth: []
+          age: [{ value: 22, disabled: true }],
+          gender: [{ value: 'Male', disabled: true }],
+          dateOfBirth: [{ value: `${new Date().toTimeString()}`, disabled: true }]
+        }),
+        miscInfo: this.formBuilder.group({
+          relationshipToInsured: [{ value: 'spouse', disabled: true }]
         })
       }),
       identificationInfo: this.formBuilder.group({
         type: ['passport'],
         number: ['', [Validators.required]],
         issueDate: ['', [Validators.required]]
+      }),
+      contactInfo: this.formBuilder.group({
+        emailInfo: [],
+        facebookInfo: this.formBuilder.group({
+          facebookId: [],
+          facebookEmail: []
+        }),
+        phoneInfo: this.formBuilder.group({
+          mobile: this.formBuilder.group({
+            countryCode: [],
+            number: []
+          }),
+          residential: this.formBuilder.group({
+            countryCode: [],
+            number: []
+          })
+        })
       })
     });
 
