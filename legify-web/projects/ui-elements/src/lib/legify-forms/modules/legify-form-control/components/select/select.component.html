@@ -1,0 +1,8 @@
+<mat-form-field class="legify-form-group__field">
+  <mat-label> {{ groupLabel }} </mat-label>
+  <mat-select [formControl]="ngControl.control">
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      <span>{{ option.label }}</span>
+    </mat-option>
+  </mat-select>
+</mat-form-field>

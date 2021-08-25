@@ -1,17 +1,20 @@
 import { Optional, Self } from '@angular/core';
-import { AbstractControl, ControlValueAccessor, NgControl } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
 export class LegifyFormControl implements ControlValueAccessor {
   protected controlValue: any;
   protected onChangeHandler: (newValue: any) => void;
   protected onTouchedHandler: () => void;
 
-  constructor(@Optional() @Self() protected ngControl: NgControl) {
-    // this.ngControl.valueAccessor = this;
-  }
+  public formControl: FormControl;
 
-  get formControl(): AbstractControl {
-    return this.ngControl.control;
+  constructor(@Optional() @Self() protected ngControl: NgControl) {
+    if (!this.ngControl) {
+      return;
+    }
+
+    this.ngControl.valueAccessor = this;
+    this.formControl = this.ngControl.control as FormControl;
   }
 
   setValue(newValue: any): void {

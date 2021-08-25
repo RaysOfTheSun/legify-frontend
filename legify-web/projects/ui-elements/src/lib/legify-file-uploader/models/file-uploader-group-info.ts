@@ -3,4 +3,5 @@ export interface FileUploaderGroupInfo {
   maximumUploads: number;
   groupHeaderText: string;
   groupSubHeaderText: string;
+  isGroupHeaderTextBold?: boolean;
 }

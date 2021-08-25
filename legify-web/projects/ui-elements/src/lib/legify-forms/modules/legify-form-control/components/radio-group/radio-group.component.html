@@ -1,0 +1,12 @@
+<span class="legify-radio-group__label"> {{ groupLabel }}* </span>
+<mat-radio-group class="legify-radio-group" [formControl]="ngControl.control">
+  <div class="legify-radio-group__row" *ngFor="let row of uniqueRows">
+    <mat-radio-button
+      class="legify-radio-group__radio"
+      *ngFor="let field of getFieldsForRow(row)"
+      [value]="field.value"
+    >
+      <span> {{ field.label }} </span>
+    </mat-radio-button>
+  </div>
+</mat-radio-group>

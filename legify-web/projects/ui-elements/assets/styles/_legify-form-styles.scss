@@ -14,10 +14,26 @@
     width: 100%;
   }
 
+  &__label {
+    margin: 10px 0;
+  }
+
   &__row {
     width: 100%;
     display: flex;
     margin: 20px 0;
+
+    &--labeled {
+      flex-direction: column;
+    }
+
+    &--no-top-margin {
+      margin-top: 0;
+    }
+
+    &--minimal-margins {
+      margin: 10px 0;
+    }
   }
 
   &__field {

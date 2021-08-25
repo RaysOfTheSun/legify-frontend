@@ -1,0 +1,13 @@
+<div class="legify-radio-group">
+  <span class="legify-radio-group__label" *ngIf="groupLabel"> {{ groupLabel }} </span>
+  <div class="legify-radio-group__row" *ngFor="let row of uniqueRows">
+    <mat-checkbox
+      *ngFor="let option of getFieldsForRow(row)"
+      [value]="option.value"
+      (change)="handleCheckboxSelect(option, $event.checked)"
+      [checked]="isChecked(option)"
+    >
+      {{ option.label }}
+    </mat-checkbox>
+  </div>
+</div>

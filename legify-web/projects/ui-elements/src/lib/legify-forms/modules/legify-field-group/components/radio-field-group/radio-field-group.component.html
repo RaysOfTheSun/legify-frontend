@@ -1,0 +1,10 @@
+<div class="legify-form-group" [formGroup]="controlContainer.control">
+  <div class="legify-form-group__row">
+    <legify-web-radio-group
+      *ngFor="let field of fields"
+      [formControlName]="field.name"
+      [options]="field.options"
+      [groupLabel]="field.label"
+    ></legify-web-radio-group>
+  </div>
+</div>

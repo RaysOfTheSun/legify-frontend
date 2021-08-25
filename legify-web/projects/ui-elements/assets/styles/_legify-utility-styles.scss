@@ -9,3 +9,9 @@
     max-width: 50%;
   }
 }
+
+.text {
+  &--bold {
+    font-weight: 500 !important;
+  }
+}

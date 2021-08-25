@@ -35,6 +35,10 @@
       min-height: calc(100vh - 70px);
       height: calc(100vh - 70px);
     }
+
+    &--no-padding {
+      padding: 0 !important;
+    }
   }
 
   &__footer {
