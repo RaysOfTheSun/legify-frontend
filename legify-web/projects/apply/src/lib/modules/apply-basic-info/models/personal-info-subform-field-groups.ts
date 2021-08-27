@@ -1,6 +1,6 @@
 import { InputField, SelectableField } from '@legify/web-ui-elements';
 
-export interface PersonalInfoSubFormConfig {
+export interface PersonalInfoSubformFieldGroupMap {
   titleFields: SelectableField[];
   nameInfoFields: InputField[];
   birthInfoFields: InputField[];

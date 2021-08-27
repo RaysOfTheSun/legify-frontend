@@ -7,8 +7,8 @@
     [ngClass]="{ 'legify-form-section--no-margins': removeMargins }"
   >
     <div class="legify-form-section__header">
-      <mat-icon class="legify-form-section__header-icon"> {{ headerIcon }} </mat-icon>
-      <span class="legify-form-section__header-text"> {{ headerText }} </span>
+      <mat-icon class="material-icons-outlined legify-form-section__header-icon"> {{ headerIcon }} </mat-icon>
+      <legify-web-i18n-label class="legify-form-section__header-text" [textId]="headerText"></legify-web-i18n-label>
     </div>
     <div class="legify-form-section__content">
       <ng-container [ngTemplateOutlet]="sectionContent"></ng-container>

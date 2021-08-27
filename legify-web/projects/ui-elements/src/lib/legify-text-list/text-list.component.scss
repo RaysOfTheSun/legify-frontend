@@ -1,0 +1,11 @@
+.legify-text-list {
+  &__label {
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+
+  &__list-item {
+    margin: 10px 0 5px 15px;
+  }
+}

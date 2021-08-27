@@ -1,6 +1,6 @@
 import { IdentificationInfoSubFormConfig } from '../../models';
 
-export const identificationInfoSubFormConfig: IdentificationInfoSubFormConfig = {
+export const identificationInfoSubFormFieldGroupMap: IdentificationInfoSubFormConfig = {
   idTypeFields: [
     {
       label: 'ID Type',

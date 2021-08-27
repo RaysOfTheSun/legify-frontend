@@ -10,31 +10,23 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { BASIC_INFO_FORM_SECTIONS } from './constants/injection-tokens';
-import { BASIC_INFO_FORM_SECTIONS_MAP } from './configs/form-section-maps/basic-info-form-sections-map';
+import { BASIC_INFO_FORM_SUBFORMS } from './constants/injection-tokens';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 import {
+  LegifyLabelModule,
   LegifyTaskCardCollectionModule,
   LegifyTaskCardModule,
   LegifyFileUploaderModule,
   LegifyFieldGroupModule,
   LegifyFormSectionModule,
-  LegifyFormControlModule
+  LegifyFormControlModule,
+  LegifyTextListModule
 } from '@legify/web-ui-elements';
 import { IdentificationInfoSubformComponent } from './components/identification-info-subform/identification-info-subform.component';
 import { PersonalInfoSubformComponent } from './components/personal-info-subform/personal-info-subform.component';
-import {
-  CONTACT_INFO_SUBFORM_CONFIG,
-  IDENTIFICATION_INFO_SUBFORM_CONFIG,
-  PERSONAL_INFO_SUBFORM_CONFIG
-} from './constants/injection-tokens/subform-config';
-import {
-  personalInfoSubFormFields,
-  identificationInfoSubFormConfig,
-  contactInfoSubformConfig
-} from './configs/sub-form-configs';
-import { TranslatableTextModule } from '@legify/web-i18n-elements';
 import { ContactInfoSubformComponent } from './components/contact-info-subform/contact-info-subform.component';
+import { DocumentUploadFormSectionComponent } from './components/document-upload-form-section/document-upload-form-section.component';
+import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-consumer-role-subform-map';
 
 @NgModule({
   declarations: [
@@ -42,7 +34,8 @@ import { ContactInfoSubformComponent } from './components/contact-info-subform/c
     PersonBasicInfoModalComponent,
     IdentificationInfoSubformComponent,
     PersonalInfoSubformComponent,
-    ContactInfoSubformComponent
+    ContactInfoSubformComponent,
+    DocumentUploadFormSectionComponent
   ],
   imports: [
     CommonModule,
@@ -53,31 +46,20 @@ import { ContactInfoSubformComponent } from './components/contact-info-subform/c
     MatCheckboxModule,
     MatInputModule,
     MatProgressBarModule,
+    LegifyLabelModule,
     LegifyLazyRendererModule,
     LegifyTaskCardModule,
     LegifyTaskCardCollectionModule,
     LegifyFileUploaderModule,
     LegifyFieldGroupModule,
     LegifyFormSectionModule,
-    TranslatableTextModule,
-    LegifyFormControlModule
+    LegifyFormControlModule,
+    LegifyTextListModule
   ],
   providers: [
     {
-      provide: BASIC_INFO_FORM_SECTIONS,
-      useValue: BASIC_INFO_FORM_SECTIONS_MAP
-    },
-    {
-      provide: PERSONAL_INFO_SUBFORM_CONFIG,
-      useValue: personalInfoSubFormFields
-    },
-    {
-      provide: IDENTIFICATION_INFO_SUBFORM_CONFIG,
-      useValue: identificationInfoSubFormConfig
-    },
-    {
-      provide: CONTACT_INFO_SUBFORM_CONFIG,
-      useValue: contactInfoSubformConfig
+      provide: BASIC_INFO_FORM_SUBFORMS,
+      useValue: basicInfoFormSubformToConsumerRoleMapping
     },
     ApplyBasicInfoService,
     ApplyBasicInfoConfigService

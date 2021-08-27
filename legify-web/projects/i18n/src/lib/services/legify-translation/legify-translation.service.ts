@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { L10nLocale, L10nTranslationService } from 'angular-l10n';
 import { AppConfigService } from '@legify/web-core';
-import { forkJoin, Observable } from 'rxjs';
+import { forkJoin, interval, Observable } from 'rxjs';
 import { concatMap } from 'rxjs/operators';
 import { LOCALE_LANGUAGE_KEY } from '../../constants';
 import { LegifyTranslationMap } from '../../models/legify-translation-map';
@@ -25,9 +25,7 @@ export class LegifyTranslationService {
     customMarket?: LEGIFY_MARKET,
     appendCurrAppMarket = true
   ): Observable<Record<string, string>[]> {
-    const marketToAppend = customMarket
-      ? customMarket.toUpperCase()
-      : this.appConfigService.currMarket.toUpperCase();
+    const marketToAppend = customMarket ? customMarket.toUpperCase() : this.appConfigService.currMarket.toUpperCase();
 
     const finalPathToTranslation = appendCurrAppMarket
       ? `${pathToTranslationData}-${marketToAppend}`
@@ -35,25 +33,19 @@ export class LegifyTranslationService {
 
     return this.i18nHttpDataService
       .getTranslationData(finalPathToTranslation)
-      .pipe(
-        concatMap((translationMap) =>
-          this.registerTranslationData(translationMap)
-        )
-      );
+      .pipe(concatMap((translationMap) => this.registerTranslationData(translationMap)));
   }
 
   protected registerTranslationDataForLocale(
     localeLanguageKey: LOCALE_LANGUAGE_KEY,
     translationMap: LegifyTranslationMap
   ): Observable<Record<string, string>> {
-    const localeForLanguage =
-      this.legifyI18nConfigService.localeMap.get(localeLanguageKey);
+    const localeForLanguage = this.legifyI18nConfigService.localeMap.get(localeLanguageKey);
     return new Observable<Record<string, string>>((subscriber) => {
-      const translationMappings =
-        this.legifyTranslationDataService.buildTranslationDataFromMap(
-          translationMap,
-          localeLanguageKey
-        );
+      const translationMappings = this.legifyTranslationDataService.buildTranslationDataFromMap(
+        translationMap,
+        localeLanguageKey
+      );
 
       this.translationService.addData(translationMappings, localeForLanguage);
       subscriber.next(translationMappings);
@@ -61,24 +53,17 @@ export class LegifyTranslationService {
     });
   }
 
-  protected registerTranslationData(
-    translationMap: LegifyTranslationMap
-  ): Observable<Record<string, string>[]> {
-    const localRegistrations$ = this.legifyI18nConfigService.languageKeys.map(
-      (languageKey) =>
-        this.registerTranslationDataForLocale(
-          languageKey as LOCALE_LANGUAGE_KEY,
-          translationMap
-        )
+  protected registerTranslationData(translationMap: LegifyTranslationMap): Observable<Record<string, string>[]> {
+    const localRegistrations$ = this.legifyI18nConfigService.languageKeys.map((languageKey) =>
+      this.registerTranslationDataForLocale(languageKey as LOCALE_LANGUAGE_KEY, translationMap)
     );
 
     return forkJoin(localRegistrations$);
   }
 
-  public translate<P = Record<string, string>>(
-    textId: string,
-    translationProps: P
-  ): string {
-    return this.translationService.translate(textId, translationProps);
+  public translate<P = Record<string, string>>(textId: string, translationProps?: P): string {
+    return translationProps
+      ? this.translationService.translate(textId, translationProps)
+      : this.translationService.translate(textId);
   }
 }

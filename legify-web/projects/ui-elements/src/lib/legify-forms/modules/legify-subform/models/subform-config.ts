@@ -1,4 +1,4 @@
-export interface SubformConfig {
+export interface FormSectionData {
   headerText?: string;
   headerIcon?: string;
   hideHeader?: string;

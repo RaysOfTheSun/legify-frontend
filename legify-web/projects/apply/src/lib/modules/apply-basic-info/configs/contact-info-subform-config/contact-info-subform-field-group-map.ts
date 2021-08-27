@@ -1,4 +1,6 @@
-export const contactInfoSubformConfig = {
+import { ContactInfoSubFormFieldGroups } from '../../models';
+
+export const contactInfoSubformFieldGroupMap: ContactInfoSubFormFieldGroups = {
   emailFields: [
     {
       label: 'Email',

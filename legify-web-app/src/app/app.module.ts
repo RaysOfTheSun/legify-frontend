@@ -12,7 +12,7 @@ import {
   WEB_APP_CONFIGURER_DEPS
 } from '@legify/web-core';
 import {
-  LegifyI18nModule,
+  LegifyI18nCoreModule,
   webAppI18nConfigurer,
   WEB_APP_I18N_CONFIGURER_DEPS
 } from '@legify/web-i18n';
@@ -26,7 +26,7 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
     HttpClientModule,
     BrowserAnimationsModule,
     CoreModule.forRoot(),
-    LegifyI18nModule.forRoot()
+    LegifyI18nCoreModule.forRoot()
   ],
   providers: [
     {

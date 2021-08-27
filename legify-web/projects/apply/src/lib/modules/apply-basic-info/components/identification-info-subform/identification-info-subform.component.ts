@@ -1,8 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { SubformComponent, FileUploaderGroupInfo } from '@legify/web-ui-elements';
-import { IDENTIFICATION_INFO_SUBFORM_CONFIG } from '../../constants';
-import { IdentificationInfoSubFormConfig } from '../../models';
 import { LegifyTranslationService } from '@legify/web-i18n';
 
 @Component({
@@ -11,11 +9,7 @@ import { LegifyTranslationService } from '@legify/web-i18n';
   styleUrls: ['./identification-info-subform.component.scss']
 })
 export class IdentificationInfoSubformComponent extends SubformComponent implements OnInit {
-  constructor(
-    public controlContainer: ControlContainer,
-    @Inject(IDENTIFICATION_INFO_SUBFORM_CONFIG) public fields: IdentificationInfoSubFormConfig,
-    protected legifyTranslationService: LegifyTranslationService
-  ) {
+  constructor(public controlContainer: ControlContainer, protected legifyTranslationService: LegifyTranslationService) {
     super(controlContainer);
   }
 

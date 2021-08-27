@@ -1,46 +1,48 @@
 <legify-web-form-section
-  headerText="Personal Information"
-  headerIcon="perm_identity"
+  [headerText]="formSectionData.headerText"
+  [headerIcon]="formSectionData.headerIcon"
   [formGroup]="controlContainer.control"
 >
   <ng-template form-section-content formGroupName="personalInfo">
     <legify-web-select-field-group
       class="legify-container legify-container--half-width"
-      [fields]="fields.titleFields"
+      [fields]="fieldGroupMap.titleFields"
       formGroupName="nameInfo"
     ></legify-web-select-field-group>
-    <div class="legify-form-group__row">
-      <span>
-        <h3>Name as per ID</h3>
-      </span>
-    </div>
+    <legify-web-label
+      class="legify-form-group__row"
+      text="NAME_AS_PER_ID_CAPTION"
+      textClass="legify-text legify-text--form-label"
+    ></legify-web-label>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="fields.nameInfoFields"
+      [fields]="fieldGroupMap.nameInfoFields"
       formGroupName="nameInfo"
     ></legify-web-input-field-group>
     <span formGroupName="alternateNameInfo">
-      <mat-checkbox formControlName="hasAlternateName"> Add alternate name </mat-checkbox>
+      <mat-checkbox formControlName="hasAlternateName">
+        <legify-web-label text="ADD_ALTERNATE_NAME_CAPTION"></legify-web-label>
+      </mat-checkbox>
     </span>
     <legify-web-input-field-group
       *ngIf="hasAlternateName"
       class="legify-container legify-container--full-width"
-      [fields]="fields.nameInfoFields"
+      [fields]="fieldGroupMap.nameInfoFields"
       formGroupName="alternateNameInfo"
     ></legify-web-input-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="fields.birthInfoFields"
+      [fields]="fieldGroupMap.birthInfoFields"
       formGroupName="birthInfo"
     ></legify-web-input-field-group>
     <legify-web-select-field-group
       class="legify-container legify-container--half-width"
-      [fields]="fields.relationshipFields"
+      [fields]="fieldGroupMap.relationshipFields"
       formGroupName="miscInfo"
     ></legify-web-select-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="fields.parentNameInfoFields"
+      [fields]="fieldGroupMap.parentNameInfoFields"
       formGroupName="parentNameInfo"
     ></legify-web-input-field-group>
   </ng-template>

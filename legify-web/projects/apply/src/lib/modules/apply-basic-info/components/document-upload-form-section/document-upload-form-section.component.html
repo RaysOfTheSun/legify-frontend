@@ -1,0 +1,15 @@
+<legify-web-form-section removeMargins="true" contentBackgroundColor="#fff">
+  <ng-template form-section-content>
+    <div class="legify-form-group__row">
+      <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
+    </div>
+  </ng-template>
+</legify-web-form-section>
+<legify-web-form-section>
+  <ng-template form-section-content>
+    <legify-web-text-list
+      header="Tips for uploading"
+      [items]="['Each document file size can be up to 5MB each', 'We accept JPEG and PNG formats']"
+    ></legify-web-text-list>
+  </ng-template>
+</legify-web-form-section>

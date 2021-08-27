@@ -1,0 +1,8 @@
+@import "./legify-variables";
+
+.legify-text {
+  &--form-label {
+    font-size: $form-heading-font-size;
+    font-weight: $font-weight-bold;
+  }
+}

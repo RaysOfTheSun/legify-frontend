@@ -1,9 +1,10 @@
 import { Person } from '../../../models';
+import { FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { FormComponentPropertyMap } from './form-component-property-map';
+import { LazilyRenderedSubformComponent } from '../../../models/config';
 
 export interface PersonBasicInfoFormModalData {
-  sections: any[];
+  subforms: LazilyRenderedSubformComponent[];
   customer: Person;
-  componentPropertyMapping: Observable<FormComponentPropertyMap>;
+  formGroup: Observable<FormGroup>;
 }

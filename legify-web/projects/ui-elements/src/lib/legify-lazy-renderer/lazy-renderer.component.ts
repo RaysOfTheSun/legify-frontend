@@ -1,11 +1,8 @@
-import { Component, InjectionToken, Injector, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { map, tap } from 'rxjs/operators';
+import { Component, InjectionToken, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { ComponentLoaderService } from './services';
-import { set } from 'lodash-es';
 import { BehaviorSubject, Observable } from 'rxjs';
-
-export const FORM_DATA = new InjectionToken('form');
+import { LazilyRenderedComponent } from './models';
 
 @Component({
   selector: 'legify-web-lazy-renderer',
@@ -13,7 +10,7 @@ export const FORM_DATA = new InjectionToken('form');
   styleUrls: ['./lazy-renderer.component.scss']
 })
 export class LazyRendererComponent implements OnInit {
-  @Input() components: Type<any>[];
+  @Input() components: LazilyRenderedComponent[];
   @Input() loadingText: string;
   @Input() showRenderingProgress: boolean;
   @Input() componentPropertyValueMap: Record<string, any>;
@@ -26,7 +23,7 @@ export class LazyRendererComponent implements OnInit {
 
   ngOnInit(): void {
     this.componentLoaderService
-      .addComponentsToContainer(this.components, this.contentContainerRef, this.componentPropertyValueMap)
+      .addComponentsToContainer(this.contentContainerRef, this.components)
       .subscribe((renderingProgress) => this.renderingProgressSubj.next(renderingProgress));
   }
 

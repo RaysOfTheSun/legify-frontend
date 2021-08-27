@@ -1,7 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { ControlContainer } from '@angular/forms';
-import { SubformComponent } from '@legify/web-ui-elements';
-import { CONTACT_INFO_SUBFORM_CONFIG } from '../../constants';
+import { Component, OnInit } from '@angular/core';
+import { SubformComponent, FileUploaderGroupInfo } from '@legify/web-ui-elements';
 
 @Component({
   selector: 'legify-web-contact-info-subform',
@@ -9,9 +7,13 @@ import { CONTACT_INFO_SUBFORM_CONFIG } from '../../constants';
   styleUrls: ['./contact-info-subform.component.scss']
 })
 export class ContactInfoSubformComponent extends SubformComponent implements OnInit {
-  constructor(public controlContainer: ControlContainer, @Inject(CONTACT_INFO_SUBFORM_CONFIG) public fields: any) {
-    super(controlContainer);
+  get groupInfo(): FileUploaderGroupInfo {
+    return {
+      groupHeaderText: 'PROOF_OF_RESIDENCY_COPY',
+      groupSubHeaderText: 'PROOF_OF_RESIDENCY_COPY_HINT',
+      maximumUploads: 1,
+      minimumUploads: 0,
+      isGroupHeaderTextBold: true
+    };
   }
-
-  ngOnInit(): void {}
 }

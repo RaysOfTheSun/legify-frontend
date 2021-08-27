@@ -1,6 +1,6 @@
-import { PersonalInfoSubFormConfig } from '../../models';
+import { PersonalInfoSubformFieldGroupMap } from '../../models';
 
-export const personalInfoSubFormFields: PersonalInfoSubFormConfig = {
+export const personalInfoSubformFieldGroupMap: PersonalInfoSubformFieldGroupMap = {
   nameInfoFields: [
     {
       label: 'Given Name',

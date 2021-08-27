@@ -1,0 +1,39 @@
+{
+  "NAME_AS_PER_ID_CAPTION": {
+    "en": "Name as per ID"
+  },
+  "EMAIL_ADDRESS_CAPTION": {
+    "en": "Email Address"
+  },
+  "FACEBOOK_INFORMATION_CAPTION": {
+    "en": "Facebook information"
+  },
+  "MOBILE_NUMBER_CAPTION": {
+    "en": "Mobile number"
+  },
+  "RESIDENTIAL_NUMBER_CAPTION": {
+    "en": "Residential number"
+  },
+  "EMAIL_CAPTION": {
+    "en": "email"
+  },
+  "RESIDENTIAL_ADDRESS_CAPTION": {
+    "en": "Residential Address"
+  },
+  "PROOF_OF_RESIDENCY_COPY_CAPTION": {
+    "en": "Copy of Proof of Residency"
+  },
+  "PROOF_OF_RESIDENCY_COPY_HINT_CAPTION": {
+    "en": "Please upload a copy of your proof of residency"
+  },
+  "ADD_ALTERNATE_NAME_CAPTION": {
+    "en": "Add alternate name"
+  },
+  "PERSONAL_INFORMATION_CAPTION": {
+    "en": "Personal Information"
+  },
+  "CONTACT_INFORMATION_CAPTION": {
+    "en": "Contact Information",
+    "vi": "Thông tin liên lạc"
+  }
+}

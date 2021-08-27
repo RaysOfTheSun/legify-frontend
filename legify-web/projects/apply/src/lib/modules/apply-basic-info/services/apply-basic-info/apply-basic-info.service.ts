@@ -71,11 +71,11 @@ export class ApplyBasicInfoService {
     return formGroup;
   }
 
-  public getBasicInfoFormFormGroup(formGroupDataSource: Person): Observable<Record<string, FormGroup>> {
+  public getBasicInfoFormFormGroup(formGroupDataSource: Person): Observable<FormGroup> {
     return this.applyBasicInfoConfigService.moduleConfig$.pipe(
       map((moduleConfig) => {
         if (!moduleConfig) {
-          return { parentFormGroup: null };
+          return null;
         }
 
         const formGroup = this.createBasicInfoFormGroup();
@@ -85,7 +85,7 @@ export class ApplyBasicInfoService {
             .setValue(get(formGroupDataSource, formGroupMapping.dataPath, formGroupMapping.defaultValue))
         );
 
-        return { parentFormGroup: formGroup };
+        return formGroup;
       })
     );
   }

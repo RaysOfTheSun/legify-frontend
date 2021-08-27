@@ -1,9 +1,8 @@
 <legify-web-modal-shell class="person-basic-info-modal" headerText="BASIC-INFO" noPaddings="true">
   <legify-web-lazy-renderer
-    *ngIf="componentPropertyMapping$ | async as componentPropertyMapping"
-    [components]="formSections"
+    *ngIf="formGroup$ | async as formGroup"
+    [components]="subforms"
     [loadingText]="'Loading Form'"
-    [formGroup]="componentPropertyMapping.parentFormGroup"
-    [componentPropertyValueMap]="componentPropertyMapping"
+    [formGroup]="formGroup"
   ></legify-web-lazy-renderer>
 </legify-web-modal-shell>

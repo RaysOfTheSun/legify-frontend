@@ -1,37 +1,21 @@
 <legify-web-form-section
-  headerIcon="recent_actors"
-  headerText="Identity Document"
-  removeMargins="true"
   [formGroup]="controlContainer.control"
+  [headerIcon]="formSectionData.headerIcon"
+  [headerText]="formSectionData.headerText"
+  [removeMargins]="formSectionData.removeMargins"
 >
   <ng-template form-section-content>
     <legify-web-radio-field-group
       class="legify-container legify-container--full-width"
-      [fields]="fields.idTypeFields"
+      [fields]="fieldGroupMap.idTypeFields"
       formGroupName="identificationInfo"
     ></legify-web-radio-field-group>
     <legify-web-input-field-group
       class="legify-container legify-container--full-width"
-      [fields]="fields.idInformationFields"
+      [fields]="fieldGroupMap.idInformationFields"
       minimalMargins="true"
       formGroupName="identificationInfo"
     ></legify-web-input-field-group>
   </ng-template>
 </legify-web-form-section>
-<legify-web-form-section removeMargins="true" contentBackgroundColor="#fff">
-  <ng-template form-section-content>
-    <div class="legify-form-group__row">
-      <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
-    </div>
-  </ng-template>
-</legify-web-form-section>
-<legify-web-form-section>
-  <ng-template form-section-content>
-    <div>
-      <span>Tips for uploading</span>
-      <ul>
-        <li>Each document file size can be up to 5MB each</li>
-      </ul>
-    </div>
-  </ng-template>
-</legify-web-form-section>
+<legify-web-document-upload-form-section [groupInfo]="groupInfo"></legify-web-document-upload-form-section>

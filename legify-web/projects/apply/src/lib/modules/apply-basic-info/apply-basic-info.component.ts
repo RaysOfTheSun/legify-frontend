@@ -39,8 +39,8 @@ export class ApplyBasicInfoComponent implements OnInit {
     this.matDialog.open<PersonBasicInfoModalComponent, PersonBasicInfoFormModalData>(PersonBasicInfoModalComponent, {
       data: {
         customer: consumer,
-        sections: this.applyBasicInfoConfigService.getBasicInfoFormSectionsForRole(ConsumerRole.OWNER_AND_INSUDRED),
-        componentPropertyMapping: this.applyBasicInfoService.getBasicInfoFormFormGroup(consumer)
+        subforms: this.applyBasicInfoConfigService.getBasicInfoFormSectionsForRole(ConsumerRole.OWNER_AND_INSUDRED),
+        formGroup: this.applyBasicInfoService.getBasicInfoFormFormGroup(consumer)
       },
       ...this.appConfigService.modalConfigs
     });
