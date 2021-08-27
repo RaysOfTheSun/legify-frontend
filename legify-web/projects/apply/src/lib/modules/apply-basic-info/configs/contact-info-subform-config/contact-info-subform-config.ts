@@ -8,7 +8,8 @@ export const contactInfoSubformConfig: LazilyRenderedSubformComponent = {
     fieldGroupMap: contactInfoSubformFieldGroupMap,
     formSectionData: {
       headerIcon: 'mail_outline',
-      headerText: 'CONTACT_INFORMATION_CAPTION'
+      headerText: 'CONTACT_INFORMATION_CAPTION',
+      removeMargins: true
     }
   }
 };

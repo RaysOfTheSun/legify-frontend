@@ -4,7 +4,6 @@
 
 export * from './lib/auth-shell';
 export * from './lib/apply-shell';
-export * from './lib/legify-label';
 export * from './lib/legify-forms';
 export * from './lib/legify-modal';
 export * from './lib/legify-button';

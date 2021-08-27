@@ -9,10 +9,10 @@
   ></div>
   <mat-card-content class="legify-task-card__body">
     <div class="legify-task-card__header">
-      <legify-web-i18n-translatable-text
+      <legify-web-i18n-label
         class="legify-task-card__subheader-text"
-        [translatableTextId]="subHeaderText | translatableText"
-      ></legify-web-i18n-translatable-text>
+        [textId]="subHeaderText"
+      ></legify-web-i18n-label>
       <h2 class="legify-task-card__header-text">{{ headerText }}</h2>
     </div>
     <div class="legify-task-card__footer">

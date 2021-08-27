@@ -6,7 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { TranslatableTextModule } from '@legify/web-i18n-elements';
+import { LegifyI18nModule } from '@legify/web-i18n';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -14,10 +14,10 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
     CommonModule,
     MatInputModule,
     MatButtonModule,
+    LegifyI18nModule,
     AuthShellModule,
     MatFormFieldModule,
-    ReactiveFormsModule,
-    TranslatableTextModule
+    ReactiveFormsModule
   ],
   exports: [LoginComponent]
 })

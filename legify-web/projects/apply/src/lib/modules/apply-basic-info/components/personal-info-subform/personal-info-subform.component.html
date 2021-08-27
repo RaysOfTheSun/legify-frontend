@@ -9,29 +9,26 @@
       [fields]="fieldGroupMap.titleFields"
       formGroupName="nameInfo"
     ></legify-web-select-field-group>
-    <legify-web-label
+    <legify-web-i18n-label
       class="legify-form-group__row"
-      text="NAME_AS_PER_ID_CAPTION"
+      textId="NAME_AS_PER_ID_CAPTION"
       textClass="legify-text legify-text--form-label"
-    ></legify-web-label>
+    ></legify-web-i18n-label>
     <legify-web-input-field-group
-      class="legify-container legify-container--full-width"
       [fields]="fieldGroupMap.nameInfoFields"
       formGroupName="nameInfo"
     ></legify-web-input-field-group>
     <span formGroupName="alternateNameInfo">
       <mat-checkbox formControlName="hasAlternateName">
-        <legify-web-label text="ADD_ALTERNATE_NAME_CAPTION"></legify-web-label>
+        <legify-web-i18n-label textId="ADD_ALTERNATE_NAME_CAPTION"></legify-web-i18n-label>
       </mat-checkbox>
     </span>
     <legify-web-input-field-group
       *ngIf="hasAlternateName"
-      class="legify-container legify-container--full-width"
       [fields]="fieldGroupMap.nameInfoFields"
       formGroupName="alternateNameInfo"
     ></legify-web-input-field-group>
     <legify-web-input-field-group
-      class="legify-container legify-container--full-width"
       [fields]="fieldGroupMap.birthInfoFields"
       formGroupName="birthInfo"
     ></legify-web-input-field-group>
@@ -41,7 +38,6 @@
       formGroupName="miscInfo"
     ></legify-web-select-field-group>
     <legify-web-input-field-group
-      class="legify-container legify-container--full-width"
       [fields]="fieldGroupMap.parentNameInfoFields"
       formGroupName="parentNameInfo"
     ></legify-web-input-field-group>

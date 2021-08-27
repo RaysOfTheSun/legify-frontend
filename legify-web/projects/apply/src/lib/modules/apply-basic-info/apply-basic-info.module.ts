@@ -13,7 +13,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BASIC_INFO_FORM_SUBFORMS } from './constants/injection-tokens';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 import {
-  LegifyLabelModule,
   LegifyTaskCardCollectionModule,
   LegifyTaskCardModule,
   LegifyFileUploaderModule,
@@ -27,6 +26,7 @@ import { PersonalInfoSubformComponent } from './components/personal-info-subform
 import { ContactInfoSubformComponent } from './components/contact-info-subform/contact-info-subform.component';
 import { DocumentUploadFormSectionComponent } from './components/document-upload-form-section/document-upload-form-section.component';
 import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-consumer-role-subform-map';
+import { LegifyI18nModule } from '@legify/web-i18n';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,6 @@ import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-
     MatCheckboxModule,
     MatInputModule,
     MatProgressBarModule,
-    LegifyLabelModule,
     LegifyLazyRendererModule,
     LegifyTaskCardModule,
     LegifyTaskCardCollectionModule,
@@ -54,7 +53,8 @@ import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-
     LegifyFieldGroupModule,
     LegifyFormSectionModule,
     LegifyFormControlModule,
-    LegifyTextListModule
+    LegifyTextListModule,
+    LegifyI18nModule
   ],
   providers: [
     {

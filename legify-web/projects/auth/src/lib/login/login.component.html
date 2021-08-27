@@ -1,49 +1,29 @@
 <legify-web-auth-shell [footerItems]="footerItems$ | async">
   <div class="login">
-    <legify-web-i18n-translatable-text
-      class="login__header-text"
-      translatableTextId="WELCOME_CAPTION"
-    ></legify-web-i18n-translatable-text>
+    <legify-web-i18n-label class="login__header-text" textId="WELCOME_CAPTION"></legify-web-i18n-label>
     <div class="login__field-container">
       <form [formGroup]="authFormGroup" class="login__form">
         <mat-form-field appearance="outline">
           <mat-label>
-            <legify-web-i18n-translatable-text
-              translatableTextId="USERNAME_CAPTION"
-            ></legify-web-i18n-translatable-text>
+            <legify-web-i18n-label textId="USERNAME_CAPTION"></legify-web-i18n-label>
           </mat-label>
-          <input
-            matInput
-            [placeholder]="usernameFieldPlaceholder"
-            formControlName="username"
-          />
+          <input matInput [placeholder]="usernameFieldPlaceholder" formControlName="username" />
         </mat-form-field>
         <mat-form-field appearance="outline">
-          <mat-label>
-            <legify-web-i18n-translatable-text
-              translatableTextId="PASSWORD_CAPTION"
-            ></legify-web-i18n-translatable-text
-          ></mat-label>
+          <mat-label> <legify-web-i18n-label textId="PASSWORD_CAPTION"></legify-web-i18n-label></mat-label>
           <input matInput type="password" formControlName="password" />
         </mat-form-field>
       </form>
-      <legify-web-i18n-translatable-text
+      <legify-web-i18n-label
         class="login__error-text"
         [ngClass]="{
           'login__error-text--shown': showError$ | async
         }"
-        translatableTextId="INVALID_CREDENTIALS_CAPTION"
-      ></legify-web-i18n-translatable-text>
+        textId="INVALID_CREDENTIALS_CAPTION"
+      ></legify-web-i18n-label>
 
-      <button
-        mat-flat-button
-        color="legify"
-        class="login__submit-button"
-        (click)="doLogin()"
-      >
-        <legify-web-i18n-translatable-text
-          translatableTextId="LOGIN_CAPTION"
-        ></legify-web-i18n-translatable-text>
+      <button mat-flat-button color="legify" class="login__submit-button" (click)="doLogin()">
+        <legify-web-i18n-label textId="LOGIN_CAPTION"></legify-web-i18n-label>
       </button>
     </div>
   </div>

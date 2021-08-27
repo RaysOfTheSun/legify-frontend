@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { ApplyShellHeaderBreadcrumbItemComponent } from './components/apply-shell-header-breadcrumb-item/apply-shell-header-breadcrumb-item.component';
-import { TranslatableTextModule } from '@legify/web-i18n-elements';
+import { LegifyI18nModule } from '@legify/web-i18n';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
     AvatarModule,
     MatButtonModule,
     HttpClientModule,
-    TranslatableTextModule
+    LegifyI18nModule
   ],
   exports: [ApplyShellComponent]
 })

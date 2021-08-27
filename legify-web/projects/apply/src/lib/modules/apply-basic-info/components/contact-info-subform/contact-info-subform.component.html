@@ -2,65 +2,51 @@
   [headerText]="formSectionData.headerText"
   [headerIcon]="formSectionData.headerIcon"
   [formGroup]="controlContainer.control"
-  removeMargins="true"
+  [removeMargins]="formSectionData.removeMargins"
 >
   <ng-template form-section-content formGroupName="contactInfo">
-    <legify-web-label
-      class="legify-form-group__row legify-form-group__row--no-top-margin"
-      text="EMAIL_ADDRESS_CAPTION"
-      textClass="legify-text legify-text--form-label"
-    ></legify-web-label>
+    <legify-web-i18n-label
+      class="legify-form-group__row legify-text legify-text--form-label legify-form-group__row--no-top-margin"
+      textId="EMAIL_ADDRESS_CAPTION"
+    ></legify-web-i18n-label>
     <div class="legify-form-group__row legify-container legify-container--half-width">
       <mat-form-field class="legify-form-group__field">
         <mat-label>
-          <legify-web-label text="EMAIL_CAPTION"></legify-web-label>
+          <legify-web-i18n-label textId="EMAIL_CAPTION"></legify-web-i18n-label>
         </mat-label>
         <input matInput formControlName="emailInfo" />
       </mat-form-field>
     </div>
-    <legify-web-label
-      class="legify-form-group__row"
-      text="FACEBOOK_INFORMATION_CAPTION"
-      textClass="legify-text legify-text--form-label"
-    ></legify-web-label>
+    <legify-web-i18n-label
+      class="legify-form-group__row legify-text legify-text--form-label"
+      textId="FACEBOOK_INFORMATION_CAPTION"
+    ></legify-web-i18n-label>
     <legify-web-input-field-group
-      class="legify-container legify-container--full-width"
       [fields]="fieldGroupMap.facebookInfoFields"
       formGroupName="facebookInfo"
     ></legify-web-input-field-group>
     <ng-container formGroupName="phoneInfo">
-      <legify-web-label
-        class="legify-form-group__row"
-        text="MOBILE_NUMBER_CAPTION"
-        textClass="legify-text legify-text--form-label"
-      ></legify-web-label>
-      <legify-web-input-field-group
-        class="legify-container legify-container--full-width"
-        [fields]="fieldGroupMap.phoneNumberFields"
-        formGroupName="mobile"
-      >
+      <legify-web-i18n-label
+        textId="MOBILE_NUMBER_CAPTION"
+        class="legify-form-group__row legify-text legify-text--form-label"
+      ></legify-web-i18n-label>
+      <legify-web-input-field-group [fields]="fieldGroupMap.phoneNumberFields" formGroupName="mobile">
       </legify-web-input-field-group>
-      <legify-web-label
-        class="legify-form-group__row"
-        text="RESIDENTIAL_NUMBER_CAPTION"
-        textClass="legify-text legify-text--form-label"
-      ></legify-web-label>
-      <legify-web-input-field-group
-        class="legify-container legify-container--full-width"
-        [fields]="fieldGroupMap.phoneNumberFields"
-        formGroupName="residential"
-      >
+      <legify-web-i18n-label
+        class="legify-form-group__row legify-text legify-text--form-label"
+        textId="RESIDENTIAL_NUMBER_CAPTION"
+      ></legify-web-i18n-label>
+      <legify-web-input-field-group [fields]="fieldGroupMap.phoneNumberFields" formGroupName="residential">
       </legify-web-input-field-group>
     </ng-container>
   </ng-template>
 </legify-web-form-section>
 <legify-web-form-section [formGroup]="controlContainer.control" removeMargins="true">
   <ng-template form-section-content>
-    <legify-web-label
-      class="legify-form-group__row"
-      text="RESIDENTIAL_ADDRESS_CAPTION"
-      textClass="legify-text legify-text--form-label"
-    ></legify-web-label>
+    <legify-web-i18n-label
+      class="legify-form-group__row legify-text legify-text--form-label"
+      textId="RESIDENTIAL_ADDRESS_CAPTION"
+    ></legify-web-i18n-label>
   </ng-template>
 </legify-web-form-section>
 <legify-web-document-upload-form-section [groupInfo]="groupInfo"></legify-web-document-upload-form-section>
