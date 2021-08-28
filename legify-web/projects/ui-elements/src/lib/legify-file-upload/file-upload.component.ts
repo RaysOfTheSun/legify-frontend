@@ -1,85 +1,183 @@
 import {
+  AfterContentChecked,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
   Input,
+  OnDestroy,
   OnInit,
   Output,
   TemplateRef,
+  Type,
   ViewChild
 } from '@angular/core';
-import { concat, zip } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { FileUploadInputDirective, FileUploadPreviewItemDirective } from './directives';
-import { FileUploadEvent } from './models';
-import { FileUploadService } from './services';
+import {
+  FileUploadCreateFileEvent,
+  FileUploadDeleteFileEvent,
+  FileUploadPreviewFileEvent,
+  FileUploadReplaceFileEvent
+} from './constants';
+import { Subscription } from 'rxjs';
+import { filter, take, withLatestFrom } from 'rxjs/operators';
+import { FileUploadInputDirective, FileUploadInvalidItemDirective, FileUploadItemDirective } from './directives';
+import { FileUploadEventService, FileUploadService } from './services';
+import { FileUploadEvent } from './constants';
+import { FileUploadFileAdded, FileUploadItemModified } from './models';
 
 @Component({
   selector: 'legify-web-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent implements OnInit {
-  @Output() fileAdded: EventEmitter<any> = new EventEmitter();
-  @Output() previewClicked: EventEmitter<any> = new EventEmitter();
-  @Output() invalidFileAdded: EventEmitter<any> = new EventEmitter();
+export class FileUploadComponent implements OnInit, OnDestroy, AfterContentChecked {
+  @Output()
+  itemClicked: EventEmitter<any> = new EventEmitter();
 
-  @Input() files: any[];
-  @Input() invalidFiles: any[];
+  @Output()
+  fileAdded: EventEmitter<FileUploadFileAdded> = new EventEmitter();
 
-  @Input() minimumUploads = -1;
-  @Input() maximumUploads = -1;
-  @Input() alwaysShowInput = true;
-  @Input() acceptedFileTypes: string[] = [];
+  @Output()
+  itemRemoved: EventEmitter<FileUploadItemModified> = new EventEmitter();
+
+  @Output()
+  itemReplaced: EventEmitter<FileUploadItemModified> = new EventEmitter();
+
+  @Output()
+  invalidFileAdded: EventEmitter<FileUploadFileAdded> = new EventEmitter();
+
+  @Output()
+  itemLimitReached: EventEmitter<boolean> = new EventEmitter();
+
+  @Output()
+  minimumUploadsNotReached: EventEmitter<boolean> = new EventEmitter();
+
+  @Input()
+  files: any[];
+
+  @Input()
+  invalidFiles: any[];
+
+  @Input()
+  minimumUploads = 0;
+
+  @Input()
+  maximumUploads = 50;
+
+  @Input()
+  alwaysShowInput = true;
+
+  @Input()
+  acceptedFileTypes: string[] = [];
 
   @ContentChild(FileUploadInputDirective, { read: TemplateRef, static: true })
-  public inputItemTemplate: TemplateRef<any>;
+  public inputTemplate: TemplateRef<any>;
 
-  @ContentChild(FileUploadPreviewItemDirective, { read: TemplateRef, static: true })
-  public itemPreviewTemplate: TemplateRef<any>;
+  @ContentChild(FileUploadItemDirective, { read: TemplateRef, static: true })
+  public itemTemplate: TemplateRef<any>;
 
-  @ContentChild(FileUploadInputDirective, { read: TemplateRef, static: true })
-  public invalidItemPreviewTemplate: TemplateRef<any>;
+  @ContentChild(FileUploadInvalidItemDirective, { read: TemplateRef, static: true })
+  public invalidItemTemplate: TemplateRef<any>;
 
-  @ViewChild('fileUploadInput', { static: true })
+  @ViewChild('newFileInput', { static: true })
   protected fileUploadInput: ElementRef<HTMLInputElement>;
 
-  constructor(protected fileUploadService: FileUploadService) {}
+  @ViewChild('replacementFileInput', { static: true })
+  protected replacementFileInput: ElementRef<HTMLInputElement>;
+
+  protected touched = false;
+
+  protected componentSubscriptions: Subscription = new Subscription();
+
+  constructor(
+    protected fileUploadService: FileUploadService,
+    protected fileUploadEventService: FileUploadEventService
+  ) {
+    this.listenForCreateEvents();
+    this.listenForDeleteEvents();
+    this.listenForPreviewEvents();
+    this.listenForReuploadEvents();
+  }
 
   ngOnInit(): void {
     this.fileUploadService.setTotalFileCount(this.files.length);
   }
 
-  public handleInputClick(event: Event): void {
-    this.fileUploadInput.nativeElement.click();
+  ngOnDestroy(): void {
+    this.componentSubscriptions.unsubscribe();
   }
 
-  public publishPreviewEvent(event: Event, item, itemIndex: number): void {
-    event.stopPropagation();
-    this.previewClicked.emit({ item, itemIndex });
+  ngAfterContentChecked(): void {
+    if (this.touched) {
+      this.minimumUploadsNotReached.emit(this.files.length < this.minimumUploads);
+    }
+  }
+
+  protected listenForPreviewEvents(): void {
+    this.listenToEventWithType(FileUploadPreviewFileEvent, ({ file }) => this.itemClicked.emit(file));
+  }
+
+  protected listenForCreateEvents(): void {
+    this.listenToEventWithType(FileUploadCreateFileEvent, (_) => this.fileUploadInput.nativeElement.click());
+  }
+
+  protected listenForReuploadEvents(): void {
+    this.listenToEventWithType(FileUploadReplaceFileEvent, ({ file }) => {
+      this.touched = true;
+      this.fileUploadService.setFileToBeReplaced(file);
+      this.replacementFileInput.nativeElement.click();
+    });
+  }
+
+  protected listenForDeleteEvents(): void {
+    this.listenToEventWithType(FileUploadDeleteFileEvent, ({ file }) => {
+      this.touched = true;
+      const modifiedItemIndex = this.files.findIndex((fileUploadFile) => fileUploadFile === file);
+      this.itemRemoved.emit({ modifiedItem: file, modifiedItemIndex });
+    });
+  }
+
+  protected listenToEventWithType<E extends FileUploadEvent>(
+    eventType: Type<E>,
+    onEventEmitted?: (e: E) => void
+  ): void {
+    const fileUploadEventSubscription = this.fileUploadEventService.events$
+      .pipe(filter((fileUploadEvent) => fileUploadEvent instanceof eventType))
+      .subscribe(onEventEmitted);
+    this.componentSubscriptions.add(fileUploadEventSubscription);
   }
 
   public isFileInputShown(): boolean {
-    return this.alwaysShowInput
-      ? true
-      : !this.fileUploadService.isFileUploadLimitReached(this.files, this.maximumUploads);
+    return this.alwaysShowInput || !this.fileUploadService.isFileUploadLimitReached(this.files, this.maximumUploads);
   }
 
-  public handleFileInputChange(event: Event & FileUploadEvent): void {
-    const eventFiles: FileList = event.target.files;
+  public handleReplacementFileInputChange(event: Event): void {
+    const eventFiles: FileList = (event.target as any).files;
+    const rawFiles$ = this.fileUploadService
+      .convertHtmlFilesToRawFiles(eventFiles, this.acceptedFileTypes, this.maximumUploads)
+      .pipe(withLatestFrom(this.fileUploadService.fileToBeReplaced), take(eventFiles.length + 1));
+
+    rawFiles$.subscribe(([rawFile, itemToBeReplaced]) => {
+      const modifiedItemIndex = this.files.findIndex((file) => file === itemToBeReplaced);
+      this.itemReplaced.emit({ modifiedItem: itemToBeReplaced, modifiedItemIndex, modifiedItemReplacement: rawFile });
+    });
+
+    this.touched = true;
+  }
+
+  public handleFileInputChange(event: Event): void {
+    const eventFiles: FileList = (event.target as any).files;
 
     const rawFiles$ = this.fileUploadService
-      .addAndValidateFiles(eventFiles, this.acceptedFileTypes, this.maximumUploads)
+      .convertHtmlFilesToRawFiles(eventFiles, this.acceptedFileTypes, this.maximumUploads)
       .pipe(take(eventFiles.length + 1));
 
-    rawFiles$.subscribe((rawFile) => {
-      if (rawFile.rejected) {
-        this.invalidFileAdded.emit(rawFile);
-        return;
-      }
+    const validRawFiles$ = rawFiles$.pipe(filter((rawFile) => !rawFile.invalid));
+    const invalidRawFiles$ = rawFiles$.pipe(filter((rawFile) => rawFile.invalid));
 
-      this.fileAdded.emit(rawFile);
-    });
+    validRawFiles$.subscribe((validRawFile) => this.fileAdded.emit({ rawFile: validRawFile }));
+    invalidRawFiles$.subscribe((invalidRawFile) => this.invalidFileAdded.emit({ rawFile: invalidRawFile }));
+
+    this.touched = true;
   }
 }

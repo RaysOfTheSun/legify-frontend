@@ -1,19 +1,29 @@
 <div class="legify-file-upload">
-  <div
-    class="legify-file-upload__item"
+  <ng-container
+    *ngFor="let invalidFile of invalidFiles; let fileIndex = index"
+    [ngTemplateOutlet]="invalidItemTemplate"
+    [ngTemplateOutletContext]="{ $implicit: invalidFile }"
+  ></ng-container>
+  <ng-container
     *ngFor="let file of files; let fileIndex = index"
-    (click)="publishPreviewEvent($event, file, fileIndex)"
-  >
-    <ng-container
-      [ngTemplateOutlet]="itemPreviewTemplate"
-      [ngTemplateOutletContext]="{ $implicit: file }"
-    ></ng-container>
-  </div>
-  <div class="legify-file-upload__item" (click)="handleInputClick($event)" *ngIf="isFileInputShown()">
-    <ng-container [ngTemplateOutlet]="inputItemTemplate"></ng-container>
-  </div>
+    [ngTemplateOutlet]="itemTemplate"
+    [ngTemplateOutletContext]="{ $implicit: file }"
+  ></ng-container>
+  <ng-container [ngTemplateOutlet]="inputTemplate" *ngIf="isFileInputShown()"></ng-container>
+
+  <input
+    type="file"
+    class="legify-file-upload__file-input"
+    multiple="true"
+    (change)="handleFileInputChange($event)"
+    #newFileInput
+  />
+  <input
+    type="file"
+    class="legify-file-upload__file-input"
+    (change)="handleReplacementFileInputChange($event)"
+    #replacementFileInput
+  />
 </div>
 
 <ng-content></ng-content>
-
-<input #fileUploadInput type="file" hidden (change)="handleFileInputChange($event)" multiple="true" />

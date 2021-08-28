@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RawFile } from '@legify/web-ui-elements';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { RawFile, FileUploadItemModified, FileUploadFileAdded } from '@legify/web-ui-elements';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { first, map } from 'rxjs/operators';
 
 @Component({
@@ -9,21 +9,53 @@ import { first, map } from 'rxjs/operators';
   styleUrls: ['./document-upload.component.scss']
 })
 export class DocumentUploadComponent implements OnInit {
-  public subj = new BehaviorSubject([]);
+  public subj: BehaviorSubject<any[]> = new BehaviorSubject([]);
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  handleItemRemoved({ modifiedItemIndex }: FileUploadItemModified): void {
+    this.subj
+      .pipe(
+        map((files) => {
+          const currFiles = [...files];
+          currFiles.splice(modifiedItemIndex, 1);
+
+          return currFiles;
+        }),
+        first()
+      )
+      .subscribe((updatedFiles) => this.subj.next(updatedFiles));
+  }
+
   handleItemPreviewClick($event) {
     console.log($event);
+  }
+
+  handleMinimumUploadsNotReached(isMet: boolean) {
+    console.log(isMet);
+  }
+
+  handleItemReplaced({ modifiedItemIndex, modifiedItemReplacement }: FileUploadItemModified): void {
+    this.subj
+      .pipe(
+        map((files) => {
+          const currFiles = [...files];
+          currFiles.splice(modifiedItemIndex, 1, modifiedItemReplacement);
+
+          return currFiles;
+        }),
+        first()
+      )
+      .subscribe((updatedFiles) => this.subj.next(updatedFiles));
   }
 
   public handleInvalidFileAdded(rawFile: RawFile): void {
     console.log(rawFile);
   }
 
-  handleFileAdded(rawFile: RawFile): void {
+  handleFileAdded({ rawFile }: FileUploadFileAdded): void {
     this.subj
       .pipe(
         map((files) => {

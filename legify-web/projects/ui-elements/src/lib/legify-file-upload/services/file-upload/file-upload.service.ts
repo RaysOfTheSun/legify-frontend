@@ -6,48 +6,49 @@ import { RawFile } from '../../models';
 @Injectable()
 export class FileUploadService {
   protected readonly totalFileCountSubj: BehaviorSubject<number> = new BehaviorSubject(0);
+  protected readonly fileToBeReplacedSubj: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor() {}
+
+  get fileToBeReplaced(): Observable<any> {
+    return this.fileToBeReplacedSubj.asObservable();
+  }
+
+  get totalFileCount$(): Observable<number> {
+    return this.totalFileCountSubj.asObservable();
+  }
 
   public setTotalFileCount(totalFileCount: number): void {
     this.totalFileCountSubj.next(totalFileCount);
   }
 
-  public addAndValidateFiles(
-    filesToAdd: FileList,
-    acceptedFileTypes: string[],
-    maximumUploads: number
-  ): Observable<RawFile> {
-    const htmlFiles = Array.from(filesToAdd);
-    return this.convertHtmlFilesToRawFiles(htmlFiles, acceptedFileTypes).pipe(
-      withLatestFrom(this.totalFileCountSubj),
-      tap(([rawFile, totalFileCount]) => {
-        if (rawFile.rejected) {
-          return;
-        }
-
-        this.totalFileCountSubj.next(totalFileCount + 1);
-      }),
-      map(([rawFile, totalFileCount]) => ({
-        rejected: !this.isFileTypeAccepted(rawFile.type, acceptedFileTypes) || totalFileCount + 1 > maximumUploads,
-        ...rawFile
-      }))
-    );
+  public setFileToBeReplaced(fileToBeReplaced: any): void {
+    this.fileToBeReplacedSubj.next(fileToBeReplaced);
   }
 
   public isFileUploadLimitReached(allFiles: any[], maximumUploads: number): boolean {
     return allFiles.length >= maximumUploads;
   }
 
-  protected convertHtmlFilesToRawFiles(files: File[], acceptedTypes: string[]): Observable<RawFile> {
-    const rawFileConversions$ = files.map((file) =>
-      this.convertHtmlFileToBase64String(file, acceptedTypes).pipe(
-        map<string, RawFile>((fileBase64String) => ({
-          name: file.name,
-          type: this.getFileType(file),
-          size: file.size,
-          base64: fileBase64String
-        }))
+  public convertHtmlFilesToRawFiles(
+    files: FileList,
+    acceptedFileTypes: string[],
+    maximumUploads: number
+  ): Observable<RawFile> {
+    const htmlFilesToConvert = Array.from(files);
+    const rawFileConversions$ = htmlFilesToConvert.map((file) =>
+      this.convertHtmlFileToBase64String(file, acceptedFileTypes).pipe(
+        withLatestFrom(this.totalFileCount$),
+        map<[string, number], RawFile>(([fileBase64String, currTotalFiles]) => {
+          const fileType = this.getFileType(file);
+          return {
+            name: file.name,
+            type: fileType,
+            size: file.size,
+            base64: fileBase64String,
+            invalid: currTotalFiles + 1 > maximumUploads || !this.isFileTypeAccepted(fileType, acceptedFileTypes)
+          };
+        })
       )
     );
 

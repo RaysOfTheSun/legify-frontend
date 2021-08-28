@@ -1,16 +1,20 @@
 <legify-web-file-upload
   [files]="validFiles | async"
   maximumUploads="3"
+  minimumUploads="3"
   [alwaysShowInput]="false"
   [acceptedFileTypes]="['jpeg']"
   (fileAdded)="handleFileAdded($event)"
-  (previewClicked)="handleItemPreviewClick($event)"
+  (itemClicked)="handleItemPreviewClick($event)"
+  (itemRemoved)="handleItemRemoved($event)"
+  (itemReplaced)="handleItemReplaced($event)"
   (invalidFileAdded)="handleInvalidFileAdded($event)"
+  (minimumUploadsNotReached)="handleMinimumUploadsNotReached($event)"
 >
   <ng-template legifyWebFileUploadInput>
     <legify-web-document-upload-input></legify-web-document-upload-input>
   </ng-template>
-  <ng-template let-file legifyWebFileUploadPreviewItem>
+  <ng-template let-file legifyWebFileUploadItem>
     <legify-web-document-upload-item [src]="file"></legify-web-document-upload-item>
   </ng-template>
 </legify-web-file-upload>

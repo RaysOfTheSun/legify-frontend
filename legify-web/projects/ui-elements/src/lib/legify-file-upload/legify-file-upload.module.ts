@@ -1,27 +1,36 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
-import { FileUploadPreviewItemDirective } from './directives/file-upload-preview-item/file-upload-preview-item.directive';
-import { HostClickDirective } from './directives/host-click/host-click.directive';
-import { FileUploadPreviewInvalidItemDirective } from './directives/file-upload-preview-invalid-item/file-upload-preview-invalid-item.directive';
-import { FileUploadInputDirective } from './directives/file-upload-input/file-upload-input.directive';
-import { FileUploadService } from './services';
+import { FileUploadEventService, FileUploadService } from './services';
+import {
+  FileUploadDeleteDirective,
+  FileUploadInputDirective,
+  FileUploadInvalidItemDirective,
+  FileUploadItemDirective,
+  FileUploadReuploadDirective
+} from './directives';
+import { FileUploadPreviewDirective } from './directives/file-upload-preview/file-upload-preview.directive';
 
 @NgModule({
   declarations: [
     FileUploadComponent,
-    FileUploadPreviewItemDirective,
-    HostClickDirective,
-    FileUploadPreviewInvalidItemDirective,
-    FileUploadInputDirective
+    FileUploadInputDirective,
+    FileUploadReuploadDirective,
+    FileUploadDeleteDirective,
+    FileUploadItemDirective,
+    FileUploadInvalidItemDirective,
+    FileUploadPreviewDirective
   ],
   imports: [CommonModule],
   exports: [
     FileUploadComponent,
-    FileUploadPreviewItemDirective,
-    FileUploadPreviewInvalidItemDirective,
-    FileUploadInputDirective
+    FileUploadItemDirective,
+    FileUploadInputDirective,
+    FileUploadDeleteDirective,
+    FileUploadPreviewDirective,
+    FileUploadReuploadDirective,
+    FileUploadInvalidItemDirective
   ],
-  providers: [FileUploadService]
+  providers: [FileUploadService, FileUploadEventService]
 })
 export class LegifyFileUploadModule {}
