@@ -1,0 +1,24 @@
+@import "~@legify/web-ui-elements/assets/styles/mixins";
+@import "~@legify/web-ui-elements/assets/styles/legify-variables";
+
+.document-upload-input {
+  width: 128px;
+  height: 96px;
+  cursor: pointer;
+  border: 0.5px dashed;
+  margin: 10px 15px 0 0;
+  text-align: center;
+  user-select: none;
+
+  @include flex-container;
+
+  &__icon {
+    width: 100%;
+    color: $color-red;
+    height: 48px;
+    font-size: 2rem;
+    align-self: center;
+
+    @include flex-container($align: center, $justify: center);
+  }
+}
