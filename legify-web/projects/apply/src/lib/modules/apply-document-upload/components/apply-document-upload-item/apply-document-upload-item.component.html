@@ -1,1 +1,8 @@
-<p>apply-document-upload-item works!</p>
+<div class="document-upload-item" [legifyWebFileUploadPreview]="src">
+  <div class="document-upload-item__delete-container">
+    <button mat-icon-button class="document-upload-item__delete-btn" [legifyWebFileUploadDelete]="src">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </div>
+  <img [src]="src.file" class="document-upload-item__preview--image" />
+</div>

@@ -1,1 +1,16 @@
-<p>apply-document-upload works!</p>
+<legify-web-file-upload
+  [files]="allFiles$ | async"
+  [minimumUploads]="requirement.maximumUploads"
+  [maximumUploads]="requirement.maximumUploads"
+  [alwaysShowInput]="false"
+  (fileAdded)="handleFileAdded($event)"
+  (itemRemoved)="handleItemRemoved($event)"
+  (itemLimitReached)="handleItemLimitReached($event)"
+>
+  <ng-template legifyWebFileUploadInput>
+    <legify-web-apply-document-upload-input></legify-web-apply-document-upload-input>
+  </ng-template>
+  <ng-template let-src legifyWebFileUploadItem>
+    <legify-web-apply-document-upload-item [src]="src"></legify-web-apply-document-upload-item>
+  </ng-template>
+</legify-web-file-upload>

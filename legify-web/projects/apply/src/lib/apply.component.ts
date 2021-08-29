@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ApplyShellSidenavItem, ApplyShellConfig } from '@legify/web-ui-elements';
 import { ApplyConfigService, ApplyService } from './services';
 import { map, withLatestFrom } from 'rxjs/operators';
+import { RequiredDocument } from './models';
 
 @Component({
   selector: 'legify-web-apply',
@@ -10,6 +11,18 @@ import { map, withLatestFrom } from 'rxjs/operators';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
+  documentReq: RequiredDocument = {
+    documentGroup: '',
+    documentType: '',
+    maximumUploads: 3,
+    minimumUploads: 0,
+    forRoles: []
+  };
+
+  documentOwner = {
+    id: 'my-id'
+  };
+
   constructor(protected applyService: ApplyService, protected applyConfigService: ApplyConfigService) {}
 
   ngOnInit(): void {

@@ -19,7 +19,7 @@ import {
   FileUploadReplaceFileEvent
 } from './constants';
 import { Subscription } from 'rxjs';
-import { filter, take, withLatestFrom } from 'rxjs/operators';
+import { filter, map, take, tap, withLatestFrom } from 'rxjs/operators';
 import { FileUploadInputDirective, FileUploadInvalidItemDirective, FileUploadItemDirective } from './directives';
 import { FileUploadEventService, FileUploadService } from './services';
 import { FileUploadEvent } from './constants';
@@ -53,10 +53,10 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
   minimumUploadsNotReached: EventEmitter<boolean> = new EventEmitter();
 
   @Input()
-  files: any[];
+  files: any[] = [];
 
   @Input()
-  invalidFiles: any[];
+  invalidFiles: any[] = [];
 
   @Input()
   minimumUploads = 0;
@@ -88,7 +88,11 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
   @ViewChild('replacementFileInput', { static: true })
   protected replacementFileInput: ElementRef<HTMLInputElement>;
 
-  protected touched = false;
+  protected dirty = false;
+
+  protected fileDeleted = false;
+
+  protected currTotalFileCount = 0;
 
   protected componentSubscriptions: Subscription = new Subscription();
 
@@ -111,9 +115,17 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
   }
 
   ngAfterContentChecked(): void {
-    if (this.touched) {
+    if (this.dirty) {
       this.minimumUploadsNotReached.emit(this.files.length < this.minimumUploads);
     }
+
+    console.log(this.currTotalFileCount, this.files.length);
+    if (this.fileDeleted && this.currTotalFileCount !== this.files.length) {
+      this.itemLimitReached.emit(this.files.length > this.maximumUploads);
+      this.fileDeleted = !this.fileDeleted;
+    }
+
+    this.currTotalFileCount = this.files.length;
   }
 
   protected listenForPreviewEvents(): void {
@@ -126,7 +138,7 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
 
   protected listenForReuploadEvents(): void {
     this.listenToEventWithType(FileUploadReplaceFileEvent, ({ file }) => {
-      this.touched = true;
+      this.dirty = true;
       this.fileUploadService.setFileToBeReplaced(file);
       this.replacementFileInput.nativeElement.click();
     });
@@ -134,7 +146,8 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
 
   protected listenForDeleteEvents(): void {
     this.listenToEventWithType(FileUploadDeleteFileEvent, ({ file }) => {
-      this.touched = true;
+      this.dirty = true;
+      this.fileDeleted = true;
       const modifiedItemIndex = this.files.findIndex((fileUploadFile) => fileUploadFile === file);
       this.itemRemoved.emit({ modifiedItem: file, modifiedItemIndex });
     });
@@ -165,7 +178,7 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
       this.itemReplaced.emit({ modifiedItem: itemToBeReplaced, modifiedItemIndex, modifiedItemReplacement: rawFile });
     });
 
-    this.touched = true;
+    this.dirty = true;
   }
 
   public handleFileInputChange(event: Event): void {
@@ -178,9 +191,20 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
     const validRawFiles$ = rawFiles$.pipe(filter((rawFile) => !rawFile.invalid));
     const invalidRawFiles$ = rawFiles$.pipe(filter((rawFile) => rawFile.invalid));
 
-    validRawFiles$.subscribe((validRawFile) => this.fileAdded.emit({ rawFile: validRawFile }));
+    validRawFiles$
+      .pipe(withLatestFrom(this.fileUploadService.totalFileCount$))
+      .subscribe(([validRawFile, totalFileCount]) => {
+        if (validRawFile.rejected) {
+          this.itemLimitReached.emit(true);
+          return;
+        }
+
+        this.fileAdded.emit({ rawFile: validRawFile });
+        this.fileUploadService.setTotalFileCount(totalFileCount + 1);
+        this.currTotalFileCount = totalFileCount + 1;
+      });
     invalidRawFiles$.subscribe((invalidRawFile) => this.invalidFileAdded.emit({ rawFile: invalidRawFile }));
 
-    this.touched = true;
+    this.dirty = true;
   }
 }

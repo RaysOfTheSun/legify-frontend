@@ -10,6 +10,7 @@ import { DocumentUploadComponent } from './components/document-upload/document-u
 import { DocumentUploadItemComponent } from './components/document-upload-item/document-upload-item.component';
 import { DocumentUploadInputComponent } from './components/document-upload-input/document-upload-input.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ApplyDocumentUploadModule } from './modules';
 
 @NgModule({
   declarations: [ApplyComponent, DocumentUploadComponent, DocumentUploadItemComponent, DocumentUploadInputComponent],
@@ -21,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     ApplyShellModule,
     LegifyModalModule,
-    LegifyFileUploadModule
+    LegifyFileUploadModule,
+    ApplyDocumentUploadModule.forRoot()
   ],
   exports: [ApplyComponent],
   providers: [ConsumerDataService, ApplyService, ApplyHttpDataService]
