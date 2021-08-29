@@ -68,6 +68,9 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
   alwaysShowInput = true;
 
   @Input()
+  multipleUpload = true;
+
+  @Input()
   acceptedFileTypes: string[] = [];
 
   @ContentChild(FileUploadInputDirective, { read: TemplateRef, static: true })

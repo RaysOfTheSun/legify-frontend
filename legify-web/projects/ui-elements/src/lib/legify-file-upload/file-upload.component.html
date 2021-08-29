@@ -14,7 +14,7 @@
   <input
     type="file"
     class="legify-file-upload__file-input"
-    multiple="true"
+    [multiple]="multipleUpload"
     (change)="handleFileInputChange($event)"
     #newFileInput
   />
