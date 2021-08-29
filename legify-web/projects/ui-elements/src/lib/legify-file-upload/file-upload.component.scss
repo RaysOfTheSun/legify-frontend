@@ -1,0 +1,12 @@
+.legify-file-upload {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    display: inline-block;
+  }
+
+  &__file-input {
+    display: none;
+  }
+}
