@@ -38,7 +38,11 @@
   }
 
   &__delete-btn {
+    border: none;
+    cursor: pointer;
     border-radius: 25px;
     background-color: rgba($color: #fff, $alpha: 0.5);
+
+    @include flex-container($align: center, $justify: center);
   }
 }

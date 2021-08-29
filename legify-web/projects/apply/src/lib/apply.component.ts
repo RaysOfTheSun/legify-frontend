@@ -15,7 +15,7 @@ export class ApplyComponent implements OnInit {
     documentGroup: '',
     documentType: '',
     maximumUploads: 3,
-    minimumUploads: 0,
+    minimumUploads: 2,
     forRoles: []
   };
 

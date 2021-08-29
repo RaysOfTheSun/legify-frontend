@@ -1,13 +1,14 @@
 import {
-  AfterContentChecked,
   Component,
   ContentChild,
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  SimpleChanges,
   TemplateRef,
   Type,
   ViewChild
@@ -19,7 +20,7 @@ import {
   FileUploadReplaceFileEvent
 } from './constants';
 import { Subscription } from 'rxjs';
-import { filter, map, take, tap, withLatestFrom } from 'rxjs/operators';
+import { filter, take, withLatestFrom } from 'rxjs/operators';
 import { FileUploadInputDirective, FileUploadInvalidItemDirective, FileUploadItemDirective } from './directives';
 import { FileUploadEventService, FileUploadService } from './services';
 import { FileUploadEvent } from './constants';
@@ -30,7 +31,7 @@ import { FileUploadFileAdded, FileUploadItemModified } from './models';
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss']
 })
-export class FileUploadComponent implements OnInit, OnDestroy, AfterContentChecked {
+export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @Output()
   itemClicked: EventEmitter<any> = new EventEmitter();
 
@@ -47,10 +48,10 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
   invalidFileAdded: EventEmitter<FileUploadFileAdded> = new EventEmitter();
 
   @Output()
-  itemLimitReached: EventEmitter<boolean> = new EventEmitter();
+  uploadLimitReached: EventEmitter<boolean> = new EventEmitter(true);
 
   @Output()
-  minimumUploadsNotReached: EventEmitter<boolean> = new EventEmitter();
+  minimumUploadsNotReached: EventEmitter<boolean> = new EventEmitter(true);
 
   @Input()
   files: any[] = [];
@@ -92,8 +93,6 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
 
   protected fileDeleted = false;
 
-  protected currTotalFileCount = 0;
-
   protected componentSubscriptions: Subscription = new Subscription();
 
   constructor(
@@ -104,6 +103,7 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
     this.listenForDeleteEvents();
     this.listenForPreviewEvents();
     this.listenForReuploadEvents();
+    this.listenForItemCountChanges();
   }
 
   ngOnInit(): void {
@@ -114,18 +114,12 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
     this.componentSubscriptions.unsubscribe();
   }
 
-  ngAfterContentChecked(): void {
-    if (this.dirty) {
-      this.minimumUploadsNotReached.emit(this.files.length < this.minimumUploads);
-    }
-
-    console.log(this.currTotalFileCount, this.files.length);
-    if (this.fileDeleted && this.currTotalFileCount !== this.files.length) {
-      this.itemLimitReached.emit(this.files.length > this.maximumUploads);
+  ngOnChanges(_: SimpleChanges): void {
+    if (this.fileDeleted) {
+      this.uploadLimitReached.emit(this.files.length > this.maximumUploads);
+      this.fileUploadService.setTotalFileCount(this.files.length);
       this.fileDeleted = !this.fileDeleted;
     }
-
-    this.currTotalFileCount = this.files.length;
   }
 
   protected listenForPreviewEvents(): void {
@@ -151,6 +145,15 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
       const modifiedItemIndex = this.files.findIndex((fileUploadFile) => fileUploadFile === file);
       this.itemRemoved.emit({ modifiedItem: file, modifiedItemIndex });
     });
+  }
+
+  protected listenForItemCountChanges(): void {
+    const itemCountChangesSub = this.fileUploadService.totalFileCount$.subscribe((currTotalFiles) => {
+      if (this.dirty) {
+        this.minimumUploadsNotReached.emit(currTotalFiles < this.minimumUploads);
+      }
+    });
+    this.componentSubscriptions.add(itemCountChangesSub);
   }
 
   protected listenToEventWithType<E extends FileUploadEvent>(
@@ -195,13 +198,12 @@ export class FileUploadComponent implements OnInit, OnDestroy, AfterContentCheck
       .pipe(withLatestFrom(this.fileUploadService.totalFileCount$))
       .subscribe(([validRawFile, totalFileCount]) => {
         if (validRawFile.rejected) {
-          this.itemLimitReached.emit(true);
+          this.uploadLimitReached.emit(true);
           return;
         }
 
         this.fileAdded.emit({ rawFile: validRawFile });
         this.fileUploadService.setTotalFileCount(totalFileCount + 1);
-        this.currTotalFileCount = totalFileCount + 1;
       });
     invalidRawFiles$.subscribe((invalidRawFile) => this.invalidFileAdded.emit({ rawFile: invalidRawFile }));
 
