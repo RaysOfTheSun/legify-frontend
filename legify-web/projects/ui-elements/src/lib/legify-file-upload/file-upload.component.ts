@@ -83,11 +83,11 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @ContentChild(FileUploadInvalidItemDirective, { read: TemplateRef, static: true })
   public invalidItemTemplate: TemplateRef<any>;
 
-  @ViewChild('newFileInput', { static: true })
-  protected fileUploadInput: ElementRef<HTMLInputElement>;
+  @ViewChild('newFileInputTrigger', { static: true })
+  protected fileUploadInputTrigger: ElementRef<HTMLInputElement>;
 
-  @ViewChild('replacementFileInput', { static: true })
-  protected replacementFileInput: ElementRef<HTMLInputElement>;
+  @ViewChild('replacementFileInputTrigger', { static: true })
+  protected replacementFileInputTrigger: ElementRef<HTMLInputElement>;
 
   protected dirty = false;
 
@@ -127,14 +127,14 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   protected listenForCreateEvents(): void {
-    this.listenToEventWithType(FileUploadCreateFileEvent, (_) => this.fileUploadInput.nativeElement.click());
+    this.listenToEventWithType(FileUploadCreateFileEvent, (_) => this.fileUploadInputTrigger.nativeElement.click());
   }
 
   protected listenForReuploadEvents(): void {
     this.listenToEventWithType(FileUploadReplaceFileEvent, ({ file }) => {
       this.dirty = true;
       this.fileUploadService.setFileToBeReplaced(file);
-      this.replacementFileInput.nativeElement.click();
+      this.replacementFileInputTrigger.nativeElement.click();
     });
   }
 

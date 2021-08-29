@@ -27,6 +27,7 @@ import { ContactInfoSubformComponent } from './components/contact-info-subform/c
 import { DocumentUploadFormSectionComponent } from './components/document-upload-form-section/document-upload-form-section.component';
 import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-consumer-role-subform-map';
 import { LegifyI18nModule } from '@legify/web-i18n';
+import { ApplyDocumentUploadModule } from '../apply-document-upload';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { LegifyI18nModule } from '@legify/web-i18n';
     LegifyFormSectionModule,
     LegifyFormControlModule,
     LegifyTextListModule,
-    LegifyI18nModule
+    LegifyI18nModule,
+    ApplyDocumentUploadModule
   ],
   providers: [
     {

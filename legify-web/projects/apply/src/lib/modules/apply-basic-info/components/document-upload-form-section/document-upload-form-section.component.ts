@@ -7,6 +7,10 @@ import { FileUploaderGroupInfo } from '@legify/web-ui-elements';
   styleUrls: ['./document-upload-form-section.component.scss']
 })
 export class DocumentUploadFormSectionComponent implements OnInit {
+  documentOwner = {
+    id: 'my-id'
+  };
+
   @Input() groupInfo: FileUploaderGroupInfo;
 
   constructor() {}

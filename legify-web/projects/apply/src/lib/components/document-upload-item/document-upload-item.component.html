@@ -1,9 +1,0 @@
-<div class="document-upload-item" [legifyWebFileUploadPreview]="src">
-  <div class="document-upload-item__delete-container">
-    <button mat-icon-button class="document-upload-item__delete-btn" [legifyWebFileUploadDelete]="src">
-      <mat-icon>clear</mat-icon>
-    </button>
-  </div>
-  <img [src]="src.base64" alt="" class="document-upload-item__preview--image" />
-</div>
-<span [legifyWebFileUploadReupload]="src">reupload</span>

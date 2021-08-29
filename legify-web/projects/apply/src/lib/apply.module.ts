@@ -3,17 +3,14 @@ import { CommonModule } from '@angular/common';
 import { ApplyComponent } from './apply.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LegifyModalModule, ApplyShellModule, LegifyFileUploadModule } from '@legify/web-ui-elements';
+import { LegifyModalModule, ApplyShellModule } from '@legify/web-ui-elements';
 import { NftfModule } from '@legify-features/web-nftf';
 import { ApplyHttpDataService, ApplyService, ConsumerDataService } from './services';
-import { DocumentUploadComponent } from './components/document-upload/document-upload.component';
-import { DocumentUploadItemComponent } from './components/document-upload-item/document-upload-item.component';
-import { DocumentUploadInputComponent } from './components/document-upload-input/document-upload-input.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ApplyDocumentUploadModule } from './modules';
 
 @NgModule({
-  declarations: [ApplyComponent, DocumentUploadComponent, DocumentUploadItemComponent, DocumentUploadInputComponent],
+  declarations: [ApplyComponent],
   imports: [
     CommonModule,
     NftfModule,
@@ -22,7 +19,6 @@ import { ApplyDocumentUploadModule } from './modules';
     MatDialogModule,
     ApplyShellModule,
     LegifyModalModule,
-    LegifyFileUploadModule,
     ApplyDocumentUploadModule.forRoot()
   ],
   exports: [ApplyComponent],

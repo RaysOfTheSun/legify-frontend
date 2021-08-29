@@ -11,8 +11,8 @@ export class ContactInfoSubformComponent extends SubformComponent implements OnI
     return {
       groupHeaderText: 'PROOF_OF_RESIDENCY_COPY',
       groupSubHeaderText: 'PROOF_OF_RESIDENCY_COPY_HINT',
-      maximumUploads: 1,
-      minimumUploads: 0,
+      maximumUploads: 4,
+      minimumUploads: 3,
       isGroupHeaderTextBold: true
     };
   }
