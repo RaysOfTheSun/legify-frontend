@@ -158,7 +158,7 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
 
   protected listenToEventWithType<E extends FileUploadEvent>(
     eventType: Type<E>,
-    onEventEmitted?: (e: E) => void
+    onEventEmitted?: (event: E) => void
   ): void {
     const fileUploadEventSubscription = this.fileUploadEventService.events$
       .pipe(filter((fileUploadEvent) => fileUploadEvent instanceof eventType))
