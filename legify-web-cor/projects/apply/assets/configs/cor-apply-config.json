@@ -56,10 +56,24 @@
             "forRoles": ["IO", "PO", "PI", "OI"]
           },
           {
+            "documentType": "NATIONAL_ID",
+            "documentCategory": "IDENTIFICATION",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO", "PI", "OI"]
+          },
+          {
             "documentType": "PAYMENT_RECEIPT",
             "documentCategory": "RECEIPT",
             "maximumUploads": 4,
             "minimumUploads": 2,
+            "forRoles": ["IO", "PO"]
+          },
+          {
+            "documentType": "RESIDENCY_CARD",
+            "documentCategory": "RESIDENCY_CARD",
+            "maximumUploads": 4,
+            "minimumUploads": 1,
             "forRoles": ["IO", "PO"]
           }
         ],

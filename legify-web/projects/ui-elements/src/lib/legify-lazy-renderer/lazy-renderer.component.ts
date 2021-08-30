@@ -10,10 +10,20 @@ import { LazilyRenderedComponent } from './models';
   styleUrls: ['./lazy-renderer.component.scss']
 })
 export class LazyRendererComponent implements OnInit {
-  @Input() components: LazilyRenderedComponent[];
-  @Input() loadingText: string;
-  @Input() showRenderingProgress: boolean;
-  @Input() componentPropertyValueMap: Record<string, any>;
+  @Input()
+  components: LazilyRenderedComponent[];
+
+  @Input()
+  loadingText: string;
+
+  @Input()
+  showRenderingProgress: boolean;
+
+  @Input()
+  componentPropertyValueMap: Record<string, any>;
+
+  @Input()
+  universalComponentPropertyMap: Record<string, any>;
 
   @ViewChild('contentContainer', { read: ViewContainerRef, static: true })
   protected contentContainerRef: ViewContainerRef;
@@ -23,7 +33,7 @@ export class LazyRendererComponent implements OnInit {
 
   ngOnInit(): void {
     this.componentLoaderService
-      .addComponentsToContainer(this.contentContainerRef, this.components)
+      .addComponentsToContainer(this.contentContainerRef, this.components, this.universalComponentPropertyMap)
       .subscribe((renderingProgress) => this.renderingProgressSubj.next(renderingProgress));
   }
 

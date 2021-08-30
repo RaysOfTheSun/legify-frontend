@@ -8,7 +8,8 @@ export class ComponentLoaderService {
 
   public addComponentsToContainer<C>(
     container: ViewContainerRef,
-    lazilyRenderedComponents: LazilyRenderedComponent[]
+    lazilyRenderedComponents: LazilyRenderedComponent[],
+    universalComponentPropertyMap?: Record<string, any>
   ): Observable<number> {
     return new Observable<number>((subscriber) => {
       container.clear();
@@ -18,7 +19,8 @@ export class ComponentLoaderService {
           this.createComponentWithPropsAndContainer(
             lazilyRenderedComponent.type,
             lazilyRenderedComponent.propMapping,
-            container
+            container,
+            universalComponentPropertyMap
           );
 
           const currRenderingProgress = ((componentTypeIndex + 1) / lazilyRenderedComponents.length) * 100;
@@ -35,12 +37,23 @@ export class ComponentLoaderService {
   protected createComponentWithPropsAndContainer<C = any>(
     componentType: Type<C>,
     componentPropMap: Record<string, any>,
-    componentContainer: ViewContainerRef
+    componentContainer: ViewContainerRef,
+    universalComponentPropertyMap?: Record<string, any>
   ): void {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
     const componentInstance = componentContainer.createComponent(componentFactory).instance;
     const componentProps = Object.keys(componentPropMap);
 
     componentProps.forEach((componentProp) => (componentInstance[componentProp] = componentPropMap[componentProp]));
+
+    if (!universalComponentPropertyMap) {
+      return;
+    }
+
+    const extraComponentProps = Object.keys(universalComponentPropertyMap);
+    extraComponentProps.forEach(
+      (extraComponentProp) =>
+        (componentInstance[extraComponentProp] = universalComponentPropertyMap[extraComponentProp])
+    );
   }
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Customer, RequiredDocument } from '../../../../models';
 
 @Component({
   selector: 'legify-web-document-upload-form-section',
@@ -6,9 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./document-upload-form-section.component.scss']
 })
 export class DocumentUploadFormSectionComponent implements OnInit {
-  @Input() groupInfo: any;
+  @Input()
+  requirement: RequiredDocument;
+
+  @Input()
+  documentOwner: Customer;
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  get documentUploadHeader(): string {
+    return `COPY_OF_${this.requirement.documentType}`;
+  }
 }

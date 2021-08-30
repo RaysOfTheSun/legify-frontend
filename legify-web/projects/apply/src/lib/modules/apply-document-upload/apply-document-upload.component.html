@@ -1,9 +1,9 @@
 <div class="apply-document-upload">
   <div class="apply-document-upload__header">
-    <legify-web-i18n-label [textId]="requirement.documentCategory + '_CAPTION'"></legify-web-i18n-label>
+    <legify-web-i18n-label [textId]="headerTextId | caption"></legify-web-i18n-label>
   </div>
   <div class="apply-document-upload__subheader" *ngIf="subheader">
-    <legify-web-i18n-label textId="PROOF_OF_RESIDENCY_COPY_HINT_CAPTION"></legify-web-i18n-label>
+    <legify-web-i18n-label [textId]="subheader | caption: 'HINT'"></legify-web-i18n-label>
   </div>
   <legify-web-file-upload
     [files]="allFiles$ | async"

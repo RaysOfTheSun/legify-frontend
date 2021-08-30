@@ -2,7 +2,9 @@
   <ng-template form-section-content>
     <div class="legify-form-group__row">
       <legify-web-apply-document-upload
-        [requirement]="groupInfo"
+        [header]="documentUploadHeader"
+        [subheader]="requirement.documentType"
+        [requirement]="requirement"
         [documentOwner]="documentOwner"
       ></legify-web-apply-document-upload>
     </div>

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { SubformComponent } from '@legify/web-ui-elements';
 import { LegifyTranslationService } from '@legify/web-i18n';
+import { Observable } from 'rxjs';
+import { Customer, RequiredDocument } from '../../../../models';
+import { ApplyBasicInfoConfigService } from '../../services';
 
 @Component({
   selector: 'legify-web-identification-info-subform',
@@ -9,7 +12,13 @@ import { LegifyTranslationService } from '@legify/web-i18n';
   styleUrls: ['./identification-info-subform.component.scss']
 })
 export class IdentificationInfoSubformComponent extends SubformComponent implements OnInit {
-  constructor(public controlContainer: ControlContainer, protected legifyTranslationService: LegifyTranslationService) {
+  @Input()
+  formOwner: Customer;
+
+  constructor(
+    public controlContainer: ControlContainer,
+    protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
+  ) {
     super(controlContainer);
   }
 
@@ -20,5 +29,10 @@ export class IdentificationInfoSubformComponent extends SubformComponent impleme
       this.controlContainer.control &&
       this.controlContainer.control.get(['identificationInfo', 'type']).value.toUpperCase()
     );
+  }
+
+  getRequiredDocument(): Observable<RequiredDocument> {
+    console.log(this.selectedIdType);
+    return this.applyBasicInfoConfigService.getDocumentRequirementByDocumentType(this.selectedIdType);
   }
 }

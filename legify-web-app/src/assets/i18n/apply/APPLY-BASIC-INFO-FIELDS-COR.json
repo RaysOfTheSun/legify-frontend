@@ -35,5 +35,23 @@
   "CONTACT_INFORMATION_CAPTION": {
     "en": "Contact Information",
     "vi": "Thông tin liên lạc"
+  },
+  "COPY_OF_PASSPORT_CAPTION": {
+    "en": "Copy of Passport"
+  },
+  "PASSPORT_HINT_CAPTION": {
+    "en": "Please upload a copy of your passport"
+  },
+  "COPY_OF_NATIONAL_ID_CAPTION": {
+    "en": "Copy of National ID"
+  },
+  "NATIONAL_ID_HINT_CAPTION": {
+    "en": "Please upload a copy of your National ID"
+  },
+  "COPY_OF_RESIDENCY_CARD_CAPTION": {
+    "en": "Copy of Proof of Residency"
+  },
+  "RESIDENCY_CARD_HINT_CAPTION": {
+    "en": "Please upload a copy of your proof of residency"
   }
 }

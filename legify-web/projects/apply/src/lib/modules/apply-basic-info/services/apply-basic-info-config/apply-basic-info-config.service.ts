@@ -5,7 +5,7 @@ import { ApplyModule, ConsumerRole } from '../../../../constants';
 import { TaskCardConfig } from '@legify/web-ui-elements';
 import { BASIC_INFO_FORM_SUBFORMS } from '../../constants';
 import { map } from 'rxjs/operators';
-import { ApplyBasicInfoModuleConfig } from '../../../../models';
+import { ApplyBasicInfoModuleConfig, RequiredDocument, ApplyDocumentsModuleConfig } from '../../../../models';
 
 @Injectable()
 export class ApplyBasicInfoConfigService {
@@ -24,5 +24,11 @@ export class ApplyBasicInfoConfigService {
 
   public getBasicInfoFormSectionsForRole(role: ConsumerRole): any[] {
     return this.basicInfoFormSectionMap.get(role);
+  }
+
+  public getDocumentRequirementByDocumentType(documentType: string): Observable<RequiredDocument> {
+    return this.applyConfigService
+      .getConfigForModule<ApplyDocumentsModuleConfig>(ApplyModule.DOCUMENTS)
+      .pipe(map((config) => config.requiredDocuments.find((requiredDoc) => requiredDoc.documentType === documentType)));
   }
 }

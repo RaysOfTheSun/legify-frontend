@@ -36,6 +36,10 @@ export class ApplyDocumentUploadComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  get headerTextId(): string {
+    return this.header ? this.header : this.requirement.documentCategory;
+  }
+
   get errorShown$(): Observable<boolean> {
     return this.errorShownSubj.asObservable();
   }
