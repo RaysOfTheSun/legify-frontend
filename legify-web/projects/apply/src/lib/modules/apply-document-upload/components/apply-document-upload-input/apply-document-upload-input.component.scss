@@ -6,11 +6,10 @@
   height: 96px;
   cursor: pointer;
   border: 0.5px dashed;
-  margin: 10px 15px 0 0;
+  display: flex;
   text-align: center;
   user-select: none;
-
-  @include flex-container;
+  margin: 10px 15px 0 0;
 
   &__icon {
     width: 100%;

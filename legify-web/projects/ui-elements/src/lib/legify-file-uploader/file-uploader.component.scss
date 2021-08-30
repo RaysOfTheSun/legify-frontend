@@ -1,23 +1,2 @@
 @import "../../../assets/styles/mixins";
 @import "../../../assets/styles/legify-variables";
-
-.file-uploader {
-  width: 128px;
-  height: 96px;
-  cursor: pointer;
-  border: 0.5px dashed;
-  display: flex;
-  text-align: center;
-  user-select: none;
-  margin: 10px 15px 0 0;
-
-  &__icon {
-    width: 100%;
-    color: $color-red;
-    height: 48px;
-    font-size: 2rem;
-    align-self: center;
-
-    @include flex-container($align: center, $justify: center);
-  }
-}

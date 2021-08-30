@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, concat, Observable, of } from 'rxjs';
-import { map, tap, withLatestFrom } from 'rxjs/operators';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { RawFile } from '../../models';
 
 @Injectable()
@@ -36,27 +36,27 @@ export class FileUploadService {
     maximumUploads: number
   ): Observable<RawFile> {
     const htmlFilesToConvert = Array.from(files);
-    const rawFileConversions$ = htmlFilesToConvert.map((file) =>
-      this.convertHtmlFileToBase64String(file, acceptedFileTypes).pipe(
+    const rawFileConversions$ = htmlFilesToConvert.map((file) => {
+      const fileType = this.getFileType(file);
+      const isFileValid = this.isFileTypeAccepted(fileType, acceptedFileTypes);
+      return this.convertHtmlFileToBase64String(file, !isFileValid).pipe(
         withLatestFrom(this.totalFileCount$),
-        map<[string, number], RawFile>(([fileBase64String, currTotalFiles]) => {
-          const fileType = this.getFileType(file);
-          return {
-            name: file.name,
-            type: fileType,
-            size: file.size,
-            base64: fileBase64String,
-            invalid: currTotalFiles + 1 > maximumUploads || !this.isFileTypeAccepted(fileType, acceptedFileTypes)
-          };
-        })
-      )
-    );
+        map<[string, number], RawFile>(([fileBase64String, currTotalFileCount]) => ({
+          name: file.name,
+          type: fileType,
+          size: file.size,
+          base64: fileBase64String,
+          invalid: !isFileValid,
+          rejected: currTotalFileCount + 1 > maximumUploads
+        }))
+      );
+    });
 
     return concat(...rawFileConversions$);
   }
 
-  protected convertHtmlFileToBase64String(file: File, acceptedFileTypes: string[]): Observable<string> {
-    if (!this.isFileTypeAccepted(this.getFileType(file), acceptedFileTypes)) {
+  protected convertHtmlFileToBase64String(file: File, cancelConversion: boolean): Observable<string> {
+    if (cancelConversion) {
       return of(null);
     }
 

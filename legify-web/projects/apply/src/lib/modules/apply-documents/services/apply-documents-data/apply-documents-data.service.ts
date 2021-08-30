@@ -19,7 +19,7 @@ export class ApplyDocumentsDataService {
       (document) =>
         document.ownerId === ownerId &&
         document.documentType === docRequirement.documentType &&
-        document.documentGroup === docRequirement.documentGroup
+        document.documentGroup === docRequirement.documentCategory
     );
   }
 }

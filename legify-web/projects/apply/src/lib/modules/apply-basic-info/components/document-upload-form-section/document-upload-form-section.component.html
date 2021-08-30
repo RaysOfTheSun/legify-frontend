@@ -1,7 +1,10 @@
 <legify-web-form-section removeMargins="true" contentBackgroundColor="#fff">
   <ng-template form-section-content>
     <div class="legify-form-group__row">
-      <legify-web-file-uploader-group [groupInfo]="groupInfo"></legify-web-file-uploader-group>
+      <legify-web-apply-document-upload
+        [requirement]="groupInfo"
+        [documentOwner]="documentOwner"
+      ></legify-web-apply-document-upload>
     </div>
   </ng-template>
 </legify-web-form-section>

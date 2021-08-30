@@ -4,4 +4,5 @@ export interface RawFile {
   size: number;
   base64: string;
   invalid?: boolean;
+  rejected?: boolean;
 }

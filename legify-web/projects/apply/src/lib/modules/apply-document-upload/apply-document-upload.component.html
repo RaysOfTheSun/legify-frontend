@@ -1,0 +1,33 @@
+<div class="apply-document-upload">
+  <div class="apply-document-upload__header">
+    <legify-web-i18n-label [textId]="requirement.documentCategory + '_CAPTION'"></legify-web-i18n-label>
+  </div>
+  <div class="apply-document-upload__subheader" *ngIf="subheader">
+    <legify-web-i18n-label textId="PROOF_OF_RESIDENCY_COPY_HINT_CAPTION"></legify-web-i18n-label>
+  </div>
+  <legify-web-file-upload
+    [files]="allFiles$ | async"
+    [minimumUploads]="requirement.minimumUploads"
+    [maximumUploads]="requirement.maximumUploads"
+    [alwaysShowInput]="false"
+    [previewModalData]="{ documentOwner: documentOwner }"
+    (fileAdded)="handleFileAdded($event)"
+    (itemClicked)="handleItemClicked($event)"
+    (itemRemoved)="handleItemRemoved($event)"
+    (itemReplaced)="handleItemReplaced($event)"
+    (uploadLimitReached)="handleItemLimitReached($event)"
+    (minimumUploadsNotReached)="handleMinimumUploadsNotReached($event)"
+  >
+    <ng-template legifyWebFileUploadInput>
+      <legify-web-apply-document-upload-input></legify-web-apply-document-upload-input>
+    </ng-template>
+    <ng-template let-src legifyWebFileUploadItem>
+      <legify-web-apply-document-upload-item [src]="src"></legify-web-apply-document-upload-item>
+    </ng-template>
+  </legify-web-file-upload>
+
+  <div class="apply-document-upload__error-banner">
+    <span class="apply-document-upload__error-text" *ngIf="errorShown$ | async">Over da limit</span>
+    <span class="apply-document-upload__error-text" *ngIf="isLackingDocuments$ | async">u need more items</span>
+  </div>
+</div>

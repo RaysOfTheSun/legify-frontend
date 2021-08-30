@@ -1,7 +1,4 @@
-<legify-web-modal-shell
-  [headerTemplate]="headerTemplate"
-  [footerTemplate]="footerTemplate"
->
+<legify-web-modal-shell [headerTemplate]="headerTemplate" [footerTemplate]="footerTemplate">
   <div class="document-upload-preview-modal">
     <ng-container
       [ngTemplateOutlet]="imagePreview"
@@ -17,10 +14,7 @@
 </ng-template>
 
 <ng-template #imagePreview let-srcDocument="srcDocument">
-  <img
-    [src]="srcDocument.file"
-    class="document-upload-preview-modal__preview--image"
-  />
+  <img [src]="srcDocument.file" class="document-upload-preview-modal__preview--image" />
 </ng-template>
 
 <ng-template #footerTemplate>
@@ -34,7 +28,8 @@
     <legify-web-button
       staticText="Reupload"
       class="document-upload-preview-modal__footer-button"
-      [mat-dialog-close]="dialogReuploadActionResult"
+      matDialogClose
+      [legifyWebFileUploadReupload]="documentPreviewEvent"
     ></legify-web-button>
   </div>
 </ng-template>

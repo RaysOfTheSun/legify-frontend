@@ -1,5 +1,6 @@
 .legify-file-upload {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 
   &__item {
@@ -7,6 +8,10 @@
   }
 
   &__file-input {
+    display: none;
+  }
+
+  &__file-input-trigger {
     display: none;
   }
 }

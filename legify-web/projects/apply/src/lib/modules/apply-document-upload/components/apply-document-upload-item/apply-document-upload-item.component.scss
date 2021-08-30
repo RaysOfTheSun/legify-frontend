@@ -1,5 +1,4 @@
 @import "~@legify/web-ui-elements/assets/styles/mixins";
-@import "~@legify/web-ui-elements/assets/styles/legify-variables";
 
 .document-upload-item {
   width: 128px;
@@ -9,6 +8,7 @@
   text-align: center;
   position: relative;
   margin: 10px 15px 0 0;
+
   @include flex-container;
 
   &:hover {
@@ -38,7 +38,11 @@
   }
 
   &__delete-btn {
+    border: none;
+    cursor: pointer;
     border-radius: 25px;
     background-color: rgba($color: #fff, $alpha: 0.5);
+
+    @include flex-container($align: center, $justify: center);
   }
 }

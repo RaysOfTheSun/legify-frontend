@@ -29,7 +29,7 @@ export class ApplyDocumentsCreatorService {
         forRole: documentOwner.role,
         uploadDate: new Date().toJSON(),
         documentType: documentRequirementMeta.documentType,
-        documentGroup: documentRequirementMeta.documentGroup
+        documentGroup: documentRequirementMeta.documentCategory
       }))
     );
   }

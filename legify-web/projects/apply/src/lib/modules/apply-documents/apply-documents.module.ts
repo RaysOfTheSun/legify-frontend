@@ -21,6 +21,7 @@ import { TranslatableTextModule } from '@legify/web-i18n-elements';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ApplyDocumentUploadModule } from '../apply-document-upload';
 
 @NgModule({
   declarations: [ApplyDocumentsComponent, DocumentUploadModalComponent, DocumentUploadPreviewModalComponent],
@@ -34,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon';
     LegifyTaskCardModule,
     TranslatableTextModule,
     LegifyFileUploaderModule,
+    ApplyDocumentUploadModule,
     LegifyTaskCardCollectionModule
   ],
   providers: [

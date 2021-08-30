@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { ApplyShellSidenavItem, ApplyShellConfig } from '@legify/web-ui-elements';
 import { ApplyConfigService, ApplyService } from './services';
 import { map, withLatestFrom } from 'rxjs/operators';
+import { RequiredDocument } from './models';
 
 @Component({
   selector: 'legify-web-apply',

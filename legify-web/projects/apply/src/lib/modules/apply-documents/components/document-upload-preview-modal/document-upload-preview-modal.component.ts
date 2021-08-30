@@ -20,11 +20,11 @@ export class DocumentUploadPreviewModalComponent {
   ) {}
 
   get srcDocument(): any {
-    return this.documentPreviewEvent.legifyFile;
+    return this.documentPreviewEvent;
   }
 
   get srcDocumentDisplayName(): string {
-    return this.srcDocument.filename.slice(0, this.srcDocument.filename.lastIndexOf('.'));
+    return this.srcDocument.name.slice(0, this.srcDocument.name.lastIndexOf('.'));
   }
 
   get dialogReuploadActionResult(): DocumentPreviewActionEvent {
