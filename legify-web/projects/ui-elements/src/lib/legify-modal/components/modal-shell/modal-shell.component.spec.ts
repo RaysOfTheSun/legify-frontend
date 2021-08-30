@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LegifyModalShellComponent } from './legify-modal-shell.component';
+import { ModalShellComponent } from './modal-shell.component';
 
-describe('LegifyModalShellComponent', () => {
-  let component: LegifyModalShellComponent;
-  let fixture: ComponentFixture<LegifyModalShellComponent>;
+describe('ModalShellComponent', () => {
+  let component: ModalShellComponent;
+  let fixture: ComponentFixture<ModalShellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LegifyModalShellComponent ]
+      declarations: [ ModalShellComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LegifyModalShellComponent);
+    fixture = TestBed.createComponent(ModalShellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

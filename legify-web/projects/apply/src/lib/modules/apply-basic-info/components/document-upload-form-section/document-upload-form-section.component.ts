@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FileUploaderGroupInfo } from '@legify/web-ui-elements';
 
 @Component({
   selector: 'legify-web-document-upload-form-section',
@@ -7,11 +6,7 @@ import { FileUploaderGroupInfo } from '@legify/web-ui-elements';
   styleUrls: ['./document-upload-form-section.component.scss']
 })
 export class DocumentUploadFormSectionComponent implements OnInit {
-  documentOwner = {
-    id: 'COR-SAMPLE-OWNER'
-  };
-
-  @Input() groupInfo: FileUploaderGroupInfo;
+  @Input() groupInfo: any;
 
   constructor() {}
 

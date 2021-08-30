@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { SubformComponent, FileUploaderGroupInfo } from '@legify/web-ui-elements';
+import { SubformComponent } from '@legify/web-ui-elements';
 import { LegifyTranslationService } from '@legify/web-i18n';
 
 @Component({
@@ -20,15 +20,5 @@ export class IdentificationInfoSubformComponent extends SubformComponent impleme
       this.controlContainer.control &&
       this.controlContainer.control.get(['identificationInfo', 'type']).value.toUpperCase()
     );
-  }
-
-  get groupInfo(): FileUploaderGroupInfo {
-    return {
-      groupHeaderText: `COPY_OF_${this.selectedIdType}`,
-      groupSubHeaderText: this.legifyTranslationService.translate(`${this.selectedIdType}_UPLOAD_HINT`, null),
-      maximumUploads: 1,
-      minimumUploads: 0,
-      isGroupHeaderTextBold: true
-    };
   }
 }

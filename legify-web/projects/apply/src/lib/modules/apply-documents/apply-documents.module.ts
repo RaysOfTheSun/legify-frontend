@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ApplyDocumentsComponent } from './apply-documents.component';
-import { DocumentUploadModalComponent, DocumentUploadPreviewModalComponent } from './components';
+import { DocumentUploadModalComponent } from './components';
 import {
   ApplyDocumentsConfigService,
   ApplyDocumentsCreatorService,
@@ -14,27 +14,21 @@ import {
   LegifyModalModule,
   LegifyButtonModule,
   LegifyTaskCardModule,
-  LegifyFileUploaderModule,
   LegifyTaskCardCollectionModule
 } from '@legify/web-ui-elements';
-import { TranslatableTextModule } from '@legify/web-i18n-elements';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { ApplyDocumentUploadModule } from '../apply-document-upload';
 
 @NgModule({
-  declarations: [ApplyDocumentsComponent, DocumentUploadModalComponent, DocumentUploadPreviewModalComponent],
+  declarations: [ApplyDocumentsComponent, DocumentUploadModalComponent],
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatDialogModule,
     LegifyModalModule,
     LegifyButtonModule,
     LegifyTaskCardModule,
-    TranslatableTextModule,
-    LegifyFileUploaderModule,
     ApplyDocumentUploadModule,
     LegifyTaskCardCollectionModule
   ],

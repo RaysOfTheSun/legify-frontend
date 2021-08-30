@@ -1,21 +1,24 @@
-<legify-web-modal-shell headerText="MODAL_OWNER" [headerTextTranslationProps]="{ modalOwner: modalOwnerName }">
-  <div class="upload-document-modal">
-    <div class="upload-document-modal__reminders"></div>
-    <div class="upload-document-modal__uploaders">
-      <legify-web-apply-document-upload
-        class="upload-document-modal__uploader"
-        *ngFor="let requiredDoc of data.requiredDocuments | async"
-        [requirement]="requiredDoc"
-        [documentOwner]="data.customer"
-      >
-      </legify-web-apply-document-upload>
-      <legify-web-button
-        matDialogClose
-        staticText="Continue"
-        class="upload-document-modal__continue-button"
-      ></legify-web-button>
+<legify-web-modal-shell
+  headerTextId="MODAL_OWNER_CAPTION"
+  [headerTextTranslationProps]="{ modalOwner: modalOwnerName }"
+>
+  <ng-template legifyWebModalContent>
+    <div class="upload-document-modal">
+      <div class="upload-document-modal__reminders"></div>
+      <div class="upload-document-modal__uploaders">
+        <legify-web-apply-document-upload
+          class="upload-document-modal__uploader"
+          *ngFor="let requiredDoc of data.requiredDocuments | async"
+          [requirement]="requiredDoc"
+          [documentOwner]="data.customer"
+        >
+        </legify-web-apply-document-upload>
+        <legify-web-button
+          matDialogClose
+          staticText="Continue"
+          class="upload-document-modal__continue-button"
+        ></legify-web-button>
+      </div>
     </div>
-  </div>
+  </ng-template>
 </legify-web-modal-shell>
-
-<input type="file" (change)="handleFileReupload($event)" #fileReuploader hidden />

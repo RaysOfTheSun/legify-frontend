@@ -1,0 +1,20 @@
+<div [ngClass]="modalHeaderCssClasses">
+  <ng-container [ngTemplateOutlet]="modalHeaderTemplate || defaultHeaderTemplate"></ng-container>
+  <mat-icon matDialogClose class="legify-modal__close-icon">close</mat-icon>
+</div>
+<mat-dialog-content [ngClass]="modalContentCssClasses">
+  <ng-container [ngTemplateOutlet]="modalContentTemplate"></ng-container>
+</mat-dialog-content>
+<div class="legify-modal__footer" *ngIf="modalFooterTemplate">
+  <ng-container [ngTemplateOutlet]="modalFooterTemplate"></ng-container>
+</div>
+
+<ng-template #defaultHeaderTemplate>
+  <legify-web-i18n-label
+    class="legify-modal__header-text"
+    [textId]="headerTextId"
+    [translationParams]="headerTextTranslationProps"
+  ></legify-web-i18n-label>
+</ng-template>
+
+<ng-content></ng-content>

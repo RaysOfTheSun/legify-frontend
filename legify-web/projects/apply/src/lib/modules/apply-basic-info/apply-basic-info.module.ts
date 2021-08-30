@@ -15,7 +15,6 @@ import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 import {
   LegifyTaskCardCollectionModule,
   LegifyTaskCardModule,
-  LegifyFileUploaderModule,
   LegifyFieldGroupModule,
   LegifyFormSectionModule,
   LegifyFormControlModule,
@@ -50,7 +49,6 @@ import { ApplyDocumentUploadModule } from '../apply-document-upload';
     LegifyLazyRendererModule,
     LegifyTaskCardModule,
     LegifyTaskCardCollectionModule,
-    LegifyFileUploaderModule,
     LegifyFieldGroupModule,
     LegifyFormSectionModule,
     LegifyFormControlModule,
