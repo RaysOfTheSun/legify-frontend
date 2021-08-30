@@ -11,20 +11,19 @@
   ></ng-container>
   <ng-container [ngTemplateOutlet]="inputTemplate" *ngIf="isFileInputShown()"></ng-container>
 
-  <label class="legify-file-upload__file-input-trigger" for="newfileUpload" #newFileInputTrigger></label>
   <input
-    id="newfileUpload"
     type="file"
     class="legify-file-upload__file-input"
     [multiple]="multipleUpload"
     (change)="handleFileInputChange($event)"
+    #newFileInput
   />
-  <label class="legify-file-upload__file-input-trigger" for="replacementFileInput" #replacementFileInputTrigger></label>
   <input
     id="replacementFileInput"
     type="file"
     class="legify-file-upload__file-input"
     (change)="handleReplacementFileInputChange($event)"
+    #replacementFileInput
   />
 </div>
 

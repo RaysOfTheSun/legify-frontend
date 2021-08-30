@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, concat, Observable, of } from 'rxjs';
-import { concatMap, first, map, mergeMap, switchMap, tap, withLatestFrom } from 'rxjs/operators';
+import { map, withLatestFrom } from 'rxjs/operators';
 import { RawFile } from '../../models';
 
 @Injectable()

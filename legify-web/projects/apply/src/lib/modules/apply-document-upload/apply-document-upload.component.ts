@@ -15,7 +15,7 @@ export class ApplyDocumentUploadComponent implements OnInit {
   documentOwner: Customer;
 
   @Input()
-  requirement: RequiredDocument;
+  requirement: RequiredDocument = null;
 
   @Input()
   header?: string;

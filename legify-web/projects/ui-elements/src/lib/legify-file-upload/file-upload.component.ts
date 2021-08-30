@@ -30,7 +30,7 @@ import { FileUploadFileAdded, FileUploadItemModified } from './models';
   selector: 'legify-web-file-upload',
   templateUrl: './file-upload.component.html',
   styleUrls: ['./file-upload.component.scss'],
-  providers: [FileUploadEventService]
+  providers: [FileUploadService, FileUploadEventService]
 })
 export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @Output()
@@ -84,11 +84,11 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @ContentChild(FileUploadInvalidItemDirective, { read: TemplateRef, static: true })
   public invalidItemTemplate: TemplateRef<any>;
 
-  @ViewChild('newFileInputTrigger', { static: true })
-  protected fileUploadInputTrigger: ElementRef<HTMLInputElement>;
+  @ViewChild('newFileInput', { static: true })
+  protected fileUploadInput: ElementRef<HTMLLabelElement>;
 
-  @ViewChild('replacementFileInputTrigger', { static: true })
-  protected replacementFileInputTrigger: ElementRef<HTMLInputElement>;
+  @ViewChild('replacementFileInput', { static: true })
+  protected replacementFileInput: ElementRef<HTMLInputElement>;
 
   protected dirty = false;
 
@@ -128,14 +128,14 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   protected listenForCreateEvents(): void {
-    this.listenToEventWithType(FileUploadCreateFileEvent, (_) => this.fileUploadInputTrigger.nativeElement.click());
+    this.listenToEventWithType(FileUploadCreateFileEvent, (_) => this.fileUploadInput.nativeElement.click());
   }
 
   protected listenForReuploadEvents(): void {
     this.listenToEventWithType(FileUploadReplaceFileEvent, ({ file }) => {
       this.dirty = true;
       this.fileUploadService.setFileToBeReplaced(file);
-      this.replacementFileInputTrigger.nativeElement.click();
+      this.replacementFileInput.nativeElement.click();
     });
   }
 

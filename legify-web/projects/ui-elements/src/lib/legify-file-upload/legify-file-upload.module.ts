@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileUploadComponent } from './file-upload.component';
-import { FileUploadService } from './services';
 import {
   FileUploadDeleteDirective,
   FileUploadInputDirective,
@@ -30,7 +29,6 @@ import { FileUploadPreviewDirective } from './directives/file-upload-preview/fil
     FileUploadPreviewDirective,
     FileUploadReuploadDirective,
     FileUploadInvalidItemDirective
-  ],
-  providers: [FileUploadService]
+  ]
 })
 export class LegifyFileUploadModule {}
