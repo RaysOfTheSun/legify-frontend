@@ -15,7 +15,6 @@ import {
   LegifyButtonModule,
   LegifyTaskCardModule,
   LegifyFileUploaderModule,
-  FILE_UPLOAD_PREVIEW_MODAL,
   LegifyTaskCardCollectionModule
 } from '@legify/web-ui-elements';
 import { TranslatableTextModule } from '@legify/web-i18n-elements';
@@ -44,11 +43,7 @@ import { ApplyDocumentUploadModule } from '../apply-document-upload';
     ApplyDocumentsDataService,
     ApplyDocumentsConfigService,
     ApplyDocumentsCreatorService,
-    ApplyDocumentsProgessService,
-    {
-      provide: FILE_UPLOAD_PREVIEW_MODAL,
-      useValue: DocumentUploadPreviewModalComponent
-    }
+    ApplyDocumentsProgessService
   ],
   exports: [ApplyDocumentsComponent]
 })

@@ -10,9 +10,16 @@ import {
 import { ApplyDocumentUploadItemComponent } from './components/apply-document-upload-item/apply-document-upload-item.component';
 import { ApplyDocumentUploadInputComponent } from './components/apply-document-upload-input/apply-document-upload-input.component';
 import { ApplyDocumentUploadPreviewModalComponent } from './components/apply-document-upload-preview-modal/apply-document-upload-preview-modal.component';
-import { LegifyFileUploadModule, LegifyTextListModule } from '@legify/web-ui-elements';
+import {
+  LegifyFileUploadModule,
+  LegifyTextListModule,
+  LegifyModalModule,
+  FILE_UPLOAD_PREVIEW_MODAL,
+  LegifyButtonModule
+} from '@legify/web-ui-elements';
 import { LegifyI18nModule } from '@legify/web-i18n';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -21,9 +28,26 @@ import { MatIconModule } from '@angular/material/icon';
     ApplyDocumentUploadInputComponent,
     ApplyDocumentUploadPreviewModalComponent
   ],
-  imports: [CommonModule, MatIconModule, LegifyFileUploadModule, LegifyTextListModule, LegifyI18nModule],
+  imports: [
+    CommonModule,
+    MatIconModule,
+    LegifyFileUploadModule,
+    LegifyTextListModule,
+    LegifyI18nModule,
+    LegifyModalModule,
+    LegifyButtonModule,
+    MatDialogModule
+  ],
   exports: [ApplyDocumentUploadComponent, ApplyDocumentUploadPreviewModalComponent, LegifyFileUploadModule],
-  providers: [ApplyDocumentUploadService, ApplyDocumentUploadConfigService, ApplyDocumentUploadDataMapperService]
+  providers: [
+    ApplyDocumentUploadService,
+    ApplyDocumentUploadConfigService,
+    ApplyDocumentUploadDataMapperService,
+    {
+      provide: FILE_UPLOAD_PREVIEW_MODAL,
+      useValue: ApplyDocumentUploadPreviewModalComponent
+    }
+  ]
 })
 export class ApplyDocumentUploadModule {
   public static forRoot(): ModuleWithProviders<ApplyDocumentUploadModule> {

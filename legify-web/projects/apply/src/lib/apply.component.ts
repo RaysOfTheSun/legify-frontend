@@ -11,18 +11,6 @@ import { RequiredDocument } from './models';
   styleUrls: ['./apply.component.scss']
 })
 export class ApplyComponent implements OnInit {
-  documentReq: RequiredDocument = {
-    documentCategory: '',
-    documentType: '',
-    maximumUploads: 3,
-    minimumUploads: 2,
-    forRoles: []
-  };
-
-  documentOwner = {
-    id: 'my-id'
-  };
-
   constructor(protected applyService: ApplyService, protected applyConfigService: ApplyConfigService) {}
 
   ngOnInit(): void {

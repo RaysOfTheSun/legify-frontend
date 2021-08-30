@@ -77,6 +77,9 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @Input()
   acceptedFileTypes: string[] = [];
 
+  @Input()
+  previewModalData: Record<string, any> = {};
+
   @ContentChild(FileUploadInputDirective, { read: TemplateRef, static: true })
   public inputTemplate: TemplateRef<any>;
 
@@ -138,7 +141,7 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
 
       this.matDialogRef.open(previewModal, {
         ...this.fileUploadConfigService.getFileUploadPreviewModalConfig(),
-        data: file,
+        data: { ...this.previewModalData, file },
         viewContainerRef: this.viewContainerRef
       });
     });

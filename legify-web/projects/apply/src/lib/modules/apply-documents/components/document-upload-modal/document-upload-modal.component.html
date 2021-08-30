@@ -3,12 +3,17 @@
     <div class="upload-document-modal__reminders"></div>
     <div class="upload-document-modal__uploaders">
       <legify-web-apply-document-upload
+        class="upload-document-modal__uploader"
         *ngFor="let requiredDoc of data.requiredDocuments | async"
         [requirement]="requiredDoc"
         [documentOwner]="data.customer"
       >
       </legify-web-apply-document-upload>
-      <legify-web-button staticText="Continue" class="upload-document-modal__continue-button"></legify-web-button>
+      <legify-web-button
+        matDialogClose
+        staticText="Continue"
+        class="upload-document-modal__continue-button"
+      ></legify-web-button>
     </div>
   </div>
 </legify-web-modal-shell>
