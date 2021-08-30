@@ -29,7 +29,8 @@ import { FileUploadFileAdded, FileUploadItemModified } from './models';
 @Component({
   selector: 'legify-web-file-upload',
   templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.scss']
+  styleUrls: ['./file-upload.component.scss'],
+  providers: [FileUploadEventService]
 })
 export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   @Output()

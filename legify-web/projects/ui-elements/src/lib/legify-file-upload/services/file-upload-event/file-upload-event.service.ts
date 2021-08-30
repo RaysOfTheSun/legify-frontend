@@ -1,6 +1,5 @@
-import { Injectable, Type } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { filter } from 'rxjs/operators';
 import { FileUploadEvent } from '../../constants/file-upload-events/file-upload-event';
 
 @Injectable()
