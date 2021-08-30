@@ -8,7 +8,7 @@ import { FileUploaderGroupInfo } from '@legify/web-ui-elements';
 })
 export class DocumentUploadFormSectionComponent implements OnInit {
   documentOwner = {
-    id: 'my-id'
+    id: 'COR-SAMPLE-OWNER'
   };
 
   @Input() groupInfo: FileUploaderGroupInfo;

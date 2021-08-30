@@ -11,9 +11,11 @@ import {
   SimpleChanges,
   TemplateRef,
   Type,
-  ViewChild
+  ViewChild,
+  ViewContainerRef
 } from '@angular/core';
 import {
+  FileUploadEvent,
   FileUploadCreateFileEvent,
   FileUploadDeleteFileEvent,
   FileUploadPreviewFileEvent,
@@ -22,9 +24,9 @@ import {
 import { Subscription } from 'rxjs';
 import { filter, take, withLatestFrom } from 'rxjs/operators';
 import { FileUploadInputDirective, FileUploadInvalidItemDirective, FileUploadItemDirective } from './directives';
-import { FileUploadEventService, FileUploadService } from './services';
-import { FileUploadEvent } from './constants';
+import { FileUploadConfigService, FileUploadEventService, FileUploadService } from './services';
 import { FileUploadFileAdded, FileUploadItemModified } from './models';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'legify-web-file-upload',
@@ -97,8 +99,11 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   protected componentSubscriptions: Subscription = new Subscription();
 
   constructor(
+    protected matDialogRef: MatDialog,
+    protected viewContainerRef: ViewContainerRef,
     protected fileUploadService: FileUploadService,
-    protected fileUploadEventService: FileUploadEventService
+    protected fileUploadEventService: FileUploadEventService,
+    protected fileUploadConfigService: FileUploadConfigService
   ) {
     this.listenForCreateEvents();
     this.listenForDeleteEvents();
@@ -124,7 +129,19 @@ export class FileUploadComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   protected listenForPreviewEvents(): void {
-    this.listenToEventWithType(FileUploadPreviewFileEvent, ({ file }) => this.itemClicked.emit(file));
+    this.listenToEventWithType(FileUploadPreviewFileEvent, ({ file }) => {
+      const previewModal = this.fileUploadConfigService.getFleUploadPreviewModal();
+
+      if (!previewModal) {
+        return;
+      }
+
+      this.matDialogRef.open(previewModal, {
+        ...this.fileUploadConfigService.getFileUploadPreviewModalConfig(),
+        data: file,
+        viewContainerRef: this.viewContainerRef
+      });
+    });
   }
 
   protected listenForCreateEvents(): void {

@@ -50,14 +50,14 @@
         "requiredDocuments": [
           {
             "documentType": "PASSPORT",
-            "documentGroup": "IDENTIFICATION",
+            "documentCategory": "IDENTIFICATION",
             "minimumUploads": 2,
             "maximumUploads": 2,
             "forRoles": ["IO", "PO", "PI", "OI"]
           },
           {
             "documentType": "PAYMENT_RECEIPT",
-            "documentGroup": "RECEIPT",
+            "documentCategory": "RECEIPT",
             "maximumUploads": 4,
             "minimumUploads": 2,
             "forRoles": ["IO", "PO"]

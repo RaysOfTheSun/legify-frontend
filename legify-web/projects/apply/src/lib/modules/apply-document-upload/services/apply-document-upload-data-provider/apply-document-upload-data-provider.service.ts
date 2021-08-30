@@ -15,8 +15,21 @@ export class ApplyDocumentUploadDataProviderService {
     return this.allDocuments$;
   }
 
-  public getAllInvalidDocumentsByOwnerIdAndDocumentType(): Observable<SupportingDocument[]> {
-    return this.allDocuments$;
+  public getAllInvalidDocumentsByOwnerIdAndDocumentType(
+    ownerId: string,
+    documentType: string,
+    documentCategory: string
+  ): Observable<SupportingDocument[]> {
+    return this.allDocuments$.pipe(
+      map((allDocuments) =>
+        allDocuments.filter(
+          (document) =>
+            document.ownerId === ownerId &&
+            document.documentType === documentType &&
+            document.documentCategory === documentCategory
+        )
+      )
+    );
   }
 
   public setAllDocuments(updatedAllDocuments: SupportingDocument[]): void {

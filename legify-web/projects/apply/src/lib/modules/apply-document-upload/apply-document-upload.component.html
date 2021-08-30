@@ -11,7 +11,9 @@
     [maximumUploads]="requirement.maximumUploads"
     [alwaysShowInput]="false"
     (fileAdded)="handleFileAdded($event)"
+    (itemClicked)="handleItemClicked($event)"
     (itemRemoved)="handleItemRemoved($event)"
+    (itemReplaced)="handleItemReplaced($event)"
     (uploadLimitReached)="handleItemLimitReached($event)"
     (minimumUploadsNotReached)="handleMinimumUploadsNotReached($event)"
   >

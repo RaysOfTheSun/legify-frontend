@@ -22,7 +22,7 @@ import { MatIconModule } from '@angular/material/icon';
     ApplyDocumentUploadPreviewModalComponent
   ],
   imports: [CommonModule, MatIconModule, LegifyFileUploadModule, LegifyTextListModule, LegifyI18nModule],
-  exports: [ApplyDocumentUploadComponent, ApplyDocumentUploadPreviewModalComponent],
+  exports: [ApplyDocumentUploadComponent, ApplyDocumentUploadPreviewModalComponent, LegifyFileUploadModule],
   providers: [ApplyDocumentUploadService, ApplyDocumentUploadConfigService, ApplyDocumentUploadDataMapperService]
 })
 export class ApplyDocumentUploadModule {

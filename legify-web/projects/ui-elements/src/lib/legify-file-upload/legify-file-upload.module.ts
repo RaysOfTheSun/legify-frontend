@@ -9,6 +9,8 @@ import {
   FileUploadReuploadDirective
 } from './directives';
 import { FileUploadPreviewDirective } from './directives/file-upload-preview/file-upload-preview.directive';
+import { defaultFileUploadPreviewModalConfig, FILE_UPLOAD_PREVIEW_MODAL_CONFIG } from './constants';
+import { FileUploadConfigService } from './services';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,13 @@ import { FileUploadPreviewDirective } from './directives/file-upload-preview/fil
     FileUploadPreviewDirective,
     FileUploadReuploadDirective,
     FileUploadInvalidItemDirective
+  ],
+  providers: [
+    {
+      provide: FILE_UPLOAD_PREVIEW_MODAL_CONFIG,
+      useValue: defaultFileUploadPreviewModalConfig
+    },
+    FileUploadConfigService
   ]
 })
 export class LegifyFileUploadModule {}

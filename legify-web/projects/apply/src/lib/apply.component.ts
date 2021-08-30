@@ -12,7 +12,7 @@ import { RequiredDocument } from './models';
 })
 export class ApplyComponent implements OnInit {
   documentReq: RequiredDocument = {
-    documentGroup: '',
+    documentCategory: '',
     documentType: '',
     maximumUploads: 3,
     minimumUploads: 2,

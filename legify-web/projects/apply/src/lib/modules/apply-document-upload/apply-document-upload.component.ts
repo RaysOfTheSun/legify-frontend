@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FileUploadFileAdded, FileUploadItemModified } from '@legify/web-ui-elements';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Customer, RequiredDocument } from '../../models';
@@ -19,6 +19,9 @@ export class ApplyDocumentUploadComponent implements OnInit {
 
   @Input()
   header?: string;
+
+  @Output()
+  itemClicked: EventEmitter<any> = new EventEmitter();
 
   @Input()
   subheader?: string;
@@ -42,15 +45,33 @@ export class ApplyDocumentUploadComponent implements OnInit {
   }
 
   get allFiles$(): Observable<SupportingDocument[]> {
-    return this.applyDocumentUploadDataProviderService.allDocuments$;
+    return this.applyDocumentUploadDataProviderService.getAllInvalidDocumentsByOwnerIdAndDocumentType(
+      this.documentOwner.id,
+      this.requirement.documentType,
+      this.requirement.documentCategory
+    );
+  }
+
+  public handleItemClicked(item: any): void {
+    this.itemClicked.emit(item);
   }
 
   public handleFileAdded({ rawFile }: FileUploadFileAdded): void {
-    this.applyDocumentUploadService.uploadDocument(rawFile, this.documentOwner).subscribe();
+    this.applyDocumentUploadService.uploadDocument(rawFile, this.requirement, this.documentOwner).subscribe();
   }
 
   public handleItemLimitReached(isItemLimitReached: boolean): void {
     this.errorShownSubj.next(isItemLimitReached);
+  }
+
+  public handleItemReplaced({
+    modifiedItem,
+    modifiedItemIndex,
+    modifiedItemReplacement
+  }: FileUploadItemModified): void {
+    this.applyDocumentUploadService
+      .replaceDocument(modifiedItemReplacement, this.requirement, this.documentOwner, modifiedItemIndex)
+      .subscribe();
   }
 
   public handleMinimumUploadsNotReached(isMinimumUploadsNotReached: boolean): void {

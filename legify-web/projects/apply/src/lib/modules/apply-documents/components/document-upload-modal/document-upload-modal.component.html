@@ -2,14 +2,12 @@
   <div class="upload-document-modal">
     <div class="upload-document-modal__reminders"></div>
     <div class="upload-document-modal__uploaders">
-      <legify-web-file-uploader-group
-        *ngFor="let requiredDoc of requiredDocuments | async"
-        [items]="getDocumentsByDocGroupAndType(modalOwner, requiredDoc) | async"
-        [groupInfo]="getGroupInfo(requiredDoc)"
-        (handleFileUpload)="handleFileUpload($event)"
-        (handleFileDelete)="handleFileDelete($event)"
-        (handleFilePreview)="handleFilePreview($event)"
-      ></legify-web-file-uploader-group>
+      <legify-web-apply-document-upload
+        *ngFor="let requiredDoc of data.requiredDocuments | async"
+        [requirement]="requiredDoc"
+        [documentOwner]="data.customer"
+      >
+      </legify-web-apply-document-upload>
       <legify-web-button staticText="Continue" class="upload-document-modal__continue-button"></legify-web-button>
     </div>
   </div>

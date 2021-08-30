@@ -23,7 +23,7 @@ export class ApplyDocumentsProgessService extends ApplyProgressService {
   ): number {
     const reqCompletionStatus = requiredDocsForCustomer.map((docRequirement) => {
       const uploadedDocCount = allDocumentsForCustomer.filter(
-        (doc) => doc.documentGroup === docRequirement.documentGroup
+        (doc) => doc.documentGroup === docRequirement.documentCategory
       ).length;
 
       return uploadedDocCount >= docRequirement.minimumUploads;

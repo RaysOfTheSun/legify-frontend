@@ -7,12 +7,12 @@ import { SubformComponent, FileUploaderGroupInfo } from '@legify/web-ui-elements
   styleUrls: ['./contact-info-subform.component.scss']
 })
 export class ContactInfoSubformComponent extends SubformComponent implements OnInit {
-  get groupInfo(): FileUploaderGroupInfo {
+  get groupInfo() {
     return {
-      groupHeaderText: 'PROOF_OF_RESIDENCY_COPY',
-      groupSubHeaderText: 'PROOF_OF_RESIDENCY_COPY_HINT',
+      documentType: 'PAYMENT_RECEIPT',
+      documentCategory: 'RECEIPT',
       maximumUploads: 4,
-      minimumUploads: 3,
+      minimumUploads: 2,
       isGroupHeaderTextBold: true
     };
   }
