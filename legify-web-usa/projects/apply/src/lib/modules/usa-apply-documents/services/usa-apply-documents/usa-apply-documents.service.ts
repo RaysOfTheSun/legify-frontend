@@ -6,10 +6,9 @@ import {
   ApplyHttpDataService,
   ApplyDocumentsService,
   ConsumerDataService,
-  ApplyDocumentsDataService,
   ApplyDocumentsConfigService,
-  ApplyDocumentsCreatorService,
-  ApplyDocumentsProgessService
+  ApplyDocumentsProgessService,
+  ApplyDocumentUploadDataProviderService
 } from '@legify/web-apply';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
@@ -21,19 +20,17 @@ export class UsaApplyDocumentsService extends ApplyDocumentsService {
   constructor(
     protected applyService: ApplyService<UsaLegifyApplication>,
     protected applyDataService: ApplyHttpDataService,
-    protected applyDocumentsCreatorService: ApplyDocumentsCreatorService,
     protected documentsProgressService: ApplyDocumentsProgessService,
     protected consumerDataService: ConsumerDataService,
-    protected applyDocumentsDataService: ApplyDocumentsDataService,
-    protected applyDocumentsConfigService: ApplyDocumentsConfigService
+    protected applyDocumentsConfigService: ApplyDocumentsConfigService,
+    protected applyDocumentUploadDataProviderService: ApplyDocumentUploadDataProviderService
   ) {
     super(
       applyService,
       consumerDataService,
-      applyDocumentsCreatorService,
       documentsProgressService,
-      applyDocumentsDataService,
-      applyDocumentsConfigService
+      applyDocumentsConfigService,
+      applyDocumentUploadDataProviderService
     );
   }
 
@@ -54,7 +51,7 @@ export class UsaApplyDocumentsService extends ApplyDocumentsService {
 
         const customerSelfieReqs = requiredDocConfigs.filter(
           (config) =>
-            config.documentGroup ===
+            config.documentCategory ===
               USA_SUPPORTING_DOC_TYPE_GROUP.CUSTOMER_SELFIES &&
             config.forRoles.includes(customer.role)
         );

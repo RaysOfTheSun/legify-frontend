@@ -11,8 +11,27 @@ export class ApplyDocumentUploadDataProviderService {
     return this.allDocumentsSubj.asObservable().pipe(first());
   }
 
-  public getAllValidDocumentsByOwnerIdAndDocumentType(): Observable<SupportingDocument[]> {
-    return this.allDocuments$;
+  public getAllValidDocumentsByOwnerId(ownerId: string): Observable<SupportingDocument[]> {
+    return this.allDocuments$.pipe(
+      map((allDocuments) => allDocuments.filter((document) => !document.invalid && document.ownerId === ownerId))
+    );
+  }
+
+  public getAllValidDocumentsByOwnerIdAndDocumentType(
+    ownerId: string,
+    documentType: string,
+    documentCategory: string
+  ): Observable<SupportingDocument[]> {
+    return this.allDocuments$.pipe(
+      map((allDocuments) =>
+        allDocuments.filter(
+          (document) =>
+            document.ownerId === ownerId &&
+            document.documentType === documentType &&
+            document.documentCategory === documentCategory
+        )
+      )
+    );
   }
 
   public getAllInvalidDocumentsByOwnerIdAndDocumentType(
@@ -24,6 +43,7 @@ export class ApplyDocumentUploadDataProviderService {
       map((allDocuments) =>
         allDocuments.filter(
           (document) =>
+            document.invalid &&
             document.ownerId === ownerId &&
             document.documentType === documentType &&
             document.documentCategory === documentCategory

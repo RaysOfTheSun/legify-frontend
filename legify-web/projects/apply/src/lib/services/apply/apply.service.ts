@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { map, retry, take } from 'rxjs/operators';
+import { first, map, retry, take } from 'rxjs/operators';
 import { SESSION_VARIABLE } from '@legify/web-core';
 import { LegifyApplication, Person } from '../../models';
 import { ApplicationProgress } from '../../models/application/application-progress/application-progress';
@@ -22,7 +22,7 @@ export class ApplyService<A extends LegifyApplication = LegifyApplication> {
   }
 
   get currApplication$(): Observable<A> {
-    return this.currentApplicationSubj.asObservable();
+    return this.currentApplicationSubj.asObservable().pipe(first());
   }
 
   public isNftfEnabledForCurrModule(): boolean {

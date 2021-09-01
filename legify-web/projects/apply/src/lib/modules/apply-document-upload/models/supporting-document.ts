@@ -4,6 +4,7 @@ export interface SupportingDocument {
   name: string;
   size: number;
   ownerId: string;
+  invalid?: boolean;
   fileType: string;
   documentType: string;
   documentCategory: string;
