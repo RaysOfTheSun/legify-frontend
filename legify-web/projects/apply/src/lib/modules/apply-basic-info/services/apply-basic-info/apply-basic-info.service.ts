@@ -91,10 +91,12 @@ export class ApplyBasicInfoService {
   }
 
   public getPersonsThatNeedBasicInfo(): Observable<Customer[]> {
-    return this.applyService.currApplication$.pipe(
-      map((currApplication) =>
-        currApplication ? this.consumerDataService.getAllInsuredPersonsFromApplication(currApplication) : []
-      )
-    );
+    return this.applyService
+      .getCurrApplication()
+      .pipe(
+        map((currApplication) =>
+          currApplication ? this.consumerDataService.getAllInsuredPersonsFromApplication(currApplication) : []
+        )
+      );
   }
 }

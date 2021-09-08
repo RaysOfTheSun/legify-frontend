@@ -46,8 +46,12 @@ export class ApplyDocumentsComponent {
   }
 
   public getTaskCardProgressBarValue(customer: Customer): Observable<number> {
-    return this.applyService.currApplication$.pipe(
-      map((application) => this.applyDocumentsProgressService.getProgressChunk(application, customer.id).totalProgress)
-    );
+    return this.applyService
+      .getCurrApplication()
+      .pipe(
+        map(
+          (application) => this.applyDocumentsProgressService.getProgressChunk(application, customer.id).totalProgress
+        )
+      );
   }
 }

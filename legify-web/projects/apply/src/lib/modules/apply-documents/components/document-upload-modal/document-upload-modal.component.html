@@ -11,6 +11,8 @@
           *ngFor="let requiredDoc of data.requiredDocuments | async"
           [requirement]="requiredDoc"
           [documentOwner]="data.customer"
+          (documentDeleted)="handleDocumentDeleted($event)"
+          (documentUploaded)="handleDocumentUploaded($event)"
         >
         </legify-web-apply-document-upload>
         <legify-web-button

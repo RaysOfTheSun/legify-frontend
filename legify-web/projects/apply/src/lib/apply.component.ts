@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApplyShellSidenavItem, ApplyShellConfig } from '@legify/web-ui-elements';
-import { ApplyConfigService, ApplyService } from './services';
+import { ApplyService } from './services';
 import { map, withLatestFrom } from 'rxjs/operators';
-import { RequiredDocument } from './models';
+import { ApplyConfigService } from './modules/apply-data-providers';
 
 @Component({
   selector: 'legify-web-apply',
@@ -13,9 +13,7 @@ import { RequiredDocument } from './models';
 export class ApplyComponent implements OnInit {
   constructor(protected applyService: ApplyService, protected applyConfigService: ApplyConfigService) {}
 
-  ngOnInit(): void {
-    this.applyService.getCurrSelectedApplication();
-  }
+  ngOnInit(): void {}
 
   get showNftfBanner(): boolean {
     return this.applyService.isNftfEnabledForCurrModule();
@@ -27,7 +25,7 @@ export class ApplyComponent implements OnInit {
 
   get shellConfig(): Observable<ApplyShellConfig> {
     return this.applyService.getCurrCustomer().pipe(
-      withLatestFrom(this.applyService.currApplication$),
+      withLatestFrom(this.applyService.getCurrApplication()),
       map(([person, currApplication]) => {
         return {
           dataSource: person,

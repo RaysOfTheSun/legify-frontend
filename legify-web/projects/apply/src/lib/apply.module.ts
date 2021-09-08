@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LegifyModalModule, ApplyShellModule } from '@legify/web-ui-elements';
 import { NftfModule } from '@legify-features/web-nftf';
-import { ApplyHttpDataService, ApplyService, ConsumerDataService } from './services';
+import { ApplyService, ConsumerDataService } from './services';
 import { MatIconModule } from '@angular/material/icon';
 import { ApplyDocumentUploadModule } from './modules';
 
@@ -22,6 +22,6 @@ import { ApplyDocumentUploadModule } from './modules';
     ApplyDocumentUploadModule.forRoot()
   ],
   exports: [ApplyComponent],
-  providers: [ConsumerDataService, ApplyService, ApplyHttpDataService]
+  providers: [ConsumerDataService, ApplyService]
 })
 export class ApplyModule {}

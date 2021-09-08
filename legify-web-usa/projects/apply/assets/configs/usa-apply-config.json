@@ -50,28 +50,28 @@
         "requiredDocuments": [
           {
             "documentType": "PASSPORT",
-            "documentGroup": "IDENTIFICATION",
+            "documentCategory": "IDENTIFICATION",
             "minimumUploads": 2,
             "maximumUploads": 2,
             "forRoles": ["IO", "PO", "PI", "OI"]
           },
           {
             "documentType": "PAYMENT_RECEIPT",
-            "documentGroup": "RECEIPT",
+            "documentCategory": "RECEIPT",
             "maximumUploads": 4,
             "minimumUploads": 2,
             "forRoles": ["IO", "PO"]
           },
           {
             "documentType": "CUSTOMER_SELFIE",
-            "documentGroup": "CUSTOMER_SELFIES",
+            "documentCategory": "CUSTOMER_SELFIES",
             "minimumUploads": 1,
             "maximumUploads": 1,
             "forRoles": ["PI"]
           },
           {
             "documentType": "CUSTOMER_SELFIE_WITH_VIDEO",
-            "documentGroup": "CUSTOMER_SELFIES",
+            "documentCategory": "CUSTOMER_SELFIES",
             "minimumUploads": 2,
             "maximumUploads": 2,
             "forRoles": ["IO", "PO"]
@@ -87,7 +87,7 @@
           },
           "subHeaderText": {
             "sources": ["role"],
-            "template": "PERSON_{0}"
+            "template": "PERSON_{0}_CAPTION"
           },
           "highlightColorKey": {
             "sources": ["role"],

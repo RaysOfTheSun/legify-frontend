@@ -1,4 +1,4 @@
 <legify-web-apply-shell [config]="shellConfig | async" [navItems]="shellNavItems$ | async">
   <legify-web-nftf-nftf *ngIf="showNftfBanner"></legify-web-nftf-nftf>
-  <ng-content></ng-content>
+  <router-outlet></router-outlet>
 </legify-web-apply-shell>

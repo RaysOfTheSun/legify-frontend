@@ -8,7 +8,7 @@ import { AppConfig, FeatureConfig, UiElementsConfig } from '../../models';
 @Injectable()
 export class AppConfigService {
   protected readonly appConfigSubj: BehaviorSubject<AppConfig> = new BehaviorSubject(DEFAULT_LEGIFY_APP_CONFIG);
-  protected currSessionMarket: LEGIFY_MARKET = LEGIFY_MARKET.COR;
+  protected currSessionMarket: LEGIFY_MARKET = LEGIFY_MARKET.USA;
 
   constructor() {}
 

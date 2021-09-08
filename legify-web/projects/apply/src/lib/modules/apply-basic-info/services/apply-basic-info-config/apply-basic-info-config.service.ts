@@ -1,11 +1,11 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApplyConfigService } from '../../../../services';
-import { ApplyModule, ConsumerRole } from '../../../../constants';
+import { ApplyAppModule, ConsumerRole } from '../../../../constants';
 import { TaskCardConfig } from '@legify/web-ui-elements';
 import { BASIC_INFO_FORM_SUBFORMS } from '../../constants';
 import { map } from 'rxjs/operators';
 import { ApplyBasicInfoModuleConfig, RequiredDocument, ApplyDocumentsModuleConfig } from '../../../../models';
+import { ApplyConfigService } from '../../../apply-data-providers';
 
 @Injectable()
 export class ApplyBasicInfoConfigService {
@@ -15,7 +15,7 @@ export class ApplyBasicInfoConfigService {
   ) {}
 
   get moduleConfig$(): Observable<ApplyBasicInfoModuleConfig> {
-    return this.applyConfigService.getConfigForModule<ApplyBasicInfoModuleConfig>(ApplyModule.BASIC_INFO);
+    return this.applyConfigService.getConfigForModule<ApplyBasicInfoModuleConfig>(ApplyAppModule.BASIC_INFO);
   }
 
   get taskCardConfigs$(): Observable<TaskCardConfig> {
@@ -28,7 +28,7 @@ export class ApplyBasicInfoConfigService {
 
   public getDocumentRequirementByDocumentType(documentType: string): Observable<RequiredDocument> {
     return this.applyConfigService
-      .getConfigForModule<ApplyDocumentsModuleConfig>(ApplyModule.DOCUMENTS)
+      .getConfigForModule<ApplyDocumentsModuleConfig>(ApplyAppModule.DOCUMENTS)
       .pipe(map((config) => config.requiredDocuments.find((requiredDoc) => requiredDoc.documentType === documentType)));
   }
 }

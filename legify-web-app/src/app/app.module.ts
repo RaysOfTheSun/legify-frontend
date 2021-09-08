@@ -5,18 +5,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import {
-  CoreModule,
-  webAppConfigurer,
-  MARKET_ROUTER_CONFIG_MAP,
-  WEB_APP_CONFIGURER_DEPS
-} from '@legify/web-core';
-import {
-  LegifyI18nCoreModule,
-  webAppI18nConfigurer,
-  WEB_APP_I18N_CONFIGURER_DEPS
-} from '@legify/web-i18n';
-import { marketRouterConfigMap } from './router-configs/market-router-config-map';
+import { CoreModule } from '@legify/web-core';
+import { LegifyI18nCoreModule, webAppI18nConfigurer, WEB_APP_I18N_CONFIGURER_DEPS } from '@legify/web-i18n';
+
+import { webAppConfigurer, WEB_APP_CONFIGURER_DEPS, AppConfigService } from '@legify/web-core';
+import { ApplyDataProvidersModule, APPLY_CONFIG_URL } from '@legify/web-apply';
+import { ApplyConfigUrlFactory } from './app-apply/factories/apply-config-url-factory/apply-config-url-factory';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,13 +20,10 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
     HttpClientModule,
     BrowserAnimationsModule,
     CoreModule.forRoot(),
-    LegifyI18nCoreModule.forRoot()
+    LegifyI18nCoreModule.forRoot(),
+    ApplyDataProvidersModule.forRoot()
   ],
   providers: [
-    {
-      provide: MARKET_ROUTER_CONFIG_MAP,
-      useValue: marketRouterConfigMap
-    },
     {
       provide: APP_INITIALIZER,
       useFactory: webAppConfigurer,
@@ -44,6 +35,11 @@ import { marketRouterConfigMap } from './router-configs/market-router-config-map
       useFactory: webAppI18nConfigurer,
       deps: WEB_APP_I18N_CONFIGURER_DEPS,
       multi: true
+    },
+    {
+      provide: APPLY_CONFIG_URL,
+      useFactory: ApplyConfigUrlFactory,
+      deps: [AppConfigService]
     }
   ],
   bootstrap: [AppComponent]

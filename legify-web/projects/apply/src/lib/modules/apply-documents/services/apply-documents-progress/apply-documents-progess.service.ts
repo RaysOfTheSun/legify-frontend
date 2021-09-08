@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ApplyModule } from '../../../../constants';
+import { SupportingDocument } from '../../../apply-document-upload';
+import { ApplyAppModule } from '../../../../constants';
 import { LegifyApplication, RequiredDocument } from '../../../../models';
 import { ApplicationProgress } from '../../../../models';
 import { ApplyProgressService } from '../../../../services';
-import { LegifyDocument } from '../../models';
 
 @Injectable()
 export class ApplyDocumentsProgessService extends ApplyProgressService {
   public getModuleProgress(application: LegifyApplication): ApplicationProgress {
     return (
-      application.progressInfo.find((progressInfo) => progressInfo.forModule === ApplyModule.DOCUMENTS) || {
-        forModule: ApplyModule.DOCUMENTS,
+      application.progressInfo.find((progressInfo) => progressInfo.forModule === ApplyAppModule.DOCUMENTS) || {
+        forModule: ApplyAppModule.DOCUMENTS,
         chunks: [],
         totalProgress: 0
       }
@@ -18,15 +18,15 @@ export class ApplyDocumentsProgessService extends ApplyProgressService {
   }
 
   public calculateProgressForPerson(
-    allDocumentsForCustomer: LegifyDocument[],
+    allDocumentsForCustomer: SupportingDocument[],
     requiredDocsForCustomer: RequiredDocument[]
   ): number {
     const reqCompletionStatus = requiredDocsForCustomer.map((docRequirement) => {
-      const uploadedDocCount = allDocumentsForCustomer.filter(
-        (doc) => doc.documentGroup === docRequirement.documentCategory
-      ).length;
+      const uploadedDocumentsForCategory = allDocumentsForCustomer.filter(
+        (doc) => doc.documentCategory === docRequirement.documentCategory
+      );
 
-      return uploadedDocCount >= docRequirement.minimumUploads;
+      return uploadedDocumentsForCategory.length >= docRequirement.minimumUploads;
     });
 
     return (reqCompletionStatus.filter((status) => status).length / requiredDocsForCustomer.length) * 100;

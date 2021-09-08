@@ -11,6 +11,15 @@ import { ApplyDocumentUploadDataProviderService, ApplyDocumentUploadService } fr
   styleUrls: ['./apply-document-upload.component.scss']
 })
 export class ApplyDocumentUploadComponent implements OnInit {
+  @Output()
+  itemClicked: EventEmitter<any> = new EventEmitter();
+
+  @Output()
+  documentUploaded: EventEmitter<SupportingDocument[]> = new EventEmitter();
+
+  @Output()
+  documentDeleted: EventEmitter<SupportingDocument[]> = new EventEmitter();
+
   @Input()
   documentOwner: Customer;
 
@@ -19,9 +28,6 @@ export class ApplyDocumentUploadComponent implements OnInit {
 
   @Input()
   header?: string;
-
-  @Output()
-  itemClicked: EventEmitter<any> = new EventEmitter();
 
   @Input()
   subheader?: string;
@@ -49,7 +55,7 @@ export class ApplyDocumentUploadComponent implements OnInit {
   }
 
   get allFiles$(): Observable<SupportingDocument[]> {
-    return this.applyDocumentUploadDataProviderService.getAllInvalidDocumentsByOwnerIdAndDocumentType(
+    return this.applyDocumentUploadDataProviderService.getAllValidDocumentsByOwnerIdAndDocumentType(
       this.documentOwner.id,
       this.requirement.documentType,
       this.requirement.documentCategory
@@ -61,18 +67,16 @@ export class ApplyDocumentUploadComponent implements OnInit {
   }
 
   public handleFileAdded({ rawFile }: FileUploadFileAdded): void {
-    this.applyDocumentUploadService.uploadDocument(rawFile, this.requirement, this.documentOwner).subscribe();
+    this.applyDocumentUploadService
+      .uploadDocument(rawFile, this.requirement, this.documentOwner)
+      .subscribe((updatedDocumentList) => this.documentUploaded.emit(updatedDocumentList));
   }
 
   public handleItemLimitReached(isItemLimitReached: boolean): void {
     this.errorShownSubj.next(isItemLimitReached);
   }
 
-  public handleItemReplaced({
-    modifiedItem,
-    modifiedItemIndex,
-    modifiedItemReplacement
-  }: FileUploadItemModified): void {
+  public handleItemReplaced({ modifiedItemIndex, modifiedItemReplacement }: FileUploadItemModified): void {
     this.applyDocumentUploadService
       .replaceDocument(modifiedItemReplacement, this.requirement, this.documentOwner, modifiedItemIndex)
       .subscribe();
@@ -83,6 +87,8 @@ export class ApplyDocumentUploadComponent implements OnInit {
   }
 
   public handleItemRemoved({ modifiedItem, modifiedItemIndex }: FileUploadItemModified): void {
-    this.applyDocumentUploadDataProviderService.deleteDocument(modifiedItem, modifiedItemIndex).subscribe();
+    this.applyDocumentUploadDataProviderService
+      .deleteDocument(modifiedItem, modifiedItemIndex)
+      .subscribe((updatedDocumentList) => this.documentUploaded.emit(updatedDocumentList));
   }
 }

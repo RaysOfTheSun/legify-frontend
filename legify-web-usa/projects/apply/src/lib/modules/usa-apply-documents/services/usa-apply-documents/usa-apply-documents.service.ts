@@ -1,15 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   Customer,
-  ApplyService,
   RequiredDocument,
-  ApplyHttpDataService,
-  ApplyDocumentsService,
-  ConsumerDataService,
-  ApplyDocumentsDataService,
-  ApplyDocumentsConfigService,
-  ApplyDocumentsCreatorService,
-  ApplyDocumentsProgessService
+  ApplyDocumentsService
 } from '@legify/web-apply';
 import { Observable } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
@@ -18,31 +11,12 @@ import { USA_SUPPORTING_DOC_TYPE_GROUP } from '../../constants';
 
 @Injectable()
 export class UsaApplyDocumentsService extends ApplyDocumentsService {
-  constructor(
-    protected applyService: ApplyService<UsaLegifyApplication>,
-    protected applyDataService: ApplyHttpDataService,
-    protected applyDocumentsCreatorService: ApplyDocumentsCreatorService,
-    protected documentsProgressService: ApplyDocumentsProgessService,
-    protected consumerDataService: ConsumerDataService,
-    protected applyDocumentsDataService: ApplyDocumentsDataService,
-    protected applyDocumentsConfigService: ApplyDocumentsConfigService
-  ) {
-    super(
-      applyService,
-      consumerDataService,
-      applyDocumentsCreatorService,
-      documentsProgressService,
-      applyDocumentsDataService,
-      applyDocumentsConfigService
-    );
-  }
-
   public getDocumentRequirementsForCustomer(
     customer: Customer
   ): Observable<RequiredDocument[]> {
     return super.getDocumentRequirementsForCustomer(customer).pipe(
       withLatestFrom(
-        this.applyService.currApplication$,
+        this.applyService.getCurrApplication<UsaLegifyApplication>(),
         this.applyDocumentsConfigService.requiredDocuments$
       ),
       map(([coreRequiredDocs, currApplication, requiredDocConfigs]) => {
@@ -54,7 +28,7 @@ export class UsaApplyDocumentsService extends ApplyDocumentsService {
 
         const customerSelfieReqs = requiredDocConfigs.filter(
           (config) =>
-            config.documentGroup ===
+            config.documentCategory ===
               USA_SUPPORTING_DOC_TYPE_GROUP.CUSTOMER_SELFIES &&
             config.forRoles.includes(customer.role)
         );

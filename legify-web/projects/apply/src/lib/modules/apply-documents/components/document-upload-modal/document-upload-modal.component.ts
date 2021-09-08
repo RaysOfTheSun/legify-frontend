@@ -3,7 +3,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ConsumerDataService } from '../../../../services';
 import { DocumentUploadModalData } from '../../models';
 import { ApplyDocumentsService } from '../../services';
-import { Person, RequiredDocument } from '../../../../models';
+import { SupportingDocument } from '../../../apply-document-upload';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'legify-web-document-upload-modal',
@@ -21,5 +22,13 @@ export class DocumentUploadModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.modalOwnerName = this.consumerDataService.getConsumerName(this.data.customer);
+  }
+
+  public handleDocumentDeleted(_: SupportingDocument[]): void {
+    this.applyDocumentService.updateProgressForPersonAndModule(this.data.customer).subscribe();
+  }
+
+  public handleDocumentUploaded(_: SupportingDocument[]): void {
+    this.applyDocumentService.updateProgressForPersonAndModule(this.data.customer).pipe(first()).subscribe();
   }
 }

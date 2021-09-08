@@ -1,0 +1,142 @@
+{
+  "navItems": [
+    {
+      "key": "0",
+      "name": "Basic Info",
+      "disabled": false,
+      "routerLink": ["basic-info"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "1",
+      "name": "Terms and Conditions",
+      "disabled": false,
+      "routerLink": ["terms"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "2",
+      "name": "Disclosure",
+      "disabled": false,
+      "routerLink": ["disclosure"],
+      "showCompleteIndicator": false
+    },
+    {
+      "key": "3",
+      "name": "Supporting Documents",
+      "disabled": false,
+      "routerLink": ["documents"],
+      "showCompleteIndicator": true
+    },
+    {
+      "key": "4",
+      "name": "Review and Sign",
+      "disabled": false,
+      "routerLink": ["documents"],
+      "showCompleteIndicator": true
+    },
+    {
+      "key": "5",
+      "name": "Submission",
+      "disabled": false,
+      "routerLink": ["submission"],
+      "showCompleteIndicator": true
+    }
+  ],
+  "modules": [
+    {
+      "forModule": "documents",
+      "config": {
+        "requiredDocuments": [
+          {
+            "documentType": "PASSPORT",
+            "documentCategory": "IDENTIFICATION",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO", "PI", "OI"]
+          },
+          {
+            "documentType": "NATIONAL_ID",
+            "documentCategory": "IDENTIFICATION",
+            "minimumUploads": 2,
+            "maximumUploads": 2,
+            "forRoles": ["IO", "PO", "PI", "OI"]
+          },
+          {
+            "documentType": "PAYMENT_RECEIPT",
+            "documentCategory": "RECEIPT",
+            "maximumUploads": 4,
+            "minimumUploads": 2,
+            "forRoles": ["IO", "PO"]
+          },
+          {
+            "documentType": "RESIDENCY_CARD",
+            "documentCategory": "RESIDENCY_CARD",
+            "maximumUploads": 4,
+            "minimumUploads": 1,
+            "forRoles": ["IO", "PO"]
+          }
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}_CAPTION"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
+      }
+    },
+    {
+      "forModule": "basic-info",
+      "config": {
+        "formFieldToDataSourceMaps": [
+          {
+            "forField": ["personalInfo", "nameInfo", "first"],
+            "dataPath": "personalInfo.nameInfo.first"
+          },
+          {
+            "forField": ["personalInfo", "nameInfo", "last"],
+            "dataPath": "personalInfo.nameInfo.last"
+          }
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}_CAPTION"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
+      }
+    }
+  ]
+}

@@ -3,13 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ApplyDocumentsComponent } from './apply-documents.component';
 import { DocumentUploadModalComponent } from './components';
-import {
-  ApplyDocumentsConfigService,
-  ApplyDocumentsCreatorService,
-  ApplyDocumentsDataService,
-  ApplyDocumentsProgessService,
-  ApplyDocumentsService
-} from './services';
+import { ApplyDocumentsConfigService, ApplyDocumentsProgessService, ApplyDocumentsService } from './services';
 import {
   LegifyModalModule,
   LegifyButtonModule,
@@ -32,13 +26,7 @@ import { ApplyDocumentUploadModule } from '../apply-document-upload';
     ApplyDocumentUploadModule,
     LegifyTaskCardCollectionModule
   ],
-  providers: [
-    ApplyDocumentsService,
-    ApplyDocumentsDataService,
-    ApplyDocumentsConfigService,
-    ApplyDocumentsCreatorService,
-    ApplyDocumentsProgessService
-  ],
+  providers: [ApplyDocumentsService, ApplyDocumentsConfigService, ApplyDocumentsProgessService],
   exports: [ApplyDocumentsComponent]
 })
 export class ApplyDocumentsModule {}

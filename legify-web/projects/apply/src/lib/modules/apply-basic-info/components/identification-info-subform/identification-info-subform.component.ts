@@ -1,26 +1,30 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { SubformComponent } from '@legify/web-ui-elements';
-import { LegifyTranslationService } from '@legify/web-i18n';
 import { Observable } from 'rxjs';
 import { Customer, RequiredDocument } from '../../../../models';
 import { ApplyBasicInfoConfigService } from '../../services';
+import { FormSectionData } from '@legify/web-ui-elements';
+import { IdentificationInfoSubformFieldGroupMap } from '../../models';
 
 @Component({
   selector: 'legify-web-identification-info-subform',
   templateUrl: './identification-info-subform.component.html',
   styleUrls: ['./identification-info-subform.component.scss']
 })
-export class IdentificationInfoSubformComponent extends SubformComponent implements OnInit {
+export class IdentificationInfoSubformComponent implements OnInit {
+  @Input()
+  fieldGroupMap: IdentificationInfoSubformFieldGroupMap[];
+
+  @Input()
+  formSectionData: FormSectionData;
+
   @Input()
   formOwner: Customer;
 
   constructor(
     public controlContainer: ControlContainer,
     protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
-  ) {
-    super(controlContainer);
-  }
+  ) {}
 
   ngOnInit(): void {}
 

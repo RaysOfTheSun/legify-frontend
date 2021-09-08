@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { SubformComponent } from '@legify/web-ui-elements';
+import { FormSectionData, Field } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 import { Customer, RequiredDocument } from '../../../../models';
+import { ContactInfoSubformFieldGroupMap } from '../../models';
 import { ApplyBasicInfoConfigService } from '../../services';
 
 @Component({
@@ -10,18 +11,24 @@ import { ApplyBasicInfoConfigService } from '../../services';
   templateUrl: './contact-info-subform.component.html',
   styleUrls: ['./contact-info-subform.component.scss']
 })
-export class ContactInfoSubformComponent extends SubformComponent implements OnInit {
+export class ContactInfoSubformComponent implements OnInit {
+  @Input()
+  fieldGroupMap: ContactInfoSubformFieldGroupMap[];
+
+  @Input()
+  formSectionData: FormSectionData;
+
   @Input()
   formOwner: Customer;
 
   constructor(
     public controlContainer: ControlContainer,
     protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
-  ) {
-    super(controlContainer);
-  }
+  ) {}
 
   getRequiredDocument(): Observable<RequiredDocument> {
     return this.applyBasicInfoConfigService.getDocumentRequirementByDocumentType('RESIDENCY_CARD');
   }
+
+  ngOnInit(): void {}
 }
