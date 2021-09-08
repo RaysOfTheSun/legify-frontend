@@ -15,14 +15,8 @@
     "lib": ["es2018", "dom"],
     "preserveSymlinks": true,
     "paths": {
-      "@legify-app/web-apply/*": [
-        "src/app/modules/apply-wrapper/cor-apply-wrapper/*",
-        "src/app/modules/apply-wrapper/usa-apply-wrapper/*"
-      ],
-      "@legify-app/web-auth/*": [
-        "src/app/modules/auth-wrapper/cor-auth-wrapper/*",
-        "src/app/modules/auth-wrapper/usa-auth-wrapper/*"
-      ]
+      "@legify/app-web-auth/*": ["./src/app/modules/app-auth/*"],
+      "@legify/app-web-apply/*": ["src/app/app-apply/*"]
     }
   }
 }

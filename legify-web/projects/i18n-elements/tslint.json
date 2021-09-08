@@ -1,7 +1,0 @@
-{
-  "extends": "../../tslint.json",
-  "rules": {
-    "directive-selector": [true, "attribute", "legify-web-i18n", "camelCase"],
-    "component-selector": [true, "element", "legify-web-i18n", "kebab-case"]
-  }
-}

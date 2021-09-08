@@ -1,1 +1,1 @@
-export * from './apply-module-enum';
+export * from './apply-app-module-enum';

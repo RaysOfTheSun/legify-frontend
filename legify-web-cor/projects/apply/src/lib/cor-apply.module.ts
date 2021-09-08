@@ -9,7 +9,6 @@ import {
   ApplyService
 } from '@legify/web-apply';
 import { RouterModule } from '@angular/router';
-import { CorApplyConfigService, CorApplyService } from '../lib/services';
 
 @NgModule({
   declarations: [CorApplyComponent],
@@ -19,11 +18,7 @@ import { CorApplyConfigService, CorApplyService } from '../lib/services';
 export class CorApplyModule {
   public static forMarket(): ModuleWithProviders<CorApplyModule> {
     return {
-      ngModule: CorApplyModule,
-      providers: [
-        { provide: ApplyService, useClass: CorApplyService },
-        { provide: ApplyConfigService, useClass: CorApplyConfigService }
-      ]
+      ngModule: CorApplyModule
     };
   }
 }

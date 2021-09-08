@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UsaApplyBasicInfoRoutingModule } from './usa-apply-basic-info-routing.module';
-
-
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    UsaApplyBasicInfoRoutingModule
-  ]
+  imports: [CommonModule]
 })
-export class UsaApplyBasicInfoModule { }
+export class UsaApplyBasicInfoModule {}

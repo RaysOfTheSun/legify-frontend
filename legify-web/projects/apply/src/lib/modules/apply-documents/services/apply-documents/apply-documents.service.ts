@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { withLatestFrom, map, tap, take } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { withLatestFrom, map, tap, take, concatMap } from 'rxjs/operators';
 import { ApplyService, ConsumerDataService } from '../../../../services';
 import { SUPPORTING_DOC_TYPE } from '../../constants';
 import { ApplyDocumentsConfigService } from '../apply-documents-config/apply-documents-config.service';
 import { ApplyDocumentsProgessService } from '../apply-documents-progress/apply-documents-progess.service';
-import { Customer, ApplicationProgress, RequiredDocument } from '../../../../models';
+import { Customer, ApplicationProgress, RequiredDocument, LegifyApplication } from '../../../../models';
 import { PaymentMethod } from '../../../../constants';
 import { ApplyDocumentUploadDataProviderService } from '../../../apply-document-upload';
 
@@ -20,9 +20,9 @@ export class ApplyDocumentsService {
     protected applyDocumentUploadDataProviderService: ApplyDocumentUploadDataProviderService
   ) {}
 
-  public updateProgressForPersonAndModule(consumer: Customer): Observable<ApplicationProgress[]> {
+  public updateProgressForPersonAndModule(consumer: Customer): Observable<LegifyApplication> {
     return combineLatest([
-      this.applyService.currApplication$,
+      this.applyService.getCurrApplication(),
       this.getDocumentRequirementsForCustomer(consumer),
       this.getAllCustomersThatWillUploadDocuments(),
       this.applyDocumentUploadDataProviderService.getAllValidDocumentsByOwnerId(consumer.id)
@@ -40,12 +40,12 @@ export class ApplyDocumentsService {
           allPersonsThatWillUploadDocuments.length
         );
       }),
-      tap((updatedModuleProgress) => this.applyService.updateCurrApplicationProgressInfo(updatedModuleProgress))
+      concatMap((updatedModuleProgress) => this.applyService.updateCurrApplicationProgressInfo(updatedModuleProgress))
     );
   }
 
   public getAllCustomersThatWillUploadDocuments(): Observable<Customer[]> {
-    return this.applyService.currApplication$.pipe(
+    return this.applyService.getCurrApplication().pipe(
       map((application) => {
         return application ? this.consumerDataService.getAllInsuredPersonsFromApplication(application) : [];
       })
@@ -54,7 +54,7 @@ export class ApplyDocumentsService {
 
   public getDocumentRequirementsForCustomer(customer: Customer): Observable<RequiredDocument[]> {
     return this.applyDocumentsConfigService.requiredDocuments$.pipe(
-      withLatestFrom(this.applyService.currApplication$),
+      withLatestFrom(this.applyService.getCurrApplication()),
       map(([requiredDocs, currApplication]) => {
         const requiredDocsForCustomer: RequiredDocument[] = [];
 

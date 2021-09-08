@@ -8,7 +8,8 @@
       "@legify/web-core": "legifyWebCore",
       "@legify/web-ui-elements": "legifyWebUiElements",
       "@legify-features/web-nftf": "legifyFeaturesWebNftf",
-      "@legify/web-i18n-elements": "legifyWebi18nElements"
+      "@legify/web-i18n": "legifyWebi18n"
     }
-  }
+  },
+  "assets": ["./assets"]
 }

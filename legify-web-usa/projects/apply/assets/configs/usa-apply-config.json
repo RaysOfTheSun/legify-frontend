@@ -87,7 +87,7 @@
           },
           "subHeaderText": {
             "sources": ["role"],
-            "template": "PERSON_{0}"
+            "template": "PERSON_{0}_CAPTION"
           },
           "highlightColorKey": {
             "sources": ["role"],

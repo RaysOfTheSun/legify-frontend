@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SupportingDocument } from '../../../apply-document-upload';
-import { ApplyModule } from '../../../../constants';
+import { ApplyAppModule } from '../../../../constants';
 import { LegifyApplication, RequiredDocument } from '../../../../models';
 import { ApplicationProgress } from '../../../../models';
 import { ApplyProgressService } from '../../../../services';
@@ -9,8 +9,8 @@ import { ApplyProgressService } from '../../../../services';
 export class ApplyDocumentsProgessService extends ApplyProgressService {
   public getModuleProgress(application: LegifyApplication): ApplicationProgress {
     return (
-      application.progressInfo.find((progressInfo) => progressInfo.forModule === ApplyModule.DOCUMENTS) || {
-        forModule: ApplyModule.DOCUMENTS,
+      application.progressInfo.find((progressInfo) => progressInfo.forModule === ApplyAppModule.DOCUMENTS) || {
+        forModule: ApplyAppModule.DOCUMENTS,
         chunks: [],
         totalProgress: 0
       }
