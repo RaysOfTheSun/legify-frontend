@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ApplyComponent } from '@legify/web-apply';
-import { LegifyTranslationLoaderGuard, makeTranslationLoaderData } from '@legify/web-i18n';
+import { TranslationDataLoaderGuard } from '../app-i18n/guards/translation-data-loader/translation-data-loader.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: ApplyComponent,
-    canActivate: [LegifyTranslationLoaderGuard],
-    data: makeTranslationLoaderData('apply/APPLY-FIELDS-COR', false),
+    canActivate: [TranslationDataLoaderGuard],
+    data: { translationDataPath: 'apply/APPLY-FIELDS' },
     children: [
       {
         path: 'basic-info',
@@ -16,8 +16,8 @@ const routes: Routes = [
           import('@legify/app-web-apply/modules/app-apply-basic-info/app-apply-basic-info.module').then(
             ({ AppApplyBasicInfoModule }) => AppApplyBasicInfoModule
           ),
-        canActivate: [LegifyTranslationLoaderGuard],
-        data: makeTranslationLoaderData('apply/APPLY-BASIC-INFO-FIELDS-COR', false)
+        canActivate: [TranslationDataLoaderGuard],
+        data: { translationDataPath: 'apply/APPLY-BASIC-INFO-FIELDS' }
       },
       {
         path: 'documents',
@@ -25,8 +25,8 @@ const routes: Routes = [
           import('@legify/app-web-apply/modules/app-apply-documents/app-apply-documents.module').then(
             ({ AppApplyDocumentsModule }) => AppApplyDocumentsModule
           ),
-        canActivate: [LegifyTranslationLoaderGuard],
-        data: makeTranslationLoaderData('apply/APPLY-DOCUMENTS-FIELDS')
+        canActivate: [TranslationDataLoaderGuard],
+        data: { translationDataPath: 'apply/APPLY-DOCUMENTS-FIELDS' }
       },
       {
         path: '**',

@@ -13,11 +13,8 @@ export class LegifyI18nHttpDataService {
     return requestParams.set('t', new Date().getMilliseconds().toString());
   }
 
-  public getTranslationData(
-    translationDatName: string
-  ): Observable<LegifyTranslationMap> {
-    const translationDataUrl = `assets/i18n/${translationDatName}.json`;
-    return this.httpClient.get<LegifyTranslationMap>(translationDataUrl, {
+  public getTranslationData(pathToTranslationData: string): Observable<LegifyTranslationMap> {
+    return this.httpClient.get<LegifyTranslationMap>(pathToTranslationData, {
       params: this.getRequestParams()
     });
   }

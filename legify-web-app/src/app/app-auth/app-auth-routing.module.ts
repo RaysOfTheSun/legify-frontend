@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LegifyTranslationLoaderGuard, makeTranslationLoaderData } from '@legify/web-i18n';
+import { TranslationDataLoaderGuard } from '../app-i18n/guards/translation-data-loader/translation-data-loader.guard';
 
 const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./app-login/app-login.module').then((m) => m.AppLoginModule),
-    canActivate: [LegifyTranslationLoaderGuard],
-    data: makeTranslationLoaderData('auth/login/LOGIN-FIELDS-COR', false)
+    canActivate: [TranslationDataLoaderGuard],
+    data: { translationDataPath: 'auth/login/LOGIN-FIELDS' }
   }
 ];
 

@@ -2,9 +2,9 @@
   "navItems": [
     {
       "key": "0",
-      "name": "Personal Information",
+      "name": "Basic Info",
       "disabled": false,
-      "routerLink": ["personal-info"],
+      "routerLink": ["basic-info"],
       "showCompleteIndicator": false
     },
     {
@@ -75,6 +75,43 @@
             "minimumUploads": 2,
             "maximumUploads": 2,
             "forRoles": ["IO", "PO"]
+          }
+        ],
+        "taskCardLayout": {
+          "headerText": {
+            "sources": [
+              "personalInfo.nameInfo.first",
+              "personalInfo.nameInfo.last"
+            ],
+            "template": "{0} {1}"
+          },
+          "subHeaderText": {
+            "sources": ["role"],
+            "template": "PERSON_{0}_CAPTION"
+          },
+          "highlightColorKey": {
+            "sources": ["role"],
+            "template": "{0}"
+          },
+          "footerText": {
+            "template": "Completion",
+            "templateIsValue": true
+          },
+          "rows": []
+        }
+      }
+    },
+    {
+      "forModule": "basic-info",
+      "config": {
+        "formFieldToDataSourceMaps": [
+          {
+            "forField": ["personalInfo", "nameInfo", "first"],
+            "dataPath": "personalInfo.nameInfo.first"
+          },
+          {
+            "forField": ["personalInfo", "nameInfo", "last"],
+            "dataPath": "personalInfo.nameInfo.last"
           }
         ],
         "taskCardLayout": {
