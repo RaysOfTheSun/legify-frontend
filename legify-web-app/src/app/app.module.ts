@@ -11,6 +11,7 @@ import { LegifyI18nCoreModule, webAppI18nConfigurer, WEB_APP_I18N_CONFIGURER_DEP
 import { webAppConfigurer, WEB_APP_CONFIGURER_DEPS, AppConfigService } from '@legify/web-core';
 import { ApplyDataProvidersModule, APPLY_CONFIG_URL } from '@legify/web-apply';
 import { ApplyConfigUrlFactory } from './app-apply/factories/apply-config-url-factory/apply-config-url-factory';
+import { AppI18nModule } from './app-i18n/app-i18n.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,8 @@ import { ApplyConfigUrlFactory } from './app-apply/factories/apply-config-url-fa
     BrowserAnimationsModule,
     CoreModule.forRoot(),
     LegifyI18nCoreModule.forRoot(),
-    ApplyDataProvidersModule.forRoot()
+    ApplyDataProvidersModule.forRoot(),
+    AppI18nModule.forRoot()
   ],
   providers: [
     {

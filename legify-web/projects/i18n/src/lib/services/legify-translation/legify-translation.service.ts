@@ -1,39 +1,27 @@
 import { Injectable } from '@angular/core';
-import { L10nLocale, L10nTranslationService } from 'angular-l10n';
-import { AppConfigService } from '@legify/web-core';
-import { forkJoin, interval, Observable } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
+import { L10nTranslationService } from 'angular-l10n';
+import { forkJoin, Observable, of } from 'rxjs';
+import { catchError, concatMap } from 'rxjs/operators';
 import { LOCALE_LANGUAGE_KEY } from '../../constants';
 import { LegifyTranslationMap } from '../../models/legify-translation-map';
 import { LegifyI18nConfigService } from '../legify-i18n-config/legify-i18n-config.service';
 import { LegifyI18nHttpDataService } from '../legify-i18n-http-data/legify-i18n-http-data.service';
 import { LegifyTranslationDataBuilderService } from '../legify-translation-data-builder/legify-translation-data-builder.service';
-import { LEGIFY_MARKET } from '@legify/web-core';
 
 @Injectable()
 export class LegifyTranslationService {
   constructor(
-    protected appConfigService: AppConfigService,
     protected translationService: L10nTranslationService,
     protected i18nHttpDataService: LegifyI18nHttpDataService,
     protected legifyI18nConfigService: LegifyI18nConfigService,
     protected legifyTranslationDataService: LegifyTranslationDataBuilderService
   ) {}
 
-  public loadTranslationData(
-    pathToTranslationData: string,
-    customMarket?: LEGIFY_MARKET,
-    appendCurrAppMarket = true
-  ): Observable<Record<string, string>[]> {
-    const marketToAppend = customMarket ? customMarket.toUpperCase() : this.appConfigService.currMarket.toUpperCase();
-
-    const finalPathToTranslation = appendCurrAppMarket
-      ? `${pathToTranslationData}-${marketToAppend}`
-      : pathToTranslationData;
-
-    return this.i18nHttpDataService
-      .getTranslationData(finalPathToTranslation)
-      .pipe(concatMap((translationMap) => this.registerTranslationData(translationMap)));
+  public loadTranslationData(pathToTranslationData: string): Observable<Record<string, string>[]> {
+    return this.i18nHttpDataService.getTranslationData(pathToTranslationData).pipe(
+      concatMap((translationMap) => this.registerTranslationData(translationMap)),
+      catchError(() => of(null))
+    );
   }
 
   protected registerTranslationDataForLocale(
