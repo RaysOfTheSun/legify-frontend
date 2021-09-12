@@ -1,13 +1,13 @@
 {
-  "PERSON_PO_CAPTION": {
+  "PO_CAPTION": {
     "en": "Policy Owner",
     "vi": "Chính sách sở hữu"
   },
-  "PERSON_PI_CAPTION": {
+  "PI_CAPTION": {
     "en": "Primary Insured",
     "vi": "Người được bảo hiểm chính"
   },
-  "PERSON_OI_CAPTION": {
+  "OI_CAPTION": {
     "en": "Other Insured",
     "vi": "Người được bảo hiểm khác"
   },

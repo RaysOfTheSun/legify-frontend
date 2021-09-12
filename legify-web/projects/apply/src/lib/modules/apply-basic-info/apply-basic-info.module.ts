@@ -13,12 +13,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BASIC_INFO_FORM_SUBFORMS } from './constants/injection-tokens';
 import { ApplyBasicInfoConfigService, ApplyBasicInfoService } from './services';
 import {
-  LegifyTaskCardCollectionModule,
-  LegifyTaskCardModule,
   LegifyFieldGroupModule,
   LegifyFormSectionModule,
   LegifyFormControlModule,
-  LegifyTextListModule
+  LegifyTextListModule,
+  LegifyTaskCardShellModule
 } from '@legify/web-ui-elements';
 import { IdentificationInfoSubformComponent } from './components/identification-info-subform/identification-info-subform.component';
 import { PersonalInfoSubformComponent } from './components/personal-info-subform/personal-info-subform.component';
@@ -27,6 +26,7 @@ import { DocumentUploadFormSectionComponent } from './components/document-upload
 import { basicInfoFormSubformToConsumerRoleMapping } from './configs/basic-info-consumer-role-subform-map';
 import { LegifyI18nModule } from '@legify/web-i18n';
 import { ApplyDocumentUploadModule } from '../apply-document-upload';
+import { ApplyUiElementsModule } from '../apply-ui-elements/apply-ui-elements.module';
 
 @NgModule({
   declarations: [
@@ -47,14 +47,14 @@ import { ApplyDocumentUploadModule } from '../apply-document-upload';
     MatInputModule,
     MatProgressBarModule,
     LegifyLazyRendererModule,
-    LegifyTaskCardModule,
-    LegifyTaskCardCollectionModule,
     LegifyFieldGroupModule,
     LegifyFormSectionModule,
     LegifyFormControlModule,
     LegifyTextListModule,
     LegifyI18nModule,
-    ApplyDocumentUploadModule
+    ApplyDocumentUploadModule,
+    LegifyTaskCardShellModule,
+    ApplyUiElementsModule
   ],
   providers: [
     {

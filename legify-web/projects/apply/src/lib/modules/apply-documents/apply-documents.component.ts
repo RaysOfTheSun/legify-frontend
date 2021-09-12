@@ -1,7 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Customer } from '../../models';
-import { TaskCardConfig } from '@legify/web-ui-elements';
 import { Observable } from 'rxjs';
 
 import { ApplyService } from '../../services';
@@ -26,10 +25,6 @@ export class ApplyDocumentsComponent {
     protected applyDocumentsConfigService: ApplyDocumentsConfigService,
     protected applyDocumentsProgressService: ApplyDocumentsProgessService
   ) {}
-
-  get taskCardConfigs$(): Observable<TaskCardConfig> {
-    return this.applyDocumentsConfigService.taskCardConfigs;
-  }
 
   public onTaskCardClick(customer: Customer): void {
     this.matDialog.open(DocumentUploadModalComponent, {

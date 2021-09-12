@@ -1,9 +1,0 @@
-@import "../../../../assets/styles/mixins";
-
-.legify-task-card-collection {
-  width: 100%;
-  overflow: inherit;
-  max-width: inherit;
-
-  @include flex-container($wrap: wrap);
-}

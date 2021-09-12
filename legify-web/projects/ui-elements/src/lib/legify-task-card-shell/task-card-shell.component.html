@@ -1,0 +1,10 @@
+<mat-card class="legify-task-card-shell" [ngClass]="{ 'legify-task-card-shell--small': small }">
+  <div
+    class="legify-task-card-shell__highlight"
+    *ngIf="showHighlight"
+    [ngStyle]="{ backgroundColor: highlightColor }"
+  ></div>
+  <mat-card-content class="legify-task-card-shell__body">
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>
