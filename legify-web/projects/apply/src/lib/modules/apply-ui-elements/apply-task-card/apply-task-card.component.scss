@@ -1,0 +1,34 @@
+.apply-task-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__owner-info-name {
+    margin: 2px 0;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+
+  &__owner-info-role {
+    color: #bdbdbd;
+    text-transform: uppercase;
+  }
+
+  &__progress-info-indicator {
+    margin-top: 5px;
+  }
+
+  &__progress-info-header {
+    color: #bdbdbd;
+  }
+
+  &__progress-info {
+    margin-top: 24px;
+  }
+
+  &__button {
+    color: white;
+    background: #e57373;
+    margin-top: auto;
+  }
+}

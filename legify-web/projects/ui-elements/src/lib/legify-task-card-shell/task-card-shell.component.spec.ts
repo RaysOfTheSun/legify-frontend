@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LegifyTaskCardComponent } from './legify-task-card.component';
+import { TaskCardShellComponent } from './task-card-shell.component';
 
-describe('LegifyTaskCardComponent', () => {
-  let component: LegifyTaskCardComponent;
-  let fixture: ComponentFixture<LegifyTaskCardComponent>;
+describe('TaskCardShellComponent', () => {
+  let component: TaskCardShellComponent;
+  let fixture: ComponentFixture<TaskCardShellComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LegifyTaskCardComponent ]
+      declarations: [ TaskCardShellComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LegifyTaskCardComponent);
+    fixture = TestBed.createComponent(TaskCardShellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

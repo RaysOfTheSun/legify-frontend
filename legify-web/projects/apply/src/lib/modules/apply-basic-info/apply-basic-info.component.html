@@ -1,15 +1,8 @@
-<legify-web-task-card-collection
-  [taskCardTemplate]="defaultTaskCardTemplate"
-  [dataSource]="getTaskCardCollectionDataSource() | async"
-  [taskCardConfig]="taskCardConfigs$ | async"
-  (taskCardClickHandler)="handleTaskCardClick($event)"
-></legify-web-task-card-collection>
-
-<ng-template #defaultTaskCardTemplate let-config="config" let-source="source" let-handleClick="handleClick">
-  <legify-web-task-card
-    [config]="config"
-    [dataSource]="source"
-    (handleClick)="handleClick($event)"
-    class="legify-collection-task-card"
-  ></legify-web-task-card>
-</ng-template>
+<div class="apply-task-card-list">
+  <legify-web-apply-task-card
+    class="apply-task-card-list__task-card"
+    *ngFor="let owner of getTaskCardCollectionDataSource() | async"
+    [owner]="owner"
+    (clicked)="handleTaskCardClick($event)"
+  ></legify-web-apply-task-card>
+</div>

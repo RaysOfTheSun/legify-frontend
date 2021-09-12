@@ -4,15 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ApplyDocumentsComponent } from './apply-documents.component';
 import { DocumentUploadModalComponent } from './components';
 import { ApplyDocumentsConfigService, ApplyDocumentsProgessService, ApplyDocumentsService } from './services';
-import {
-  LegifyModalModule,
-  LegifyButtonModule,
-  LegifyTaskCardModule,
-  LegifyTaskCardCollectionModule
-} from '@legify/web-ui-elements';
+import { LegifyModalModule, LegifyButtonModule } from '@legify/web-ui-elements';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ApplyDocumentUploadModule } from '../apply-document-upload';
+import { ApplyUiElementsModule } from '../apply-ui-elements/apply-ui-elements.module';
 
 @NgModule({
   declarations: [ApplyDocumentsComponent, DocumentUploadModalComponent],
@@ -22,9 +18,8 @@ import { ApplyDocumentUploadModule } from '../apply-document-upload';
     MatButtonModule,
     LegifyModalModule,
     LegifyButtonModule,
-    LegifyTaskCardModule,
     ApplyDocumentUploadModule,
-    LegifyTaskCardCollectionModule
+    ApplyUiElementsModule
   ],
   providers: [ApplyDocumentsService, ApplyDocumentsConfigService, ApplyDocumentsProgessService],
   exports: [ApplyDocumentsComponent]

@@ -1,10 +1,8 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AppConfigService } from '@legify/web-core';
-import { TaskCardConfig } from '@legify/web-ui-elements';
 import { Person } from '../../models';
 import { Observable } from 'rxjs';
-import { first } from 'rxjs/operators';
 import { ConsumerRole } from '../../constants';
 import { ApplyService } from '../../services';
 import { PersonBasicInfoModalComponent } from './components';
@@ -21,15 +19,10 @@ export class ApplyBasicInfoComponent implements OnInit {
 
   constructor(
     protected matDialog: MatDialog,
-    protected applyService: ApplyService,
     protected appConfigService: AppConfigService,
     protected applyBasicInfoService: ApplyBasicInfoService,
     protected applyBasicInfoConfigService: ApplyBasicInfoConfigService
   ) {}
-
-  get taskCardConfigs$(): Observable<TaskCardConfig> {
-    return this.applyBasicInfoConfigService.taskCardConfigs$;
-  }
 
   public getTaskCardCollectionDataSource(): Observable<Person[]> {
     return this.applyBasicInfoService.getPersonsThatNeedBasicInfo();

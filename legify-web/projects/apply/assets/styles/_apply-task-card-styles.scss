@@ -1,0 +1,13 @@
+.apply-task-card-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__task-card {
+    flex: 1 1 250px;
+  }
+
+  & .apply-task-card__progress-info-indicator {
+    height: 10px;
+    border-radius: 25px;
+  }
+}

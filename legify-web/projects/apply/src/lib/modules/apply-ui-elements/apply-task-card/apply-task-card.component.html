@@ -1,0 +1,20 @@
+<legify-web-task-card-shell small="true" (click)="handleClicked()" [showHighlight]="false">
+  <div class="apply-task-card">
+    <div class="apply-task-card__owner-info">
+      <legify-web-i18n-label
+        [textId]="owner.role | caption"
+        class="apply-task-card__owner-info-role"
+      ></legify-web-i18n-label>
+      <h2 class="apply-task-card__owner-info-name">{{ customerName }}</h2>
+    </div>
+    <div class="apply-task-card__progress-info">
+      <legify-web-i18n-label class="apply-task-card__progress-info-header" textId="completion"></legify-web-i18n-label>
+      <mat-progress-bar
+        mode="determinate"
+        [value]="progress"
+        class="apply-task-card__progress-info-indicator"
+      ></mat-progress-bar>
+    </div>
+    <button mat-stroked-button class="apply-task-card__button">Edit Information</button>
+  </div>
+</legify-web-task-card-shell>
